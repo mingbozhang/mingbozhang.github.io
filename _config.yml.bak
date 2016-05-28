@@ -1,10 +1,10 @@
 # Site
-title:          BOB BLOG
+title:          Ramme
 bio:            'Just a simple Jekyll theme'
 description:    "Simple Jekyll theme for your blog by Taylan Tatlı"
 picture:        'assets/img/Logo.png'
 locale:         en_US
-url:            http://bowie.site/Ramme
+url:            http://taylantatli.me/Ramme
 
 # Jekyll
 permalink:      /:title/
