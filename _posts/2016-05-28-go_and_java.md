@@ -7,3 +7,5 @@ tags: [sample post, readability, test]
 ---
 
 # Java和GO
+
+have a test
