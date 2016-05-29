@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>设计模式演练——工厂方法模式 – BOB BLOG</title>
+    <meta name="description" content='设计模式演练——工厂方法模式1.小C的故事       大家好，我叫张小C，我是一个面包师，专职烤面包，刚入行只会烤一些白切包啊啥的。下面是我的工作。/** * 程序世界 * * @author bob * */public class World { public static void main(String[] args) {   LittleC littleC = new LittleC();   littleC.work(); }}/** * 张小C * * @author bob * */public class LittleC { public void work() {   Oven oven = new Oven();   Bread bread = oven.cookBread();   System.out.print(bread.getName()+"做好了！");   System.out.println(bread.getTaste()); }}2.存在的问题'>
+    <meta name="keywords" content="">
+    <link rel="canonical" href="http://bowie.site/design_pattern_factory_method/">
+        <!-- Twitter Cards -->
+    <meta name="twitter:title" content="设计模式演练——工厂方法模式">
+    <meta name="twitter:description" content='设计模式演练——工厂方法模式1.小C的故事       大家好，我叫张小C，我是一个面包师，专职烤面包，刚入行只会烤一些白切包啊啥的。下面是我的工作。/** * 程序世界 * * @author bob * */public class World { public static void main(String[] args) {   LittleC littleC = new LittleC();   littleC.work(); }}/** * 张小C * * @author bob * */public class LittleC { public void work() {   Oven oven = new Oven();   Bread bread = oven.cookBread();   System.out.print(bread.getName()+"做好了！");   System.out.println(bread.getTaste()); }}2.存在的问题'>
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:image" content="http://bowie.site/assets/img/Logo.png">
+    <!-- Open Graph -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="设计模式演练——工厂方法模式">
+    <meta property="og:description" content='设计模式演练——工厂方法模式1.小C的故事       大家好，我叫张小C，我是一个面包师，专职烤面包，刚入行只会烤一些白切包啊啥的。下面是我的工作。/** * 程序世界 * * @author bob * */public class World { public static void main(String[] args) {   LittleC littleC = new LittleC();   littleC.work(); }}/** * 张小C * * @author bob * */public class LittleC { public void work() {   Oven oven = new Oven();   Bread bread = oven.cookBread();   System.out.print(bread.getName()+"做好了！");   System.out.println(bread.getTaste()); }}2.存在的问题'>
+    <meta property="og:url" content="http://bowie.site/design_pattern_factory_method/">
+    <meta property="og:site_name" content="BOB BLOG">
+    <meta property="og:image" content="http://bowie.site/assets/img/Logo.png">
+
+    
+    
+    <!-- Handheld -->
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Favicons -->
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="http://bowie.site/assets/img/favicon/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://bowie.site/assets/img/favicon/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://bowie.site/assets/img/favicon/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://bowie.site/assets/img/favicon/apple-touch-icon-144x144.png">
+    <link rel="icon" type="image/png" href="http://bowie.site/assets/img/favicon/favicon.png">
+    <link rel="shortcut icon" href="http://bowie.site/assets/img/favicon/favicon.ico">
+    <!-- Feed -->
+    <link rel="alternate" type="application/rss+xml" title="BOB BLOG" href="http://bowie.site/feed.xml">
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="http://bowie.site/assets/css/main.css">
+</head>
+
+
+<body>
+        <nav class="nav">
+        <ul class="list">
+            
+				    
+				    <li class="item"><a class="link" href="http://bowie.site/">Home</a></li>
+				
+				    
+				    <li class="item"><a class="link" href="http://bowie.site/blog/">Blog</a></li>
+				
+				    
+				    <li class="item"><a class="link" href="http://bowie.site/projects/">Projects</a></li>
+				
+				    
+				    <li class="item"><a class="link" href="http://bowie.site/about/">About</a></li>
+				
+        </ul>
+    </nav>
+
+    <div class="wrapper">
+        <div class="title">
+            <h1>设计模式演练——工厂方法模式</h1>
+            <h4>28 Mar 2016</h4>
+        </div>
+        <div class="article">
+            <h1 id="section">设计模式演练——工厂方法模式</h1>
+
+<h3 id="c">1.小C的故事</h3>
+
+<p>       大家好，我叫张小C，我是一个面包师，专职烤面包，刚入行只会烤一些白切包啊啥的。下面是我的工作。</p>
+<pre><code>
+/**
+ * 程序世界
+ *
+ * @author bob
+ *
+ */
+public class World {
+
+ public static void main(String[] args) {
+   LittleC littleC = new LittleC();
+   littleC.work();
+ }
+}
+/**
+ * 张小C
+ *
+ * @author bob
+ *
+ */
+public class LittleC {
+
+ public void work() {
+   Oven oven = new Oven();
+   Bread bread = oven.cookBread();
+   System.out.print(bread.getName()+"做好了！");
+   System.out.println(bread.getTaste());
+ }
+
+}
+</code></pre>
+
+<h3 id="section-1">2.存在的问题</h3>
+
+        </div>
+    </div>
+        <div class="footer">
+        BOB BLOG © 2016 <a href="http://bowie.site/feed.xml" target="_blank"><i class="fa fa-fw fa-feed"></i></a>
+    </div>
+
+    <script src="http://bowie.site/assets/js/jquery-1.12.2.min.js"></script>
+<script src="http://bowie.site/assets/js/jquery.goup.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    $.goup({
+        trigger: 500,
+        bottomOffset: 10,
+        locationOffset: 20,
+        containerRadius: 0,
+        containerColor: '#fff',
+        arrowColor: '#000',
+        goupSpeed: 'normal'
+    });
+});
+</script>
+
+
+</body>
+</html>
