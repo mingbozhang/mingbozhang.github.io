@@ -1,4 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.1.6">Jekyll</generator><link href="http://bowie.site/feed.xml" rel="self" type="application/atom+xml" /><link href="http://bowie.site/" rel="alternate" type="text/html" /><updated>2016-05-29T23:52:09+08:00</updated><id>http://bowie.site/</id><title>BOB BLOG</title><subtitle>Simple Jekyll theme for your blog by Taylan Tatlı</subtitle><entry><title>后面博客中可以选择的博文</title><link href="http://bowie.site/what_i_can_write/" rel="alternate" type="text/html" title="后面博客中可以选择的博文" /><published>2016-05-29T00:00:00+08:00</published><updated>2016-05-29T00:00:00+08:00</updated><id>http://bowie.site/what_i_can_write</id><content type="html" xml:base="http://bowie.site/what_i_can_write/">&lt;h1 id=&quot;section&quot;&gt;可以选择的主题&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.1.6">Jekyll</generator><link href="http://bowie.site/feed.xml" rel="self" type="application/atom+xml" /><link href="http://bowie.site/" rel="alternate" type="text/html" /><updated>2016-05-30T08:12:43+08:00</updated><id>http://bowie.site/</id><title>BOB BLOG</title><subtitle>Simple Jekyll theme for your blog by Taylan Tatlı</subtitle><entry><title>Mymind</title><link href="http://bowie.site/mymind/" rel="alternate" type="text/html" title="Mymind" /><published>2016-05-30T00:00:00+08:00</published><updated>2016-05-30T00:00:00+08:00</updated><id>http://bowie.site/mymind</id><content type="html" xml:base="http://bowie.site/mymind/">&lt;h2 id=&quot;section&quot;&gt;心情&lt;/h2&gt;
+&lt;p&gt;要学的东西有这么多，我该先学哪个呢？是全面进行呢，还是一个埃一个？&lt;br /&gt;
+纵观这些在学或者是等待学的知识，我就像是一个单核cpu切换在各个进程之间。偶然发现有些前段时间还在看，但是没有看完的书，最近已经被我遗忘在书架的角落。&lt;br /&gt;
+* 我想试验dubbo＋zookepper＋SpringMVC。了解下zookpper的使用场景。
+* 我想阅读学习ElasticSearch源代码，参与到开源项目维护中去。
+* 我想阅读Spring源码，学习大牛们实际运用各种设计模式&lt;/p&gt;
+
+&lt;p&gt;还有很多要写到，就到这了，要上班了。&lt;/p&gt;</content><summary>心情
+要学的东西有这么多，我该先学哪个呢？是全面进行呢，还是一个埃一个？
+纵观这些在学或者是等待学的知识，我就像是一个单核cpu切换在各个进程之间。偶然发现有些前段时间还在看，但是没有看完的书，最近已经被我遗忘在书架的角落。
+* 我想试验dubbo＋zookepper＋SpringMVC。了解下zookpper的使用场景。
+* 我想阅读学习ElasticSearch源代码，参与到开源项目维护中去。
+* 我想阅读Spring源码，学习大牛们实际运用各种设计模式</summary></entry><entry><title>后面博客中可以选择的博文</title><link href="http://bowie.site/what_i_can_write/" rel="alternate" type="text/html" title="后面博客中可以选择的博文" /><published>2016-05-29T00:00:00+08:00</published><updated>2016-05-29T00:00:00+08:00</updated><id>http://bowie.site/what_i_can_write</id><content type="html" xml:base="http://bowie.site/what_i_can_write/">&lt;h1 id=&quot;section&quot;&gt;可以选择的主题&lt;/h1&gt;
 &lt;p&gt;## java常用开源包用途介绍
 ## dubbo，zookeeper,and ?
 ## 以小C为系列的设计模式
@@ -104,23 +116,7 @@ title: “关于《设计模式演练》系列文章结构的规范”
 date: 2016-03-28
 excerpt: “A ton of text to test readability.”
 —
-# 关于《设计模式演练》系列文章结构的规范
-
-       设计模式的恰当使用可以使程序结构更灵活，易于复用和扩展。但是使用设计模式的同时会以损失性能和增加复杂度为代价。所以在使用之前要进行权衡。
-
-为了使设计模式的学习印象深刻，更能理解应用场景与限制，将每篇文章结构规定为以下：
-
-1.小故事；
-
-（我家有只猫叫张小C，这次就把他带到程序世界中成为各个角色，遇到各种事情，用设计模式解决之。想想都感觉有意思！）
-
-2.存在的问题探讨；
-
-3.解决问题的设计模式登场；
-
-4.解决了什么，失去了什么；
-
-5.具体应用场景（谈一谈可以应用的场景）</summary></entry><entry><title>ElasticSearch学习问题记录——nested查询不到数据</title><link href="http://bowie.site/nested_not_find_data/" rel="alternate" type="text/html" title="ElasticSearch学习问题记录——nested查询不到数据" /><published>2015-12-25T00:00:00+08:00</published><updated>2015-12-25T00:00:00+08:00</updated><id>http://bowie.site/nested_not_find_data</id><content type="html" xml:base="http://bowie.site/nested_not_find_data/">&lt;h1 id=&quot;elasticsearchnested&quot;&gt;ElasticSearch学习问题记录——nested查询不到数据&lt;/h1&gt;
+# 关于《设计模式演练》系列文章结构的规范</summary></entry><entry><title>ElasticSearch学习问题记录——nested查询不到数据</title><link href="http://bowie.site/nested_not_find_data/" rel="alternate" type="text/html" title="ElasticSearch学习问题记录——nested查询不到数据" /><published>2015-12-25T00:00:00+08:00</published><updated>2015-12-25T00:00:00+08:00</updated><id>http://bowie.site/nested_not_find_data</id><content type="html" xml:base="http://bowie.site/nested_not_find_data/">&lt;h1 id=&quot;elasticsearchnested&quot;&gt;ElasticSearch学习问题记录——nested查询不到数据&lt;/h1&gt;
 
 &lt;p&gt;通过代码创建了索引名称为demoindex，索引类型为school，以下是索引类型的数据映射结构：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;
@@ -232,197 +228,4 @@ curl -XGET &#39;localhost:9200/shop/cloth/_search?pretty=true&#39; -d &#39;{
 &lt;p&gt;根据书中介绍将使用head的复合查询方式进行如下查询。成功，数据出现了！
 &lt;img src=&quot;/cache/nested_not_find_data/825682-20151225214318140-1135451384.png&quot; /&gt;&lt;/p&gt;</content><summary>A ton of text to test readability.</summary></entry><entry><title>有向图遍历Java Fork/join与Go语言比较</title><link href="http://bowie.site/go_and_java/" rel="alternate" type="text/html" title="有向图遍历Java Fork/join与Go语言比较" /><published>2012-05-22T00:00:00+08:00</published><updated>2012-05-22T00:00:00+08:00</updated><id>http://bowie.site/go_and_java</id><content type="html" xml:base="http://bowie.site/go_and_java/">&lt;h1 id=&quot;javago&quot;&gt;Java和GO&lt;/h1&gt;
 
-&lt;p&gt;have a test&lt;/p&gt;</content><category term="sample post" /><category term="readability" /><category term="test" /><summary>A ton of text to test readability.</summary></entry><entry><title>JVM学习——编译OpenJDK</title><link href="http://bowie.site/complie_openJDK/" rel="alternate" type="text/html" title="JVM学习——编译OpenJDK" /><published>2012-05-22T00:00:00+08:00</published><updated>2012-05-22T00:00:00+08:00</updated><id>http://bowie.site/complie_openJDK</id><content type="html" xml:base="http://bowie.site/complie_openJDK/">&lt;h1 id=&quot;jvmopenjdk&quot;&gt;JVM学习——编译OpenJDK&lt;/h1&gt;
-
-&lt;p&gt;       最近在学习《深入理解java虚拟机 第二版》这本书。书中第一部分建议大家自己编译OpenJDK。抱着学习态度也来编译个玩一玩。下面进入正题。&lt;/p&gt;
-
-&lt;h2 id=&quot;section&quot;&gt;1.编译环境介绍&lt;/h2&gt;
-&lt;table&gt;
-&lt;tr&gt;&lt;td&gt;名称&lt;/td&gt;&lt;td&gt;版本&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;操作系统&lt;/td&gt;&lt;td&gt; CentOS Linux release 7.1.1503 (Core)&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Linux内核版本&lt;/td&gt;&lt;td&gt;3.10.0-229.el7.x86\_64&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;gcc版本 &lt;/td&gt;&lt;td&gt; 4.8.2 20140120 (Red Hat 4.8.2-16) (GCC)&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;openJdk版本 &lt;/td&gt;&lt;td&gt;openjdk-7u40&lt;/td&gt;&lt;/tr&gt;
-&lt;/table&gt;
-&lt;p&gt;## 2.准备工作
-### 2.1下载OpenJDK
-打开网站https://jdk7.java.net/source.html&lt;br /&gt;
-在这里复制链接直接在linux中wget。&lt;br /&gt;
-wget http://www.java.net/download/openjdk/jdk7u40/promoted/b43/openjdk-7u40-fcs-src-b43-26_aug_2013.zip&lt;/p&gt;
-
-&lt;h3 id=&quot;section-1&quot;&gt;2.2 下载依赖&lt;/h3&gt;
-&lt;p&gt;具体的依赖要求说明都在README-builds.html 中了，这里直接来命令：&lt;br /&gt;
-# yum install -y  glibc*&lt;br /&gt;
-# yum install cups-devel&lt;br /&gt;
-# yum install -y  alsa*&lt;br /&gt;
-# yum install -y fontconfig*&lt;br /&gt;
-# yum install zip*&lt;br /&gt;
-# yum install  libstdc++-static&lt;/p&gt;
-
-&lt;p&gt;解压压缩包,将得到openjdk文件夹&lt;br /&gt;
-unzip  openjdk-7u40-fcs-src-b43-26_aug_2013.zip&lt;br /&gt;
-cd openjdk&lt;br /&gt;
-这里有一份构建说明文档README-builds.html ，建议在windows下面看。后面步骤全靠它了。&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;安装freetype&lt;/strong&gt;&lt;br /&gt;
-下载源码
-# wget http://jaist.dl.sourceforge.net/project/freetype/freetype2/2.3.12/freetype-2.3.12.tar.gz&lt;br /&gt;
-解压源码,编译安装
-# tar -zxvf freetype-2.3.12.tar.gz&lt;br /&gt;
-# cd freetype-2.3.12&lt;br /&gt;
-# ./configure &amp;amp;&amp;amp; make &amp;amp;&amp;amp; sudo -u root make install&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;下载并安装ANT&lt;/strong&gt;&lt;br /&gt;
-配置ANT环境变量&lt;br /&gt;
-# wget http://mirrors.hust.edu.cn/apache//ant/binaries/apache-ant-1.9.6-bin.tar.gz&lt;br /&gt;
-# vi /etc/profile&lt;br /&gt;
- 加入如下内容：&lt;br /&gt;
-export ANT_HOME=/opt/openJDKroom/apache-ant-1.9.6&lt;br /&gt;
-export PATH=$PATH:$ANT_HOME/bin&lt;br /&gt;
-# source /etc/profile&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;下载并安装CUPS&lt;/strong&gt;&lt;br /&gt;
-wget http://www.cups.org/software/2.1.2/cups-2.1.2-source.tar.bz2&lt;br /&gt;
-tar  -jxvf  cups-2.1.2-source.tar.bz2&lt;br /&gt;
-# ./configure &amp;amp;&amp;amp; make &amp;amp;&amp;amp; make install&lt;/p&gt;
-
-&lt;h3 id=&quot;javahome&quot;&gt;2.3 屏蔽已经配置的JAVA_HOME&lt;/h3&gt;
-&lt;p&gt;下面贴出README-builds.html中原文：&lt;br /&gt;
-Note that some Linux systems have a habit of pre-populating your environment variables for you,   for example JAVA_HOME might get pre-defined for you to refer to the JDK installed on your Linux   system. You will need to unset JAVA_HOME. It’s a good idea to run env and verify the   environment variables you are getting from the default system settings make sense for building   the OpenJDK. 先检查一下本地是否配置有JAVA_HOME&lt;br /&gt;
-# env | grep JAVA_HOME&lt;br /&gt;
-如果有则屏蔽掉。&lt;/p&gt;
-
-&lt;h3 id=&quot;jdk&quot;&gt;2.4 配置引导JDK&lt;/h3&gt;
-&lt;p&gt;下面贴出README-builds.html中原文：
-Bootstrap JDK&lt;br /&gt;
-All OpenJDK builds require access to the previously released JDK 6, this is often called a   bootstrap JDK. The JDK 6 binaries can be downloaded from Sun’s JDK 6 download site. For build   performance reasons is very important that this bootstrap JDK be made available on the local   disk of the machine doing the build. You should always set ALT_BOOTDIR to point to the location   of the bootstrap JDK installation, this is the directory pathname that contains a bin, lib, and   include It’s also a good idea to also place its bin directory in the PATH environment variable,   although it’s not required.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;下载安装Bootstrap&lt;/strong&gt; &lt;br /&gt;
-这里下载JDK 6 Linux 64位jdk-6u45-linux-x64.bin&lt;br /&gt;
-# chmod +x jdk-6u45-linux-x64.bin&lt;br /&gt;
-# ./jdk-6u45-linux-x64.bin&lt;/p&gt;
-
-&lt;p&gt;安装完毕后，当前目录下会生成jdk1.6.0_45目录，配置ALT_BOOTDIR环境变量为该目录路径。在/etc/profile中  增加如下配置（以实际为准）：&lt;br /&gt;
-export ALT_BOOTDIR=/opt/openJDKroom/jdk1.6.0_45&lt;br /&gt;
-# source /etc/profile&lt;/p&gt;
-
-&lt;h3 id=&quot;altcacertsfile&quot;&gt;2.5 配置环境变量ALT_CACERTS_FILE&lt;/h3&gt;
-&lt;font color=&quot;green&quot;&gt;
-Certificate Authority File (cacert)  
-
-See http://en.wikipedia.org/wiki/Certificate\_Authority for a better understanding of the   Certificate Authority (CA). A certificates file named &quot;cacerts&quot; represents a system-wide   keystore with CA certificates. In JDK and JRE binary bundles, the &quot;cacerts&quot; file contains root   CA certificates from several public CAs (e.g., VeriSign, Thawte, and Baltimore). The source   contain a cacerts file without CA root certificates. Formal JDK builders will need to secure     permission from each public CA and include the certificates into their own custom cacerts file.   Failure to provide a populated cacerts file will result in verification errors of a certificate   chain during runtime. The variable ALT\_CACERTS\_FILE can be used to override the default   location of the cacerts file that will get placed in your build. By default an empty cacerts   file is provided and that should be fine for most JDK developers.  &lt;/font&gt;
-
-&lt;p&gt;进入openjdk目录中,查找名称为cacerts的文件：&lt;br /&gt;
-# cd openjdk&lt;br /&gt;
-# find ./ -name cacerts&lt;br /&gt;
-显示结果如下：&lt;br /&gt;
-[root@localhost openjdk]# find ./ -name cacerts&lt;br /&gt;
-./jdk/src/share/lib/security/cacerts&lt;br /&gt;
-打开/etc/profile，将以下内容加入（具体路径根据实际情况）：&lt;br /&gt;
-export ALT_CACERTS_FILE=/opt/openJDKroom/openjdk/jdk/src/share/lib/security/cacerts&lt;/p&gt;
-
-&lt;h2 id=&quot;section-2&quot;&gt;3.开始编译&lt;/h2&gt;
-&lt;p&gt;终于要开始编译了！&amp;gt;_&amp;lt;  &lt;br /&gt;
-README-builds.html中用的是gmake，实际和make是一样的，下面是解释：&lt;/p&gt;
-
-&lt;p&gt;gmake是GNU Make的缩写。&lt;br /&gt;
-Linux系统环境下的make就是GNU Make，之所以有gmake，是因为在别的平台上，make一般被占用，GNU make只  好叫gmake了。&lt;br /&gt;
-进入到openjdk根目录下，进行编译&lt;br /&gt;
-cd /opt/openJDKroom/openjdk&lt;br /&gt;
-gmake sanity&lt;br /&gt;
-gmake&lt;br /&gt;
-结果执行报错：&lt;/p&gt;
-&lt;font color=&quot;red&quot;&gt;
-gmake[6]: Entering directory \`/opt/openJDKroom/openjdk/build/linux-amd64/hotspot/outputdir/linux\_amd64\_compiler2/product&#39;  
-gmake[6]: stat: libjvm.so: Too many levels of symbolic links
-&lt;/font&gt;
-
-&lt;p&gt;进入到/opt/openJDKroom/openjdk/build/linux-amd64/hotspot/outputdir/linux_amd64_compiler2/product目录下有下面链接：&lt;br /&gt;
-libjvm.so-&amp;gt;libjvm.so&lt;br /&gt;
-libjvm.so.1-&amp;gt;libjvm.so&lt;br /&gt;
-明显是由于libjvm.so-&amp;gt;libjvm.so引起的（可以自己做一个实验,不要创建文件，直接执行ln -s file file ,然后cat file就会报这个错）&lt;br /&gt;
-知道了问题所在，就要给它引用一个真实的so文件。通过find /opt -name libjvm.so命令查找存在该文件的地方，将libjvm.so-&amp;gt;libjvm.so指向真实文件位置。即：&lt;br /&gt;
-# rm -f libjvm.so&lt;br /&gt;
-# ln -s  具体libjvm.so文件完成路径   libjvm.so&lt;/p&gt;
-
-&lt;p&gt;再次执行gmake。
-结果报以下错：&lt;/p&gt;
-&lt;font color=&quot;red&quot;&gt;Error: time is more than 10 years from present: 1136059200000  
-java.lang.RuntimeException: time is more than 10 years from present: 1136059200000  
-      at   build.tools.generatecurrencydata.GenerateCurrencyData.makeSpecialCaseEntry(GenerateCurrencyData.java:285)  
-      at   build.tools.generatecurrencydata.GenerateCurrencyData.buildMainAndSpecialCaseTables(GenerateCurrencyData.java:225)  
-      at   build.tools.generatecurrencydata.GenerateCurrencyData.main(GenerateCurrencyData.java:154)  &lt;/font&gt;
-
-&lt;p&gt;经过查询发现这是一个BUG…..&lt;br /&gt;
-下面介绍了对应补丁的出处&lt;br /&gt;
-https://bugs.gentoo.org/show_bug.cgi?id=534118#c3&lt;br /&gt;
-下面有关于问题原因探讨描述&lt;br /&gt;
-https://bugs.gentoo.org/show_bug.cgi?id=534118#c7&lt;/p&gt;
-
-&lt;p&gt;如果不想仔细看可以直接访问补丁网址：&lt;br /&gt;
-http://hg.openjdk.java.net/jdk7u/jdk7u/jdk/rev/74a70385c21d#l11.1&lt;br /&gt;
-将其中的文件内容拷贝下来覆盖到对应文件中。&lt;/p&gt;
-
-&lt;p&gt;继续gmake&lt;/p&gt;
-
-&lt;p&gt;终于编译成功了！！！&lt;br /&gt;
-出现下面提示就说明编译完成了&lt;br /&gt;
-#– Build times ———-&lt;br /&gt;
-Target all_product_build&lt;br /&gt;
-Start 2016-01-10 11:18:43&lt;br /&gt;
-End   2016-01-10 11:52:15&lt;br /&gt;
-00:00:15 corba&lt;br /&gt;
-00:00:21 hotspot&lt;br /&gt;
-00:00:11 jaxp&lt;br /&gt;
-00:00:20 jaxws&lt;br /&gt;
-00:32:15 jdk&lt;br /&gt;
-00:00:10 langtools&lt;br /&gt;
-00:33:32 TOTAL&lt;br /&gt;
--————————&lt;/p&gt;
-
-&lt;h2 id=&quot;section-3&quot;&gt;4.跑一下自己编译的虚拟机&lt;/h2&gt;
-&lt;p&gt;进入目录&lt;br /&gt;
-/opt/openJDKroom/openjdk/build/linux-amd64/hotspot/outputdir/linux_amd64_compiler2&lt;br /&gt;
-下面有好几种优化级别的编译版本：&lt;br /&gt;
-drwxr-xr-x. 2 root root  4096 Jan  9 16:53 debug&lt;br /&gt;
-drwxr-xr-x. 2 root root  4096 Jan  9 16:53 fastdebug&lt;br /&gt;
-drwxr-xr-x. 7 root root  4096 Jan  9 16:56 generated&lt;br /&gt;
-drwxr-xr-x. 2 root root  4096 Jan  9 16:53 jvmg&lt;br /&gt;
-drwxr-xr-x. 2 root root  4096 Jan  9 16:53 optimized&lt;br /&gt;
-drwxr-xr-x. 3 root root 20480 Jan 10 11:19 product&lt;br /&gt;
-drwxr-xr-x. 2 root root  4096 Jan  9 16:53 profiled&lt;br /&gt;
--rw-r–r–. 1 root root  1518 Jan  9 16:53 shared_dirs.lst&lt;/p&gt;
-
-&lt;p&gt;进入到product目录中。&lt;br /&gt;
-这里要在env.sh配置下环境变量，指向共享库&lt;/p&gt;
-&lt;font color=&quot;blue&quot;&gt;LD\_LIBRARY\_PATH=.:${JAVA\_HOME}/jre/lib/amd64/native\_threads:${JAVA\_HOME}/jre/lib/amd64:/opt/openJDKroom/openjdk/build/linux-amd64/hotspot/outputdir/linux\_amd64\_compiler2/product  
-export LD\_LIBRARY\_PATH&lt;/font&gt;
-
-&lt;p&gt;下面贴出我这个文件的完整内容：&lt;/p&gt;
-&lt;font color=&quot;green&quot;&gt;
-\# Generated by /opt/openJDKroom/openjdk/hotspot/make/linux/makefiles/buildtree.make  
-\#: ${JAVA\_HOME:=/opt/openJDKroom/jdk1.6.0\_45}  
-JAVA\_HOME=/opt/openJDKroom/openjdk/build/linux-amd64/j2sdk-image  
-CLASSPATH=.:${JAVA\_HOME}/jre/lib/rt.jar:${JAVA\_HOME}/jre/lib/i18n.jar  
-HOTSPOT\_BUILD\_USER=&quot;root in hotspot&quot;  
-export JAVA\_HOME CLASSPATH HOTSPOT\_BUILD\_USER
-
-\# add  
-
-LD\_LIBRARY\_PATH=.:${JAVA\_HOME}/jre/lib/amd64/native\_threads:${JAVA\_HOME}/jre/lib/amd64:/opt/openJDKroom/openjdk/build/linux-amd64/hotspot/outputdir/linux\_amd64\_compiler2/product
-export LD\_LIBRARY\_PATH  
-&lt;/font&gt;
-&lt;p&gt;下面执行：&lt;/p&gt;
-
-&lt;p&gt;# source ./env.sh&lt;/p&gt;
-
-&lt;p&gt;# ./gamma -version&lt;/p&gt;
-
-&lt;p&gt;Using java runtime at: /opt/openJDKroom/openjdk/build/linux-amd64/j2sdk-image/jre&lt;br /&gt;
-openjdk version “1.7.0-internal”&lt;br /&gt;
-OpenJDK Runtime Environment (build 1.7.0-internal-root_2016_01_10_00_16-b00)&lt;br /&gt;
-OpenJDK 64-Bit Server VM (build 24.0-b56, mixed mode)&lt;/p&gt;
-
-&lt;p&gt;运行成功！！&lt;/p&gt;
-
-&lt;p&gt;希望对想要编译openJDK的朋友有个参考。如果有疑问请提出，大家一起学习探讨。&amp;gt;_&amp;lt;&lt;/p&gt;</content><summary>A ton of text to test readability.</summary></entry></feed>
+&lt;p&gt;have a test&lt;/p&gt;</content><category term="sample post" /><category term="readability" /><category term="test" /><summary>A ton of text to test readability.</summary></entry></feed>
