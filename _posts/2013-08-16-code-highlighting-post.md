@@ -22,6 +22,16 @@ To modify styling and highlight colors edit `/assets/css/syntax.css`.
 }
 {% endhighlight %}
 
+{% highlight java %}
+class Test{
+  public static void main(String args[]){
+     System.out.println(123);
+  
+  }
+
+}
+{% endhighlight %}
+
 {% highlight html %}
 {% raw %}
 <nav class="pagination" role="navigation">
