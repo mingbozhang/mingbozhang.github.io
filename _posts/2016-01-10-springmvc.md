@@ -22,9 +22,17 @@ tags: [SpringMVC]
 这里WebConfig用来负责DispacherServlet相关bean的配置，RootConfig用来负责ContextLoaderListener相关bean的配置。
 ****************
 下面截取一段《Spring in Action 4th》中关于两个ApplicationContext的原话，在135页：
-## A TALE OF TWO APPLICATION CONTEXTSWhen DispatcherServlet starts up, it creates a Spring application context and starts loading it with beans declared in the configuration files or classes that it’s given. With the getServletConfigClasses() method in listing 5.1, you’ve asked that Dispatcher- Servlet load its application context with beans defined in the WebConfig configura- tion class (using Java configuration).But in Spring web applications, there’s often another application context. This other application context is created by ContextLoaderListener.Whereas DispatcherServlet is expected to load beans containing web components such as controllers, view resolvers, and handler mappings, ContextLoaderListener is expected to load the other beans in your application. These beans are typically the middle-tier and data-tier components that drive the back end of the application.
-136CHAPTER 5 Building Spring web applicationsUnder the covers, AbstractAnnotationConfigDispatcherServletInitializer cre- ates both a DispatcherServlet and a ContextLoaderListener. The @Configuration classes returned from getServletConfigClasses() will define beans for Dispatcher- Servlet’s application context. Meanwhile, the @Configuration class’s returned get- RootConfigClasses() will be used to configure the application context created by ContextLoaderListener.In this case, your root configuration is defined in RootConfig, whereas Dispatcher- Servlet’s configuration is declared in WebConfig. You’ll see what those two configura- tion classes look like in a moment.
-**************上实践的代码：
+## A TALE OF TWO APPLICATION CONTEXTS
+When DispatcherServlet starts up, it creates a Spring application context and starts loading it with beans declared in the configuration files or classes that it’s given. With the getServletConfigClasses() method in listing 5.1, you’ve asked that Dispatcher- Servlet load its application context with beans defined in the WebConfig configura- tion class (using Java configuration).
+But in Spring web applications, there’s often another application context. This other application context is created by ContextLoaderListener.
+Whereas DispatcherServlet is expected to load beans containing web components such as controllers, view resolvers, and handler mappings, ContextLoaderListener is expected to load the other beans in your application. These beans are typically the middle-tier and data-tier components that drive the back end of the application.
+136
+CHAPTER 5 Building Spring web applications
+Under the covers, AbstractAnnotationConfigDispatcherServletInitializer cre- ates both a DispatcherServlet and a ContextLoaderListener. The @Configuration classes returned from getServletConfigClasses() will define beans for Dispatcher- Servlet’s application context. Meanwhile, the @Configuration class’s returned get- RootConfigClasses() will be used to configure the application context created by ContextLoaderListener.
+In this case, your root configuration is defined in RootConfig, whereas Dispatcher- Servlet’s configuration is declared in WebConfig. You’ll see what those two configura- tion classes look like in a moment.
+**************
+
+上实践的代码：
 com.bob.playspring.PlayWebAppInitializer
 {% highlight java %}
 package com.bob.playspring;
