@@ -1,8 +1,9 @@
 ---
 layout: post
-title: "零配置文件"搭建SpringMVC工程笔记
-date: 2016-06-01
-tags: [SpringMVC]
+title: "零配置文件搭建SpringMVC实践纪录"
+date: 2015-05-22
+excerpt: "SpringMVC学习笔记"
+tags: [spring,springMVC]
 ---
  
 本篇记录使用纯java代码搭建SpringMVC工程的实践，只是一个demo。再开始之前先热身下，给出SpringMVC调用流程图，讲解的是一个http request请求到达SpringMVC框架后的过程，如下：
@@ -20,8 +21,9 @@ tags: [SpringMVC]
 那么问题来了：为什么要有两个共存呢？－－－－答：我猜想是方便分离，如果不想使用SpringMVC而实用其他MVC框架的可以把DispatcherServlet相关的那个bean容器拿掉。（纯属意淫，欢迎拍砖）。
 
 这里WebConfig用来负责DispacherServlet相关bean的配置，RootConfig用来负责ContextLoaderListener相关bean的配置。
-****************
+
 下面截取一段《Spring in Action 4th》中关于两个ApplicationContext的原话，在135页：
+
 ## A TALE OF TWO APPLICATION CONTEXTS
 When DispatcherServlet starts up, it creates a Spring application context and starts loading it with beans declared in the configuration files or classes that it’s given. With the getServletConfigClasses() method in listing 5.1, you’ve asked that Dispatcher- Servlet load its application context with beans defined in the WebConfig configura- tion class (using Java configuration).
 But in Spring web applications, there’s often another application context. This other application context is created by ContextLoaderListener.
@@ -30,7 +32,7 @@ Whereas DispatcherServlet is expected to load beans containing web components su
 CHAPTER 5 Building Spring web applications
 Under the covers, AbstractAnnotationConfigDispatcherServletInitializer cre- ates both a DispatcherServlet and a ContextLoaderListener. The @Configuration classes returned from getServletConfigClasses() will define beans for Dispatcher- Servlet’s application context. Meanwhile, the @Configuration class’s returned get- RootConfigClasses() will be used to configure the application context created by ContextLoaderListener.
 In this case, your root configuration is defined in RootConfig, whereas Dispatcher- Servlet’s configuration is declared in WebConfig. You’ll see what those two configura- tion classes look like in a moment.
-**************
+
 
 上实践的代码：
 com.bob.playspring.PlayWebAppInitializer

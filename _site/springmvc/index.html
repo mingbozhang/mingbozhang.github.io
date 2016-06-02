@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>零配置文件搭建SpringMVC实践纪录 – BOB BLOG</title>
+    <meta name="description" content="SpringMVC学习笔记">
+    <meta name="keywords" content="spring, springMVC">
+    <link rel="canonical" href="http://bowie.site/springmvc/">
+        <!-- Twitter Cards -->
+    <meta name="twitter:title" content="零配置文件搭建SpringMVC实践纪录">
+    <meta name="twitter:description" content="SpringMVC学习笔记">
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:image" content="http://bowie.site/assets/img/Logo.png">
+    <!-- Open Graph -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="零配置文件搭建SpringMVC实践纪录">
+    <meta property="og:description" content="SpringMVC学习笔记">
+    <meta property="og:url" content="http://bowie.site/springmvc/">
+    <meta property="og:site_name" content="BOB BLOG">
+    <meta property="og:image" content="http://bowie.site/assets/img/Logo.png">
+
+    
+    
+    <!-- Handheld -->
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Favicons -->
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="http://bowie.site/assets/img/favicon/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://bowie.site/assets/img/favicon/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://bowie.site/assets/img/favicon/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://bowie.site/assets/img/favicon/apple-touch-icon-144x144.png">
+    <link rel="icon" type="image/png" href="http://bowie.site/assets/img/favicon/favicon.png">
+    <link rel="shortcut icon" href="http://bowie.site/assets/img/favicon/favicon.ico">
+    <!-- Feed -->
+    <link rel="alternate" type="application/rss+xml" title="BOB BLOG" href="http://bowie.site/feed.xml">
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="http://bowie.site/assets/css/main.css">
+</head>
+
+
+<body>
+        <nav class="nav">
+        <ul class="list">
+            
+				    
+				    <li class="item"><a class="link" href="http://bowie.site/">Home</a></li>
+				
+				    
+				    <li class="item"><a class="link" href="http://bowie.site/blog/">Blog</a></li>
+				
+				    
+				    <li class="item"><a class="link" href="http://bowie.site/projects/">Projects</a></li>
+				
+				    
+				    <li class="item"><a class="link" href="http://bowie.site/about/">About</a></li>
+				
+        </ul>
+    </nav>
+
+    <div class="wrapper">
+        <div class="title">
+            <h1>零配置文件搭建SpringMVC实践纪录</h1>
+            <h4>22 May 2015</h4>
+        </div>
+        <div class="article">
+            <p>本篇记录使用纯java代码搭建SpringMVC工程的实践，只是一个demo。再开始之前先热身下，给出SpringMVC调用流程图，讲解的是一个http request请求到达SpringMVC框架后的过程，如下：</p>
+<figure>
+<img src="../assets/img/learn_spring/dispacherrequest.png">
+</figure>
+<p>从servlet 3.0开始，实现javax.servlet.ServletContainerInitializer接口的类将在容器启动的时候执行onStartup方法。SpringMVC的”零配置”就是基于这个特性。所以对于servlet 3.0 以下的容器还是老老实实在web.xml中进行配置。
+下面让我们一步步搭建SpringMVC，先上图：</p>
+<figure>
+<img src="../assets/img/learn_spring/servlet_java_init.png">
+</figure>
+<p>上图中展示了启动关键类的初始化过程，首先容器启动，初始化并执行实现ServletContainerInitalzer接口的Spring类，该类初始化实现WebApplicationInitializer接口的PlayWebAppInitializer类（由于这里继承了AbstractAnnotationConfigDispatcherServletInitializer抽象类）。</p>
+
+<p>在讲解PlayWebAppInitializer初始化了两个bean容器，一种是与DispatcherServlet相关联的MVC框架直接关系的bean,如：Controller，Service，Repository等等。再说另外一种bean容器前先回忆下，还记得ContextLoaderListener吧，做SSH框架整合时在web.xml中要配置这个类，所以说这个容器是配置更通用一些的bean。
+那么问题来了：为什么要有两个共存呢？－－－－答：我猜想是方便分离，如果不想使用SpringMVC而实用其他MVC框架的可以把DispatcherServlet相关的那个bean容器拿掉。（纯属意淫，欢迎拍砖）。</p>
+
+<p>这里WebConfig用来负责DispacherServlet相关bean的配置，RootConfig用来负责ContextLoaderListener相关bean的配置。</p>
+
+<p>下面截取一段《Spring in Action 4th》中关于两个ApplicationContext的原话，在135页：</p>
+
+<h2 id="a-tale-of-two-application-contexts">A TALE OF TWO APPLICATION CONTEXTS</h2>
+<p>When DispatcherServlet starts up, it creates a Spring application context and starts loading it with beans declared in the configuration files or classes that it’s given. With the getServletConfigClasses() method in listing 5.1, you’ve asked that Dispatcher- Servlet load its application context with beans defined in the WebConfig configura- tion class (using Java configuration).
+But in Spring web applications, there’s often another application context. This other application context is created by ContextLoaderListener.
+Whereas DispatcherServlet is expected to load beans containing web components such as controllers, view resolvers, and handler mappings, ContextLoaderListener is expected to load the other beans in your application. These beans are typically the middle-tier and data-tier components that drive the back end of the application.
+136
+CHAPTER 5 Building Spring web applications
+Under the covers, AbstractAnnotationConfigDispatcherServletInitializer cre- ates both a DispatcherServlet and a ContextLoaderListener. The @Configuration classes returned from getServletConfigClasses() will define beans for Dispatcher- Servlet’s application context. Meanwhile, the @Configuration class’s returned get- RootConfigClasses() will be used to configure the application context created by ContextLoaderListener.
+In this case, your root configuration is defined in RootConfig, whereas Dispatcher- Servlet’s configuration is declared in WebConfig. You’ll see what those two configura- tion classes look like in a moment.</p>
+
+<p>上实践的代码：
+com.bob.playspring.PlayWebAppInitializer</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">bob</span><span class="o">.</span><span class="na">playspring</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer</span><span class="o">;</span>
+
+<span class="cm">/**
+ * 初始化DispatherServlet，代替在web.xml中到DispatherServlet配置,
+ * @author bob
+ *
+ */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">PlayWebAppInitializer</span> <span class="kd">extends</span> <span class="n">AbstractAnnotationConfigDispatcherServletInitializer</span> <span class="o">{</span>
+
+	<span class="nd">@Override</span>
+	<span class="kd">protected</span> <span class="n">Class</span><span class="o">&lt;?&gt;[]</span> <span class="n">getRootConfigClasses</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="k">new</span> <span class="n">Class</span><span class="o">[]</span> <span class="o">{</span> <span class="n">RootConfig</span><span class="o">.</span><span class="na">class</span> <span class="o">};</span>
+	<span class="o">}</span>
+
+	<span class="nd">@Override</span>
+	<span class="kd">protected</span> <span class="n">Class</span><span class="o">&lt;?&gt;[]</span> <span class="n">getServletConfigClasses</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="k">new</span> <span class="n">Class</span><span class="o">[]</span> <span class="o">{</span> <span class="n">WebConfig</span><span class="o">.</span><span class="na">class</span> <span class="o">};</span>
+	<span class="o">}</span>
+
+	<span class="cm">/**
+	 * identifies one or more paths that DispatcherServlet will be mapped to.&lt;br&gt;
+	 *  In this case, it’s mapped to /, indicating that it will be the application’s default servlet.&lt;br&gt;
+	 *   It will handle all requests coming into the application.
+	 */</span>
+	<span class="nd">@Override</span>
+	<span class="kd">protected</span> <span class="n">String</span><span class="o">[]</span> <span class="n">getServletMappings</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="k">new</span> <span class="n">String</span><span class="o">[]</span> <span class="o">{</span> <span class="s">"/"</span> <span class="o">};</span>
+	<span class="o">}</span>
+
+<span class="o">}</span></code></pre></figure>
+
+<p>com.bob.playspring.WebConfig</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">bob</span><span class="o">.</span><span class="na">playspring</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Bean</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.ComponentScan</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Configuration</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.servlet.ViewResolver</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.servlet.config.annotation.EnableWebMvc</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.servlet.view.InternalResourceViewResolver</span><span class="o">;</span>
+
+<span class="cm">/**
+ * 系统配置
+ * @author bob
+ *
+ */</span>
+<span class="nd">@EnableWebMvc</span>
+<span class="nd">@Configuration</span>
+<span class="nd">@ComponentScan</span><span class="o">(</span><span class="s">"com.bob"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">WebConfig</span> <span class="kd">extends</span> <span class="n">WebMvcConfigurerAdapter</span> <span class="o">{</span>
+
+	<span class="nd">@Bean</span>
+	<span class="kd">public</span> <span class="n">ViewResolver</span> <span class="n">viewResolver</span><span class="o">()</span> <span class="o">{</span>
+		<span class="n">InternalResourceViewResolver</span> <span class="n">resolver</span> <span class="o">=</span> <span class="k">new</span> <span class="n">InternalResourceViewResolver</span><span class="o">();</span>
+		<span class="n">resolver</span><span class="o">.</span><span class="na">setPrefix</span><span class="o">(</span><span class="s">"/WEB-INF/views/"</span><span class="o">);</span>
+		<span class="n">resolver</span><span class="o">.</span><span class="na">setSuffix</span><span class="o">(</span><span class="s">".jsp"</span><span class="o">);</span>
+		<span class="n">resolver</span><span class="o">.</span><span class="na">setExposeContextBeansAsAttributes</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+		<span class="k">return</span> <span class="n">resolver</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="n">configureDefaultServletHandling</span><span class="o">(</span><span class="n">DefaultServletHandlerConfigurer</span> <span class="n">configurer</span><span class="o">)</span> <span class="o">{</span>
+		<span class="n">configurer</span><span class="o">.</span><span class="na">enable</span><span class="o">();</span>
+	<span class="o">}</span>
+
+<span class="o">}</span></code></pre></figure>
+
+<p>com.bob.playspring.RootConfig</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">bob</span><span class="o">.</span><span class="na">playspring</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.ComponentScan</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.ComponentScan.Filter</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Configuration</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.FilterType</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.servlet.config.annotation.EnableWebMvc</span><span class="o">;</span>
+
+<span class="nd">@Configuration</span>
+<span class="nd">@ComponentScan</span><span class="o">(</span><span class="n">basePackages</span> <span class="o">=</span> <span class="o">{</span> <span class="s">"com.bob"</span> <span class="o">},</span> <span class="n">excludeFilters</span> <span class="o">=</span> <span class="o">{</span>
+		<span class="nd">@Filter</span><span class="o">(</span><span class="n">type</span> <span class="o">=</span> <span class="n">FilterType</span><span class="o">.</span><span class="na">ANNOTATION</span><span class="o">,</span> <span class="n">value</span> <span class="o">=</span> <span class="n">EnableWebMvc</span><span class="o">.</span><span class="na">class</span><span class="o">)</span> <span class="o">})</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">RootConfig</span> <span class="o">{</span>
+
+<span class="o">}</span></code></pre></figure>
+
+<p>关于Controller，Service，Repository的代码我就不贴了。</p>
+
+        </div>
+    </div>
+        <div class="footer">
+        BOB BLOG © 2016 <a href="http://bowie.site/feed.xml" target="_blank"><i class="fa fa-fw fa-feed"></i></a>
+    </div>
+
+    <script src="http://bowie.site/assets/js/jquery-1.12.2.min.js"></script>
+<script src="http://bowie.site/assets/js/jquery.goup.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    $.goup({
+        trigger: 500,
+        bottomOffset: 10,
+        locationOffset: 20,
+        containerRadius: 0,
+        containerColor: '#fff',
+        arrowColor: '#000',
+        goupSpeed: 'normal'
+    });
+});
+</script>
+
+
+</body>
+</html>
