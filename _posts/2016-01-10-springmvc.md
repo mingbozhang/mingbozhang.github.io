@@ -4,7 +4,12 @@ title: "零配置文件搭建SpringMVC实践纪录"
 date: 2015-05-22
 excerpt: "SpringMVC学习笔记"
 tags: [spring,springMVC]
----
+---   
+
+
+{% include toc.html %}  
+
+
  
 本篇记录使用纯java代码搭建SpringMVC工程的实践，只是一个demo。再开始之前先热身下，给出SpringMVC调用流程图，讲解的是一个http request请求到达SpringMVC框架后的过程，如下：
 <figure>
