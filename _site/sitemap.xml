@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>http://bowie.site/dubbo-zookeeper-springmvc/</loc>
+<loc>http://bowie.site/dubbo-zookeeper-springmvc.md/</loc>
 <lastmod>2016-06-03T00:00:00+08:00</lastmod>
 </url>
 <url>
@@ -31,6 +31,10 @@
 <url>
 <loc>http://bowie.site/nested_not_find_data/</loc>
 <lastmod>2015-12-25T00:00:00+08:00</lastmod>
+</url>
+<url>
+<loc>http://bowie.site/dubbo-zookeeper-springmvc/</loc>
+<lastmod>2015-05-22T00:00:00+08:00</lastmod>
 </url>
 <url>
 <loc>http://bowie.site/springmvc/</loc>

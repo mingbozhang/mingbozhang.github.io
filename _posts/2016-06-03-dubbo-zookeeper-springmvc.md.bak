@@ -1,8 +1,9 @@
+
 ---
 layout: post
-title: "dubbo & zookeeper & springMVC"
-date: 2015-05-22
-excerpt: "SpringMVC学习笔记"
+title: "dubbo、zookeeper、SpringMVC"
+date: 2016-06-03
+excerpt: "dubbo、zookeeper、SpringMVC"
 tags: [dubbo,zookeeper,springMVC]
 ---
 
@@ -10,8 +11,7 @@ tags: [dubbo,zookeeper,springMVC]
 
 
 ## 一.安装准备
-
-###  1.环境简介
+### 1.环境简介
   
 | 名称       | 版本           | 
 | ------------- |:-------------:| 
@@ -106,9 +106,9 @@ dubbo.registry.address=zookeeper://127.0.0.1:2181
 ./bin/start.sh
 
 http://127.0.0.1:8080   
-
+<figure>
 <img src="../assets/img/dubbo-zookeeper-springmvc/monitor.png">
-
+</figure>
 
 ### 4.管理控制台安装
 将编译好的dubbo-admin-2.5.4-SNAPSHOT.war拷贝到tomcat下面。配置server.xml，避免和前面监控中心的端口产生冲突。启动tomcat。   
@@ -125,16 +125,14 @@ https://github.com/alibaba/dubbo/issues/50
         <groupId>com.alibaba.citrus</groupId>
         <artifactId>citrus-webx-all</artifactId>
         <version>3.1.6</version>
-    </dependency>   
-    
+    </dependency>
 2、添加velocity的依赖，我用了1.7；
 
     <dependency>
         <groupId>org.apache.velocity</groupId>
         <artifactId>velocity</artifactId>
         <version>1.7</version>
-    </dependency>   
-    
+    </dependency>
 3、对依赖项dubbo添加exclusion，避免引入旧spring
 
     <dependency>
@@ -147,27 +145,23 @@ https://github.com/alibaba/dubbo/issues/50
                 <artifactId>spring</artifactId>
             </exclusion>
         </exclusions>
-    </dependency>   
-    
+    </dependency>
 4、webx已有spring 3以上的依赖，因此注释掉dubbo-admin里面的spring依赖
 
     <!--<dependency>-->
         <!--<groupId>org.springframework</groupId>-->
         <!--<artifactId>spring</artifactId>-->
-    <!--</dependency>-->   
-    
+    <!--</dependency>-->
 确定war包解压后lib目录没有spring 3 以下的依赖就行。然后运行正常了。     
 
 这里不需要额外配置，dubbo.properties中默认就是zookeeper的配置。      
 
 我的访问地址是：   
 http://127.0.0.1:8888   
-
+<figure>
 <img src="../assets/img/dubbo-zookeeper-springmvc/adminsys.png">
-  
-
-##  四.通过SpringMVC加入服务提供者和消费者 
-  
+</figure>
+## 三.通过SpringMVC加入服务提供者和消费者
 dubbo与SpringMVC的集成，我参考了这段：   
 http://dubbo.io/User+Guide-zh.htm#UserGuide-zh-%E6%B3%A8%E8%A7%A3%E9%85%8D%E7%BD%AE
 
@@ -179,19 +173,19 @@ http://dubbo.io/User+Guide-zh.htm#UserGuide-zh-%E6%B3%A8%E8%A7%A3%E9%85%8D%E7%BD
 | test-provider | 
          
 上两张张加入后管理控制台的截图，后面那张消费者为什么有三个表示不理解，需要继续研究：   
-
+<figure>
 <img src="../assets/img/dubbo-zookeeper-springmvc/testprovider.png">
-   
+</figure>    
    
      
-
+<figure>
 <img src="../assets/img/dubbo-zookeeper-springmvc/testconsumer.png">
-
+</figure>
 
    
 在搭建的过程中遇到了两个问题：
 
-#### 问题一: dubbo.xsd文件找不到
+###### 问题一: dubbo.xsd文件找不到
 将dubbo.xsd下载到本地后，通过以下步骤操作加入，我用的是eclipse：  
 windows->preferrence->xml->xmlcatalog     
 add->catalog entry  ->file system 选择刚刚下载的文件路 径    
@@ -200,7 +194,7 @@ add->catalog entry  ->file system 选择刚刚下载的文件路 径
 问题的解决方案出处在这里，感谢作者～   
 http://blog.csdn.net/lxb15959168136/article/details/50225057
 
-#### 问题二: 在dubbo启动的过程中报错误：java.lang.ClassNotFoundException: javassist.ClassPath    
+###### 问题二: 在dubbo启动的过程中报错误：java.lang.ClassNotFoundException: javassist.ClassPath    
 我的做法：    
 由于我是用的maven构建，所以在工程pom.xml中直接加入以下:   
 {% highlight java %}
@@ -212,5 +206,5 @@ http://blog.csdn.net/lxb15959168136/article/details/50225057
  </dependency>
 {% endhighlight %}   
 
-### 最后是编写的服务提供者和消费者的代码   
+##### 最后是编写的服务提供者和消费者的代码   
 https://github.com/mingbozhang/leandubbo
