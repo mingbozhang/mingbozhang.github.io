@@ -5,7 +5,7 @@ date: 2016-06-04
 excerpt: "Maven将依赖的所有jar包打成一个jar"
 tags: [maven,java]
 ---   
-## Maven将依赖的所有jar包打成一个jar
+
 
 有些特殊情况下，需要将多个jar包打包成一个jar文件。如果使用maven可以加入如下插件：   
     
