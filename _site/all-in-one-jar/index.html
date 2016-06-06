@@ -5,22 +5,22 @@
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
     <meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
     <meta name=viewport content="width=device-width, initial-scale=1">
-    <title>All Projects &#8211; BOB BLOG</title>
-    <meta name="description" content="A List of Projects">
-    <meta name="keywords" content="">
-    <link rel="canonical" href="http://bowie.site/projects/">
+    <title>Maven将依赖的所有jar包打成一个jar &#8211; BOB BLOG</title>
+    <meta name="description" content="Maven将依赖的所有jar包打成一个jar">
+    <meta name="keywords" content="maven, java">
+    <link rel="canonical" href="http://bowie.site/all-in-one-jar/">
         <!-- Twitter Cards -->
-    <meta name="twitter:title" content="All Projects">
-    <meta name="twitter:description" content="A List of Projects">
+    <meta name="twitter:title" content="Maven将依赖的所有jar包打成一个jar">
+    <meta name="twitter:description" content="Maven将依赖的所有jar包打成一个jar">
     
     <meta name="twitter:card" content="summary">
     <meta name="twitter:image" content="http://bowie.site/assets/img/Logo.png">
     <!-- Open Graph -->
     <meta property="og:locale" content="en_US">
     <meta property="og:type" content="article">
-    <meta property="og:title" content="All Projects">
-    <meta property="og:description" content="A List of Projects">
-    <meta property="og:url" content="http://bowie.site/projects/">
+    <meta property="og:title" content="Maven将依赖的所有jar包打成一个jar">
+    <meta property="og:description" content="Maven将依赖的所有jar包打成一个jar">
+    <meta property="og:url" content="http://bowie.site/all-in-one-jar/">
     <meta property="og:site_name" content="BOB BLOG">
     <meta property="og:image" content="http://bowie.site/assets/img/Logo.png">
 
@@ -65,31 +65,64 @@
 
     <div class="wrapper">
         <div class="title">
-            <h1>All Projects</h1>
+            <h1>Maven将依赖的所有jar包打成一个jar</h1>
+            <h4>04 Jun 2016</h4>
         </div>
-        <div class="project-list">
-             
-              
-             
-              
-             
-              
-             
-              
-             
-              
-             
-              
-             
-              
-             
-              
-            
+        <div class="article">
+            <p>有些特殊情况下，需要将多个jar包打包成一个jar文件。如果使用maven可以加入如下插件：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;build&gt;
+	&lt;plugins&gt;
+		&lt;plugin&gt;
+			&lt;artifactId&gt;maven-assembly-plugin&lt;/artifactId&gt;
+			&lt;configuration&gt;
+				&lt;archive&gt;
+					&lt;manifest&gt;
+						&lt;!--这里要替换成jar包main方法所在类 --&gt;
+						&lt;mainClass&gt;cn.outofmemory.MainClass&lt;/mainClass&gt;
+					&lt;/manifest&gt;
+				&lt;/archive&gt;
+				&lt;descriptorRefs&gt;
+					&lt;descriptorRef&gt;jar-with-dependencies&lt;/descriptorRef&gt;
+				&lt;/descriptorRefs&gt;
+			&lt;/configuration&gt;
+			&lt;executions&gt;
+				&lt;execution&gt;
+					&lt;id&gt;make-assembly&lt;/id&gt; &lt;!-- this is used for inheritance merges --&gt;
+					&lt;phase&gt;package&lt;/phase&gt; &lt;!-- 指定在打包节点执行jar包合并操作 --&gt;
+					&lt;goals&gt;
+						&lt;goal&gt;single&lt;/goal&gt;
+					&lt;/goals&gt;
+				&lt;/execution&gt;
+			&lt;/executions&gt;
+		&lt;/plugin&gt;
+	&lt;/plugins&gt;
+&lt;/build&gt;        
+</code></pre>
+</div>
+
         </div>
     </div>
         <div class="footer">
         BOB BLOG © 2016 <a href="http://bowie.site/feed.xml" target="_blank"><i class="fa fa-fw fa-feed"></i></a>
     </div>
+
+    <script src="http://bowie.site/assets/js/jquery-1.12.2.min.js"></script>
+<script src="http://bowie.site/assets/js/jquery.goup.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    $.goup({
+        trigger: 500,
+        bottomOffset: 10,
+        locationOffset: 20,
+        containerRadius: 0,
+        containerColor: '#fff',
+        arrowColor: '#000',
+        goupSpeed: 'normal'
+    });
+});
+</script>
+
 
 </body>
 </html>

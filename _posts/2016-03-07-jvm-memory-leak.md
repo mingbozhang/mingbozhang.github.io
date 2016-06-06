@@ -1,10 +1,13 @@
 ---
 layout: post
-title: "为什么JAVA的垃圾回收机制无法避免内存泄漏"
+title: "零配置文件搭建SpringMVC实践纪录"
 date: 2015-05-22
-excerpt: "为什么JAVA的垃圾回收机制无法避免内存泄漏"
-tags: [java,jvm]
+excerpt: "SpringMVC学习笔记"
+tags: [spring,springMVC]
 ---   
+
+
+{% include toc.html %}  
 
 ## 一、本文参考：   
 1.《深入理解java虚拟机 JVM高级特性与最佳实践》    
@@ -24,7 +27,8 @@ tags: [java,jvm]
 java 堆内存泄漏,是由于java对象不停创建但是没有释放对象引用导致的。
 以下是关于java代码，此代码是引自http://coderevisited.com/memory-leaks-in-java/   
 
-类com.code.revisited.memoryleaks.Stack提供了实现栈的一些方法，包括遍历，入栈，出栈等操作。假设原来目的是为了现实使用（当然这里是为了解释内存泄漏）。   
+类com.code.revisited.memoryleaks.Stack提供了实现栈的一些方法，包括遍历，入栈，出栈等操作。假设原来目的是为了现实使用（当然这里是为了解释内存泄漏）。  
+  
 {% highlight java %}
 package com.code.revisited.memoryleaks;
 
@@ -108,9 +112,11 @@ public class Stack<E> implements Iterable<E> {
     }
 
 }
-{% endhighlight %}    
+{% endhighlight %}   
+
 类com.code.revisited.memoryleaks.StackTest用于执行栈操作。要进行入栈及出栈10000次操作，理想是入栈时分配堆内存，出栈后对象被回收。   
-{% highlight java %}    
+
+{% highlight java %}  
 package com.code.revisited.memoryleaks;
 
 /**
@@ -138,9 +144,11 @@ public class StackTest {
        }
 
 }  
-{% endhighlight %}    
+{% endhighlight %}  
+
 执行开始。我们使用VisualVM进行观察。为了更明显一些，将栈操作部分代码注释也执行一下。   
-{% hightlight java %}  
+
+{% highlight java %}
 package com.code.revisited.memoryleaks;
 
 /**
@@ -168,7 +176,8 @@ public class StackTest {
        }
 
 }
-{% endhightlight %}   
+{% endhighlight %}
+
 把栈操作的设为1号，没有栈操作的设置为2号，分别生成Heap Dump文件，我们看一下类实例的截图：  
 #### 首先是1号截图
  <img src="../assets/img/jvm-memory-leak/num_one_pic.png">
