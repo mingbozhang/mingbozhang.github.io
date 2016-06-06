@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.1.6">Jekyll</generator><link href="http://bowie.site/feed.xml" rel="self" type="application/atom+xml" /><link href="http://bowie.site/" rel="alternate" type="text/html" /><updated>2016-06-06T20:45:36+08:00</updated><id>http://bowie.site/</id><title>BOB BLOG</title><subtitle>Simple Jekyll theme for your blog by Taylan Tatlı</subtitle><entry><title>Maven将依赖的所有jar包打成一个jar</title><link href="http://bowie.site/all-in-one-jar/" rel="alternate" type="text/html" title="Maven将依赖的所有jar包打成一个jar" /><published>2016-06-04T00:00:00+08:00</published><updated>2016-06-04T00:00:00+08:00</updated><id>http://bowie.site/all-in-one-jar</id><content type="html" xml:base="http://bowie.site/all-in-one-jar/">&lt;p&gt;有些特殊情况下，需要将多个jar包打包成一个jar文件。如果使用maven可以加入如下插件：&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.1.6">Jekyll</generator><link href="http://bowie.site/feed.xml" rel="self" type="application/atom+xml" /><link href="http://bowie.site/" rel="alternate" type="text/html" /><updated>2016-06-06T20:45:40+08:00</updated><id>http://bowie.site/</id><title>BOB BLOG</title><subtitle>Simple Jekyll theme for your blog by Taylan Tatlı</subtitle><entry><title>Maven将依赖的所有jar包打成一个jar</title><link href="http://bowie.site/all-in-one-jar/" rel="alternate" type="text/html" title="Maven将依赖的所有jar包打成一个jar" /><published>2016-06-04T00:00:00+08:00</published><updated>2016-06-04T00:00:00+08:00</updated><id>http://bowie.site/all-in-one-jar</id><content type="html" xml:base="http://bowie.site/all-in-one-jar/">&lt;p&gt;有些特殊情况下，需要将多个jar包打包成一个jar文件。如果使用maven可以加入如下插件：&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt; 
     &lt;span class=&quot;nt&quot;&gt;&amp;lt;build&amp;gt;&lt;/span&gt;
@@ -70,7 +70,8 @@ public class LittleC {
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&quot;section-1&quot;&gt;2.存在的问题&lt;/h3&gt;</content><summary>设计模式演练——工厂方法模式
+&lt;h3 id=&quot;section-1&quot;&gt;2.存在的问题&lt;/h3&gt;
+&lt;p&gt;未完待续……&lt;/p&gt;</content><summary>设计模式演练——工厂方法模式
 
 1.小C的故事
 
@@ -107,7 +108,8 @@ public class LittleC {
 }
 
 
-2.存在的问题</summary></entry><entry><title>关于《设计模式演练》系列文章结构的规范</title><link href="http://bowie.site/design_pattern_assumpsit/" rel="alternate" type="text/html" title="关于《设计模式演练》系列文章结构的规范" /><published>2016-03-28T00:00:00+08:00</published><updated>2016-03-28T00:00:00+08:00</updated><id>http://bowie.site/design_pattern_assumpsit</id><content type="html" xml:base="http://bowie.site/design_pattern_assumpsit/">&lt;p&gt;       设计模式的恰当使用可以使程序结构更灵活，易于复用和扩展。但是使用设计模式的同时会以损失性能和增加复杂度为代价。所以在使用之前要进行权衡。&lt;/p&gt;
+2.存在的问题
+未完待续……</summary></entry><entry><title>关于《设计模式演练》系列文章结构的规范</title><link href="http://bowie.site/design_pattern_assumpsit/" rel="alternate" type="text/html" title="关于《设计模式演练》系列文章结构的规范" /><published>2016-03-28T00:00:00+08:00</published><updated>2016-03-28T00:00:00+08:00</updated><id>http://bowie.site/design_pattern_assumpsit</id><content type="html" xml:base="http://bowie.site/design_pattern_assumpsit/">&lt;p&gt;       设计模式的恰当使用可以使程序结构更灵活，易于复用和扩展。但是使用设计模式的同时会以损失性能和增加复杂度为代价。所以在使用之前要进行权衡。&lt;/p&gt;
 
 &lt;p&gt;为了使设计模式的学习印象深刻，更能理解应用场景与限制，将每篇文章结构规定为以下：&lt;/p&gt;
 
