@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "零配置文件搭建SpringMVC实践纪录"
-date: 2015-05-22
-excerpt: "SpringMVC学习笔记"
-tags: [spring,springMVC]
+title: "为什么JAVA的垃圾回收机制无法避免内存泄漏"
+date: 2016-03-07
+excerpt: "为什么JAVA的垃圾回收机制无法避免内存泄漏"
+tags: [java,jvm]
 ---   
 
 
