@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "dubbo & zookeeper & springMVC"
-date: 2015-05-22
+date: 2016-06-03
 excerpt: "SpringMVC学习笔记"
 tags: [dubbo,zookeeper,springMVC]
 ---
