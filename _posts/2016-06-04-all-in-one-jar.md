@@ -8,7 +8,7 @@ tags: [maven,java]
 
 
 有些特殊情况下，需要将多个jar包打包成一个jar文件。如果使用maven可以加入如下插件：   
-    
+{% highlight xml %} 
     <build>
 		<plugins>
 			<plugin>
@@ -36,3 +36,4 @@ tags: [maven,java]
 			</plugin>
 		</plugins>
 	</build>        
+{% endhighlight %} 
