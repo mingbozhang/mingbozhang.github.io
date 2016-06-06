@@ -9,10 +9,6 @@
 <lastmod>2016-05-30T00:00:00+08:00</lastmod>
 </url>
 <url>
-<loc>http://bowie.site/docker-deploy-tomcat/</loc>
-<lastmod>2016-05-30T00:00:00+08:00</lastmod>
-</url>
-<url>
 <loc>http://bowie.site/design_pattern_factory_method/</loc>
 <lastmod>2016-03-28T00:00:00+08:00</lastmod>
 </url>
@@ -23,6 +19,14 @@
 <url>
 <loc>http://bowie.site/jvm-memory-leak/</loc>
 <lastmod>2016-03-07T00:00:00+08:00</lastmod>
+</url>
+<url>
+<loc>http://bowie.site/docker-deploy-tomcat/</loc>
+<lastmod>2016-02-21T00:00:00+08:00</lastmod>
+</url>
+<url>
+<loc>http://bowie.site/es-invalid-shift-value/</loc>
+<lastmod>2016-01-23T00:00:00+08:00</lastmod>
 </url>
 <url>
 <loc>http://bowie.site/nested_not_find_data/</loc>

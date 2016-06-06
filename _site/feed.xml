@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.1.6">Jekyll</generator><link href="http://bowie.site/feed.xml" rel="self" type="application/atom+xml" /><link href="http://bowie.site/" rel="alternate" type="text/html" /><updated>2016-06-06T20:10:26+08:00</updated><id>http://bowie.site/</id><title>BOB BLOG</title><subtitle>Simple Jekyll theme for your blog by Taylan Tatlı</subtitle><entry><title>Maven将依赖的所有jar包打成一个jar</title><link href="http://bowie.site/all-in-one-jar/" rel="alternate" type="text/html" title="Maven将依赖的所有jar包打成一个jar" /><published>2016-06-04T00:00:00+08:00</published><updated>2016-06-04T00:00:00+08:00</updated><id>http://bowie.site/all-in-one-jar</id><content type="html" xml:base="http://bowie.site/all-in-one-jar/">&lt;p&gt;有些特殊情况下，需要将多个jar包打包成一个jar文件。如果使用maven可以加入如下插件：&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.1.6">Jekyll</generator><link href="http://bowie.site/feed.xml" rel="self" type="application/atom+xml" /><link href="http://bowie.site/" rel="alternate" type="text/html" /><updated>2016-06-06T20:26:00+08:00</updated><id>http://bowie.site/</id><title>BOB BLOG</title><subtitle>Simple Jekyll theme for your blog by Taylan Tatlı</subtitle><entry><title>Maven将依赖的所有jar包打成一个jar</title><link href="http://bowie.site/all-in-one-jar/" rel="alternate" type="text/html" title="Maven将依赖的所有jar包打成一个jar" /><published>2016-06-04T00:00:00+08:00</published><updated>2016-06-04T00:00:00+08:00</updated><id>http://bowie.site/all-in-one-jar</id><content type="html" xml:base="http://bowie.site/all-in-one-jar/">&lt;p&gt;有些特殊情况下，需要将多个jar包打包成一个jar文件。如果使用maven可以加入如下插件：&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;build&amp;gt;
 	&amp;lt;plugins&amp;gt;
@@ -34,157 +34,7 @@
 我想阅读学习ElasticSearch源代码，参与到开源项目维护中去。 &lt;br /&gt;
 我想阅读Spring源码，学习大牛们实际运用各种设计模式&lt;/p&gt;
 
-&lt;p&gt;还有很多要写到，就到这了，要上班了。&lt;/p&gt;</content><summary>A ton of text to test readability.</summary></entry><entry><title>docker部署tomcat</title><link href="http://bowie.site/docker-deploy-tomcat/" rel="alternate" type="text/html" title="docker部署tomcat" /><published>2016-05-30T00:00:00+08:00</published><updated>2016-05-30T00:00:00+08:00</updated><id>http://bowie.site/docker-deploy-tomcat</id><content type="html" xml:base="http://bowie.site/docker-deploy-tomcat/">&lt;h2 id=&quot;section&quot;&gt;一.环境简介&lt;/h2&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;名称&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;版本&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;宿主机OS&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;ubuntu-14.04.3-server-amd64&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;JDK&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;7&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;tomcat&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;7.0.52&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h2 id=&quot;ubuntu-1404dockerdocker&quot;&gt;二.Ubuntu 14.04版本系统中已经自带了Docker，查看下docker版本&lt;/h2&gt;
-&lt;p&gt;docker version&lt;/p&gt;
-
-&lt;h2 id=&quot;ssh&quot;&gt;三、（可选）ssh登录服务器端准备&lt;/h2&gt;
-&lt;p&gt;使用ssh客户端工具登录 ，具体参考http://jingyan.baidu.com/article/9c69d48fb9fd7b13c8024e6b.html  &lt;br /&gt;
-安装openssh&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;   
-sudo apt-get update   
-sudo apt-get install openssh-server   &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;h2 id=&quot;section-1&quot;&gt;四、下载容器镜像&lt;/h2&gt;
-&lt;p&gt;获取镜像到本地&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;    
-sudo docker pull bobsha/ping   &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;这里bobsha是我docker hub的用户名bobsha/ping是我之前上传到一个安装了ping命令的Ubuntu镜像。&lt;/p&gt;
-
-&lt;p&gt;当然也可以自己申请一个帐号进行管理，网址为https://hub.docker.com&lt;/p&gt;
-
-&lt;p&gt;查看本地镜像信息&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;    
-sudo docker images  &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;h2 id=&quot;section-2&quot;&gt;五、宿主机及目标容器挂载目录准备&lt;/h2&gt;
-&lt;p&gt;本步骤是将docker容器需要用到的安装软件和tomcat运行的项目在宿主机上准备好，容器中进行挂载。&lt;/p&gt;
-
-&lt;p&gt;首先将软件准备好放在宿主机/opt/software下面，在容器中/mnt下面增加software目录。&lt;/p&gt;
-
-&lt;p&gt;在宿主机/opt中建立/opt/webapps/ROOT，并添加index.html文件，加入如下内容：&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;   
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&amp;gt;&lt;/span&gt;   
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;Hello world!&lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;   &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;h2 id=&quot;tomcat&quot;&gt;六、容器tomcat运行环境准备&lt;/h2&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;    
-docker run -i -t -v /opt/software/:/mnt/software/ 8ab8 /bin/bash &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;命令包含以下三个部分： &lt;br /&gt;
-docker run &lt;相关参数&gt; &lt;镜像 ID=&quot;&quot;&gt; &lt;初始命令&gt;   
-其中，相关参数包括：   
--i：表示以“交互模式”运行容器&lt;/初始命令&gt;&lt;/镜像&gt;&lt;/相关参数&gt;&lt;/p&gt;
-
-&lt;p&gt;-t：表示容器启动后会进入其命令行&lt;/p&gt;
-
-&lt;p&gt;-v：表示需要将本地哪个目录挂载到容器中，格式：-v &lt;宿主机目录&gt;:&lt;容器目录&gt;   
-经过上面的步骤现在已经进入容器的交互式窗口中，将tomcat和jdk解压到/opt目录中，并编写tomcat启动脚本。&lt;/容器目录&gt;&lt;/宿主机目录&gt;&lt;/p&gt;
-
-&lt;p&gt;在/opt下面建立runtomcat.sh文件，加入如下内容：&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;   
- &lt;span class=&quot;c&quot;&gt;#!/bin/bash&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;JAVA_HOME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/opt/jdk1.7.0_76/
-&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;PATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$JAVA_HOME&lt;/span&gt;/bin:&lt;span class=&quot;nv&quot;&gt;$PATH&lt;/span&gt;
-sh /opt/apache-tomcat-7.0.52/bin/catalina.sh run&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;给脚本赋予权限&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;    
-chmod u+x /opt/runtomcat.sh   &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;退出容器&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;    
-&lt;span class=&quot;nb&quot;&gt;exit&lt;/span&gt;    &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;查看最近运行容器信息&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;      
-docker ps -l    &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;root@ubuntu:/opt/software# docker ps -l&lt;/p&gt;
-
-&lt;p&gt;CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES &lt;br /&gt;
-23d53a7745bc bobsha/ping:latest “/bin/bash” About a minute ago Exited (0) 12    seconds ago backstabbing_lumiere &lt;br /&gt;
-保存容器为新镜像，我将新镜像命名为bobsha/tomcat&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;      
-docker commit 23d5 bobsha/tomcat   &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;这里容器ID只需要写前几位可以区分就行一般，三到四位即可。&lt;/p&gt;
-
-&lt;h2 id=&quot;tomcat-1&quot;&gt;七、运行tomcat&lt;/h2&gt;
-
-&lt;p&gt;运行tomcat，这次只运行启动tomcat命令&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt; 
-docker run  -p 18080:8080 -v /opt/webapps/:/opt/apache-tomcat-7.0.52/webapps/ -name docker_tomcat bobsha/tomcat /opt/runtomcat.sh&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;其中，新出现的相关参数包括： &lt;br /&gt;
--p：&lt;宿主机端口&gt;:&lt;容器端口&gt;，将容器端口映射为指定宿主机端口，通过宿主机端口进行访问容器程序&lt;/容器端口&gt;&lt;/宿主机端口&gt;&lt;/p&gt;
-
-&lt;p&gt;-name:容器名称，起个有意义的名字即可&lt;/p&gt;
-
-&lt;p&gt;验证tomcat运行情况 &lt;br /&gt;
-通过局域网中浏览器访问: http://192.168.0.106:18080/index.html显示成功！ &lt;br /&gt;
- &lt;img src=&quot;../assets/img/docker-deploy-tomcat/helloworld.png&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;section-3&quot;&gt;八、移除容器&lt;/h2&gt;
-&lt;p&gt;Ctrl+C退出后，发现再次运行上面的命令显示如下：&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt; 
-Warning: &lt;span class=&quot;s1&quot;&gt;&#39;-name&#39;&lt;/span&gt; is deprecated, it will be replaced by &lt;span class=&quot;s1&quot;&gt;&#39;--name&#39;&lt;/span&gt; soon. See usage.
-FATA[0000] Error response from daemon: Conflict. The name &lt;span class=&quot;s2&quot;&gt;&quot;docker_tomcat&quot;&lt;/span&gt; is already &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;use by container bab14ef39b40. You have to delete &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;or rename&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; that container to be able to reuse that name.&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;查看所有容器&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt; 
-docker ps -a   
-
-CONTAINER ID        IMAGE                  COMMAND                CREATED             STATUS                       PORTS                     NAMES
-
-bab14ef39b40        bobsha/tomcat:latest   &lt;span class=&quot;s2&quot;&gt;&quot;/opt/runtomcat.sh&quot;&lt;/span&gt;    10 minutes ago      Exited &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;130&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; 8 minutes ago                             docker_tomcat &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;移除该容器&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;docker rm bab1 &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;本文参考以下文章及教程： &lt;br /&gt;
-http://www.docker.org.cn/book/docker.html &lt;br /&gt;
-http://m.oschina.net/blog/616526?hmsr=toutiao.io&amp;amp;utm_medium=toutiao.io&amp;amp;utm_source=toutiao.io&lt;/p&gt;</content><category term="docker" /><summary>docker部署tomcat</summary></entry><entry><title>设计模式演练——工厂方法模式</title><link href="http://bowie.site/design_pattern_factory_method/" rel="alternate" type="text/html" title="设计模式演练——工厂方法模式" /><published>2016-03-28T00:00:00+08:00</published><updated>2016-03-28T00:00:00+08:00</updated><id>http://bowie.site/design_pattern_factory_method</id><content type="html" xml:base="http://bowie.site/design_pattern_factory_method/">&lt;h1 id=&quot;section&quot;&gt;设计模式演练——工厂方法模式&lt;/h1&gt;
+&lt;p&gt;还有很多要写到，就到这了，要上班了。&lt;/p&gt;</content><summary>A ton of text to test readability.</summary></entry><entry><title>设计模式演练——工厂方法模式</title><link href="http://bowie.site/design_pattern_factory_method/" rel="alternate" type="text/html" title="设计模式演练——工厂方法模式" /><published>2016-03-28T00:00:00+08:00</published><updated>2016-03-28T00:00:00+08:00</updated><id>http://bowie.site/design_pattern_factory_method</id><content type="html" xml:base="http://bowie.site/design_pattern_factory_method/">&lt;h1 id=&quot;section&quot;&gt;设计模式演练——工厂方法模式&lt;/h1&gt;
 
 &lt;h3 id=&quot;c&quot;&gt;1.小C的故事&lt;/h3&gt;
 
@@ -460,7 +310,273 @@ public class LittleC {
 &lt;p&gt;显然预期的栈操作出栈后并没有释放掉Integer对象的引用（实际上看代码也知道），所以不会被GC回收。真正的实际情况这种引用将会很隐蔽，但是根本总是由于对象仍然被引用。&lt;/p&gt;
 
 &lt;h2 id=&quot;section-3&quot;&gt;四、结语&lt;/h2&gt;
-&lt;p&gt;本篇仅对java堆内存泄漏进行了简单说明，下一篇将讨论其他相关的内存泄漏。有不对的地方欢迎拍砖&amp;gt;_&amp;lt;&lt;/p&gt;</content><category term="java" /><category term="jvm" /><summary>为什么JAVA的垃圾回收机制无法避免内存泄漏</summary></entry><entry><title>ElasticSearch学习问题记录——nested查询不到数据</title><link href="http://bowie.site/nested_not_find_data/" rel="alternate" type="text/html" title="ElasticSearch学习问题记录——nested查询不到数据" /><published>2015-12-25T00:00:00+08:00</published><updated>2015-12-25T00:00:00+08:00</updated><id>http://bowie.site/nested_not_find_data</id><content type="html" xml:base="http://bowie.site/nested_not_find_data/">&lt;h1 id=&quot;elasticsearchnested&quot;&gt;ElasticSearch学习问题记录——nested查询不到数据&lt;/h1&gt;
+&lt;p&gt;本篇仅对java堆内存泄漏进行了简单说明，下一篇将讨论其他相关的内存泄漏。有不对的地方欢迎拍砖&amp;gt;_&amp;lt;&lt;/p&gt;</content><category term="java" /><category term="jvm" /><summary>为什么JAVA的垃圾回收机制无法避免内存泄漏</summary></entry><entry><title>docker部署tomcat</title><link href="http://bowie.site/docker-deploy-tomcat/" rel="alternate" type="text/html" title="docker部署tomcat" /><published>2016-02-21T00:00:00+08:00</published><updated>2016-02-21T00:00:00+08:00</updated><id>http://bowie.site/docker-deploy-tomcat</id><content type="html" xml:base="http://bowie.site/docker-deploy-tomcat/">&lt;section id=&quot;table-of-contents&quot; class=&quot;toc&quot;&gt;
+  &lt;header&gt;
+    &lt;h3&gt;&lt;i class=&quot;fa fa-book&quot;&gt;&lt;/i&gt; Contents&lt;/h3&gt;
+  &lt;/header&gt;
+&lt;div id=&quot;drawer&quot;&gt;
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#section&quot; id=&quot;markdown-toc-section&quot;&gt;一.环境简介&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#ubuntu-1404dockerdocker&quot; id=&quot;markdown-toc-ubuntu-1404dockerdocker&quot;&gt;二.Ubuntu 14.04版本系统中已经自带了Docker，查看下docker版本&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#ssh&quot; id=&quot;markdown-toc-ssh&quot;&gt;三、（可选）ssh登录服务器端准备&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-1&quot; id=&quot;markdown-toc-section-1&quot;&gt;四、下载容器镜像&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-2&quot; id=&quot;markdown-toc-section-2&quot;&gt;五、宿主机及目标容器挂载目录准备&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#tomcat&quot; id=&quot;markdown-toc-tomcat&quot;&gt;六、容器tomcat运行环境准备&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#tomcat-1&quot; id=&quot;markdown-toc-tomcat-1&quot;&gt;七、运行tomcat&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-3&quot; id=&quot;markdown-toc-section-3&quot;&gt;八、移除容器&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+  &lt;/div&gt;
+&lt;/section&gt;
+&lt;!-- /#table-of-contents --&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;一.环境简介&lt;/h2&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;名称&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;版本&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;宿主机OS&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;ubuntu-14.04.3-server-amd64&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;JDK&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;7&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;tomcat&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;7.0.52&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;ubuntu-1404dockerdocker&quot;&gt;二.Ubuntu 14.04版本系统中已经自带了Docker，查看下docker版本&lt;/h2&gt;
+&lt;p&gt;docker version&lt;/p&gt;
+
+&lt;h2 id=&quot;ssh&quot;&gt;三、（可选）ssh登录服务器端准备&lt;/h2&gt;
+&lt;p&gt;使用ssh客户端工具登录 ，具体参考http://jingyan.baidu.com/article/9c69d48fb9fd7b13c8024e6b.html  &lt;br /&gt;
+安装openssh&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;   
+sudo apt-get update   
+sudo apt-get install openssh-server   &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;四、下载容器镜像&lt;/h2&gt;
+&lt;p&gt;获取镜像到本地&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;    
+sudo docker pull bobsha/ping   &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;这里bobsha是我docker hub的用户名bobsha/ping是我之前上传到一个安装了ping命令的Ubuntu镜像。&lt;/p&gt;
+
+&lt;p&gt;当然也可以自己申请一个帐号进行管理，网址为https://hub.docker.com&lt;/p&gt;
+
+&lt;p&gt;查看本地镜像信息&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;    
+sudo docker images  &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;五、宿主机及目标容器挂载目录准备&lt;/h2&gt;
+&lt;p&gt;本步骤是将docker容器需要用到的安装软件和tomcat运行的项目在宿主机上准备好，容器中进行挂载。&lt;/p&gt;
+
+&lt;p&gt;首先将软件准备好放在宿主机/opt/software下面，在容器中/mnt下面增加software目录。&lt;/p&gt;
+
+&lt;p&gt;在宿主机/opt中建立/opt/webapps/ROOT，并添加index.html文件，加入如下内容：&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;   
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&amp;gt;&lt;/span&gt;   
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;Hello world!&lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;   &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;tomcat&quot;&gt;六、容器tomcat运行环境准备&lt;/h2&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;    
+docker run -i -t -v /opt/software/:/mnt/software/ 8ab8 /bin/bash &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;命令包含以下三个部分： &lt;br /&gt;
+docker run &lt;相关参数&gt; &lt;镜像 ID=&quot;&quot;&gt; &lt;初始命令&gt;   
+其中，相关参数包括：   
+-i：表示以“交互模式”运行容器&lt;/初始命令&gt;&lt;/镜像&gt;&lt;/相关参数&gt;&lt;/p&gt;
+
+&lt;p&gt;-t：表示容器启动后会进入其命令行&lt;/p&gt;
+
+&lt;p&gt;-v：表示需要将本地哪个目录挂载到容器中，格式：-v &lt;宿主机目录&gt;:&lt;容器目录&gt;   
+经过上面的步骤现在已经进入容器的交互式窗口中，将tomcat和jdk解压到/opt目录中，并编写tomcat启动脚本。&lt;/容器目录&gt;&lt;/宿主机目录&gt;&lt;/p&gt;
+
+&lt;p&gt;在/opt下面建立runtomcat.sh文件，加入如下内容：&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;   
+ &lt;span class=&quot;c&quot;&gt;#!/bin/bash&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;JAVA_HOME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/opt/jdk1.7.0_76/
+&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;PATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$JAVA_HOME&lt;/span&gt;/bin:&lt;span class=&quot;nv&quot;&gt;$PATH&lt;/span&gt;
+sh /opt/apache-tomcat-7.0.52/bin/catalina.sh run&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;给脚本赋予权限&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;    
+chmod u+x /opt/runtomcat.sh   &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;退出容器&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;    
+&lt;span class=&quot;nb&quot;&gt;exit&lt;/span&gt;    &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;查看最近运行容器信息&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;      
+docker ps -l    &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;root@ubuntu:/opt/software# docker ps -l&lt;/p&gt;
+
+&lt;p&gt;CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES &lt;br /&gt;
+23d53a7745bc bobsha/ping:latest “/bin/bash” About a minute ago Exited (0) 12    seconds ago backstabbing_lumiere &lt;br /&gt;
+保存容器为新镜像，我将新镜像命名为bobsha/tomcat&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;      
+docker commit 23d5 bobsha/tomcat   &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;这里容器ID只需要写前几位可以区分就行一般，三到四位即可。&lt;/p&gt;
+
+&lt;h2 id=&quot;tomcat-1&quot;&gt;七、运行tomcat&lt;/h2&gt;
+
+&lt;p&gt;运行tomcat，这次只运行启动tomcat命令&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt; 
+docker run  -p 18080:8080 -v /opt/webapps/:/opt/apache-tomcat-7.0.52/webapps/ -name docker_tomcat bobsha/tomcat /opt/runtomcat.sh&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;其中，新出现的相关参数包括： &lt;br /&gt;
+-p：&lt;宿主机端口&gt;:&lt;容器端口&gt;，将容器端口映射为指定宿主机端口，通过宿主机端口进行访问容器程序&lt;/容器端口&gt;&lt;/宿主机端口&gt;&lt;/p&gt;
+
+&lt;p&gt;-name:容器名称，起个有意义的名字即可&lt;/p&gt;
+
+&lt;p&gt;验证tomcat运行情况 &lt;br /&gt;
+通过局域网中浏览器访问: http://192.168.0.106:18080/index.html显示成功！ &lt;br /&gt;
+ &lt;img src=&quot;../assets/img/docker-deploy-tomcat/helloworld.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;section-3&quot;&gt;八、移除容器&lt;/h2&gt;
+&lt;p&gt;Ctrl+C退出后，发现再次运行上面的命令显示如下：&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt; 
+Warning: &lt;span class=&quot;s1&quot;&gt;&#39;-name&#39;&lt;/span&gt; is deprecated, it will be replaced by &lt;span class=&quot;s1&quot;&gt;&#39;--name&#39;&lt;/span&gt; soon. See usage.
+FATA[0000] Error response from daemon: Conflict. The name &lt;span class=&quot;s2&quot;&gt;&quot;docker_tomcat&quot;&lt;/span&gt; is already &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;use by container bab14ef39b40. You have to delete &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;or rename&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; that container to be able to reuse that name.&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;查看所有容器&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt; 
+docker ps -a   
+
+CONTAINER ID        IMAGE                  COMMAND                CREATED             STATUS                       PORTS                     NAMES
+
+bab14ef39b40        bobsha/tomcat:latest   &lt;span class=&quot;s2&quot;&gt;&quot;/opt/runtomcat.sh&quot;&lt;/span&gt;    10 minutes ago      Exited &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;130&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; 8 minutes ago                             docker_tomcat &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;移除该容器&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;docker rm bab1 &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;本文参考以下文章及教程： &lt;br /&gt;
+http://www.docker.org.cn/book/docker.html &lt;br /&gt;
+http://m.oschina.net/blog/616526?hmsr=toutiao.io&amp;amp;utm_medium=toutiao.io&amp;amp;utm_source=toutiao.io&lt;/p&gt;</content><category term="docker" /><summary>docker部署tomcat</summary></entry><entry><title>ElasticSearch学习问题记录——Invalid shift value in prefixCoded bytes (is encoded value really an INT?)</title><link href="http://bowie.site/es-invalid-shift-value/" rel="alternate" type="text/html" title="ElasticSearch学习问题记录——Invalid shift value in prefixCoded bytes (is encoded value really an INT?)" /><published>2016-01-23T00:00:00+08:00</published><updated>2016-01-23T00:00:00+08:00</updated><id>http://bowie.site/es-invalid-shift-value</id><content type="html" xml:base="http://bowie.site/es-invalid-shift-value/">&lt;p&gt;        最近在做一个电商项目，其中商品搜索中出现一个奇怪的现象，根据某个字段排序的时候会出现商品数量减少的情况。按照一般路要么查不出来，要么正常显示，为什么增加了按照销量排序就会出现查询结果减少的情况。 &lt;br /&gt;
+          查了下ES日志发现有报错：nested: NumberFormatException[Invalid shift value in prefixCoded bytes (is encoded value really an INT?)
+          看得出是数据类型转换错误，但是为什么错还是不清楚。求助GOOGLE。发现下面一则和我的情形相同。 &lt;br /&gt;
+https://github.com/elastic/elasticsearch/issues/9191#issuecomment-77784022&lt;/p&gt;
+
+&lt;p&gt;        查看了下索引中索引类型映射到数据结构，发现确实存在同名字段不同类型的情况。将错误的索引类型删除，保持同一结构，问题就解决了。&lt;/p&gt;
+
+&lt;p&gt;        为了进一步证实，我又写了一个小例子。先制造些错误，school使用先设置类型映射在添加数据。school2直接加数据，类型自动识别。下面是索引类型的映射结构:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;&lt;span class=&quot;w&quot;&gt;   
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;state&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;open&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;settings&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;index.version.created&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;901399&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;index.number_of_replicas&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;index.uuid&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;qK4PV5IsQZm8eb1QCU7b6w&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;index.number_of_shards&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;5&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;mappings&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;school2&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;properties&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;id&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;string&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;string&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;age&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;long&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;studentList&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;properties&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                        &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;sex&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                            &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;string&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                        &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;studentId&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                            &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;string&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                        &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;studentName&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                            &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;string&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;school&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;properties&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;id&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;store&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;analyzer&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;ik&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;string&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;store&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;analyzer&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;ik&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;string&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;age&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;store&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;integer&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;studentList&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;properties&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                        &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;sex&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                            &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;store&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                            &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;analyzer&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;ik&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                            &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;string&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                        &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;studentId&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                            &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;store&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                            &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;analyzer&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;ik&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                            &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;string&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                        &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;studentName&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                            &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;store&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                            &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;analyzer&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;ik&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                            &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;string&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;nested&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;aliases&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;   &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;注意索引类型school和school2中age字段的类型前者是Integer后者是long。我们按照全匹配查询并根据age进行排序。问题产生了。下面就是报错的结果。&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;&lt;span class=&quot;w&quot;&gt; 
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;error&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;SearchPhaseExecutionException[Failed to execute phase [query], all shards failed; shardFailures {[iJhim0-hSMKr_uHZFrBfTA][demoindex][3]: RemoteTransportException[[node2][inet[/192.168.0.202:9300]][search/phase/query]]; nested: QueryPhaseExecutionException[[demoindex][3]: query[filtered(ConstantScore(*:*))-&amp;gt;cache(_type:school2)],from[0],size[20],sort[&amp;lt;custom:\&quot;age\&quot;: org.elasticsearch.index.fielddata.fieldcomparator.LongValuesComparatorSource@32780f73&amp;gt;!]: Query Failed [Failed to execute main query]]; nested: ElasticSearchException[java.lang.NumberFormatException: Invalid shift value in prefixCoded bytes (is encoded value really an INT?)]; nested: UncheckedExecutionException[java.lang.NumberFormatException: Invalid shift value in prefixCoded bytes (is encoded value really an INT?)]; nested: NumberFormatException[Invalid shift value in prefixCoded bytes (is encoded value really an INT?)]; }{[0P8agoQGSS-h4abY0hMI8Q][demoindex][4]: QueryPhaseExecutionException[[demoindex][4]: query[filtered(ConstantScore(*:*))-&amp;gt;cache(_type:school2)],from[0],size[20],sort[&amp;lt;custom:\&quot;age\&quot;: org.elasticsearch.index.fielddata.fieldcomparator.LongValuesComparatorSource@1d42c789&amp;gt;!]: Query Failed [Failed to execute main query]]; nested: ElasticSearchException[java.lang.NumberFormatException: Invalid shift value in prefixCoded bytes (is encoded value really an INT?)]; nested: UncheckedExecutionException[java.lang.NumberFormatException: Invalid shift value in prefixCoded bytes (is encoded value really an INT?)]; nested: NumberFormatException[Invalid shift value in prefixCoded bytes (is encoded value really an INT?)]; }{[0P8agoQGSS-h4abY0hMI8Q][demoindex][1]: QueryPhaseExecutionException[[demoindex][1]: query[filtered(ConstantScore(*:*))-&amp;gt;cache(_type:school2)],from[0],size[20],sort[&amp;lt;custom:\&quot;age\&quot;: org.elasticsearch.index.fielddata.fieldcomparator.LongValuesComparatorSource@2998a407&amp;gt;!]: Query Failed [Failed to execute main query]]; nested: ElasticSearchException[java.lang.NumberFormatException: Invalid shift value in prefixCoded bytes (is encoded value really an INT?)]; nested: UncheckedExecutionException[java.lang.NumberFormatException: Invalid shift value in prefixCoded bytes (is encoded value really an INT?)]; nested: NumberFormatException[Invalid shift value in prefixCoded bytes (is encoded value really an INT?)]; }{[iJhim0-hSMKr_uHZFrBfTA][demoindex][2]: RemoteTransportException[[node2][inet[/192.168.0.202:9300]][search/phase/query]]; nested: QueryPhaseExecutionException[[demoindex][2]: query[filtered(ConstantScore(*:*))-&amp;gt;cache(_type:school2)],from[0],size[20],sort[&amp;lt;custom:\&quot;age\&quot;: org.elasticsearch.index.fielddata.fieldcomparator.LongValuesComparatorSource@65fde78f&amp;gt;!]: Query Failed [Failed to execute main query]]; nested: ElasticSearchException[java.lang.NumberFormatException: Invalid shift value in prefixCoded bytes (is encoded value really an INT?)]; nested: UncheckedExecutionException[java.lang.NumberFormatException: Invalid shift value in prefixCoded bytes (is encoded value really an INT?)]; nested: NumberFormatException[Invalid shift value in prefixCoded bytes (is encoded value really an INT?)]; }{[iJhim0-hSMKr_uHZFrBfTA][demoindex][0]: RemoteTransportException[[node2][inet[/192.168.0.202:9300]][search/phase/query]]; nested: QueryPhaseExecutionException[[demoindex][0]: query[filtered(ConstantScore(*:*))-&amp;gt;cache(_type:school2)],from[0],size[20],sort[&amp;lt;custom:\&quot;age\&quot;: org.elasticsearch.index.fielddata.fieldcomparator.LongValuesComparatorSource@f6e47a1&amp;gt;!]: Query Failed [Failed to execute main query]]; nested: ElasticSearchException[java.lang.NumberFormatException: Invalid shift value in prefixCoded bytes (is encoded value really an INT?)]; nested: UncheckedExecutionException[java.lang.NumberFormatException: Invalid shift value in prefixCoded bytes (is encoded value really an INT?)]; nested: NumberFormatException[Invalid shift value in prefixCoded bytes (is encoded value really an INT?)]; }]&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;status&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;500&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><summary>        最近在做一个电商项目，其中商品搜索中出现一个奇怪的现象，根据某个字段排序的时候会出现商品数量减少的情况。按照一般路要么查不出来，要么正常显示，为什么增加了按照销量排序就会出现查询结果减少的情况。 
+          查了下ES日志发现有报错：nested: NumberFormatException[Invalid shift value in prefixCoded bytes (is encoded value really an INT?)
+          看得出是数据类型转换错误，但是为什么错还是不清楚。求助GOOGLE。发现下面一则和我的情形相同。 
+https://github.com/elastic/elasticsearch/issues/9191#issuecomment-77784022</summary></entry><entry><title>ElasticSearch学习问题记录——nested查询不到数据</title><link href="http://bowie.site/nested_not_find_data/" rel="alternate" type="text/html" title="ElasticSearch学习问题记录——nested查询不到数据" /><published>2015-12-25T00:00:00+08:00</published><updated>2015-12-25T00:00:00+08:00</updated><id>http://bowie.site/nested_not_find_data</id><content type="html" xml:base="http://bowie.site/nested_not_find_data/">&lt;h1 id=&quot;elasticsearchnested&quot;&gt;ElasticSearch学习问题记录——nested查询不到数据&lt;/h1&gt;
 
 &lt;p&gt;通过代码创建了索引名称为demoindex，索引类型为school，以下是索引类型的数据映射结构：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;
@@ -970,251 +1086,4 @@ com.bob.playspring.PlayWebAppInitializer&lt;/p&gt;
 
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;关于Controller，Service，Repository的代码我就不贴了。&lt;/p&gt;</content><category term="spring" /><category term="springMVC" /><summary>SpringMVC学习笔记</summary></entry><entry><title>JVM学习——编译OpenJDK</title><link href="http://bowie.site/complie_openJDK/" rel="alternate" type="text/html" title="JVM学习——编译OpenJDK" /><published>2012-05-22T00:00:00+08:00</published><updated>2012-05-22T00:00:00+08:00</updated><id>http://bowie.site/complie_openJDK</id><content type="html" xml:base="http://bowie.site/complie_openJDK/">&lt;section id=&quot;table-of-contents&quot; class=&quot;toc&quot;&gt;
-  &lt;header&gt;
-    &lt;h3&gt;&lt;i class=&quot;fa fa-book&quot;&gt;&lt;/i&gt; Contents&lt;/h3&gt;
-  &lt;/header&gt;
-&lt;div id=&quot;drawer&quot;&gt;
-&lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#section&quot; id=&quot;markdown-toc-section&quot;&gt;1.编译环境介绍&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#section-1&quot; id=&quot;markdown-toc-section-1&quot;&gt;2.准备工作&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#section-2&quot; id=&quot;markdown-toc-section-2&quot;&gt;2.2 下载依赖&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#javahome&quot; id=&quot;markdown-toc-javahome&quot;&gt;2.3 屏蔽已经配置的JAVA_HOME&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#jdk&quot; id=&quot;markdown-toc-jdk&quot;&gt;2.4 配置引导JDK&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#altcacertsfile&quot; id=&quot;markdown-toc-altcacertsfile&quot;&gt;2.5 配置环境变量ALT_CACERTS_FILE&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#section-3&quot; id=&quot;markdown-toc-section-3&quot;&gt;3.开始编译&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#section-4&quot; id=&quot;markdown-toc-section-4&quot;&gt;4.跑一下自己编译的虚拟机&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-  &lt;/div&gt;
-&lt;/section&gt;
-&lt;!-- /#table-of-contents --&gt;
-
-&lt;p&gt;       最近在学习《深入理解java虚拟机 第二版》这本书。书中第一部分建议大家自己编译OpenJDK。抱着学习态度也来编译个玩一玩。下面进入正题。&lt;/p&gt;
-
-&lt;h2 id=&quot;section&quot;&gt;1.编译环境介绍&lt;/h2&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;名称&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;版本&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;操作系统&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;CentOS Linux release 7.1.1503 (Core)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Linux内核版本&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;3.10.0-229.el7.x86_64&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;gcc版本&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;4.8.2 20140120 (Red Hat 4.8.2-16) (GCC)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;openJdk版本&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;openjdk-7u40&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h2 id=&quot;section-1&quot;&gt;2.准备工作&lt;/h2&gt;
-&lt;p&gt;### 2.1下载OpenJDK
-打开网站https://jdk7.java.net/source.html&lt;br /&gt;
-在这里复制链接直接在linux中wget。&lt;br /&gt;
-wget http://www.java.net/download/openjdk/jdk7u40/promoted/b43/openjdk-7u40-fcs-src-b43-26_aug_2013.zip&lt;/p&gt;
-
-&lt;h3 id=&quot;section-2&quot;&gt;2.2 下载依赖&lt;/h3&gt;
-&lt;p&gt;具体的依赖要求说明都在README-builds.html 中了，这里直接来命令：&lt;br /&gt;
-# yum install -y  glibc*&lt;br /&gt;
-# yum install cups-devel&lt;br /&gt;
-# yum install -y  alsa*&lt;br /&gt;
-# yum install -y fontconfig*&lt;br /&gt;
-# yum install zip*&lt;br /&gt;
-# yum install  libstdc++-static&lt;/p&gt;
-
-&lt;p&gt;解压压缩包,将得到openjdk文件夹&lt;br /&gt;
-unzip  openjdk-7u40-fcs-src-b43-26_aug_2013.zip&lt;br /&gt;
-cd openjdk&lt;br /&gt;
-这里有一份构建说明文档README-builds.html ，建议在windows下面看。后面步骤全靠它了。&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;安装freetype&lt;/strong&gt;&lt;br /&gt;
-下载源码
-# wget http://jaist.dl.sourceforge.net/project/freetype/freetype2/2.3.12/freetype-2.3.12.tar.gz&lt;br /&gt;
-解压源码,编译安装
-# tar -zxvf freetype-2.3.12.tar.gz&lt;br /&gt;
-# cd freetype-2.3.12&lt;br /&gt;
-# ./configure &amp;amp;&amp;amp; make &amp;amp;&amp;amp; sudo -u root make install&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;下载并安装ANT&lt;/strong&gt;&lt;br /&gt;
-配置ANT环境变量&lt;br /&gt;
-# wget http://mirrors.hust.edu.cn/apache//ant/binaries/apache-ant-1.9.6-bin.tar.gz&lt;br /&gt;
-# vi /etc/profile&lt;br /&gt;
- 加入如下内容：&lt;br /&gt;
-export ANT_HOME=/opt/openJDKroom/apache-ant-1.9.6&lt;br /&gt;
-export PATH=$PATH:$ANT_HOME/bin&lt;br /&gt;
-# source /etc/profile&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;下载并安装CUPS&lt;/strong&gt;&lt;br /&gt;
-wget http://www.cups.org/software/2.1.2/cups-2.1.2-source.tar.bz2&lt;br /&gt;
-tar  -jxvf  cups-2.1.2-source.tar.bz2&lt;br /&gt;
-# ./configure &amp;amp;&amp;amp; make &amp;amp;&amp;amp; make install&lt;/p&gt;
-
-&lt;h3 id=&quot;javahome&quot;&gt;2.3 屏蔽已经配置的JAVA_HOME&lt;/h3&gt;
-&lt;p&gt;下面贴出README-builds.html中原文：&lt;br /&gt;
-    Note that some Linux systems have a habit of pre-populating your environment variables for you,   for example JAVA_HOME might get pre-defined for you to refer to the JDK installed on your Linux   system. You will need to unset JAVA_HOME. It’s a good idea to run env and verify the   environment variables you are getting from the default system settings make sense for building   the OpenJDK.&lt;/p&gt;
-
-&lt;p&gt;先检查一下本地是否配置有JAVA_HOME&lt;br /&gt;
-# env | grep JAVA_HOME&lt;br /&gt;
-如果有则屏蔽掉。&lt;/p&gt;
-
-&lt;h3 id=&quot;jdk&quot;&gt;2.4 配置引导JDK&lt;/h3&gt;
-&lt;p&gt;下面贴出README-builds.html中原文：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; Bootstrap JDK  
- All OpenJDK builds require access to the previously released JDK 6, this is often called a   bootstrap JDK. The JDK 6 binaries can be downloaded from Sun&#39;s JDK 6 download site. For build   performance reasons is very important that this bootstrap JDK be made available on the local   disk of the machine doing the build. You should always set ALT_BOOTDIR to point to the location   of the bootstrap JDK installation, this is the directory pathname that contains a bin, lib, and   include It&#39;s also a good idea to also place its bin directory in the PATH environment variable,   although it&#39;s not required.  
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;下载安装Bootstrap&lt;/strong&gt; &lt;br /&gt;
-这里下载JDK 6 Linux 64位jdk-6u45-linux-x64.bin&lt;br /&gt;
-# chmod +x jdk-6u45-linux-x64.bin&lt;br /&gt;
-# ./jdk-6u45-linux-x64.bin&lt;/p&gt;
-
-&lt;p&gt;安装完毕后，当前目录下会生成jdk1.6.0_45目录，配置ALT_BOOTDIR环境变量为该目录路径。在/etc/profile中  增加如下配置（以实际为准）：&lt;br /&gt;
-export ALT_BOOTDIR=/opt/openJDKroom/jdk1.6.0_45&lt;br /&gt;
-# source /etc/profile&lt;/p&gt;
-
-&lt;h3 id=&quot;altcacertsfile&quot;&gt;2.5 配置环境变量ALT_CACERTS_FILE&lt;/h3&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; Certificate Authority File (cacert)  
- See http://en.wikipedia.org/wiki/Certificate_Authority for a better understanding of the   Certificate Authority (CA). A certificates file named &quot;cacerts&quot; represents a system-wide   keystore with CA certificates. In JDK and JRE binary bundles, the &quot;cacerts&quot; file contains root   CA certificates from several public CAs (e.g., VeriSign, Thawte, and Baltimore). The source   contain a cacerts file without CA root certificates. Formal JDK builders will need to secure     permission from each public CA and include the certificates into their own custom cacerts file.   Failure to provide a populated cacerts file will result in verification errors of a certificate   chain during runtime. The variable ALT_CACERTS_FILE can be used to override the default   location of the cacerts file that will get placed in your build. By default an empty cacerts   file is provided and that should be fine for most JDK developers.  
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;进入openjdk目录中,查找名称为cacerts的文件：&lt;br /&gt;
-# cd openjdk&lt;br /&gt;
-# find ./ -name cacerts&lt;br /&gt;
-显示结果如下：&lt;br /&gt;
-[root@localhost openjdk]# find ./ -name cacerts&lt;br /&gt;
-./jdk/src/share/lib/security/cacerts&lt;br /&gt;
-打开/etc/profile，将以下内容加入（具体路径根据实际情况）：&lt;br /&gt;
-export ALT_CACERTS_FILE=/opt/openJDKroom/openjdk/jdk/src/share/lib/security/cacerts&lt;/p&gt;
-
-&lt;h2 id=&quot;section-3&quot;&gt;3.开始编译&lt;/h2&gt;
-&lt;p&gt;终于要开始编译了！&amp;gt;_&amp;lt;  &lt;br /&gt;
-README-builds.html中用的是gmake，实际和make是一样的，下面是解释：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gmake是GNU Make的缩写。  
-Linux系统环境下的make就是GNU Make，之所以有gmake，是因为在别的平台上，make一般被占用，GNU make只  好叫gmake了。
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;进入到openjdk根目录下，进行编译 &lt;br /&gt;
-cd /opt/openJDKroom/openjdk &lt;br /&gt;
-gmake sanity &lt;br /&gt;
-gmake &lt;br /&gt;
-结果执行报错：&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;n&quot;&gt;gmake&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Entering&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;directory&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;opt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;openJDKroom&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;openjdk&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;linux&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;amd64&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hotspot&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;outputdir&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;linux_amd64_compiler2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;product&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&#39;&lt;/span&gt;  
-&lt;span class=&quot;n&quot;&gt;gmake&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]:&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;stat:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;libjvm&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;so&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Too&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;many&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;levels&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;of&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;symbolic&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;links&lt;/span&gt;
- &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;进入到/opt/openJDKroom/openjdk/build/linux-amd64/hotspot/outputdir/linux_amd64_compiler2/product目录下有下面链接：&lt;br /&gt;
-libjvm.so-&amp;gt;libjvm.so&lt;br /&gt;
-libjvm.so.1-&amp;gt;libjvm.so&lt;br /&gt;
-明显是由于libjvm.so-&amp;gt;libjvm.so引起的（可以自己做一个实验,不要创建文件，直接执行ln -s file file ,然后cat file就会报这个错）&lt;br /&gt;
-知道了问题所在，就要给它引用一个真实的so文件。通过find /opt -name libjvm.so命令查找存在该文件的地方，将libjvm.so-&amp;gt;libjvm.so指向真实文件位置。即：&lt;br /&gt;
-# rm -f libjvm.so&lt;br /&gt;
-# ln -s  具体libjvm.so文件完成路径   libjvm.so&lt;/p&gt;
-
-&lt;p&gt;再次执行gmake。
-结果报以下错：&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;nl&quot;&gt;Error:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;time&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;is&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;more&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;than&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;years&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;present:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1136059200000&lt;/span&gt;  
-&lt;span class=&quot;n&quot;&gt;java&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;lang&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;RuntimeException&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;time&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;is&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;more&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;than&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;years&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;present:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1136059200000&lt;/span&gt;  
-      &lt;span class=&quot;n&quot;&gt;at&lt;/span&gt;   &lt;span class=&quot;n&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;tools&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;generatecurrencydata&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;GenerateCurrencyData&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;makeSpecialCaseEntry&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;GenerateCurrencyData&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;java&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;285&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;  
-      &lt;span class=&quot;n&quot;&gt;at&lt;/span&gt;   &lt;span class=&quot;n&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;tools&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;generatecurrencydata&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;GenerateCurrencyData&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;buildMainAndSpecialCaseTables&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;GenerateCurrencyData&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;java&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;225&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;  
-      &lt;span class=&quot;n&quot;&gt;at&lt;/span&gt;   &lt;span class=&quot;n&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;tools&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;generatecurrencydata&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;GenerateCurrencyData&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;GenerateCurrencyData&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;java&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;154&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;  &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;经过查询发现这是一个BUG…..&lt;br /&gt;
-下面介绍了对应补丁的出处&lt;br /&gt;
-https://bugs.gentoo.org/show_bug.cgi?id=534118#c3&lt;br /&gt;
-下面有关于问题原因探讨描述&lt;br /&gt;
-https://bugs.gentoo.org/show_bug.cgi?id=534118#c7&lt;/p&gt;
-
-&lt;p&gt;如果不想仔细看可以直接访问补丁网址：&lt;br /&gt;
-http://hg.openjdk.java.net/jdk7u/jdk7u/jdk/rev/74a70385c21d#l11.1&lt;br /&gt;
-将其中的文件内容拷贝下来覆盖到对应文件中。&lt;/p&gt;
-
-&lt;p&gt;继续gmake&lt;/p&gt;
-
-&lt;p&gt;终于编译成功了！！！&lt;br /&gt;
-出现下面提示就说明编译完成了&lt;br /&gt;
-#– Build times ———-&lt;br /&gt;
-Target all_product_build&lt;br /&gt;
-Start 2016-01-10 11:18:43&lt;br /&gt;
-End   2016-01-10 11:52:15&lt;br /&gt;
-00:00:15 corba&lt;br /&gt;
-00:00:21 hotspot&lt;br /&gt;
-00:00:11 jaxp&lt;br /&gt;
-00:00:20 jaxws&lt;br /&gt;
-00:32:15 jdk&lt;br /&gt;
-00:00:10 langtools&lt;br /&gt;
-00:33:32 TOTAL&lt;br /&gt;
--————————&lt;/p&gt;
-
-&lt;h2 id=&quot;section-4&quot;&gt;4.跑一下自己编译的虚拟机&lt;/h2&gt;
-&lt;p&gt;进入目录&lt;br /&gt;
-/opt/openJDKroom/openjdk/build/linux-amd64/hotspot/outputdir/linux_amd64_compiler2&lt;br /&gt;
-下面有好几种优化级别的编译版本：&lt;br /&gt;
-drwxr-xr-x. 2 root root  4096 Jan  9 16:53 debug&lt;br /&gt;
-drwxr-xr-x. 2 root root  4096 Jan  9 16:53 fastdebug&lt;br /&gt;
-drwxr-xr-x. 7 root root  4096 Jan  9 16:56 generated&lt;br /&gt;
-drwxr-xr-x. 2 root root  4096 Jan  9 16:53 jvmg&lt;br /&gt;
-drwxr-xr-x. 2 root root  4096 Jan  9 16:53 optimized&lt;br /&gt;
-drwxr-xr-x. 3 root root 20480 Jan 10 11:19 product&lt;br /&gt;
-drwxr-xr-x. 2 root root  4096 Jan  9 16:53 profiled&lt;br /&gt;
--rw-r–r–. 1 root root  1518 Jan  9 16:53 shared_dirs.lst&lt;/p&gt;
-
-&lt;p&gt;进入到product目录中。&lt;br /&gt;
-这里要在env.sh配置下环境变量，指向共享库&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;nv&quot;&gt;LD_LIBRARY_PATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;.:&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;JAVA_HOME&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;/jre/lib/amd64/native_threads:&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;JAVA_HOME&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;/jre/lib/amd64:/opt/openJDKroom/openjdk/build/linux-amd64/hotspot/outputdir/linux_amd64_compiler2/product  
-&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;LD_LIBRARY_PATH&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;下面贴出我这个文件的完整内容：&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;c&quot;&gt;# Generated by /opt/openJDKroom/openjdk/hotspot/make/linux/makefiles/buildtree.make  
-&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#: ${JAVA_HOME:=/opt/openJDKroom/jdk1.6.0_45}  
-&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;JAVA_HOME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/opt/openJDKroom/openjdk/build/linux-amd64/j2sdk-image  
-&lt;span class=&quot;nv&quot;&gt;CLASSPATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;.:&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;JAVA_HOME&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;/jre/lib/rt.jar:&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;JAVA_HOME&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;/jre/lib/i18n.jar  
-&lt;span class=&quot;nv&quot;&gt;HOTSPOT_BUILD_USER&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;root in hotspot&quot;&lt;/span&gt;  
-&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;JAVA_HOME CLASSPATH HOTSPOT_BUILD_USER
-
-&lt;span class=&quot;c&quot;&gt;# add  
-&lt;/span&gt;
-
-&lt;span class=&quot;nv&quot;&gt;LD_LIBRARY_PATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;.:&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;JAVA_HOME&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;/jre/lib/amd64/native_threads:&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;JAVA_HOME&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;/jre/lib/amd64:/opt/openJDKroom/openjdk/build/linux-amd64/hotspot/outputdir/linux_amd64_compiler2/product
-&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;LD_LIBRARY_PATH  &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;下面执行：&lt;/p&gt;
-
-&lt;p&gt;# source ./env.sh&lt;/p&gt;
-
-&lt;p&gt;# ./gamma -version&lt;/p&gt;
-
-&lt;p&gt;Using java runtime at: /opt/openJDKroom/openjdk/build/linux-amd64/j2sdk-image/jre&lt;br /&gt;
-openjdk version “1.7.0-internal”&lt;br /&gt;
-OpenJDK Runtime Environment (build 1.7.0-internal-root_2016_01_10_00_16-b00)&lt;br /&gt;
-OpenJDK 64-Bit Server VM (build 24.0-b56, mixed mode)&lt;/p&gt;
-
-&lt;p&gt;运行成功！！&lt;/p&gt;
-
-&lt;p&gt;希望对想要编译openJDK的朋友有个参考。如果有疑问请提出，大家一起学习探讨。&amp;gt;_&amp;lt;&lt;/p&gt;</content><summary>A ton of text to test readability.</summary></entry></feed>
+&lt;p&gt;关于Controller，Service，Repository的代码我就不贴了。&lt;/p&gt;</content><category term="spring" /><category term="springMVC" /><summary>SpringMVC学习笔记</summary></entry></feed>
