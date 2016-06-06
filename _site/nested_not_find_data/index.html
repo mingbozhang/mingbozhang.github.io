@@ -69,96 +69,99 @@
             <h4>25 Dec 2015</h4>
         </div>
         <div class="article">
-            <h1 id="elasticsearchnested">ElasticSearch学习问题记录——nested查询不到数据</h1>
+            <p>通过代码创建了索引名称为demoindex，索引类型为school，以下是索引类型的数据映射结构：</p>
 
-<p>通过代码创建了索引名称为demoindex，索引类型为school，以下是索引类型的数据映射结构：</p>
-<pre><code>
-{
-    "state": "open",
-    "settings": {
-        "index.number_of_replicas": "1",
-        "index.number_of_shards": "5",
-        "index.version.created": "901399",
-        "index.uuid": "-Z5eg5nnSp-VsNfUZAMN-A"
-    },
-    "mappings": {
-        "school": {
-            "properties": {
-                "id": {
-                    "store": true,
-                    "analyzer": "ik",
-                    "type": "string"
-                },
-                "name": {
-                    "store": true,
-                    "analyzer": "ik",
-                    "type": "string"
-                },
-                "age": {
-                    "store": true,
-                    "type": "integer"
-                },
-                "studentList": {
-                    "properties": {
-                        "sex": {
-                            "store": true,
-                            "analyzer": "ik",
-                            "type": "string"
-                        },
-                        "studentId": {
-                            "store": true,
-                            "analyzer": "ik",
-                            "type": "string"
-                        },
-                        "studentName": {
-                            "store": true,
-                            "analyzer": "ik",
-                            "type": "string"
-                        }
-                    },
-                    "type": "nested"
-                }
-            }
-        }
-    },
-    "aliases": []
-}
-</code>
-</pre>
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="w">   
+</span><span class="p">{</span><span class="w">
+    </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"settings"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"index.number_of_replicas"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"index.number_of_shards"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"index.version.created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"901399"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"index.uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-Z5eg5nnSp-VsNfUZAMN-A"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"mappings"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"school"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"store"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"analyzer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ik"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"store"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"analyzer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ik"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="nt">"age"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"store"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"integer"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="nt">"studentList"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="nt">"sex"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="nt">"store"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                            </span><span class="nt">"analyzer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ik"</span><span class="p">,</span><span class="w">
+                            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="nt">"studentId"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="nt">"store"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                            </span><span class="nt">"analyzer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ik"</span><span class="p">,</span><span class="w">
+                            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="nt">"studentName"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="nt">"store"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                            </span><span class="nt">"analyzer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ik"</span><span class="p">,</span><span class="w">
+                            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nested"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"aliases"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w"> </span></code></pre></figure>
+
 <p>数据结构存在嵌套关系，学校属性中包含嵌套属性studentList，存放学校的学生。下面是demoindex中的所有数据：<br />
-<img src="/cache/nested_not_find_data/825682-20151225214318140-1135451384.png" />
+<img src="../assets/img/nested_not_find_data/first.png" />
 使用head进行如下查询，结果发现结果查不出来。这里我勾选了【显示查询语句】。
-<img src="/cache/nested_not_find_data/825682-20151225214457499-1896927787.png" />
+<img src="../assets/img/nested_not_find_data/second.png" />
 找不到答案只好求助于《Elasticsearch服务器开发》。经过查阅得知nested类型的嵌套查询需要使用专用搜索格式。先贴出原书描述：</p>
-<pre><code>
-{
-"cloth" : {
-"properties" : {
-"name" : {"type" : "string", "index" : "analyzed"},
-"variation" : {
-"type" : "nested",
-"properties" : {
-"size" : {"type" : "string", "index" : "not_analyzed"},
-"color" : {"type" : "string", "index" : "not_analyzed"}
-}
-}
-}
-}
-}
-可以看到，我们在 cloth类型中引入了新对象 variation，它是嵌套的（ type属性设置为
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="w">  
+</span><span class="p">{</span><span class="w">
+</span><span class="nt">"cloth"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="nt">"properties"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="nt">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w"> </span><span class="nt">"index"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"analyzed"</span><span class="p">},</span><span class="w">
+</span><span class="nt">"variation"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="nt">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"nested"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"properties"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="nt">"size"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w"> </span><span class="nt">"index"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"not_analyzed"</span><span class="p">},</span><span class="w">
+</span><span class="nt">"color"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w"> </span><span class="nt">"index"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"not_analyzed"</span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="p">}</span></code></pre></figure>
+
+<p>可以看到，我们在 cloth类型中引入了新对象 variation，它是嵌套的（ type属性设置为
 nested），表示想为嵌套文档建立索引。现在修改文档，添加 variation对象，其中有两个属性：
-size和 color。示例产品将如下所示：
-{
-"name" : "Test shirt",
-"variation" : [
-{ "size" : "XXL", "color" : "red" },
-{ "size" : "XL", "color" : "black" }
-]
-}
-组织文档结构，以便每个尺寸及其匹配颜色成为一个独立文档。然而，如果执行之前的查询，
+size和 color。示例产品将如下所示：</p>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+</span><span class="nt">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Test shirt"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"variation"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+</span><span class="p">{</span><span class="w"> </span><span class="nt">"size"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"XXL"</span><span class="p">,</span><span class="w"> </span><span class="nt">"color"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"red"</span><span class="w"> </span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="w"> </span><span class="nt">"size"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"XL"</span><span class="p">,</span><span class="w"> </span><span class="nt">"color"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"black"</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span></code></pre></figure>
+
+<p>组织文档结构，以便每个尺寸及其匹配颜色成为一个独立文档。然而，如果执行之前的查询，
 将无任何文档返回。这是因为，对于嵌套文件，需要使用专门的查询。因此，查询如下（当然，
-我们已经再次创建了索引和类型）：
-curl -XGET 'localhost:9200/shop/cloth/_search?pretty=true' -d '{
+我们已经再次创建了索引和类型）：</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">curl -XGET <span class="s1">'localhost:9200/shop/cloth/_search?pretty=true'</span> -d <span class="s1">'{
 "query" : {
 "nested" : {
 "path" : "variation",
@@ -172,14 +175,15 @@ curl -XGET 'localhost:9200/shop/cloth/_search?pretty=true' -d '{
 }
 }
 }
-}'
-现在，上述查询将无法返回索引中的文档，因为无法找到尺寸 XXL且颜色为黑色的嵌套文档。
+}'</span></code></pre></figure>
+
+<p>现在，上述查询将无法返回索引中的文档，因为无法找到尺寸 XXL且颜色为黑色的嵌套文档。
 这里简单讨论一下我们的查询，可以看到，我们使用 nested查询来查询嵌套文档。 path属性指
 定了嵌套对象的名称（可以使用多个名称）。 nested类型包括了一个标准查询部分。应注意的是，
-在嵌套对象中为字段名称指定完整的路径，在多级嵌套中很方便操作（这也是可能的）。
-</code></pre>
+在嵌套对象中为字段名称指定完整的路径，在多级嵌套中很方便操作（这也是可能的）。</p>
+
 <p>根据书中介绍将使用head的复合查询方式进行如下查询。成功，数据出现了！
-<img src="/cache/nested_not_find_data/825682-20151225214318140-1135451384.png" /></p>
+<img src="../assets/img/nested_not_find_data/third.jpg" /></p>
 
         </div>
     </div>
