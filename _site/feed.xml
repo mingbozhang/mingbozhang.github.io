@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.1.6">Jekyll</generator><link href="http://bowie.site/feed.xml" rel="self" type="application/atom+xml" /><link href="http://bowie.site/" rel="alternate" type="text/html" /><updated>2016-06-06T19:39:00+08:00</updated><id>http://bowie.site/</id><title>BOB BLOG</title><subtitle>Simple Jekyll theme for your blog by Taylan Tatlı</subtitle><entry><title>Maven将依赖的所有jar包打成一个jar</title><link href="http://bowie.site/all-in-one-jar/" rel="alternate" type="text/html" title="Maven将依赖的所有jar包打成一个jar" /><published>2016-06-04T00:00:00+08:00</published><updated>2016-06-04T00:00:00+08:00</updated><id>http://bowie.site/all-in-one-jar</id><content type="html" xml:base="http://bowie.site/all-in-one-jar/">&lt;p&gt;有些特殊情况下，需要将多个jar包打包成一个jar文件。如果使用maven可以加入如下插件：&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.1.6">Jekyll</generator><link href="http://bowie.site/feed.xml" rel="self" type="application/atom+xml" /><link href="http://bowie.site/" rel="alternate" type="text/html" /><updated>2016-06-06T20:10:26+08:00</updated><id>http://bowie.site/</id><title>BOB BLOG</title><subtitle>Simple Jekyll theme for your blog by Taylan Tatlı</subtitle><entry><title>Maven将依赖的所有jar包打成一个jar</title><link href="http://bowie.site/all-in-one-jar/" rel="alternate" type="text/html" title="Maven将依赖的所有jar包打成一个jar" /><published>2016-06-04T00:00:00+08:00</published><updated>2016-06-04T00:00:00+08:00</updated><id>http://bowie.site/all-in-one-jar</id><content type="html" xml:base="http://bowie.site/all-in-one-jar/">&lt;p&gt;有些特殊情况下，需要将多个jar包打包成一个jar文件。如果使用maven可以加入如下插件：&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;build&amp;gt;
 	&amp;lt;plugins&amp;gt;
@@ -34,7 +34,157 @@
 我想阅读学习ElasticSearch源代码，参与到开源项目维护中去。 &lt;br /&gt;
 我想阅读Spring源码，学习大牛们实际运用各种设计模式&lt;/p&gt;
 
-&lt;p&gt;还有很多要写到，就到这了，要上班了。&lt;/p&gt;</content><summary>A ton of text to test readability.</summary></entry><entry><title>设计模式演练——工厂方法模式</title><link href="http://bowie.site/design_pattern_factory_method/" rel="alternate" type="text/html" title="设计模式演练——工厂方法模式" /><published>2016-03-28T00:00:00+08:00</published><updated>2016-03-28T00:00:00+08:00</updated><id>http://bowie.site/design_pattern_factory_method</id><content type="html" xml:base="http://bowie.site/design_pattern_factory_method/">&lt;h1 id=&quot;section&quot;&gt;设计模式演练——工厂方法模式&lt;/h1&gt;
+&lt;p&gt;还有很多要写到，就到这了，要上班了。&lt;/p&gt;</content><summary>A ton of text to test readability.</summary></entry><entry><title>docker部署tomcat</title><link href="http://bowie.site/docker-deploy-tomcat/" rel="alternate" type="text/html" title="docker部署tomcat" /><published>2016-05-30T00:00:00+08:00</published><updated>2016-05-30T00:00:00+08:00</updated><id>http://bowie.site/docker-deploy-tomcat</id><content type="html" xml:base="http://bowie.site/docker-deploy-tomcat/">&lt;h2 id=&quot;section&quot;&gt;一.环境简介&lt;/h2&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;名称&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;版本&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;宿主机OS&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;ubuntu-14.04.3-server-amd64&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;JDK&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;7&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;tomcat&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;7.0.52&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;ubuntu-1404dockerdocker&quot;&gt;二.Ubuntu 14.04版本系统中已经自带了Docker，查看下docker版本&lt;/h2&gt;
+&lt;p&gt;docker version&lt;/p&gt;
+
+&lt;h2 id=&quot;ssh&quot;&gt;三、（可选）ssh登录服务器端准备&lt;/h2&gt;
+&lt;p&gt;使用ssh客户端工具登录 ，具体参考http://jingyan.baidu.com/article/9c69d48fb9fd7b13c8024e6b.html  &lt;br /&gt;
+安装openssh&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;   
+sudo apt-get update   
+sudo apt-get install openssh-server   &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;四、下载容器镜像&lt;/h2&gt;
+&lt;p&gt;获取镜像到本地&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;    
+sudo docker pull bobsha/ping   &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;这里bobsha是我docker hub的用户名bobsha/ping是我之前上传到一个安装了ping命令的Ubuntu镜像。&lt;/p&gt;
+
+&lt;p&gt;当然也可以自己申请一个帐号进行管理，网址为https://hub.docker.com&lt;/p&gt;
+
+&lt;p&gt;查看本地镜像信息&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;    
+sudo docker images  &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;五、宿主机及目标容器挂载目录准备&lt;/h2&gt;
+&lt;p&gt;本步骤是将docker容器需要用到的安装软件和tomcat运行的项目在宿主机上准备好，容器中进行挂载。&lt;/p&gt;
+
+&lt;p&gt;首先将软件准备好放在宿主机/opt/software下面，在容器中/mnt下面增加software目录。&lt;/p&gt;
+
+&lt;p&gt;在宿主机/opt中建立/opt/webapps/ROOT，并添加index.html文件，加入如下内容：&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;   
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&amp;gt;&lt;/span&gt;   
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;Hello world!&lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;   &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;tomcat&quot;&gt;六、容器tomcat运行环境准备&lt;/h2&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;    
+docker run -i -t -v /opt/software/:/mnt/software/ 8ab8 /bin/bash &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;命令包含以下三个部分： &lt;br /&gt;
+docker run &lt;相关参数&gt; &lt;镜像 ID=&quot;&quot;&gt; &lt;初始命令&gt;   
+其中，相关参数包括：   
+-i：表示以“交互模式”运行容器&lt;/初始命令&gt;&lt;/镜像&gt;&lt;/相关参数&gt;&lt;/p&gt;
+
+&lt;p&gt;-t：表示容器启动后会进入其命令行&lt;/p&gt;
+
+&lt;p&gt;-v：表示需要将本地哪个目录挂载到容器中，格式：-v &lt;宿主机目录&gt;:&lt;容器目录&gt;   
+经过上面的步骤现在已经进入容器的交互式窗口中，将tomcat和jdk解压到/opt目录中，并编写tomcat启动脚本。&lt;/容器目录&gt;&lt;/宿主机目录&gt;&lt;/p&gt;
+
+&lt;p&gt;在/opt下面建立runtomcat.sh文件，加入如下内容：&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;   
+ &lt;span class=&quot;c&quot;&gt;#!/bin/bash&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;JAVA_HOME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/opt/jdk1.7.0_76/
+&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;PATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$JAVA_HOME&lt;/span&gt;/bin:&lt;span class=&quot;nv&quot;&gt;$PATH&lt;/span&gt;
+sh /opt/apache-tomcat-7.0.52/bin/catalina.sh run&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;给脚本赋予权限&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;    
+chmod u+x /opt/runtomcat.sh   &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;退出容器&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;    
+&lt;span class=&quot;nb&quot;&gt;exit&lt;/span&gt;    &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;查看最近运行容器信息&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;      
+docker ps -l    &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;root@ubuntu:/opt/software# docker ps -l&lt;/p&gt;
+
+&lt;p&gt;CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES &lt;br /&gt;
+23d53a7745bc bobsha/ping:latest “/bin/bash” About a minute ago Exited (0) 12    seconds ago backstabbing_lumiere &lt;br /&gt;
+保存容器为新镜像，我将新镜像命名为bobsha/tomcat&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;      
+docker commit 23d5 bobsha/tomcat   &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;这里容器ID只需要写前几位可以区分就行一般，三到四位即可。&lt;/p&gt;
+
+&lt;h2 id=&quot;tomcat-1&quot;&gt;七、运行tomcat&lt;/h2&gt;
+
+&lt;p&gt;运行tomcat，这次只运行启动tomcat命令&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt; 
+docker run  -p 18080:8080 -v /opt/webapps/:/opt/apache-tomcat-7.0.52/webapps/ -name docker_tomcat bobsha/tomcat /opt/runtomcat.sh&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;其中，新出现的相关参数包括： &lt;br /&gt;
+-p：&lt;宿主机端口&gt;:&lt;容器端口&gt;，将容器端口映射为指定宿主机端口，通过宿主机端口进行访问容器程序&lt;/容器端口&gt;&lt;/宿主机端口&gt;&lt;/p&gt;
+
+&lt;p&gt;-name:容器名称，起个有意义的名字即可&lt;/p&gt;
+
+&lt;p&gt;验证tomcat运行情况 &lt;br /&gt;
+通过局域网中浏览器访问: http://192.168.0.106:18080/index.html显示成功！ &lt;br /&gt;
+ &lt;img src=&quot;../assets/img/docker-deploy-tomcat/helloworld.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;section-3&quot;&gt;八、移除容器&lt;/h2&gt;
+&lt;p&gt;Ctrl+C退出后，发现再次运行上面的命令显示如下：&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt; 
+Warning: &lt;span class=&quot;s1&quot;&gt;&#39;-name&#39;&lt;/span&gt; is deprecated, it will be replaced by &lt;span class=&quot;s1&quot;&gt;&#39;--name&#39;&lt;/span&gt; soon. See usage.
+FATA[0000] Error response from daemon: Conflict. The name &lt;span class=&quot;s2&quot;&gt;&quot;docker_tomcat&quot;&lt;/span&gt; is already &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;use by container bab14ef39b40. You have to delete &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;or rename&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; that container to be able to reuse that name.&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;查看所有容器&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt; 
+docker ps -a   
+
+CONTAINER ID        IMAGE                  COMMAND                CREATED             STATUS                       PORTS                     NAMES
+
+bab14ef39b40        bobsha/tomcat:latest   &lt;span class=&quot;s2&quot;&gt;&quot;/opt/runtomcat.sh&quot;&lt;/span&gt;    10 minutes ago      Exited &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;130&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; 8 minutes ago                             docker_tomcat &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;移除该容器&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;docker rm bab1 &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;本文参考以下文章及教程： &lt;br /&gt;
+http://www.docker.org.cn/book/docker.html &lt;br /&gt;
+http://m.oschina.net/blog/616526?hmsr=toutiao.io&amp;amp;utm_medium=toutiao.io&amp;amp;utm_source=toutiao.io&lt;/p&gt;</content><category term="docker" /><summary>docker部署tomcat</summary></entry><entry><title>设计模式演练——工厂方法模式</title><link href="http://bowie.site/design_pattern_factory_method/" rel="alternate" type="text/html" title="设计模式演练——工厂方法模式" /><published>2016-03-28T00:00:00+08:00</published><updated>2016-03-28T00:00:00+08:00</updated><id>http://bowie.site/design_pattern_factory_method</id><content type="html" xml:base="http://bowie.site/design_pattern_factory_method/">&lt;h1 id=&quot;section&quot;&gt;设计模式演练——工厂方法模式&lt;/h1&gt;
 
 &lt;h3 id=&quot;c&quot;&gt;1.小C的故事&lt;/h3&gt;
 
