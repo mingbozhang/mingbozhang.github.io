@@ -69,40 +69,68 @@
             <h4>22 May 2012</h4>
         </div>
         <div class="article">
-            <h1 id="jvmopenjdk">JVM学习——编译OpenJDK</h1>
+            <section id="table-of-contents" class="toc">
+  <header>
+    <h3>
+<i class="fa fa-book"></i> Contents</h3>
+  </header>
+<div id="drawer">
+<ul id="markdown-toc">
+  <li><a href="#section" id="markdown-toc-section">1.编译环境介绍</a></li>
+  <li>
+<a href="#section-1" id="markdown-toc-section-1">2.准备工作</a>    <ul>
+      <li><a href="#section-2" id="markdown-toc-section-2">2.2 下载依赖</a></li>
+      <li><a href="#javahome" id="markdown-toc-javahome">2.3 屏蔽已经配置的JAVA_HOME</a></li>
+      <li><a href="#jdk" id="markdown-toc-jdk">2.4 配置引导JDK</a></li>
+      <li><a href="#altcacertsfile" id="markdown-toc-altcacertsfile">2.5 配置环境变量ALT_CACERTS_FILE</a></li>
+    </ul>
+  </li>
+  <li><a href="#section-3" id="markdown-toc-section-3">3.开始编译</a></li>
+  <li><a href="#section-4" id="markdown-toc-section-4">4.跑一下自己编译的虚拟机</a></li>
+</ul>
+
+  </div>
+</section>
+<!-- /#table-of-contents -->
 
 <p>       最近在学习《深入理解java虚拟机 第二版》这本书。书中第一部分建议大家自己编译OpenJDK。抱着学习态度也来编译个玩一玩。下面进入正题。</p>
 
 <h2 id="section">1.编译环境介绍</h2>
+
 <table>
-<tr>
-<td>名称</td>
-<td>版本</td>
-</tr>
-<tr>
-<td>操作系统</td>
-<td> CentOS Linux release 7.1.1503 (Core)</td>
-</tr>
-<tr>
-<td>Linux内核版本</td>
-<td>3.10.0-229.el7.x86\_64</td>
-</tr>
-<tr>
-<td>gcc版本 </td>
-<td> 4.8.2 20140120 (Red Hat 4.8.2-16) (GCC)</td>
-</tr>
-<tr>
-<td>openJdk版本 </td>
-<td>openjdk-7u40</td>
-</tr>
+  <thead>
+    <tr>
+      <th>名称</th>
+      <th style="text-align: center">版本</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>操作系统</td>
+      <td style="text-align: center">CentOS Linux release 7.1.1503 (Core)</td>
+    </tr>
+    <tr>
+      <td>Linux内核版本</td>
+      <td style="text-align: center">3.10.0-229.el7.x86_64</td>
+    </tr>
+    <tr>
+      <td>gcc版本</td>
+      <td style="text-align: center">4.8.2 20140120 (Red Hat 4.8.2-16) (GCC)</td>
+    </tr>
+    <tr>
+      <td>openJdk版本</td>
+      <td style="text-align: center">openjdk-7u40</td>
+    </tr>
+  </tbody>
 </table>
-<p>## 2.准备工作
-### 2.1下载OpenJDK
+
+<h2 id="section-1">2.准备工作</h2>
+<p>### 2.1下载OpenJDK
 打开网站https://jdk7.java.net/source.html<br>
 在这里复制链接直接在linux中wget。<br>
 wget http://www.java.net/download/openjdk/jdk7u40/promoted/b43/openjdk-7u40-fcs-src-b43-26_aug_2013.zip</p>
 
-<h3 id="section-1">2.2 下载依赖</h3>
+<h3 id="section-2">2.2 下载依赖</h3>
 <p>具体的依赖要求说明都在README-builds.html 中了，这里直接来命令：<br>
 # yum install -y  glibc*<br>
 # yum install cups-devel<br>
@@ -140,14 +168,20 @@ tar  -jxvf  cups-2.1.2-source.tar.bz2<br>
 
 <h3 id="javahome">2.3 屏蔽已经配置的JAVA_HOME</h3>
 <p>下面贴出README-builds.html中原文：<br>
-Note that some Linux systems have a habit of pre-populating your environment variables for you,   for example JAVA_HOME might get pre-defined for you to refer to the JDK installed on your Linux   system. You will need to unset JAVA_HOME. It’s a good idea to run env and verify the   environment variables you are getting from the default system settings make sense for building   the OpenJDK. 先检查一下本地是否配置有JAVA_HOME<br>
+    Note that some Linux systems have a habit of pre-populating your environment variables for you,   for example JAVA_HOME might get pre-defined for you to refer to the JDK installed on your Linux   system. You will need to unset JAVA_HOME. It’s a good idea to run env and verify the   environment variables you are getting from the default system settings make sense for building   the OpenJDK.</p>
+
+<p>先检查一下本地是否配置有JAVA_HOME<br>
 # env | grep JAVA_HOME<br>
 如果有则屏蔽掉。</p>
 
 <h3 id="jdk">2.4 配置引导JDK</h3>
-<p>下面贴出README-builds.html中原文：
-Bootstrap JDK<br>
-All OpenJDK builds require access to the previously released JDK 6, this is often called a   bootstrap JDK. The JDK 6 binaries can be downloaded from Sun’s JDK 6 download site. For build   performance reasons is very important that this bootstrap JDK be made available on the local   disk of the machine doing the build. You should always set ALT_BOOTDIR to point to the location   of the bootstrap JDK installation, this is the directory pathname that contains a bin, lib, and   include It’s also a good idea to also place its bin directory in the PATH environment variable,   although it’s not required.</p>
+<p>下面贴出README-builds.html中原文：</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code> Bootstrap JDK  
+ All OpenJDK builds require access to the previously released JDK 6, this is often called a   bootstrap JDK. The JDK 6 binaries can be downloaded from Sun's JDK 6 download site. For build   performance reasons is very important that this bootstrap JDK be made available on the local   disk of the machine doing the build. You should always set ALT_BOOTDIR to point to the location   of the bootstrap JDK installation, this is the directory pathname that contains a bin, lib, and   include It's also a good idea to also place its bin directory in the PATH environment variable,   although it's not required.  
+</code></pre>
+</div>
 
 <p><strong>下载安装Bootstrap</strong> <br>
 这里下载JDK 6 Linux 64位jdk-6u45-linux-x64.bin<br>
@@ -159,10 +193,11 @@ export ALT_BOOTDIR=/opt/openJDKroom/jdk1.6.0_45<br>
 # source /etc/profile</p>
 
 <h3 id="altcacertsfile">2.5 配置环境变量ALT_CACERTS_FILE</h3>
-<font color="green">
-Certificate Authority File (cacert)  
-
-See http://en.wikipedia.org/wiki/Certificate\_Authority for a better understanding of the   Certificate Authority (CA). A certificates file named "cacerts" represents a system-wide   keystore with CA certificates. In JDK and JRE binary bundles, the "cacerts" file contains root   CA certificates from several public CAs (e.g., VeriSign, Thawte, and Baltimore). The source   contain a cacerts file without CA root certificates. Formal JDK builders will need to secure     permission from each public CA and include the certificates into their own custom cacerts file.   Failure to provide a populated cacerts file will result in verification errors of a certificate   chain during runtime. The variable ALT\_CACERTS\_FILE can be used to override the default   location of the cacerts file that will get placed in your build. By default an empty cacerts   file is provided and that should be fine for most JDK developers.  </font>
+<div class="highlighter-rouge">
+<pre class="highlight"><code> Certificate Authority File (cacert)  
+ See http://en.wikipedia.org/wiki/Certificate_Authority for a better understanding of the   Certificate Authority (CA). A certificates file named "cacerts" represents a system-wide   keystore with CA certificates. In JDK and JRE binary bundles, the "cacerts" file contains root   CA certificates from several public CAs (e.g., VeriSign, Thawte, and Baltimore). The source   contain a cacerts file without CA root certificates. Formal JDK builders will need to secure     permission from each public CA and include the certificates into their own custom cacerts file.   Failure to provide a populated cacerts file will result in verification errors of a certificate   chain during runtime. The variable ALT_CACERTS_FILE can be used to override the default   location of the cacerts file that will get placed in your build. By default an empty cacerts   file is provided and that should be fine for most JDK developers.  
+</code></pre>
+</div>
 
 <p>进入openjdk目录中,查找名称为cacerts的文件：<br>
 # cd openjdk<br>
@@ -173,21 +208,25 @@ See http://en.wikipedia.org/wiki/Certificate\_Authority for a better understandi
 打开/etc/profile，将以下内容加入（具体路径根据实际情况）：<br>
 export ALT_CACERTS_FILE=/opt/openJDKroom/openjdk/jdk/src/share/lib/security/cacerts</p>
 
-<h2 id="section-2">3.开始编译</h2>
+<h2 id="section-3">3.开始编译</h2>
 <p>终于要开始编译了！&gt;_&lt;  <br>
 README-builds.html中用的是gmake，实际和make是一样的，下面是解释：</p>
 
-<p>gmake是GNU Make的缩写。<br>
-Linux系统环境下的make就是GNU Make，之所以有gmake，是因为在别的平台上，make一般被占用，GNU make只  好叫gmake了。<br>
-进入到openjdk根目录下，进行编译<br>
-cd /opt/openJDKroom/openjdk<br>
-gmake sanity<br>
-gmake<br>
+<div class="highlighter-rouge">
+<pre class="highlight"><code>gmake是GNU Make的缩写。  
+Linux系统环境下的make就是GNU Make，之所以有gmake，是因为在别的平台上，make一般被占用，GNU make只  好叫gmake了。
+</code></pre>
+</div>
+
+<p>进入到openjdk根目录下，进行编译 <br>
+cd /opt/openJDKroom/openjdk <br>
+gmake sanity <br>
+gmake <br>
 结果执行报错：</p>
-<font color="red">
-gmake[6]: Entering directory \`/opt/openJDKroom/openjdk/build/linux-amd64/hotspot/outputdir/linux\_amd64\_compiler2/product'  
-gmake[6]: stat: libjvm.so: Too many levels of symbolic links
-</font>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">gmake</span><span class="o">[</span><span class="mi">6</span><span class="o">]:</span> <span class="n">Entering</span> <span class="n">directory</span> <span class="err">`</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">openJDKroom</span><span class="o">/</span><span class="n">openjdk</span><span class="o">/</span><span class="n">build</span><span class="o">/</span><span class="n">linux</span><span class="o">-</span><span class="n">amd64</span><span class="o">/</span><span class="n">hotspot</span><span class="o">/</span><span class="n">outputdir</span><span class="o">/</span><span class="n">linux_amd64_compiler2</span><span class="o">/</span><span class="n">product</span><span class="err">'</span>  
+<span class="n">gmake</span><span class="o">[</span><span class="mi">6</span><span class="o">]:</span> <span class="nl">stat:</span> <span class="n">libjvm</span><span class="o">.</span><span class="na">so</span><span class="o">:</span> <span class="n">Too</span> <span class="n">many</span> <span class="n">levels</span> <span class="n">of</span> <span class="n">symbolic</span> <span class="n">links</span>
+ </code></pre></figure>
 
 <p>进入到/opt/openJDKroom/openjdk/build/linux-amd64/hotspot/outputdir/linux_amd64_compiler2/product目录下有下面链接：<br>
 libjvm.so-&gt;libjvm.so<br>
@@ -199,11 +238,12 @@ libjvm.so.1-&gt;libjvm.so<br>
 
 <p>再次执行gmake。
 结果报以下错：</p>
-<font color="red">Error: time is more than 10 years from present: 1136059200000  
-java.lang.RuntimeException: time is more than 10 years from present: 1136059200000  
-      at   build.tools.generatecurrencydata.GenerateCurrencyData.makeSpecialCaseEntry(GenerateCurrencyData.java:285)  
-      at   build.tools.generatecurrencydata.GenerateCurrencyData.buildMainAndSpecialCaseTables(GenerateCurrencyData.java:225)  
-      at   build.tools.generatecurrencydata.GenerateCurrencyData.main(GenerateCurrencyData.java:154)  </font>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nl">Error:</span> <span class="n">time</span> <span class="n">is</span> <span class="n">more</span> <span class="n">than</span> <span class="mi">10</span> <span class="n">years</span> <span class="n">from</span> <span class="nl">present:</span> <span class="mi">1136059200000</span>  
+<span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">RuntimeException</span><span class="o">:</span> <span class="n">time</span> <span class="n">is</span> <span class="n">more</span> <span class="n">than</span> <span class="mi">10</span> <span class="n">years</span> <span class="n">from</span> <span class="nl">present:</span> <span class="mi">1136059200000</span>  
+      <span class="n">at</span>   <span class="n">build</span><span class="o">.</span><span class="na">tools</span><span class="o">.</span><span class="na">generatecurrencydata</span><span class="o">.</span><span class="na">GenerateCurrencyData</span><span class="o">.</span><span class="na">makeSpecialCaseEntry</span><span class="o">(</span><span class="n">GenerateCurrencyData</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">285</span><span class="o">)</span>  
+      <span class="n">at</span>   <span class="n">build</span><span class="o">.</span><span class="na">tools</span><span class="o">.</span><span class="na">generatecurrencydata</span><span class="o">.</span><span class="na">GenerateCurrencyData</span><span class="o">.</span><span class="na">buildMainAndSpecialCaseTables</span><span class="o">(</span><span class="n">GenerateCurrencyData</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">225</span><span class="o">)</span>  
+      <span class="n">at</span>   <span class="n">build</span><span class="o">.</span><span class="na">tools</span><span class="o">.</span><span class="na">generatecurrencydata</span><span class="o">.</span><span class="na">GenerateCurrencyData</span><span class="o">.</span><span class="na">main</span><span class="o">(</span><span class="n">GenerateCurrencyData</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">154</span><span class="o">)</span>  </code></pre></figure>
 
 <p>经过查询发现这是一个BUG…..<br>
 下面介绍了对应补丁的出处<br>
@@ -232,7 +272,7 @@ End   2016-01-10 11:52:15<br>
 00:33:32 TOTAL<br>
 -————————</p>
 
-<h2 id="section-3">4.跑一下自己编译的虚拟机</h2>
+<h2 id="section-4">4.跑一下自己编译的虚拟机</h2>
 <p>进入目录<br>
 /opt/openJDKroom/openjdk/build/linux-amd64/hotspot/outputdir/linux_amd64_compiler2<br>
 下面有好几种优化级别的编译版本：<br>
@@ -247,23 +287,27 @@ drwxr-xr-x. 2 root root  4096 Jan  9 16:53 profiled<br>
 
 <p>进入到product目录中。<br>
 这里要在env.sh配置下环境变量，指向共享库</p>
-<font color="blue">LD\_LIBRARY\_PATH=.:${JAVA\_HOME}/jre/lib/amd64/native\_threads:${JAVA\_HOME}/jre/lib/amd64:/opt/openJDKroom/openjdk/build/linux-amd64/hotspot/outputdir/linux\_amd64\_compiler2/product  
-export LD\_LIBRARY\_PATH</font>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span>.:<span class="k">${</span><span class="nv">JAVA_HOME</span><span class="k">}</span>/jre/lib/amd64/native_threads:<span class="k">${</span><span class="nv">JAVA_HOME</span><span class="k">}</span>/jre/lib/amd64:/opt/openJDKroom/openjdk/build/linux-amd64/hotspot/outputdir/linux_amd64_compiler2/product  
+<span class="nb">export </span>LD_LIBRARY_PATH</code></pre></figure>
 
 <p>下面贴出我这个文件的完整内容：</p>
-<font color="green">
-\# Generated by /opt/openJDKroom/openjdk/hotspot/make/linux/makefiles/buildtree.make  
-\#: ${JAVA\_HOME:=/opt/openJDKroom/jdk1.6.0\_45}  
-JAVA\_HOME=/opt/openJDKroom/openjdk/build/linux-amd64/j2sdk-image  
-CLASSPATH=.:${JAVA\_HOME}/jre/lib/rt.jar:${JAVA\_HOME}/jre/lib/i18n.jar  
-HOTSPOT\_BUILD\_USER="root in hotspot"  
-export JAVA\_HOME CLASSPATH HOTSPOT\_BUILD\_USER
 
-\# add  
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="c"># Generated by /opt/openJDKroom/openjdk/hotspot/make/linux/makefiles/buildtree.make  
+</span>
+<span class="c">#: ${JAVA_HOME:=/opt/openJDKroom/jdk1.6.0_45}  
+</span>
+<span class="nv">JAVA_HOME</span><span class="o">=</span>/opt/openJDKroom/openjdk/build/linux-amd64/j2sdk-image  
+<span class="nv">CLASSPATH</span><span class="o">=</span>.:<span class="k">${</span><span class="nv">JAVA_HOME</span><span class="k">}</span>/jre/lib/rt.jar:<span class="k">${</span><span class="nv">JAVA_HOME</span><span class="k">}</span>/jre/lib/i18n.jar  
+<span class="nv">HOTSPOT_BUILD_USER</span><span class="o">=</span><span class="s2">"root in hotspot"</span>  
+<span class="nb">export </span>JAVA_HOME CLASSPATH HOTSPOT_BUILD_USER
 
-LD\_LIBRARY\_PATH=.:${JAVA\_HOME}/jre/lib/amd64/native\_threads:${JAVA\_HOME}/jre/lib/amd64:/opt/openJDKroom/openjdk/build/linux-amd64/hotspot/outputdir/linux\_amd64\_compiler2/product
-export LD\_LIBRARY\_PATH  
-</font>
+<span class="c"># add  
+</span>
+
+<span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span>.:<span class="k">${</span><span class="nv">JAVA_HOME</span><span class="k">}</span>/jre/lib/amd64/native_threads:<span class="k">${</span><span class="nv">JAVA_HOME</span><span class="k">}</span>/jre/lib/amd64:/opt/openJDKroom/openjdk/build/linux-amd64/hotspot/outputdir/linux_amd64_compiler2/product
+<span class="nb">export </span>LD_LIBRARY_PATH  </code></pre></figure>
+
 <p>下面执行：</p>
 
 <p># source ./env.sh</p>
