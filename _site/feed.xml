@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.1.6">Jekyll</generator><link href="http://bowie.site/feed.xml" rel="self" type="application/atom+xml" /><link href="http://bowie.site/" rel="alternate" type="text/html" /><updated>2016-06-06T19:38:59+08:00</updated><id>http://bowie.site/</id><title>BOB BLOG</title><subtitle>Simple Jekyll theme for your blog by Taylan Tatlı</subtitle><entry><title>Maven将依赖的所有jar包打成一个jar</title><link href="http://bowie.site/all-in-one-jar/" rel="alternate" type="text/html" title="Maven将依赖的所有jar包打成一个jar" /><published>2016-06-04T00:00:00+08:00</published><updated>2016-06-04T00:00:00+08:00</updated><id>http://bowie.site/all-in-one-jar</id><content type="html" xml:base="http://bowie.site/all-in-one-jar/">&lt;p&gt;有些特殊情况下，需要将多个jar包打包成一个jar文件。如果使用maven可以加入如下插件：&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.1.6">Jekyll</generator><link href="http://bowie.site/feed.xml" rel="self" type="application/atom+xml" /><link href="http://bowie.site/" rel="alternate" type="text/html" /><updated>2016-06-06T19:39:00+08:00</updated><id>http://bowie.site/</id><title>BOB BLOG</title><subtitle>Simple Jekyll theme for your blog by Taylan Tatlı</subtitle><entry><title>Maven将依赖的所有jar包打成一个jar</title><link href="http://bowie.site/all-in-one-jar/" rel="alternate" type="text/html" title="Maven将依赖的所有jar包打成一个jar" /><published>2016-06-04T00:00:00+08:00</published><updated>2016-06-04T00:00:00+08:00</updated><id>http://bowie.site/all-in-one-jar</id><content type="html" xml:base="http://bowie.site/all-in-one-jar/">&lt;p&gt;有些特殊情况下，需要将多个jar包打包成一个jar文件。如果使用maven可以加入如下插件：&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;build&amp;gt;
 	&amp;lt;plugins&amp;gt;
@@ -29,10 +29,10 @@
 &amp;lt;/build&amp;gt;        
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;</content><category term="maven" /><category term="java" /><summary>Maven将依赖的所有jar包打成一个jar</summary></entry><entry><title>心情</title><link href="http://bowie.site/mymind/" rel="alternate" type="text/html" title="心情" /><published>2016-05-30T00:00:00+08:00</published><updated>2016-05-30T00:00:00+08:00</updated><id>http://bowie.site/mymind</id><content type="html" xml:base="http://bowie.site/mymind/">&lt;p&gt;要学的东西有这么多，我该先学哪个呢？是全面进行呢，还是一个埃一个？&lt;br /&gt;
-纵观这些在学或者是等待学的知识，我就像是一个单核cpu切换在各个进程之间。偶然发现有些前段时间还在看，但是没有看完的书，最近已经被我遗忘在书架的角落。&lt;br /&gt;
-* 我想试验dubbo＋zookepper＋SpringMVC。了解下zookpper的使用场景。
-* 我想阅读学习ElasticSearch源代码，参与到开源项目维护中去。
-* 我想阅读Spring源码，学习大牛们实际运用各种设计模式&lt;/p&gt;
+纵观这些在学或者是等待学的知识，我就像是一个单核cpu切换在各个进程之间。偶然发现有些前段时间还在看，但是没有看完的书，最近已经被我遗忘在书架的角落。 &lt;br /&gt;
+我想试验dubbo＋zookepper＋SpringMVC。了解下zookpper的使用场景。 &lt;br /&gt;
+我想阅读学习ElasticSearch源代码，参与到开源项目维护中去。 &lt;br /&gt;
+我想阅读Spring源码，学习大牛们实际运用各种设计模式&lt;/p&gt;
 
 &lt;p&gt;还有很多要写到，就到这了，要上班了。&lt;/p&gt;</content><summary>A ton of text to test readability.</summary></entry><entry><title>设计模式演练——工厂方法模式</title><link href="http://bowie.site/design_pattern_factory_method/" rel="alternate" type="text/html" title="设计模式演练——工厂方法模式" /><published>2016-03-28T00:00:00+08:00</published><updated>2016-03-28T00:00:00+08:00</updated><id>http://bowie.site/design_pattern_factory_method</id><content type="html" xml:base="http://bowie.site/design_pattern_factory_method/">&lt;h1 id=&quot;section&quot;&gt;设计模式演练——工厂方法模式&lt;/h1&gt;
 
