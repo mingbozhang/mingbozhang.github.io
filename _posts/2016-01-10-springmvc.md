@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "零配置文件搭建SpringMVC实践纪录"
-date: 2015-05-22
+date: 2016-01-10
 excerpt: "SpringMVC学习笔记"
 tags: [spring,springMVC]
 ---   
