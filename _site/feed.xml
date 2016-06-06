@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.1.6">Jekyll</generator><link href="http://bowie.site/feed.xml" rel="self" type="application/atom+xml" /><link href="http://bowie.site/" rel="alternate" type="text/html" /><updated>2016-06-06T19:26:39+08:00</updated><id>http://bowie.site/</id><title>BOB BLOG</title><subtitle>Simple Jekyll theme for your blog by Taylan Tatlı</subtitle><entry><title>Maven将依赖的所有jar包打成一个jar</title><link href="http://bowie.site/all-in-one-jar/" rel="alternate" type="text/html" title="Maven将依赖的所有jar包打成一个jar" /><published>2016-06-04T00:00:00+08:00</published><updated>2016-06-04T00:00:00+08:00</updated><id>http://bowie.site/all-in-one-jar</id><content type="html" xml:base="http://bowie.site/all-in-one-jar/">&lt;p&gt;有些特殊情况下，需要将多个jar包打包成一个jar文件。如果使用maven可以加入如下插件：&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.1.6">Jekyll</generator><link href="http://bowie.site/feed.xml" rel="self" type="application/atom+xml" /><link href="http://bowie.site/" rel="alternate" type="text/html" /><updated>2016-06-06T19:38:59+08:00</updated><id>http://bowie.site/</id><title>BOB BLOG</title><subtitle>Simple Jekyll theme for your blog by Taylan Tatlı</subtitle><entry><title>Maven将依赖的所有jar包打成一个jar</title><link href="http://bowie.site/all-in-one-jar/" rel="alternate" type="text/html" title="Maven将依赖的所有jar包打成一个jar" /><published>2016-06-04T00:00:00+08:00</published><updated>2016-06-04T00:00:00+08:00</updated><id>http://bowie.site/all-in-one-jar</id><content type="html" xml:base="http://bowie.site/all-in-one-jar/">&lt;p&gt;有些特殊情况下，需要将多个jar包打包成一个jar文件。如果使用maven可以加入如下插件：&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;build&amp;gt;
 	&amp;lt;plugins&amp;gt;
@@ -108,15 +108,7 @@ public class LittleC {
 }
 
 
-2.存在的问题</summary></entry><entry><title>Design_pattern_assumpsit</title><link href="http://bowie.site/design_pattern_assumpsit/" rel="alternate" type="text/html" title="Design_pattern_assumpsit" /><published>2016-03-28T00:00:00+08:00</published><updated>2016-03-28T00:00:00+08:00</updated><id>http://bowie.site/design_pattern_assumpsit</id><content type="html" xml:base="http://bowie.site/design_pattern_assumpsit/">&lt;hr /&gt;
-&lt;p&gt;layout: post
-title: “关于《设计模式演练》系列文章结构的规范”
-date: 2016-03-28
-excerpt: “A ton of text to test readability.”
-—
-# 关于《设计模式演练》系列文章结构的规范&lt;/p&gt;
-
-&lt;p&gt;       设计模式的恰当使用可以使程序结构更灵活，易于复用和扩展。但是使用设计模式的同时会以损失性能和增加复杂度为代价。所以在使用之前要进行权衡。&lt;/p&gt;
+2.存在的问题</summary></entry><entry><title>关于《设计模式演练》系列文章结构的规范</title><link href="http://bowie.site/design_pattern_assumpsit/" rel="alternate" type="text/html" title="关于《设计模式演练》系列文章结构的规范" /><published>2016-03-28T00:00:00+08:00</published><updated>2016-03-28T00:00:00+08:00</updated><id>http://bowie.site/design_pattern_assumpsit</id><content type="html" xml:base="http://bowie.site/design_pattern_assumpsit/">&lt;p&gt;       设计模式的恰当使用可以使程序结构更灵活，易于复用和扩展。但是使用设计模式的同时会以损失性能和增加复杂度为代价。所以在使用之前要进行权衡。&lt;/p&gt;
 
 &lt;p&gt;为了使设计模式的学习印象深刻，更能理解应用场景与限制，将每篇文章结构规定为以下：&lt;/p&gt;
 
@@ -130,12 +122,7 @@ excerpt: “A ton of text to test readability.”
 
 &lt;p&gt;4.解决了什么，失去了什么；&lt;/p&gt;
 
-&lt;p&gt;5.具体应用场景（谈一谈可以应用的场景）&lt;/p&gt;</content><summary>layout: post
-title: “关于《设计模式演练》系列文章结构的规范”
-date: 2016-03-28
-excerpt: “A ton of text to test readability.”
-—
-# 关于《设计模式演练》系列文章结构的规范</summary></entry><entry><title>为什么JAVA的垃圾回收机制无法避免内存泄漏</title><link href="http://bowie.site/jvm-memory-leak/" rel="alternate" type="text/html" title="为什么JAVA的垃圾回收机制无法避免内存泄漏" /><published>2016-03-07T00:00:00+08:00</published><updated>2016-03-07T00:00:00+08:00</updated><id>http://bowie.site/jvm-memory-leak</id><content type="html" xml:base="http://bowie.site/jvm-memory-leak/">&lt;section id=&quot;table-of-contents&quot; class=&quot;toc&quot;&gt;
+&lt;p&gt;5.具体应用场景（谈一谈可以应用的场景）&lt;/p&gt;</content><summary>       设计模式的恰当使用可以使程序结构更灵活，易于复用和扩展。但是使用设计模式的同时会以损失性能和增加复杂度为代价。所以在使用之前要进行权衡。</summary></entry><entry><title>为什么JAVA的垃圾回收机制无法避免内存泄漏</title><link href="http://bowie.site/jvm-memory-leak/" rel="alternate" type="text/html" title="为什么JAVA的垃圾回收机制无法避免内存泄漏" /><published>2016-03-07T00:00:00+08:00</published><updated>2016-03-07T00:00:00+08:00</updated><id>http://bowie.site/jvm-memory-leak</id><content type="html" xml:base="http://bowie.site/jvm-memory-leak/">&lt;section id=&quot;table-of-contents&quot; class=&quot;toc&quot;&gt;
   &lt;header&gt;
     &lt;h3&gt;&lt;i class=&quot;fa fa-book&quot;&gt;&lt;/i&gt; Contents&lt;/h3&gt;
   &lt;/header&gt;
