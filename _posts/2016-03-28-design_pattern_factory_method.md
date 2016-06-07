@@ -3,12 +3,16 @@ layout: post
 title: "设计模式演练——工厂方法模式"
 date: 2016-03-28
 ---
-# 设计模式演练——工厂方法模式
+
+{% include toc.html %}  
+
 
 ### 1.小C的故事
 
 &#160; &#160; &#160; &#160;大家好，我叫张小C，我是一个厨师，专职烤面包。下面是我的工作。
-{% highlight json %}     
+
+{% highlight java %}    
+ 
 public class World {
 
 	public static void main(String[] args) {
@@ -17,10 +21,6 @@ public class World {
 	}
 }
 
-/**
- * 小C
- * @author bob
- */
 public class LittleC {
 	public void work() {
 		   Bread bread = new Bread();
@@ -42,7 +42,6 @@ public class Bread {
 	}
 }
 {% endhighlight %} 
-
 有一天，小明（老顾客）来到张小c的店中，以下是对话－－－   
 小明：我吃你家面包都吃腻了，有没有别的吃的，没有的话我以后就换地方了。    
 小C：有有有，我马上做别的美味出来。     
@@ -51,6 +50,7 @@ public class Bread {
 
 ### 2.存在的问题
  现在让我们来看一看小C现在面临的问题是什么，先看看work方法中直接new了一个Bread，把自己禁锢在了一种食物中。那有没有什么办法可以解决小c的当前困境呢？   
+ 
 ### 3.工厂方法模式登场   
 小强:小C，我最近开了一个Pizza店，什么时候过来吃Pizza啊？   
 小C:太好了，我正愁呢。这样咱们合作，顾客在我这里点Pizza的时候，你们店就给我做一个Pizza送过来。互利共赢嘛。   
@@ -59,7 +59,8 @@ public class Bread {
 经过酝酿，新的设计出现了：
 <img src="../assets/img/design_pattern/factory_method/factory_mothod_1.png">
 下面是代码摘要：   
-{% highlight json %}
+
+{% highlight java %}
 public class World {
 
 	public static void main(String[] args) {
