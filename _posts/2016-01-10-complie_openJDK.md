@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "JVM学习——编译OpenJDK"
-date: 2012-05-22
+date: 2016-01-06
 excerpt: "A ton of text to test readability."
 ---
 
