@@ -156,7 +156,7 @@ public class Airport {
 
 经过酝酿，新的设计出现了：
 <img src="../assets/img/design_pattern/abstract_factory/abstract_factory.png">
-抽象工厂模式常见的实现方式是实用工厂方法模式实现，也可以使用原型模式实现。本文中的实现方式为前者。关于原型模式的实现方式，下一篇写完原型模式后会补充上来。
+抽象工厂模式常见的实现方式是使用工厂方法模式实现，也可以使用原型模式实现。本文中的实现方式为前者。关于原型模式的实现方式，下一篇写完原型模式后会补充上来。
 
 下面只给出Airport部分代码，完整代码在https://github.com/mingbozhang/designpattern   
 
