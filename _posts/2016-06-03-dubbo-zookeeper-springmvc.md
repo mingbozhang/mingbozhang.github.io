@@ -107,7 +107,7 @@ dubbo.registry.address=zookeeper://127.0.0.1:2181
 
 http://127.0.0.1:8080   
 
-<img src="../assets/img/dubbo-zookeeper-springmvc/monitor.png">
+<img src="../img/dubbo-zookeeper-springmvc/monitor.png">
 
 
 ### 4.管理控制台安装
@@ -163,7 +163,7 @@ https://github.com/alibaba/dubbo/issues/50
 我的访问地址是：   
 http://127.0.0.1:8888   
 
-<img src="../assets/img/dubbo-zookeeper-springmvc/adminsys.png">
+<img src="../img/dubbo-zookeeper-springmvc/adminsys.png">
   
 
 ##  四.通过SpringMVC加入服务提供者和消费者 
@@ -180,12 +180,12 @@ http://dubbo.io/User+Guide-zh.htm#UserGuide-zh-%E6%B3%A8%E8%A7%A3%E9%85%8D%E7%BD
          
 上两张张加入后管理控制台的截图，后面那张消费者为什么有三个表示不理解，需要继续研究：   
 
-<img src="../assets/img/dubbo-zookeeper-springmvc/testprovider.png">
+<img src="../img/dubbo-zookeeper-springmvc/testprovider.png">
    
    
      
 
-<img src="../assets/img/dubbo-zookeeper-springmvc/testconsumer.png">
+<img src="../img/dubbo-zookeeper-springmvc/testconsumer.png">
 
 
    

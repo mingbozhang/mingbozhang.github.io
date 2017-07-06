@@ -21,7 +21,7 @@ tags: [java,jvm]
 但是主流的java虚拟机里面没有选用引用计数器算法来管理内存，其中最主要的原因是它很难解决对象之间相互循环引用的问题。
 ### 2.可达性分析算法
  这个算法的基本思想就是通过一系列的称为“GC Roots"的对象作为起始点，从这些节点开始向下搜索，搜索所走过的路径称为引用链，当一个对象到GC Roots没有任何引用链相连接时，则证明此对象是不可用的。如下图所示，对象object5、object6、object7虽然互相有关联，但是它们到GC Roots是不可达的，所以它们将会被判定为是可回收对象。   
- <img src="../assets/img/jvm-memory-leak/root_pic.png">
+ <img src="../img/jvm-memory-leak/root_pic.png">
  
 ## 三、导致内存泄漏的情况及代码   
 java 堆内存泄漏,是由于java对象不停创建但是没有释放对象引用导致的。
@@ -180,9 +180,9 @@ public class StackTest {
 
 把栈操作的设为1号，没有栈操作的设置为2号，分别生成Heap Dump文件，我们看一下类实例的截图：  
 #### 首先是1号截图
- <img src="../assets/img/jvm-memory-leak/num_one_pic.png">
+ <img src="../img/jvm-memory-leak/num_one_pic.png">
 #### 2号截图
- <img src="../assets/img/jvm-memory-leak/num_two_pic.png">
+ <img src="../img/jvm-memory-leak/num_two_pic.png">
 
 显然预期的栈操作出栈后并没有释放掉Integer对象的引用（实际上看代码也知道），所以不会被GC回收。真正的实际情况这种引用将会很隐蔽，但是根本总是由于对象仍然被引用。
   
