@@ -1,38 +1,298 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.1.6">Jekyll</generator><link href="http://bowie.site/feed.xml" rel="self" type="application/atom+xml" /><link href="http://bowie.site/" rel="alternate" type="text/html" /><updated>2016-06-18T16:55:08+08:00</updated><id>http://bowie.site/</id><title>BOB BLOG</title><subtitle>Simple Jekyll theme for your blog by Taylan Tatlı</subtitle><entry><title>关于博文的一些思考</title><link href="http://bowie.site/thinking-about-blog-article/" rel="alternate" type="text/html" title="关于博文的一些思考" /><published>2016-06-17T00:00:00+08:00</published><updated>2016-06-17T00:00:00+08:00</updated><id>http://bowie.site/thinking-about-blog-article</id><content type="html" xml:base="http://bowie.site/thinking-about-blog-article/">&lt;p&gt;    最近一段时间越来越感觉自己写的博文和其他牛人之间的差距。&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Bob Blog</title>
+    <description>这个是注释，想想写啥</description>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Fri, 07 Jul 2017 00:42:58 +0800</pubDate>
+    <lastBuildDate>Fri, 07 Jul 2017 00:42:58 +0800</lastBuildDate>
+    <generator>Jekyll v3.5.0</generator>
+    
+      <item>
+        <title>Red Black Tree</title>
+        <description>&lt;h2 id=&quot;红黑树&quot;&gt;红黑树&lt;/h2&gt;
 
-&lt;p&gt;    人家的博文理论加实践，而且可以说的通俗易懂，关键是你透过博文能感受到他的思想。再反观我自己的博文，实践性总结居多，自己思想的表态居少。我内心是害怕这种情况持续下去的。 &lt;br /&gt;
-    如何写出优秀有深度的博文，我第一想到的就是我读书太少，这个需要积累。可我觉得肯定还有其他方面。今天偶然看到一篇别人的博文，写的很有条理，很有深度，在文章的最下面看到一本书的名字《思考的艺术》，隐约间感觉书名泛着金光。   &lt;br /&gt;
-    好奇心驱使我找到了这本书的电子版。我初步看了一下本书，它是教会人们如何养成优秀的思考习惯。如果对一个问题进行有深度，批判性，创造性的思考。我觉得我找到了一把打开星空大门的钥匙。我要看一看它的出现能给博文和我的未来带来什么变化。&lt;/p&gt;</content><summary>    最近一段时间越来越感觉自己写的博文和其他牛人之间的差距。</summary></entry><entry><title>Mysql Index Optimization</title><link href="http://bowie.site/mysql-index-optimization/" rel="alternate" type="text/html" title="Mysql Index Optimization" /><published>2016-06-12T00:00:00+08:00</published><updated>2016-06-12T00:00:00+08:00</updated><id>http://bowie.site/mysql-index-optimization</id><content type="html" xml:base="http://bowie.site/mysql-index-optimization/">&lt;h2 id=&quot;mysql&quot;&gt;MySQL索引优化方案&lt;/h2&gt;
-
-&lt;h3 id=&quot;section&quot;&gt;1.索引类型&lt;/h3&gt;
-&lt;p&gt;BTREE索引
-哈希索引&lt;/p&gt;
-
-&lt;p&gt;实操&lt;br /&gt;
-连接数据库&lt;/p&gt;
-
-&lt;p&gt;建表&lt;/p&gt;</content><summary></summary></entry><entry><title>java归并排序，单线程vs多线程</title><link href="http://bowie.site/merge-sort/" rel="alternate" type="text/html" title="java归并排序，单线程vs多线程" /><published>2016-06-07T00:00:00+08:00</published><updated>2016-06-07T00:00:00+08:00</updated><id>http://bowie.site/merge-sort</id><content type="html" xml:base="http://bowie.site/merge-sort/">&lt;section id=&quot;table-of-contents&quot; class=&quot;toc&quot;&gt;
+</description>
+        <pubDate>Thu, 06 Jul 2017 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2017/07/06/red-black-tree/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/07/06/red-black-tree/</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>设计模式演练——抽象工厂模式</title>
+        <description>&lt;section id=&quot;table-of-contents&quot; class=&quot;toc&quot;&gt;
   &lt;header&gt;
     &lt;h3&gt;&lt;i class=&quot;fa fa-book&quot;&gt;&lt;/i&gt; Contents&lt;/h3&gt;
   &lt;/header&gt;
 &lt;div id=&quot;drawer&quot;&gt;
 &lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#section&quot; id=&quot;markdown-toc-section&quot;&gt;一、什么是归并排序&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#section-1&quot; id=&quot;markdown-toc-section-1&quot;&gt;二、单线程实现归并排序&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#forkjoin&quot; id=&quot;markdown-toc-forkjoin&quot;&gt;三、使用Fork/Join框架实现归并排序&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#pk-&quot; id=&quot;markdown-toc-pk-&quot;&gt;四、单线程 pk 多线程&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#section-2&quot; id=&quot;markdown-toc-section-2&quot;&gt;五、本文代码地址&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#1小c的故事&quot; id=&quot;markdown-toc-1小c的故事&quot;&gt;1.小C的故事&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#2存在的问题&quot; id=&quot;markdown-toc-2存在的问题&quot;&gt;2.存在的问题&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#3抽象工厂模式登场&quot; id=&quot;markdown-toc-3抽象工厂模式登场&quot;&gt;3.抽象工厂模式登场&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#4解决了什么失去了什么&quot; id=&quot;markdown-toc-4解决了什么失去了什么&quot;&gt;4.解决了什么，失去了什么&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#5具体应用场景&quot; id=&quot;markdown-toc-5具体应用场景&quot;&gt;5.具体应用场景&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#6参考&quot; id=&quot;markdown-toc-6参考&quot;&gt;6.参考&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
   &lt;/div&gt;
 &lt;/section&gt;
 &lt;!-- /#table-of-contents --&gt;
 
-&lt;h2 id=&quot;section&quot;&gt;一、什么是归并排序&lt;/h2&gt;
+&lt;h3 id=&quot;1小c的故事&quot;&gt;1.小C的故事&lt;/h3&gt;
+
+&lt;p&gt;       下面讲述的是关于x星系喵星和汪星两个宿敌星球之间的故事。首先把镜头聚焦到喵星，它是主角登场的地方。（本故事纯属虚构，如有雷同，纯属巧合） &lt;br /&gt;
+       喵星纪元9035年，汪星精锐舰队聚集在近喵星轨道，企图一举拿下喵星。大部分喵星人已经被转移到防空工事中。喵星国王下令出动最强战力迎击来敌。喵小c是战斗机编队到王牌飞行员，参加了上百场战斗，获得了很多荣誉，他是本次先头部队的一员。 &lt;br /&gt;
+       “装载初级武器，装载初级防御罩，装载初级逃生仓。准备完毕，出发！”，航空港的扩音机发出急促的声音。伴随着引擎的轰鸣，战斗机编队已经离开跑道，朝汪星舰队飞去。下面是当前的源代码：&lt;/p&gt;
+
+&lt;p&gt;这个是战斗机的代码，喵小c就坐在飞机里，所以代码就省了。&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;    
+
+&lt;span class=&quot;cm&quot;&gt;/**
+ * 战斗机
+ * @author bob
+ *
+ */&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Battleplane&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;cm&quot;&gt;/**
+	 * 初级逃生舱
+	 */&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PrimaryEscapeCompartment&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;primaryEscapeCompartment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+	
+	&lt;span class=&quot;cm&quot;&gt;/**
+	 * 初级防御罩
+	 */&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PrimaryShield&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;primaryShield&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+	
+	&lt;span class=&quot;cm&quot;&gt;/**
+	 * 初级武器
+	 */&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PrimaryWeapon&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;primaryWeapon&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PrimaryEscapeCompartment&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getPrimaryEscapeCompartment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;primaryEscapeCompartment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setPrimaryEscapeCompartment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;PrimaryEscapeCompartment&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;primaryEscapeCompartment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;primaryEscapeCompartment&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;primaryEscapeCompartment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PrimaryShield&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getPrimaryShield&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;primaryShield&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setPrimaryShield&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;PrimaryShield&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;primaryShield&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;primaryShield&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;primaryShield&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PrimaryWeapon&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getPrimaryWeapon&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;primaryWeapon&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setPrimaryWeapon&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;PrimaryWeapon&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;primaryWeapon&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;primaryWeapon&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;primaryWeapon&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+	
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;下面是战斗机需要装备的设备&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;   
+&lt;span class=&quot;cm&quot;&gt;/**
+ * 初级逃生舱
+ * 
+ * @author bob
+ *
+ */&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PrimaryEscapeCompartment&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;description&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;逃生能力一般&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;cm&quot;&gt;/**
+ * 初级防护罩
+ * 
+ * @author bob
+ *
+ */&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PrimaryShield&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;protect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;防御了一次攻击，但是防御罩受损&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;cm&quot;&gt;/**
+ * 初级武器
+ * @author bob
+ *
+ */&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PrimaryWeapon&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;shoot&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;突突突&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+	
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;下面是战斗机起飞的机场&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;  
+ &lt;span class=&quot;kn&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;bob&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;designpatterns&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;abstractfactory&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;stepone&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;cm&quot;&gt;/**
+ * 机场
+ * @author bob
+ *
+ */&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Airport&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;c1&quot;&gt;//起飞前的准备&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;Battleplane&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;battleplane&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Battleplane&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;prepareToFly&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;battleplane&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+		
+		&lt;span class=&quot;c1&quot;&gt;//起飞&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+	
+	&lt;span class=&quot;cm&quot;&gt;/**
+	 * 战斗机起飞前的准备工作
+	 * @param battleplane
+	 */&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;prepareToFly&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Battleplane&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;battleplane&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;battleplane&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setPrimaryEscapeCompartment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PrimaryEscapeCompartment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;battleplane&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setPrimaryShield&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PrimaryShield&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;battleplane&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setPrimaryWeapon&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PrimaryWeapon&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+	
+
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;       像大部分的剧情一样，喵星的首轮自卫反击战以失败落幕，喵小c顶着主角光环成功飞回。&lt;br /&gt;
+       “中级战斗装备研制完成，马上装备到战斗机上了”，战斗后勤部得到了上级通知，同时愁上心头….WHY?&lt;/p&gt;
+
+&lt;h3 id=&quot;2存在的问题&quot;&gt;2.存在的问题&lt;/h3&gt;
+&lt;p&gt;       请看Airport类中prepareToFly中负责产生战斗装备（直接new了），紧密得耦合在一起。另外请看Battleplane类中也与初级的装备耦合严重。除了耦合问题以外战斗装备分为多个部分，替换的时候容易漏替，要知道初级战斗装备和中级战斗装备之间不能混搭，一旦搭错将会出现不兼容的情况，给战斗机带来额外风险。所以要解决两个问题：1.保证灵活得升级现有装备  2.要按照级别统一升级，不能有部分升级的情况。&lt;/p&gt;
+
+&lt;h3 id=&quot;3抽象工厂模式登场&quot;&gt;3.抽象工厂模式登场&lt;/h3&gt;
+&lt;p&gt;       抽象工厂模式的意图：提供一个创建一系列相关或者相互依赖的对象的接口，而无需指定他们具体的类。 听起来略微有些抽象，我们继续讲故事。&lt;/p&gt;
+
+&lt;p&gt;       让我们将时间回退到1年前的喵星。改变历史，解决1年后的困境。我门重新设计一下：&lt;/p&gt;
+
+&lt;p&gt;经过酝酿，新的设计出现了：
+&lt;img src=&quot;../assets/img/design_pattern/abstract_factory/abstract_factory.png&quot; /&gt;
+抽象工厂模式常见的实现方式是使用工厂方法模式实现，也可以使用原型模式实现。本文中的实现方式为前者。关于原型模式的实现方式，下一篇写完原型模式后会补充上来。&lt;/p&gt;
+
+&lt;p&gt;下面只给出Airport部分代码，完整代码在https://github.com/mingbozhang/designpattern&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;kn&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;bob&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;designpatterns&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;abstractfactory&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;steptwo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;cm&quot;&gt;/**
+ * 机场
+ * 
+ * @author bob
+ *
+ */&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Airport&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+	&lt;span class=&quot;cm&quot;&gt;/**
+	 * 战斗准备系统
+	 */&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FightPrepareSys&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fightPrepareSys&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setFightPrepareSys&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FightPrepareSys&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fightPrepareSys&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;Airport&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;fightPrepareSys&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fightPrepareSys&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;c1&quot;&gt;// 设置初级战斗准备系统&lt;/span&gt;
+		&lt;span class=&quot;c1&quot;&gt;// Airport.setFightPrepareSys(new PrimaryFightPrepareSys());&lt;/span&gt;
+		&lt;span class=&quot;c1&quot;&gt;// 设置中级战斗准备系统&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;Airport&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setFightPrepareSys&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MidFightPrepareSys&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
+
+		&lt;span class=&quot;c1&quot;&gt;// 起飞前的准备&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;Battleplane&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;battleplane&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Battleplane&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;prepareToFly&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;battleplane&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+		&lt;span class=&quot;c1&quot;&gt;// 起飞&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+	&lt;span class=&quot;cm&quot;&gt;/**
+	 * 战斗机起飞前的准备工作
+	 * 
+	 * @param battleplane
+	 */&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;prepareToFly&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Battleplane&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;battleplane&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;battleplane&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setEscapeCompartment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fightPrepareSys&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getEscapeCompartment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;battleplane&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setShield&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fightPrepareSys&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getShield&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;battleplane&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setWeapon&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fightPrepareSys&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getWeapon&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3 id=&quot;4解决了什么失去了什么&quot;&gt;4.解决了什么，失去了什么&lt;/h3&gt;
+&lt;p&gt;       引入抽象工厂后，对于多个系列的产品（对应故事中战斗装备各系列）更容易管理，限制取得产品与同系列产品版本风格保持一致。使创建产品与使用者解藕，根据抽象类进行交互。 &lt;br /&gt;
+       如果想要新增加一个产品的创建，且同时保证使用者的简洁实用，则比较困难。&lt;/p&gt;
+
+&lt;h3 id=&quot;5具体应用场景&quot;&gt;5.具体应用场景&lt;/h3&gt;
+&lt;p&gt;       如果一个系统需要对应多个系列的产品则可以使用抽象工厂模式。举个《设计模式》书中的例子：当制作一款编辑器界面包含多种风格，界面元素包括各个控件，如：按钮、滚动条等。可以创建一个抽象的WidgetFactory包含创建各种控件的抽象方法。具体风格再实现Style1WidgetFactory、Style2WidgetFactory，生产各自风格系列的具体控件。这样就达到风格可以灵活扩展，且切换风格的时候非常简单，整个系统中只有在初始化具体工厂的时候需要改动。&lt;/p&gt;
+
+&lt;h3 id=&quot;6参考&quot;&gt;6.参考&lt;/h3&gt;
+&lt;p&gt;《设计模式－可复用面向对象软件的基础》&lt;/p&gt;
+</description>
+        <pubDate>Thu, 23 Jun 2016 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2016/06/23/design-pattern-abstract-factory/</link>
+        <guid isPermaLink="true">http://localhost:4000/2016/06/23/design-pattern-abstract-factory/</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>关于博文的一些思考</title>
+        <description>&lt;p&gt;    最近一段时间越来越感觉自己写的博文和其他牛人之间的差距。&lt;/p&gt;
+
+&lt;p&gt;    人家的博文理论加实践，而且可以说的通俗易懂，关键是你透过博文能感受到他的思想。再反观我自己的博文，实践性总结居多，自己思想的表态居少。我内心是害怕这种情况持续下去的。 &lt;br /&gt;
+    如何写出优秀有深度的博文，我第一想到的就是我读书太少，这个需要积累。可我觉得肯定还有其他方面。今天偶然看到一篇别人的博文，写的很有条理，很有深度，在文章的最下面看到一本书的名字《思考的艺术》，隐约间感觉书名泛着金光。   &lt;br /&gt;
+    好奇心驱使我找到了这本书的电子版。我初步看了一下本书，它是教会人们如何养成优秀的思考习惯。如果对一个问题进行有深度，批判性，创造性的思考。我觉得我找到了一把打开星空大门的钥匙。我要看一看它的出现能给博文和我的未来带来什么变化。&lt;/p&gt;
+
+</description>
+        <pubDate>Fri, 17 Jun 2016 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2016/06/17/thinking-about-blog-article/</link>
+        <guid isPermaLink="true">http://localhost:4000/2016/06/17/thinking-about-blog-article/</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>java归并排序，单线程vs多线程</title>
+        <description>&lt;section id=&quot;table-of-contents&quot; class=&quot;toc&quot;&gt;
+  &lt;header&gt;
+    &lt;h3&gt;&lt;i class=&quot;fa fa-book&quot;&gt;&lt;/i&gt; Contents&lt;/h3&gt;
+  &lt;/header&gt;
+&lt;div id=&quot;drawer&quot;&gt;
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#一什么是归并排序&quot; id=&quot;markdown-toc-一什么是归并排序&quot;&gt;一、什么是归并排序&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#二单线程实现归并排序&quot; id=&quot;markdown-toc-二单线程实现归并排序&quot;&gt;二、单线程实现归并排序&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#三使用forkjoin框架实现归并排序&quot; id=&quot;markdown-toc-三使用forkjoin框架实现归并排序&quot;&gt;三、使用Fork/Join框架实现归并排序&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#四单线程-pk-多线程&quot; id=&quot;markdown-toc-四单线程-pk-多线程&quot;&gt;四、单线程 pk 多线程&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#五本文代码地址&quot; id=&quot;markdown-toc-五本文代码地址&quot;&gt;五、本文代码地址&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#六参考&quot; id=&quot;markdown-toc-六参考&quot;&gt;六、参考&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+  &lt;/div&gt;
+&lt;/section&gt;
+&lt;!-- /#table-of-contents --&gt;
+
+&lt;h2 id=&quot;一什么是归并排序&quot;&gt;一、什么是归并排序&lt;/h2&gt;
 &lt;p&gt;归并排序又称合并排序，它是成功应用分治技术的一个完美例子。对于一个需要排序的数组A[0..n-1],归并排序把它一分为二：A[0..n/2-1]和A[n/2..n-1],并对每个子数组递归排序，然后把这两个排好序的子数组合并为一个有序数组。下面是归并排序的例子图解：
 &lt;img src=&quot;../assets/img/algorithm/mergesort/mergesort.png&quot; /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;section-1&quot;&gt;二、单线程实现归并排序&lt;/h2&gt;
+&lt;h2 id=&quot;二单线程实现归并排序&quot;&gt;二、单线程实现归并排序&lt;/h2&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;kn&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;bob&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;algorithms&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sort&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 
@@ -48,7 +308,7 @@
  */&lt;/span&gt;
 &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SingleThreadMergeSort&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SortStrategy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 
-	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sort&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rawArray&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;sort&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rawArray&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 		&lt;span class=&quot;n&quot;&gt;mergeSort&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rawArray&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
 		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rawArray&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
@@ -58,7 +318,7 @@
 	 * 
 	 * @param intArr
 	 */&lt;/span&gt;
-	&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mergeSort&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;intArr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;mergeSort&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;intArr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 		&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;intArr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;length&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 			&lt;span class=&quot;c1&quot;&gt;// 如果数组长度大于1就分解称两份&lt;/span&gt;
 			&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;leftArray&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Arrays&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;copyOfRange&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;intArr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;intArr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;length&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
@@ -78,7 +338,7 @@
 	 * @param rightArray
 	 * @param intArr
 	 */&lt;/span&gt;
-	&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;merge&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;leftArray&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rightArray&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;intArr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;merge&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;leftArray&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rightArray&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;intArr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 
 		&lt;span class=&quot;c1&quot;&gt;// i：leftArray数组索引，j：rightArray数组索引，k：intArr数组索引&lt;/span&gt;
 		&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
@@ -107,7 +367,7 @@
 	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;h2 id=&quot;forkjoin&quot;&gt;三、使用Fork/Join框架实现归并排序&lt;/h2&gt;
+&lt;h2 id=&quot;三使用forkjoin框架实现归并排序&quot;&gt;三、使用Fork/Join框架实现归并排序&lt;/h2&gt;
 &lt;p&gt;Fork/Join是从JDK 1.7 加入的并发计算框架。&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;   
@@ -121,7 +381,7 @@
 
 &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ForkJoinMergeSort&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SortStrategy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 
-	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sort&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rawArray&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;sort&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rawArray&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 		&lt;span class=&quot;n&quot;&gt;ForkJoinPool&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pool&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ForkJoinPool&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
 		&lt;span class=&quot;n&quot;&gt;pool&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;invoke&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MergeSort&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rawArray&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
 		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rawArray&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
@@ -138,12 +398,12 @@
 		&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;serialVersionUID&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;425572392953885545L&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 		&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;intArr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 
-		&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MergeSort&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;intArr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;MergeSort&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;intArr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 			&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;intArr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;intArr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 		&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
 		&lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-		&lt;span class=&quot;kd&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;compute&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;kd&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;compute&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 			&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;intArr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;length&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 				&lt;span class=&quot;c1&quot;&gt;// 如果数组长度大于1就分解称两份&lt;/span&gt;
 				&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;leftArray&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Arrays&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;copyOfRange&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;intArr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;intArr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;length&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
@@ -164,7 +424,7 @@
 		 * @param rightArray
 		 * @param intArr
 		 */&lt;/span&gt;
-		&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;merge&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;leftArray&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rightArray&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;intArr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;merge&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;leftArray&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rightArray&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;intArr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 
 			&lt;span class=&quot;c1&quot;&gt;// i：leftArray数组索引，j：rightArray数组索引，k：intArr数组索引&lt;/span&gt;
 			&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
@@ -195,7 +455,7 @@
 	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;h2 id=&quot;pk-&quot;&gt;四、单线程 pk 多线程&lt;/h2&gt;
+&lt;h2 id=&quot;四单线程-pk-多线程&quot;&gt;四、单线程 pk 多线程&lt;/h2&gt;
 &lt;p&gt;编写了舞台类，通过调整generateIntArray(10000000)的输入参数来设置待排序数组长度，试验中没有对堆容量进行设置。&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt; 
@@ -216,7 +476,7 @@
  */&lt;/span&gt;
 &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Stage&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 
-	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 
 		&lt;span class=&quot;c1&quot;&gt;// 变量定义&lt;/span&gt;
 		&lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;begintime&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
@@ -227,14 +487,14 @@
 		&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rawArr2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Arrays&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;copyOf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rawArr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rawArr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
 
 		&lt;span class=&quot;n&quot;&gt;begintime&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Date&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getTime&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-		&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SingleThreadMergeSort&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sort&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rawArr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;SingleThreadMergeSort&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sort&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rawArr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
 		&lt;span class=&quot;c1&quot;&gt;//System.out.println(Arrays.toString(new SingleThreadMergeSort().sort(rawArr)));&lt;/span&gt;
 		&lt;span class=&quot;n&quot;&gt;endtime&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Date&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getTime&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
 		&lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;单线程归并排序花费时间：&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;endtime&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;begintime&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
 		&lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;是否升序：&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CommonUtil&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;isSorted&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rawArr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
 
 		&lt;span class=&quot;n&quot;&gt;begintime&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Date&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getTime&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-		&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ForkJoinMergeSort&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sort&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rawArr2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;ForkJoinMergeSort&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sort&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rawArr2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
 		&lt;span class=&quot;c1&quot;&gt;//System.out.println(Arrays.toString(new ForkJoinMergeSort().sort(rawArr2)));&lt;/span&gt;
 		&lt;span class=&quot;n&quot;&gt;endtime&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Date&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getTime&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
 		&lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Fork/Join归并排序花费时间：&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;endtime&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;begintime&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
@@ -246,7 +506,7 @@
 	 * 
 	 * @return
 	 */&lt;/span&gt;
-	&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;generateIntArray&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;generateIntArray&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 		&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;intArr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;];&lt;/span&gt;
 		&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 			&lt;span class=&quot;n&quot;&gt;intArr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Double&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Math&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;intValue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
@@ -294,12 +554,23 @@
 &lt;p&gt;通过统计可以发现，当待排序序列长度较小时，使用单线程效率要高于多线程，但是随着数量不断增加，多线程执行时间越来越接近单线程的执行时间，最终在1000万这个量级开始速率远超单线程。工作中不能滥用多线程，在该使用的时候使用可以加快效率，充分利用多核。但是在不该用的时候使用徒增工作量，有可能效率还不如单线程。
 感兴趣的朋友可以通过下面代码地址找到运行的全部源码自己跑跑试试看。&lt;/p&gt;
 
-&lt;h2 id=&quot;section-2&quot;&gt;五、本文代码地址&lt;/h2&gt;
+&lt;h2 id=&quot;五本文代码地址&quot;&gt;五、本文代码地址&lt;/h2&gt;
 &lt;p&gt;包括本篇在内以后所有代码统一存放地址为： &lt;br /&gt;
-https://github.com/mingbozhang/algorithm
-## 六、参考 &lt;br /&gt;
-https://docs.oracle.com/javase/tutorial/essential/concurrency/forkjoin.html &lt;br /&gt;
-《算法设计与分析基础（第3版）》&lt;/p&gt;</content><summary>java归并排序，单线程vs多线程</summary></entry><entry><title>Maven将依赖的所有jar包打成一个jar</title><link href="http://bowie.site/all-in-one-jar/" rel="alternate" type="text/html" title="Maven将依赖的所有jar包打成一个jar" /><published>2016-06-04T00:00:00+08:00</published><updated>2016-06-04T00:00:00+08:00</updated><id>http://bowie.site/all-in-one-jar</id><content type="html" xml:base="http://bowie.site/all-in-one-jar/">&lt;p&gt;有些特殊情况下，需要将多个jar包打包成一个jar文件。如果使用maven可以加入如下插件：&lt;/p&gt;
+https://github.com/mingbozhang/algorithm&lt;/p&gt;
+&lt;h2 id=&quot;六参考&quot;&gt;六、参考&lt;/h2&gt;
+&lt;p&gt;https://docs.oracle.com/javase/tutorial/essential/concurrency/forkjoin.html &lt;br /&gt;
+《算法设计与分析基础（第3版）》&lt;/p&gt;
+</description>
+        <pubDate>Tue, 07 Jun 2016 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2016/06/07/merge-sort/</link>
+        <guid isPermaLink="true">http://localhost:4000/2016/06/07/merge-sort/</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>Maven将依赖的所有jar包打成一个jar</title>
+        <description>&lt;p&gt;有些特殊情况下，需要将多个jar包打包成一个jar文件。如果使用maven可以加入如下插件：&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt; 
     &lt;span class=&quot;nt&quot;&gt;&amp;lt;build&amp;gt;&lt;/span&gt;
@@ -328,30 +599,46 @@ https://docs.oracle.com/javase/tutorial/essential/concurrency/forkjoin.html &lt;
 				&lt;span class=&quot;nt&quot;&gt;&amp;lt;/executions&amp;gt;&lt;/span&gt;
 			&lt;span class=&quot;nt&quot;&gt;&amp;lt;/plugin&amp;gt;&lt;/span&gt;
 		&lt;span class=&quot;nt&quot;&gt;&amp;lt;/plugins&amp;gt;&lt;/span&gt;
-	&lt;span class=&quot;nt&quot;&gt;&amp;lt;/build&amp;gt;&lt;/span&gt;        &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><category term="maven" /><category term="java" /><summary>Maven将依赖的所有jar包打成一个jar</summary></entry><entry><title>dubbo &amp;amp; zookeeper &amp;amp; springMVC</title><link href="http://bowie.site/dubbo-zookeeper-springmvc/" rel="alternate" type="text/html" title="dubbo &amp; zookeeper &amp; springMVC" /><published>2016-06-03T00:00:00+08:00</published><updated>2016-06-03T00:00:00+08:00</updated><id>http://bowie.site/dubbo-zookeeper-springmvc</id><content type="html" xml:base="http://bowie.site/dubbo-zookeeper-springmvc/">&lt;section id=&quot;table-of-contents&quot; class=&quot;toc&quot;&gt;
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;/build&amp;gt;&lt;/span&gt;        &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+</description>
+        <pubDate>Sat, 04 Jun 2016 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2016/06/04/all-in-one-jar/</link>
+        <guid isPermaLink="true">http://localhost:4000/2016/06/04/all-in-one-jar/</guid>
+        
+        <category>maven</category>
+        
+        <category>java</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>dubbo &amp; zookeeper &amp; springMVC</title>
+        <description>&lt;section id=&quot;table-of-contents&quot; class=&quot;toc&quot;&gt;
   &lt;header&gt;
     &lt;h3&gt;&lt;i class=&quot;fa fa-book&quot;&gt;&lt;/i&gt; Contents&lt;/h3&gt;
   &lt;/header&gt;
 &lt;div id=&quot;drawer&quot;&gt;
 &lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#section&quot; id=&quot;markdown-toc-section&quot;&gt;一.安装准备&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#section-1&quot; id=&quot;markdown-toc-section-1&quot;&gt;1.环境简介&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#section-2&quot; id=&quot;markdown-toc-section-2&quot;&gt;2.小插曲&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#dubbo&quot; id=&quot;markdown-toc-dubbo&quot;&gt;3.编译dubbo示例&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#一安装准备&quot; id=&quot;markdown-toc-一安装准备&quot;&gt;一.安装准备&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#1环境简介&quot; id=&quot;markdown-toc-1环境简介&quot;&gt;1.环境简介&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#2小插曲&quot; id=&quot;markdown-toc-2小插曲&quot;&gt;2.小插曲&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#3编译dubbo示例&quot; id=&quot;markdown-toc-3编译dubbo示例&quot;&gt;3.编译dubbo示例&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#zookeeper&quot; id=&quot;markdown-toc-zookeeper&quot;&gt;二.Zookeeper注册中心安装&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#dubbo-1&quot; id=&quot;markdown-toc-dubbo-1&quot;&gt;三.安装dubbo示例&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#section-3&quot; id=&quot;markdown-toc-section-3&quot;&gt;1.示例提供者安装&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#section-4&quot; id=&quot;markdown-toc-section-4&quot;&gt;2.示例消费者安装&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#section-5&quot; id=&quot;markdown-toc-section-5&quot;&gt;3.监控中心安装&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#section-6&quot; id=&quot;markdown-toc-section-6&quot;&gt;4.管理控制台安装&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#二zookeeper注册中心安装&quot; id=&quot;markdown-toc-二zookeeper注册中心安装&quot;&gt;二.Zookeeper注册中心安装&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#三安装dubbo示例&quot; id=&quot;markdown-toc-三安装dubbo示例&quot;&gt;三.安装dubbo示例&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#1示例提供者安装&quot; id=&quot;markdown-toc-1示例提供者安装&quot;&gt;1.示例提供者安装&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#2示例消费者安装&quot; id=&quot;markdown-toc-2示例消费者安装&quot;&gt;2.示例消费者安装&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#3监控中心安装&quot; id=&quot;markdown-toc-3监控中心安装&quot;&gt;3.监控中心安装&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#4管理控制台安装&quot; id=&quot;markdown-toc-4管理控制台安装&quot;&gt;4.管理控制台安装&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#springmvc&quot; id=&quot;markdown-toc-springmvc&quot;&gt;四.通过SpringMVC加入服务提供者和消费者&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#dubboxsd&quot; id=&quot;markdown-toc-dubboxsd&quot;&gt;问题一: dubbo.xsd文件找不到&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#dubbojavalangclassnotfoundexception-javassistclasspath&quot; id=&quot;markdown-toc-dubbojavalangclassnotfoundexception-javassistclasspath&quot;&gt;问题二: 在dubbo启动的过程中报错误：java.lang.ClassNotFoundException: javassist.ClassPath&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#section-7&quot; id=&quot;markdown-toc-section-7&quot;&gt;最后是编写的服务提供者和消费者的代码&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#四通过springmvc加入服务提供者和消费者&quot; id=&quot;markdown-toc-四通过springmvc加入服务提供者和消费者&quot;&gt;四.通过SpringMVC加入服务提供者和消费者&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#问题一-dubboxsd文件找不到&quot; id=&quot;markdown-toc-问题一-dubboxsd文件找不到&quot;&gt;问题一: dubbo.xsd文件找不到&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#问题二-在dubbo启动的过程中报错误javalangclassnotfoundexception-javassistclasspath&quot; id=&quot;markdown-toc-问题二-在dubbo启动的过程中报错误javalangclassnotfoundexception-javassistclasspath&quot;&gt;问题二: 在dubbo启动的过程中报错误：java.lang.ClassNotFoundException: javassist.ClassPath&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#最后是编写的服务提供者和消费者的代码&quot; id=&quot;markdown-toc-最后是编写的服务提供者和消费者的代码&quot;&gt;最后是编写的服务提供者和消费者的代码&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
@@ -360,9 +647,9 @@ https://docs.oracle.com/javase/tutorial/essential/concurrency/forkjoin.html &lt;
 &lt;/section&gt;
 &lt;!-- /#table-of-contents --&gt;
 
-&lt;h2 id=&quot;section&quot;&gt;一.安装准备&lt;/h2&gt;
+&lt;h2 id=&quot;一安装准备&quot;&gt;一.安装准备&lt;/h2&gt;
 
-&lt;h3 id=&quot;section-1&quot;&gt;1.环境简介&lt;/h3&gt;
+&lt;h3 id=&quot;1环境简介&quot;&gt;1.环境简介&lt;/h3&gt;
 
 &lt;table&gt;
   &lt;thead&gt;
@@ -399,14 +686,14 @@ https://docs.oracle.com/javase/tutorial/essential/concurrency/forkjoin.html &lt;
   &lt;/tbody&gt;
 &lt;/table&gt;
 
-&lt;h3 id=&quot;section-2&quot;&gt;2.小插曲&lt;/h3&gt;
+&lt;h3 id=&quot;2小插曲&quot;&gt;2.小插曲&lt;/h3&gt;
 &lt;p&gt;想用wget进行下载，发现mac默认是没有安装的。用惯了别的Linux环境，相使用个自动安装工具来安装wget。让后就找到了Homebrew。下面首先安装Homebrew，这个类似CentOS的yum和Ubuntu的apt-get，安装方法很简单，执行下面就可以了：  &lt;br /&gt;
 ruby -e “$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)”      &lt;br /&gt;
 执行上面并安装成功后，下面让我们测试下安装wget：  &lt;br /&gt;
 brew install wget
 完美，安装完毕。&lt;/p&gt;
 
-&lt;h3 id=&quot;dubbo&quot;&gt;3.编译dubbo示例&lt;/h3&gt;
+&lt;h3 id=&quot;3编译dubbo示例&quot;&gt;3.编译dubbo示例&lt;/h3&gt;
 &lt;p&gt;根据网站官方教程: &lt;br /&gt;
 http://dubbo.io/Administrator+Guide-zh.htm#AdministratorGuide-zh-%E7%A4%BA%E4%BE%8B%E6%8F%90%E4%BE%9B%E8%80%85%E5%AE%89%E8%A3%85&lt;/p&gt;
 
@@ -426,7 +713,7 @@ dubbo-monitor-simple-2.5.4-SNAPSHOT-assembly.tar.gz&lt;/p&gt;
 &lt;p&gt;目录dubbo/dubbo-admin/target下面： &lt;br /&gt;
 dubbo-admin-2.5.4-SNAPSHOT.war&lt;/p&gt;
 
-&lt;h2 id=&quot;zookeeper&quot;&gt;二.Zookeeper注册中心安装&lt;/h2&gt;
+&lt;h2 id=&quot;二zookeeper注册中心安装&quot;&gt;二.Zookeeper注册中心安装&lt;/h2&gt;
 &lt;p&gt;注册中心有多种选择，我选择zookeeper作为注册中心。  &lt;br /&gt;
 wget http://apache.fayea.com/zookeeper/zookeeper-3.4.8/zookeeper-3.4.8.tar.gz &lt;br /&gt;
 tar -zxvf zookeeper-3.4.8.tar.gz &lt;br /&gt;
@@ -436,9 +723,9 @@ cp conf/zoo_sample.cfg conf/zoo.cfg&lt;/p&gt;
 &lt;p&gt;不配置集群，直接启动  &lt;br /&gt;
 ./bin/zkServer.sh start&lt;/p&gt;
 
-&lt;h2 id=&quot;dubbo-1&quot;&gt;三.安装dubbo示例&lt;/h2&gt;
+&lt;h2 id=&quot;三安装dubbo示例&quot;&gt;三.安装dubbo示例&lt;/h2&gt;
 
-&lt;h3 id=&quot;section-3&quot;&gt;1.示例提供者安装&lt;/h3&gt;
+&lt;h3 id=&quot;1示例提供者安装&quot;&gt;1.示例提供者安装&lt;/h3&gt;
 &lt;p&gt;tar -zxvf dubbo-demo-provider-2.5.4-SNAPSHOT-assembly.tar.gz &lt;br /&gt;
 cd dubbo-demo-provider-2.5.4-SNAPSHOT&lt;/p&gt;
 
@@ -454,7 +741,7 @@ dubbo.registry.address=zookeeper://127.0.0.1:2181&lt;br /&gt;
 telnet 127.0.0.1 20880  &lt;br /&gt;
 输入help，查看提供的操作&lt;/p&gt;
 
-&lt;h3 id=&quot;section-4&quot;&gt;2.示例消费者安装&lt;/h3&gt;
+&lt;h3 id=&quot;2示例消费者安装&quot;&gt;2.示例消费者安装&lt;/h3&gt;
 &lt;p&gt;tar -zxvf dubbo-demo-consumer-2.5.4-SNAPSHOT-assembly.tar.gz &lt;br /&gt;
 cd dubbo-demo-consumer-2.5.4-SNAPSHOT&lt;/p&gt;
 
@@ -466,7 +753,7 @@ dubbo.registry.address=zookeeper://127.0.0.1:2181&lt;br /&gt;
 
 &lt;p&gt;./bin/start.sh&lt;/p&gt;
 
-&lt;h3 id=&quot;section-5&quot;&gt;3.监控中心安装&lt;/h3&gt;
+&lt;h3 id=&quot;3监控中心安装&quot;&gt;3.监控中心安装&lt;/h3&gt;
 &lt;p&gt;tar -zxvf dubbo-monitor-simple-2.5.4-SNAPSHOT-assembly.tar.gz &lt;br /&gt;
 cd dubbo-monitor-simple-2.5.4-SNAPSHOT
 配置 &lt;br /&gt;
@@ -481,7 +768,7 @@ dubbo.registry.address=zookeeper://127.0.0.1:2181&lt;br /&gt;
 
 &lt;p&gt;&lt;img src=&quot;../assets/img/dubbo-zookeeper-springmvc/monitor.png&quot; /&gt;&lt;/p&gt;
 
-&lt;h3 id=&quot;section-6&quot;&gt;4.管理控制台安装&lt;/h3&gt;
+&lt;h3 id=&quot;4管理控制台安装&quot;&gt;4.管理控制台安装&lt;/h3&gt;
 &lt;p&gt;将编译好的dubbo-admin-2.5.4-SNAPSHOT.war拷贝到tomcat下面。配置server.xml，避免和前面监控中心的端口产生冲突。启动tomcat。 &lt;br /&gt;
 发现报错：&lt;br /&gt;
 Bean property ‘URIType’ is not writable or has an invalid setter method.&lt;/p&gt;
@@ -544,7 +831,7 @@ http://127.0.0.1:8888&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;../assets/img/dubbo-zookeeper-springmvc/adminsys.png&quot; /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;springmvc&quot;&gt;四.通过SpringMVC加入服务提供者和消费者&lt;/h2&gt;
+&lt;h2 id=&quot;四通过springmvc加入服务提供者和消费者&quot;&gt;四.通过SpringMVC加入服务提供者和消费者&lt;/h2&gt;
 
 &lt;p&gt;dubbo与SpringMVC的集成，我参考了这段： &lt;br /&gt;
 http://dubbo.io/User+Guide-zh.htm#UserGuide-zh-%E6%B3%A8%E8%A7%A3%E9%85%8D%E7%BD%AE&lt;/p&gt;
@@ -575,7 +862,7 @@ http://dubbo.io/User+Guide-zh.htm#UserGuide-zh-%E6%B3%A8%E8%A7%A3%E9%85%8D%E7%BD
 
 &lt;p&gt;在搭建的过程中遇到了两个问题：&lt;/p&gt;
 
-&lt;h4 id=&quot;dubboxsd&quot;&gt;问题一: dubbo.xsd文件找不到&lt;/h4&gt;
+&lt;h4 id=&quot;问题一-dubboxsd文件找不到&quot;&gt;问题一: dubbo.xsd文件找不到&lt;/h4&gt;
 &lt;p&gt;将dubbo.xsd下载到本地后，通过以下步骤操作加入，我用的是eclipse：&lt;br /&gt;
 windows-&amp;gt;preferrence-&amp;gt;xml-&amp;gt;xmlcatalog   &lt;br /&gt;
 add-&amp;gt;catalog entry  -&amp;gt;file system 选择刚刚下载的文件路 径  &lt;br /&gt;
@@ -584,7 +871,7 @@ add-&amp;gt;catalog entry  -&amp;gt;file system 选择刚刚下载的文件路 �
 &lt;p&gt;问题的解决方案出处在这里，感谢作者～ &lt;br /&gt;
 http://blog.csdn.net/lxb15959168136/article/details/50225057&lt;/p&gt;
 
-&lt;h4 id=&quot;dubbojavalangclassnotfoundexception-javassistclasspath&quot;&gt;问题二: 在dubbo启动的过程中报错误：java.lang.ClassNotFoundException: javassist.ClassPath&lt;/h4&gt;
+&lt;h4 id=&quot;问题二-在dubbo启动的过程中报错误javalangclassnotfoundexception-javassistclasspath&quot;&gt;问题二: 在dubbo启动的过程中报错误：java.lang.ClassNotFoundException: javassist.ClassPath&lt;/h4&gt;
 &lt;p&gt;我的做法：  &lt;br /&gt;
 由于我是用的maven构建，所以在工程pom.xml中直接加入以下:&lt;/p&gt;
 
@@ -595,31 +882,59 @@ http://blog.csdn.net/lxb15959168136/article/details/50225057&lt;/p&gt;
 	&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;scope&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;runtime&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;scope&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
  &lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dependency&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;h3 id=&quot;section-7&quot;&gt;最后是编写的服务提供者和消费者的代码&lt;/h3&gt;
-&lt;p&gt;https://github.com/mingbozhang/leandubbo&lt;/p&gt;</content><category term="dubbo" /><category term="zookeeper" /><category term="springMVC" /><summary>SpringMVC学习笔记</summary></entry><entry><title>心情</title><link href="http://bowie.site/mymind/" rel="alternate" type="text/html" title="心情" /><published>2016-05-30T00:00:00+08:00</published><updated>2016-05-30T00:00:00+08:00</updated><id>http://bowie.site/mymind</id><content type="html" xml:base="http://bowie.site/mymind/">&lt;p&gt;要学的东西有这么多，我该先学哪个呢？是全面进行呢，还是一个埃一个？&lt;br /&gt;
+&lt;h3 id=&quot;最后是编写的服务提供者和消费者的代码&quot;&gt;最后是编写的服务提供者和消费者的代码&lt;/h3&gt;
+&lt;p&gt;https://github.com/mingbozhang/leandubbo&lt;/p&gt;
+</description>
+        <pubDate>Fri, 03 Jun 2016 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2016/06/03/dubbo-zookeeper-springmvc/</link>
+        <guid isPermaLink="true">http://localhost:4000/2016/06/03/dubbo-zookeeper-springmvc/</guid>
+        
+        <category>dubbo</category>
+        
+        <category>zookeeper</category>
+        
+        <category>springMVC</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>心情</title>
+        <description>&lt;p&gt;要学的东西有这么多，我该先学哪个呢？是全面进行呢，还是一个埃一个？&lt;br /&gt;
 纵观这些在学或者是等待学的知识，我就像是一个单核cpu切换在各个进程之间。偶然发现有些前段时间还在看，但是没有看完的书，最近已经被我遗忘在书架的角落。 &lt;br /&gt;
 我想试验dubbo＋zookepper＋SpringMVC。了解下zookpper的使用场景。 &lt;br /&gt;
 我想阅读学习ElasticSearch源代码，参与到开源项目维护中去。 &lt;br /&gt;
 我想阅读Spring源码，学习大牛们实际运用各种设计模式&lt;/p&gt;
 
-&lt;p&gt;还有很多要写到，就到这了，要上班了。&lt;/p&gt;</content><summary>A ton of text to test readability.</summary></entry><entry><title>设计模式演练——工厂方法模式</title><link href="http://bowie.site/design_pattern_factory_method/" rel="alternate" type="text/html" title="设计模式演练——工厂方法模式" /><published>2016-03-28T00:00:00+08:00</published><updated>2016-03-28T00:00:00+08:00</updated><id>http://bowie.site/design_pattern_factory_method</id><content type="html" xml:base="http://bowie.site/design_pattern_factory_method/">&lt;section id=&quot;table-of-contents&quot; class=&quot;toc&quot;&gt;
+&lt;p&gt;还有很多要写到，就到这了，要上班了。&lt;/p&gt;
+</description>
+        <pubDate>Mon, 30 May 2016 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2016/05/30/mymind/</link>
+        <guid isPermaLink="true">http://localhost:4000/2016/05/30/mymind/</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>设计模式演练——工厂方法模式</title>
+        <description>&lt;section id=&quot;table-of-contents&quot; class=&quot;toc&quot;&gt;
   &lt;header&gt;
     &lt;h3&gt;&lt;i class=&quot;fa fa-book&quot;&gt;&lt;/i&gt; Contents&lt;/h3&gt;
   &lt;/header&gt;
 &lt;div id=&quot;drawer&quot;&gt;
 &lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#c&quot; id=&quot;markdown-toc-c&quot;&gt;1.小C的故事&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#section&quot; id=&quot;markdown-toc-section&quot;&gt;2.存在的问题&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#section-1&quot; id=&quot;markdown-toc-section-1&quot;&gt;3.工厂方法模式登场&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#section-2&quot; id=&quot;markdown-toc-section-2&quot;&gt;4.解决了什么，失去了什么&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#section-3&quot; id=&quot;markdown-toc-section-3&quot;&gt;5.具体应用场景&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#1小c的故事&quot; id=&quot;markdown-toc-1小c的故事&quot;&gt;1.小C的故事&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#2存在的问题&quot; id=&quot;markdown-toc-2存在的问题&quot;&gt;2.存在的问题&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#3工厂方法模式登场&quot; id=&quot;markdown-toc-3工厂方法模式登场&quot;&gt;3.工厂方法模式登场&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#4解决了什么失去了什么&quot; id=&quot;markdown-toc-4解决了什么失去了什么&quot;&gt;4.解决了什么，失去了什么&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#5具体应用场景&quot; id=&quot;markdown-toc-5具体应用场景&quot;&gt;5.具体应用场景&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
   &lt;/div&gt;
 &lt;/section&gt;
 &lt;!-- /#table-of-contents --&gt;
 
-&lt;h3 id=&quot;c&quot;&gt;1.小C的故事&lt;/h3&gt;
+&lt;h3 id=&quot;1小c的故事&quot;&gt;1.小C的故事&lt;/h3&gt;
 
 &lt;p&gt;       大家好，我叫张小C，我是一个厨师，专职烤面包。下面是我的工作。&lt;/p&gt;
 
@@ -627,14 +942,14 @@ http://blog.csdn.net/lxb15959168136/article/details/50225057&lt;/p&gt;
  
 &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;World&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 
-	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 		&lt;span class=&quot;n&quot;&gt;LittleC&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;littleC&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LittleC&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
 		&lt;span class=&quot;n&quot;&gt;littleC&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;work&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
 	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
 &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;LittleC&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;work&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;work&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 		   &lt;span class=&quot;n&quot;&gt;Bread&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bread&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Bread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
 		   &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()+&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;做好了！&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
 		   &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getTaste&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
@@ -645,11 +960,11 @@ http://blog.csdn.net/lxb15959168136/article/details/50225057&lt;/p&gt;
 
 	&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;面包&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 
-	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;getName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
-	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;getTaste&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getTaste&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
 		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;软软的，没什么味道&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
@@ -660,10 +975,10 @@ http://blog.csdn.net/lxb15959168136/article/details/50225057&lt;/p&gt;
 
 &lt;p&gt;小C心想，我只会烤面包啊，该咋办，难不成再加个workForPizza，那要是这个也吃腻了总不能加到屎吧…况且我脑子笨，学得慢…好吧，爱吃不吃，你不吃自有人吃！（纯属意淫）&lt;/p&gt;
 
-&lt;h3 id=&quot;section&quot;&gt;2.存在的问题&lt;/h3&gt;
+&lt;h3 id=&quot;2存在的问题&quot;&gt;2.存在的问题&lt;/h3&gt;
 &lt;p&gt;现在让我们来看一看小C现在面临的问题是什么，先看看work方法中直接new了一个Bread，把自己禁锢在了一种食物中。那有没有什么办法可以解决小c的当前困境呢？&lt;/p&gt;
 
-&lt;h3 id=&quot;section-1&quot;&gt;3.工厂方法模式登场&lt;/h3&gt;
+&lt;h3 id=&quot;3工厂方法模式登场&quot;&gt;3.工厂方法模式登场&lt;/h3&gt;
 &lt;p&gt;小强:小C，我最近开了一个Pizza店，什么时候过来吃Pizza啊？ &lt;br /&gt;
 小C:太好了，我正愁呢。这样咱们合作，顾客在我这里点Pizza的时候，你们店就给我做一个Pizza送过来。互利共赢嘛。 &lt;br /&gt;
 小强：好，一言为定。 &lt;br /&gt;
@@ -674,7 +989,7 @@ http://blog.csdn.net/lxb15959168136/article/details/50225057&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;World&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 
-	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 		&lt;span class=&quot;n&quot;&gt;LittleC&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;littleC&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LittleC&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
 		&lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;小明：我要吃面包！&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
 		&lt;span class=&quot;n&quot;&gt;littleC&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setFoodShop&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;BreadShop&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
@@ -699,11 +1014,11 @@ http://blog.csdn.net/lxb15959168136/article/details/50225057&lt;/p&gt;
 
 	&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FoodShop&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;foodShop&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 	
-	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;setFoodShop&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FoodShop&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;foodShop&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setFoodShop&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FoodShop&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;foodShop&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
 		&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;foodShop&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;foodShop&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
-	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;work&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;work&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 		&lt;span class=&quot;n&quot;&gt;Food&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;food&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;foodShop&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createFood&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
 		&lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;food&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;做好了！&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
 		&lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;food&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getTaste&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
@@ -712,23 +1027,23 @@ http://blog.csdn.net/lxb15959168136/article/details/50225057&lt;/p&gt;
 
 &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;abstract&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Food&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 
-	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;abstract&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;getName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;abstract&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
 
-	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;abstract&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;getTaste&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;abstract&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getTaste&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
 &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;abstract&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;FoodShop&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 
-	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;abstract&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Food&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;createFood&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;abstract&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Food&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;createFood&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
 &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Bread&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Food&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 
-	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;getName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;面包&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
-	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;getTaste&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getTaste&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;软软的，很清淡&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
@@ -736,18 +1051,29 @@ http://blog.csdn.net/lxb15959168136/article/details/50225057&lt;/p&gt;
 &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;BreadShop&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FoodShop&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 
 	&lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Food&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;createFood&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Bread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Food&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;createFood&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Bread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
 	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;h3 id=&quot;section-2&quot;&gt;4.解决了什么，失去了什么&lt;/h3&gt;
+&lt;h3 id=&quot;4解决了什么失去了什么&quot;&gt;4.解决了什么，失去了什么&lt;/h3&gt;
 &lt;p&gt;通过引入工厂方法模式我们解决了，Bread硬编码到LittleC中导致的扩展受限问题。小C以后可以接入各种各样的菜色而不需要改动既有代码（world除外）。 &lt;br /&gt;
 缺点也是很明显，我为了一个菜色还要加一个餐馆进来。这里可以通过带有参数到工厂方法来优化这种情况。创造一个什么菜都可以生产的餐馆，比如根据类型完整名称就可以得到具体的食物，那么只需要一个餐馆就可以了。&lt;/p&gt;
 
-&lt;h3 id=&quot;section-3&quot;&gt;5.具体应用场景&lt;/h3&gt;
-&lt;p&gt;所有需要new一个对象的地方，同时要求有足够的灵活性。&lt;/p&gt;</content><summary>Contents</summary></entry><entry><title>关于《设计模式演练》系列文章结构的规范</title><link href="http://bowie.site/design_pattern_assumpsit/" rel="alternate" type="text/html" title="关于《设计模式演练》系列文章结构的规范" /><published>2016-03-28T00:00:00+08:00</published><updated>2016-03-28T00:00:00+08:00</updated><id>http://bowie.site/design_pattern_assumpsit</id><content type="html" xml:base="http://bowie.site/design_pattern_assumpsit/">&lt;p&gt;       设计模式的恰当使用可以使程序结构更灵活，易于复用和扩展。但是使用设计模式的同时会以损失性能和增加复杂度为代价。所以在使用之前要进行权衡。&lt;/p&gt;
+&lt;h3 id=&quot;5具体应用场景&quot;&gt;5.具体应用场景&lt;/h3&gt;
+&lt;p&gt;所有需要new一个对象的地方，同时要求有足够的灵活性。&lt;/p&gt;
+</description>
+        <pubDate>Mon, 28 Mar 2016 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2016/03/28/design_pattern_factory_method/</link>
+        <guid isPermaLink="true">http://localhost:4000/2016/03/28/design_pattern_factory_method/</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>关于《设计模式演练》系列文章结构的规范</title>
+        <description>&lt;p&gt;       设计模式的恰当使用可以使程序结构更灵活，易于复用和扩展。但是使用设计模式的同时会以损失性能和增加复杂度为代价。所以在使用之前要进行权衡。&lt;/p&gt;
 
 &lt;p&gt;为了使设计模式的学习印象深刻，更能理解应用场景与限制，将每篇文章结构规定为以下：&lt;/p&gt;
 
@@ -763,37 +1089,58 @@ http://blog.csdn.net/lxb15959168136/article/details/50225057&lt;/p&gt;
 
 &lt;p&gt;5.具体应用场景（谈一谈可以应用的场景）&lt;/p&gt;
 
-&lt;h3 id=&quot;section&quot;&gt;该系列代码存放在&lt;/h3&gt;
-&lt;p&gt;https://github.com/mingbozhang/designpattern&lt;/p&gt;</content><summary>       设计模式的恰当使用可以使程序结构更灵活，易于复用和扩展。但是使用设计模式的同时会以损失性能和增加复杂度为代价。所以在使用之前要进行权衡。</summary></entry><entry><title>为什么JAVA的垃圾回收机制无法避免内存泄漏</title><link href="http://bowie.site/jvm-memory-leak/" rel="alternate" type="text/html" title="为什么JAVA的垃圾回收机制无法避免内存泄漏" /><published>2016-03-07T00:00:00+08:00</published><updated>2016-03-07T00:00:00+08:00</updated><id>http://bowie.site/jvm-memory-leak</id><content type="html" xml:base="http://bowie.site/jvm-memory-leak/">&lt;section id=&quot;table-of-contents&quot; class=&quot;toc&quot;&gt;
+&lt;h3 id=&quot;该系列代码存放在&quot;&gt;该系列代码存放在&lt;/h3&gt;
+&lt;p&gt;https://github.com/mingbozhang/designpattern&lt;/p&gt;
+</description>
+        <pubDate>Mon, 28 Mar 2016 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2016/03/28/design_pattern_assumpsit/</link>
+        <guid isPermaLink="true">http://localhost:4000/2016/03/28/design_pattern_assumpsit/</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>为什么JAVA的垃圾回收机制无法避免内存泄漏</title>
+        <description>&lt;section id=&quot;table-of-contents&quot; class=&quot;toc&quot;&gt;
   &lt;header&gt;
     &lt;h3&gt;&lt;i class=&quot;fa fa-book&quot;&gt;&lt;/i&gt; Contents&lt;/h3&gt;
   &lt;/header&gt;
 &lt;div id=&quot;drawer&quot;&gt;
 &lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#section&quot; id=&quot;markdown-toc-section&quot;&gt;一、本文参考：&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#section-1&quot; id=&quot;markdown-toc-section-1&quot;&gt;二、对象已死的判定方法&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#section-2&quot; id=&quot;markdown-toc-section-2&quot;&gt;三、导致内存泄漏的情况及代码&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#section-3&quot; id=&quot;markdown-toc-section-3&quot;&gt;四、结语&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#一本文参考&quot; id=&quot;markdown-toc-一本文参考&quot;&gt;一、本文参考：&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#二对象已死的判定方法&quot; id=&quot;markdown-toc-二对象已死的判定方法&quot;&gt;二、对象已死的判定方法&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#1引用计数法&quot; id=&quot;markdown-toc-1引用计数法&quot;&gt;1.引用计数法&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#2可达性分析算法&quot; id=&quot;markdown-toc-2可达性分析算法&quot;&gt;2.可达性分析算法&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#三导致内存泄漏的情况及代码&quot; id=&quot;markdown-toc-三导致内存泄漏的情况及代码&quot;&gt;三、导致内存泄漏的情况及代码&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#首先是1号截图&quot; id=&quot;markdown-toc-首先是1号截图&quot;&gt;首先是1号截图&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#2号截图&quot; id=&quot;markdown-toc-2号截图&quot;&gt;2号截图&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#四结语&quot; id=&quot;markdown-toc-四结语&quot;&gt;四、结语&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
   &lt;/div&gt;
 &lt;/section&gt;
 &lt;!-- /#table-of-contents --&gt;
 
-&lt;h2 id=&quot;section&quot;&gt;一、本文参考：&lt;/h2&gt;
-&lt;p&gt;1.《深入理解java虚拟机 JVM高级特性与最佳实践》  &lt;br /&gt;
-2. http://coderevisited.com/memory-leaks-in-java/&lt;/p&gt;
+&lt;h2 id=&quot;一本文参考&quot;&gt;一、本文参考：&lt;/h2&gt;
+&lt;p&gt;1.《深入理解java虚拟机 JVM高级特性与最佳实践》&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;http://coderevisited.com/memory-leaks-in-java/&lt;/li&gt;
+&lt;/ol&gt;
 
-&lt;h2 id=&quot;section-1&quot;&gt;二、对象已死的判定方法&lt;/h2&gt;
-&lt;p&gt;要进行JVM中对象回收首先要判断对象是否已经死亡，判断的方法有如下几个：
-### 1.引用计数法
-给对象中添加一个引用计数器，每当有一个地方引用它时，计数器值就加1；当引用失效时，计数器值就减1；任何时刻 计数器为0的对象就是不可能再被使用的。 &lt;br /&gt;
-但是主流的java虚拟机里面没有选用引用计数器算法来管理内存，其中最主要的原因是它很难解决对象之间相互循环引用的问题。
-### 2.可达性分析算法
- 这个算法的基本思想就是通过一系列的称为“GC Roots”的对象作为起始点，从这些节点开始向下搜索，搜索所走过的路径称为引用链，当一个对象到GC Roots没有任何引用链相连接时，则证明此对象是不可用的。如下图所示，对象object5、object6、object7虽然互相有关联，但是它们到GC Roots是不可达的，所以它们将会被判定为是可回收对象。 &lt;br /&gt;
+&lt;h2 id=&quot;二对象已死的判定方法&quot;&gt;二、对象已死的判定方法&lt;/h2&gt;
+&lt;p&gt;要进行JVM中对象回收首先要判断对象是否已经死亡，判断的方法有如下几个：&lt;/p&gt;
+&lt;h3 id=&quot;1引用计数法&quot;&gt;1.引用计数法&lt;/h3&gt;
+&lt;p&gt;给对象中添加一个引用计数器，每当有一个地方引用它时，计数器值就加1；当引用失效时，计数器值就减1；任何时刻 计数器为0的对象就是不可能再被使用的。 &lt;br /&gt;
+但是主流的java虚拟机里面没有选用引用计数器算法来管理内存，其中最主要的原因是它很难解决对象之间相互循环引用的问题。&lt;/p&gt;
+&lt;h3 id=&quot;2可达性分析算法&quot;&gt;2.可达性分析算法&lt;/h3&gt;
+&lt;p&gt;这个算法的基本思想就是通过一系列的称为“GC Roots”的对象作为起始点，从这些节点开始向下搜索，搜索所走过的路径称为引用链，当一个对象到GC Roots没有任何引用链相连接时，则证明此对象是不可用的。如下图所示，对象object5、object6、object7虽然互相有关联，但是它们到GC Roots是不可达的，所以它们将会被判定为是可回收对象。 &lt;br /&gt;
  &lt;img src=&quot;../assets/img/jvm-memory-leak/root_pic.png&quot; /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;section-2&quot;&gt;三、导致内存泄漏的情况及代码&lt;/h2&gt;
+&lt;h2 id=&quot;三导致内存泄漏的情况及代码&quot;&gt;三、导致内存泄漏的情况及代码&lt;/h2&gt;
 &lt;p&gt;java 堆内存泄漏,是由于java对象不停创建但是没有释放对象引用导致的。
 以下是关于java代码，此代码是引自http://coderevisited.com/memory-leaks-in-java/&lt;/p&gt;
 
@@ -814,13 +1161,13 @@ http://blog.csdn.net/lxb15959168136/article/details/50225057&lt;/p&gt;
     &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;E&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 
     &lt;span class=&quot;nd&quot;&gt;@SuppressWarnings&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;unchecked&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;capacity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;capacity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
         &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;E&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[])&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Object&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;capacity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;];&lt;/span&gt;
     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
     &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Iterator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;E&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;iterator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;StackIterator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Iterator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;E&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;iterator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;StackIterator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
     &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;StackIterator&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Iterator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;E&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
@@ -828,55 +1175,55 @@ http://blog.csdn.net/lxb15959168136/article/details/50225057&lt;/p&gt;
         &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;N&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 
         &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;hasNext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;hasNext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
             &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
         &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
         &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;E&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;E&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
             &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hasNext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-                &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;NoSuchElementException&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;NoSuchElementException&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
             &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
             &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--];&lt;/span&gt;
         &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
         &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;remove&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;UnsupportedOperationException&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;remove&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;UnsupportedOperationException&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
 
         &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;E&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;E&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
         &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;isFull&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;RuntimeException&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Stack overflow&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;RuntimeException&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Stack overflow&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
         &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
         &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;N&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;E&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pop&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;E&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;pop&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
         &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;isEmpty&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;RuntimeException&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Stack underflow&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;RuntimeException&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Stack underflow&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
         &lt;span class=&quot;n&quot;&gt;E&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;item&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;N&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;];&lt;/span&gt;
         &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;isEmpty&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;isEmpty&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
         &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;N&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
         &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;N&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;isFull&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;isFull&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
         &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;N&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;E&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;peek&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;E&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;peek&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
         &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;isEmpty&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;RuntimeException&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Stack underflow&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;RuntimeException&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Stack underflow&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
         &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;N&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;];&lt;/span&gt;
     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
@@ -896,7 +1243,7 @@ http://blog.csdn.net/lxb15959168136/article/details/50225057&lt;/p&gt;
         &lt;span class=&quot;cm&quot;&gt;/**
         * @param args
         */&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
               &lt;span class=&quot;n&quot;&gt;Stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Integer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Integer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10000&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
                &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10000&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
                      &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
@@ -926,7 +1273,7 @@ http://blog.csdn.net/lxb15959168136/article/details/50225057&lt;/p&gt;
         &lt;span class=&quot;cm&quot;&gt;/**
         * @param args
         */&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;//            Stack&amp;lt;Integer&amp;gt; s = new Stack&amp;lt;Integer&amp;gt;(10000);&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;//            for ( int i = 0; i &amp;lt; 10000; i++) {&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;//                   s.push(i);&lt;/span&gt;
@@ -943,183 +1290,27 @@ http://blog.csdn.net/lxb15959168136/article/details/50225057&lt;/p&gt;
 
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;把栈操作的设为1号，没有栈操作的设置为2号，分别生成Heap Dump文件，我们看一下类实例的截图：&lt;br /&gt;
-#### 首先是1号截图
- &lt;img src=&quot;../assets/img/jvm-memory-leak/num_one_pic.png&quot; /&gt;
-#### 2号截图
- &lt;img src=&quot;../assets/img/jvm-memory-leak/num_two_pic.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;把栈操作的设为1号，没有栈操作的设置为2号，分别生成Heap Dump文件，我们看一下类实例的截图：&lt;/p&gt;
+&lt;h4 id=&quot;首先是1号截图&quot;&gt;首先是1号截图&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&quot;../assets/img/jvm-memory-leak/num_one_pic.png&quot; /&gt;&lt;/p&gt;
+&lt;h4 id=&quot;2号截图&quot;&gt;2号截图&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&quot;../assets/img/jvm-memory-leak/num_two_pic.png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;显然预期的栈操作出栈后并没有释放掉Integer对象的引用（实际上看代码也知道），所以不会被GC回收。真正的实际情况这种引用将会很隐蔽，但是根本总是由于对象仍然被引用。&lt;/p&gt;
 
-&lt;h2 id=&quot;section-3&quot;&gt;四、结语&lt;/h2&gt;
-&lt;p&gt;本篇仅对java堆内存泄漏进行了简单说明，下一篇将讨论其他相关的内存泄漏。有不对的地方欢迎拍砖&amp;gt;_&amp;lt;&lt;/p&gt;</content><category term="java" /><category term="jvm" /><summary>为什么JAVA的垃圾回收机制无法避免内存泄漏</summary></entry><entry><title>docker部署tomcat</title><link href="http://bowie.site/docker-deploy-tomcat/" rel="alternate" type="text/html" title="docker部署tomcat" /><published>2016-02-21T00:00:00+08:00</published><updated>2016-02-21T00:00:00+08:00</updated><id>http://bowie.site/docker-deploy-tomcat</id><content type="html" xml:base="http://bowie.site/docker-deploy-tomcat/">&lt;section id=&quot;table-of-contents&quot; class=&quot;toc&quot;&gt;
-  &lt;header&gt;
-    &lt;h3&gt;&lt;i class=&quot;fa fa-book&quot;&gt;&lt;/i&gt; Contents&lt;/h3&gt;
-  &lt;/header&gt;
-&lt;div id=&quot;drawer&quot;&gt;
-&lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#section&quot; id=&quot;markdown-toc-section&quot;&gt;一.环境简介&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#ubuntu-1404dockerdocker&quot; id=&quot;markdown-toc-ubuntu-1404dockerdocker&quot;&gt;二.Ubuntu 14.04版本系统中已经自带了Docker，查看下docker版本&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#ssh&quot; id=&quot;markdown-toc-ssh&quot;&gt;三、（可选）ssh登录服务器端准备&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#section-1&quot; id=&quot;markdown-toc-section-1&quot;&gt;四、下载容器镜像&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#section-2&quot; id=&quot;markdown-toc-section-2&quot;&gt;五、宿主机及目标容器挂载目录准备&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#tomcat&quot; id=&quot;markdown-toc-tomcat&quot;&gt;六、容器tomcat运行环境准备&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#tomcat-1&quot; id=&quot;markdown-toc-tomcat-1&quot;&gt;七、运行tomcat&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#section-3&quot; id=&quot;markdown-toc-section-3&quot;&gt;八、移除容器&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-  &lt;/div&gt;
-&lt;/section&gt;
-&lt;!-- /#table-of-contents --&gt;
-
-&lt;h2 id=&quot;section&quot;&gt;一.环境简介&lt;/h2&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;名称&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;版本&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;宿主机OS&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;ubuntu-14.04.3-server-amd64&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;JDK&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;7&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;tomcat&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;7.0.52&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h2 id=&quot;ubuntu-1404dockerdocker&quot;&gt;二.Ubuntu 14.04版本系统中已经自带了Docker，查看下docker版本&lt;/h2&gt;
-&lt;p&gt;docker version&lt;/p&gt;
-
-&lt;h2 id=&quot;ssh&quot;&gt;三、（可选）ssh登录服务器端准备&lt;/h2&gt;
-&lt;p&gt;使用ssh客户端工具登录 ，具体参考http://jingyan.baidu.com/article/9c69d48fb9fd7b13c8024e6b.html  &lt;br /&gt;
-安装openssh&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;   
-sudo apt-get update   
-sudo apt-get install openssh-server   &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;h2 id=&quot;section-1&quot;&gt;四、下载容器镜像&lt;/h2&gt;
-&lt;p&gt;获取镜像到本地&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;    
-sudo docker pull bobsha/ping   &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;这里bobsha是我docker hub的用户名bobsha/ping是我之前上传到一个安装了ping命令的Ubuntu镜像。&lt;/p&gt;
-
-&lt;p&gt;当然也可以自己申请一个帐号进行管理，网址为https://hub.docker.com&lt;/p&gt;
-
-&lt;p&gt;查看本地镜像信息&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;    
-sudo docker images  &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;h2 id=&quot;section-2&quot;&gt;五、宿主机及目标容器挂载目录准备&lt;/h2&gt;
-&lt;p&gt;本步骤是将docker容器需要用到的安装软件和tomcat运行的项目在宿主机上准备好，容器中进行挂载。&lt;/p&gt;
-
-&lt;p&gt;首先将软件准备好放在宿主机/opt/software下面，在容器中/mnt下面增加software目录。&lt;/p&gt;
-
-&lt;p&gt;在宿主机/opt中建立/opt/webapps/ROOT，并添加index.html文件，加入如下内容：&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;   
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&amp;gt;&lt;/span&gt;   
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;Hello world!&lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;   &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;h2 id=&quot;tomcat&quot;&gt;六、容器tomcat运行环境准备&lt;/h2&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;    
-docker run -i -t -v /opt/software/:/mnt/software/ 8ab8 /bin/bash &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;命令包含以下三个部分： &lt;br /&gt;
-docker run &lt;相关参数&gt; &lt;镜像 ID=&quot;&quot;&gt; &lt;初始命令&gt;   
-其中，相关参数包括：   
--i：表示以“交互模式”运行容器&lt;/初始命令&gt;&lt;/镜像&gt;&lt;/相关参数&gt;&lt;/p&gt;
-
-&lt;p&gt;-t：表示容器启动后会进入其命令行&lt;/p&gt;
-
-&lt;p&gt;-v：表示需要将本地哪个目录挂载到容器中，格式：-v &lt;宿主机目录&gt;:&lt;容器目录&gt;   
-经过上面的步骤现在已经进入容器的交互式窗口中，将tomcat和jdk解压到/opt目录中，并编写tomcat启动脚本。&lt;/容器目录&gt;&lt;/宿主机目录&gt;&lt;/p&gt;
-
-&lt;p&gt;在/opt下面建立runtomcat.sh文件，加入如下内容：&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;   
- &lt;span class=&quot;c&quot;&gt;#!/bin/bash&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;JAVA_HOME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/opt/jdk1.7.0_76/
-&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;PATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$JAVA_HOME&lt;/span&gt;/bin:&lt;span class=&quot;nv&quot;&gt;$PATH&lt;/span&gt;
-sh /opt/apache-tomcat-7.0.52/bin/catalina.sh run&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;给脚本赋予权限&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;    
-chmod u+x /opt/runtomcat.sh   &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;退出容器&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;    
-&lt;span class=&quot;nb&quot;&gt;exit&lt;/span&gt;    &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;查看最近运行容器信息&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;      
-docker ps -l    &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;root@ubuntu:/opt/software# docker ps -l&lt;/p&gt;
-
-&lt;p&gt;CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES &lt;br /&gt;
-23d53a7745bc bobsha/ping:latest “/bin/bash” About a minute ago Exited (0) 12    seconds ago backstabbing_lumiere &lt;br /&gt;
-保存容器为新镜像，我将新镜像命名为bobsha/tomcat&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;      
-docker commit 23d5 bobsha/tomcat   &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;这里容器ID只需要写前几位可以区分就行一般，三到四位即可。&lt;/p&gt;
-
-&lt;h2 id=&quot;tomcat-1&quot;&gt;七、运行tomcat&lt;/h2&gt;
-
-&lt;p&gt;运行tomcat，这次只运行启动tomcat命令&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt; 
-docker run  -p 18080:8080 -v /opt/webapps/:/opt/apache-tomcat-7.0.52/webapps/ -name docker_tomcat bobsha/tomcat /opt/runtomcat.sh&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;其中，新出现的相关参数包括： &lt;br /&gt;
--p：&lt;宿主机端口&gt;:&lt;容器端口&gt;，将容器端口映射为指定宿主机端口，通过宿主机端口进行访问容器程序&lt;/容器端口&gt;&lt;/宿主机端口&gt;&lt;/p&gt;
-
-&lt;p&gt;-name:容器名称，起个有意义的名字即可&lt;/p&gt;
-
-&lt;p&gt;验证tomcat运行情况 &lt;br /&gt;
-通过局域网中浏览器访问: http://192.168.0.106:18080/index.html显示成功！ &lt;br /&gt;
- &lt;img src=&quot;../assets/img/docker-deploy-tomcat/helloworld.png&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;section-3&quot;&gt;八、移除容器&lt;/h2&gt;
-&lt;p&gt;Ctrl+C退出后，发现再次运行上面的命令显示如下：&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt; 
-Warning: &lt;span class=&quot;s1&quot;&gt;&#39;-name&#39;&lt;/span&gt; is deprecated, it will be replaced by &lt;span class=&quot;s1&quot;&gt;&#39;--name&#39;&lt;/span&gt; soon. See usage.
-FATA[0000] Error response from daemon: Conflict. The name &lt;span class=&quot;s2&quot;&gt;&quot;docker_tomcat&quot;&lt;/span&gt; is already &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;use by container bab14ef39b40. You have to delete &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;or rename&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; that container to be able to reuse that name.&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;查看所有容器&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt; 
-docker ps -a   
-
-CONTAINER ID        IMAGE                  COMMAND                CREATED             STATUS                       PORTS                     NAMES
-
-bab14ef39b40        bobsha/tomcat:latest   &lt;span class=&quot;s2&quot;&gt;&quot;/opt/runtomcat.sh&quot;&lt;/span&gt;    10 minutes ago      Exited &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;130&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; 8 minutes ago                             docker_tomcat &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;移除该容器&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;docker rm bab1 &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;本文参考以下文章及教程： &lt;br /&gt;
-http://www.docker.org.cn/book/docker.html &lt;br /&gt;
-http://m.oschina.net/blog/616526?hmsr=toutiao.io&amp;amp;utm_medium=toutiao.io&amp;amp;utm_source=toutiao.io&lt;/p&gt;</content><category term="docker" /><summary>docker部署tomcat</summary></entry></feed>
+&lt;h2 id=&quot;四结语&quot;&gt;四、结语&lt;/h2&gt;
+&lt;p&gt;本篇仅对java堆内存泄漏进行了简单说明，下一篇将讨论其他相关的内存泄漏。有不对的地方欢迎拍砖&amp;gt;_&amp;lt;&lt;/p&gt;
+</description>
+        <pubDate>Mon, 07 Mar 2016 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2016/03/07/jvm-memory-leak/</link>
+        <guid isPermaLink="true">http://localhost:4000/2016/03/07/jvm-memory-leak/</guid>
+        
+        <category>java</category>
+        
+        <category>jvm</category>
+        
+        
+      </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="这个是注释，想想写啥">
+    <meta name="keywords"  content="这个莫非是TAG,试试看">
+    <meta name="theme-color" content="#000000">
+    
+    <title>docker部署tomcat - Bob的博客 | Bob Blog</title>
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/pwa/manifest.json">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="http://localhost:4000/2016/02/21/docker-deploy-tomcat/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Bob Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/about/">About</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/portfolio/">Portfolio</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/tags/">Tags</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    var __HuxNav__ = {
+        close: function(){
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        },
+        open: function(){
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+
+    // Bind Event
+    $toggle.addEventListener('click', function(e){
+        if ($navbar.className.indexOf('in') > 0) {
+            __HuxNav__.close()
+        }else{
+            __HuxNav__.open()
+        }
+    })
+
+    /**
+     * Since Fastclick is used to delegate 'touchstart' globally
+     * to hack 300ms delay in iOS by performing a fake 'click',
+     * Using 'e.stopPropagation' to stop 'touchstart' event from 
+     * $toggle/$collapse will break global delegation.
+     * 
+     * Instead, we use a 'e.target' filter to prevent handler
+     * added to document close HuxNav.  
+     *
+     * Also, we use 'click' instead of 'touchstart' as compromise
+     */
+    document.addEventListener('click', function(e){
+        if(e.target == $toggle) return;
+        if(e.target.className == 'icon-bar') return;
+        __HuxNav__.close();
+    })
+</script>
+
+
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/img/home-bg.jpg" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        position: relative;
+        background-image: url('/img/home-bg.jpg')
+    }
+
+    
+</style>
+<header class="intro-header" >
+    <div class="header-mask"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#docker" title="docker">docker</a>
+                        
+                    </div>
+                    <h1>docker部署tomcat</h1>
+                    
+                    
+                    <h2 class="subheading"></h2>
+                    
+                    <span class="meta">Posted by Bob Blog on February 21, 2016</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+				<section id="table-of-contents" class="toc">
+  <header>
+    <h3><i class="fa fa-book"></i> Contents</h3>
+  </header>
+<div id="drawer">
+<ul id="markdown-toc">
+  <li><a href="#一环境简介" id="markdown-toc-一环境简介">一.环境简介</a></li>
+  <li><a href="#二ubuntu-1404版本系统中已经自带了docker查看下docker版本" id="markdown-toc-二ubuntu-1404版本系统中已经自带了docker查看下docker版本">二.Ubuntu 14.04版本系统中已经自带了Docker，查看下docker版本</a></li>
+  <li><a href="#三可选ssh登录服务器端准备" id="markdown-toc-三可选ssh登录服务器端准备">三、（可选）ssh登录服务器端准备</a></li>
+  <li><a href="#四下载容器镜像" id="markdown-toc-四下载容器镜像">四、下载容器镜像</a></li>
+  <li><a href="#五宿主机及目标容器挂载目录准备" id="markdown-toc-五宿主机及目标容器挂载目录准备">五、宿主机及目标容器挂载目录准备</a></li>
+  <li><a href="#六容器tomcat运行环境准备" id="markdown-toc-六容器tomcat运行环境准备">六、容器tomcat运行环境准备</a></li>
+  <li><a href="#七运行tomcat" id="markdown-toc-七运行tomcat">七、运行tomcat</a></li>
+  <li><a href="#八移除容器" id="markdown-toc-八移除容器">八、移除容器</a></li>
+</ul>
+
+  </div>
+</section>
+<!-- /#table-of-contents -->
+
+<h2 id="一环境简介">一.环境简介</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>名称</th>
+      <th style="text-align: center">版本</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>宿主机OS</td>
+      <td style="text-align: center">ubuntu-14.04.3-server-amd64</td>
+    </tr>
+    <tr>
+      <td>JDK</td>
+      <td style="text-align: center">7</td>
+    </tr>
+    <tr>
+      <td>tomcat</td>
+      <td style="text-align: center">7.0.52</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="二ubuntu-1404版本系统中已经自带了docker查看下docker版本">二.Ubuntu 14.04版本系统中已经自带了Docker，查看下docker版本</h2>
+<p>docker version</p>
+
+<h2 id="三可选ssh登录服务器端准备">三、（可选）ssh登录服务器端准备</h2>
+<p>使用ssh客户端工具登录 ，具体参考http://jingyan.baidu.com/article/9c69d48fb9fd7b13c8024e6b.html  <br />
+安装openssh</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">   
+sudo apt-get update   
+sudo apt-get install openssh-server   </code></pre></figure>
+
+<h2 id="四下载容器镜像">四、下载容器镜像</h2>
+<p>获取镜像到本地</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">    
+sudo docker pull bobsha/ping   </code></pre></figure>
+
+<p>这里bobsha是我docker hub的用户名bobsha/ping是我之前上传到一个安装了ping命令的Ubuntu镜像。</p>
+
+<p>当然也可以自己申请一个帐号进行管理，网址为https://hub.docker.com</p>
+
+<p>查看本地镜像信息</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">    
+sudo docker images  </code></pre></figure>
+
+<h2 id="五宿主机及目标容器挂载目录准备">五、宿主机及目标容器挂载目录准备</h2>
+<p>本步骤是将docker容器需要用到的安装软件和tomcat运行的项目在宿主机上准备好，容器中进行挂载。</p>
+
+<p>首先将软件准备好放在宿主机/opt/software下面，在容器中/mnt下面增加software目录。</p>
+
+<p>在宿主机/opt中建立/opt/webapps/ROOT，并添加index.html文件，加入如下内容：</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html">   
+<span class="nt">&lt;html&gt;</span>   
+<span class="nt">&lt;body&gt;</span>Hello world!<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>   </code></pre></figure>
+
+<h2 id="六容器tomcat运行环境准备">六、容器tomcat运行环境准备</h2>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">    
+docker run -i -t -v /opt/software/:/mnt/software/ 8ab8 /bin/bash </code></pre></figure>
+
+<p>命令包含以下三个部分： <br />
+docker run <相关参数> <镜像 ID=""> <初始命令>   
+其中，相关参数包括：   
+-i：表示以“交互模式”运行容器</初始命令></镜像></相关参数></p>
+
+<p>-t：表示容器启动后会进入其命令行</p>
+
+<p>-v：表示需要将本地哪个目录挂载到容器中，格式：-v <宿主机目录>:<容器目录>   
+经过上面的步骤现在已经进入容器的交互式窗口中，将tomcat和jdk解压到/opt目录中，并编写tomcat启动脚本。</容器目录></宿主机目录></p>
+
+<p>在/opt下面建立runtomcat.sh文件，加入如下内容：</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">   
+ <span class="c">#!/bin/bash</span>
+<span class="nb">export </span><span class="nv">JAVA_HOME</span><span class="o">=</span>/opt/jdk1.7.0_76/
+<span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$JAVA_HOME</span>/bin:<span class="nv">$PATH</span>
+sh /opt/apache-tomcat-7.0.52/bin/catalina.sh run</code></pre></figure>
+
+<p>给脚本赋予权限</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">    
+chmod u+x /opt/runtomcat.sh   </code></pre></figure>
+
+<p>退出容器</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">    
+<span class="nb">exit</span>    </code></pre></figure>
+
+<p>查看最近运行容器信息</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">      
+docker ps -l    </code></pre></figure>
+
+<p>root@ubuntu:/opt/software# docker ps -l</p>
+
+<p>CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES <br />
+23d53a7745bc bobsha/ping:latest “/bin/bash” About a minute ago Exited (0) 12    seconds ago backstabbing_lumiere <br />
+保存容器为新镜像，我将新镜像命名为bobsha/tomcat</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">      
+docker commit 23d5 bobsha/tomcat   </code></pre></figure>
+
+<p>这里容器ID只需要写前几位可以区分就行一般，三到四位即可。</p>
+
+<h2 id="七运行tomcat">七、运行tomcat</h2>
+
+<p>运行tomcat，这次只运行启动tomcat命令</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"> 
+docker run  -p 18080:8080 -v /opt/webapps/:/opt/apache-tomcat-7.0.52/webapps/ -name docker_tomcat bobsha/tomcat /opt/runtomcat.sh</code></pre></figure>
+
+<p>其中，新出现的相关参数包括： <br />
+-p：<宿主机端口>:<容器端口>，将容器端口映射为指定宿主机端口，通过宿主机端口进行访问容器程序</容器端口></宿主机端口></p>
+
+<p>-name:容器名称，起个有意义的名字即可</p>
+
+<p>验证tomcat运行情况 <br />
+通过局域网中浏览器访问: http://192.168.0.106:18080/index.html显示成功！ <br />
+ <img src="../assets/img/docker-deploy-tomcat/helloworld.png" /></p>
+
+<h2 id="八移除容器">八、移除容器</h2>
+<p>Ctrl+C退出后，发现再次运行上面的命令显示如下：</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"> 
+Warning: <span class="s1">'-name'</span> is deprecated, it will be replaced by <span class="s1">'--name'</span> soon. See usage.
+FATA[0000] Error response from daemon: Conflict. The name <span class="s2">"docker_tomcat"</span> is already <span class="k">in </span>use by container bab14ef39b40. You have to delete <span class="o">(</span>or rename<span class="o">)</span> that container to be able to reuse that name.</code></pre></figure>
+
+<p>查看所有容器</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"> 
+docker ps -a   
+
+CONTAINER ID        IMAGE                  COMMAND                CREATED             STATUS                       PORTS                     NAMES
+
+bab14ef39b40        bobsha/tomcat:latest   <span class="s2">"/opt/runtomcat.sh"</span>    10 minutes ago      Exited <span class="o">(</span>130<span class="o">)</span> 8 minutes ago                             docker_tomcat </code></pre></figure>
+
+<p>移除该容器</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">docker rm bab1 </code></pre></figure>
+
+<p>本文参考以下文章及教程： <br />
+http://www.docker.org.cn/book/docker.html <br />
+http://m.oschina.net/blog/616526?hmsr=toutiao.io&amp;utm_medium=toutiao.io&amp;utm_source=toutiao.io</p>
+
+
+                <hr style="visibility: hidden;">
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2016/01/23/es-invalid-shift-value/" data-toggle="tooltip" data-placement="top" title="ElasticSearch学习问题记录——Invalid shift value in prefixCoded bytes (is encoded value really an INT?)">
+                        Previous<br>
+                        <span>ElasticSearch学习问题记录——Invalid shift value in prefixCoded bytes (is encoded value really an INT?)</span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2016/03/07/jvm-memory-leak/" data-toggle="tooltip" data-placement="top" title="为什么JAVA的垃圾回收机制无法避免内存泄漏">
+                        Next<br>
+                        <span>为什么JAVA的垃圾回收机制无法避免内存泄漏</span>
+                        </a>
+                    </li>
+                    
+                </ul>
+
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+                
+            </div>  
+
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+        				
+                            
+        				
+                            
+                				<a href="/tags/#springMVC" title="springMVC" rel="2">
+                                    springMVC
+                                </a>
+                            
+        				
+                            
+        				
+                            
+                				<a href="/tags/#java" title="java" rel="2">
+                                    java
+                                </a>
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+        			</div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+                    
+                        <li><a href="http://wepiaofei.github.io/blog/">前端神盾局</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "hux";
+    var disqus_identifier = "/2016/02/21/docker-deploy-tomcat";
+    var disqus_url = "http://localhost:4000/2016/02/21/docker-deploy-tomcat/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                    
+                    <li>
+                        <a href="https://twitter.com/huxpro">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+
+                    <!-- add Weibo, Zhihu by Hux, add target = "_blank" to <a> by Hux -->
+                    
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/huxpro">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li>
+                        <a target="_blank" href="http://weibo.com/huxpro">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+
+
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/huxpro">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Bob Blog 2017
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=huxpro&repo=huxpro.github.io&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<!-- Currently, only navbar scroll-down effect at desktop still depends on this -->
+<script src="/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js "></script>
+
+<!-- Service Worker -->
+
+<script src="/js/snackbar.js "></script>
+<script src="/js/sw-registration.js "></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+     - https://github.com/jneen/rouge/wiki/list-of-supported-languages-and-lexers
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async('/js/jquery.tagcloud.js',function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-49627206-1';
+    var _gaDomain = 'huangxuan.me';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+<!-- Side Catalog -->
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

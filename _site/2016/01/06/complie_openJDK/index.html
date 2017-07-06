@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="这个是注释，想想写啥">
+    <meta name="keywords"  content="这个莫非是TAG,试试看">
+    <meta name="theme-color" content="#000000">
+    
+    <title>JVM学习——编译OpenJDK - Bob的博客 | Bob Blog</title>
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/pwa/manifest.json">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="http://localhost:4000/2016/01/06/complie_openJDK/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Bob Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/about/">About</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/portfolio/">Portfolio</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/tags/">Tags</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    var __HuxNav__ = {
+        close: function(){
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        },
+        open: function(){
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+
+    // Bind Event
+    $toggle.addEventListener('click', function(e){
+        if ($navbar.className.indexOf('in') > 0) {
+            __HuxNav__.close()
+        }else{
+            __HuxNav__.open()
+        }
+    })
+
+    /**
+     * Since Fastclick is used to delegate 'touchstart' globally
+     * to hack 300ms delay in iOS by performing a fake 'click',
+     * Using 'e.stopPropagation' to stop 'touchstart' event from 
+     * $toggle/$collapse will break global delegation.
+     * 
+     * Instead, we use a 'e.target' filter to prevent handler
+     * added to document close HuxNav.  
+     *
+     * Also, we use 'click' instead of 'touchstart' as compromise
+     */
+    document.addEventListener('click', function(e){
+        if(e.target == $toggle) return;
+        if(e.target.className == 'icon-bar') return;
+        __HuxNav__.close();
+    })
+</script>
+
+
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/img/home-bg.jpg" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        position: relative;
+        background-image: url('/img/home-bg.jpg')
+    }
+
+    
+</style>
+<header class="intro-header" >
+    <div class="header-mask"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                    </div>
+                    <h1>JVM学习——编译OpenJDK</h1>
+                    
+                    
+                    <h2 class="subheading"></h2>
+                    
+                    <span class="meta">Posted by Bob Blog on January 6, 2016</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+				<section id="table-of-contents" class="toc">
+  <header>
+    <h3><i class="fa fa-book"></i> Contents</h3>
+  </header>
+<div id="drawer">
+<ul id="markdown-toc">
+  <li><a href="#1编译环境介绍" id="markdown-toc-1编译环境介绍">1.编译环境介绍</a></li>
+  <li><a href="#2准备工作" id="markdown-toc-2准备工作">2.准备工作</a>    <ul>
+      <li><a href="#21下载openjdk" id="markdown-toc-21下载openjdk">2.1下载OpenJDK</a></li>
+      <li><a href="#22-下载依赖" id="markdown-toc-22-下载依赖">2.2 下载依赖</a></li>
+    </ul>
+  </li>
+  <li><a href="#yum-install--y--glibc" id="markdown-toc-yum-install--y--glibc">yum install -y  glibc*</a></li>
+  <li><a href="#yum-install-cups-devel" id="markdown-toc-yum-install-cups-devel">yum install cups-devel</a></li>
+  <li><a href="#yum-install--y--alsa" id="markdown-toc-yum-install--y--alsa">yum install -y  alsa*</a></li>
+  <li><a href="#yum-install--y-fontconfig" id="markdown-toc-yum-install--y-fontconfig">yum install -y fontconfig*</a></li>
+  <li><a href="#yum-install-zip" id="markdown-toc-yum-install-zip">yum install zip*</a></li>
+  <li><a href="#yum-install--libstdc-static" id="markdown-toc-yum-install--libstdc-static">yum install  libstdc++-static</a></li>
+  <li><a href="#wget-httpjaistdlsourceforgenetprojectfreetypefreetype22312freetype-2312targz" id="markdown-toc-wget-httpjaistdlsourceforgenetprojectfreetypefreetype22312freetype-2312targz">wget http://jaist.dl.sourceforge.net/project/freetype/freetype2/2.3.12/freetype-2.3.12.tar.gz</a></li>
+  <li><a href="#tar--zxvf-freetype-2312targz" id="markdown-toc-tar--zxvf-freetype-2312targz">tar -zxvf freetype-2.3.12.tar.gz</a></li>
+  <li><a href="#cd-freetype-2312" id="markdown-toc-cd-freetype-2312">cd freetype-2.3.12</a></li>
+  <li><a href="#configure--make--sudo--u-root-make-install" id="markdown-toc-configure--make--sudo--u-root-make-install">./configure &amp;&amp; make &amp;&amp; sudo -u root make install</a></li>
+  <li><a href="#wget-httpmirrorshusteducnapacheantbinariesapache-ant-196-bintargz" id="markdown-toc-wget-httpmirrorshusteducnapacheantbinariesapache-ant-196-bintargz">wget http://mirrors.hust.edu.cn/apache//ant/binaries/apache-ant-1.9.6-bin.tar.gz</a></li>
+  <li><a href="#vi-etcprofile" id="markdown-toc-vi-etcprofile">vi /etc/profile</a></li>
+  <li><a href="#source-etcprofile" id="markdown-toc-source-etcprofile">source /etc/profile</a></li>
+  <li><a href="#configure--make--make-install" id="markdown-toc-configure--make--make-install">./configure &amp;&amp; make &amp;&amp; make install</a>    <ul>
+      <li><a href="#23-屏蔽已经配置的java_home" id="markdown-toc-23-屏蔽已经配置的java_home">2.3 屏蔽已经配置的JAVA_HOME</a></li>
+    </ul>
+  </li>
+  <li><a href="#env--grep-java_home" id="markdown-toc-env--grep-java_home">env | grep JAVA_HOME</a>    <ul>
+      <li><a href="#24-配置引导jdk" id="markdown-toc-24-配置引导jdk">2.4 配置引导JDK</a></li>
+    </ul>
+  </li>
+  <li><a href="#chmod-x-jdk-6u45-linux-x64bin" id="markdown-toc-chmod-x-jdk-6u45-linux-x64bin">chmod +x jdk-6u45-linux-x64.bin</a></li>
+  <li><a href="#jdk-6u45-linux-x64bin" id="markdown-toc-jdk-6u45-linux-x64bin">./jdk-6u45-linux-x64.bin</a></li>
+  <li><a href="#source-etcprofile-1" id="markdown-toc-source-etcprofile-1">source /etc/profile</a>    <ul>
+      <li><a href="#25-配置环境变量alt_cacerts_file" id="markdown-toc-25-配置环境变量alt_cacerts_file">2.5 配置环境变量ALT_CACERTS_FILE</a></li>
+    </ul>
+  </li>
+  <li><a href="#cd-openjdk" id="markdown-toc-cd-openjdk">cd openjdk</a></li>
+  <li><a href="#find---name-cacerts" id="markdown-toc-find---name-cacerts">find ./ -name cacerts</a>    <ul>
+      <li><a href="#3开始编译" id="markdown-toc-3开始编译">3.开始编译</a></li>
+    </ul>
+  </li>
+  <li><a href="#rm--f-libjvmso" id="markdown-toc-rm--f-libjvmso">rm -f libjvm.so</a></li>
+  <li><a href="#ln--s--具体libjvmso文件完成路径---libjvmso" id="markdown-toc-ln--s--具体libjvmso文件完成路径---libjvmso">ln -s  具体libjvm.so文件完成路径   libjvm.so</a>    <ul>
+      <li><a href="#4跑一下自己编译的虚拟机" id="markdown-toc-4跑一下自己编译的虚拟机">4.跑一下自己编译的虚拟机</a></li>
+    </ul>
+  </li>
+</ul>
+
+  </div>
+</section>
+<!-- /#table-of-contents -->
+
+<p>       最近在学习《深入理解java虚拟机 第二版》这本书。书中第一部分建议大家自己编译OpenJDK。抱着学习态度也来编译个玩一玩。下面进入正题。</p>
+
+<h2 id="1编译环境介绍">1.编译环境介绍</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>名称</th>
+      <th style="text-align: center">版本</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>操作系统</td>
+      <td style="text-align: center">CentOS Linux release 7.1.1503 (Core)</td>
+    </tr>
+    <tr>
+      <td>Linux内核版本</td>
+      <td style="text-align: center">3.10.0-229.el7.x86_64</td>
+    </tr>
+    <tr>
+      <td>gcc版本</td>
+      <td style="text-align: center">4.8.2 20140120 (Red Hat 4.8.2-16) (GCC)</td>
+    </tr>
+    <tr>
+      <td>openJdk版本</td>
+      <td style="text-align: center">openjdk-7u40</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="2准备工作">2.准备工作</h2>
+<h3 id="21下载openjdk">2.1下载OpenJDK</h3>
+<p>打开网站https://jdk7.java.net/source.html<br />
+在这里复制链接直接在linux中wget。<br />
+wget http://www.java.net/download/openjdk/jdk7u40/promoted/b43/openjdk-7u40-fcs-src-b43-26_aug_2013.zip</p>
+
+<h3 id="22-下载依赖">2.2 下载依赖</h3>
+<p>具体的依赖要求说明都在README-builds.html 中了，这里直接来命令：</p>
+<h1 id="yum-install--y--glibc">yum install -y  glibc*</h1>
+<h1 id="yum-install-cups-devel">yum install cups-devel</h1>
+<h1 id="yum-install--y--alsa">yum install -y  alsa*</h1>
+<h1 id="yum-install--y-fontconfig">yum install -y fontconfig*</h1>
+<h1 id="yum-install-zip">yum install zip*</h1>
+<h1 id="yum-install--libstdc-static">yum install  libstdc++-static</h1>
+
+<p>解压压缩包,将得到openjdk文件夹<br />
+unzip  openjdk-7u40-fcs-src-b43-26_aug_2013.zip<br />
+cd openjdk<br />
+这里有一份构建说明文档README-builds.html ，建议在windows下面看。后面步骤全靠它了。</p>
+
+<p><strong>安装freetype</strong><br />
+下载源码</p>
+<h1 id="wget-httpjaistdlsourceforgenetprojectfreetypefreetype22312freetype-2312targz">wget http://jaist.dl.sourceforge.net/project/freetype/freetype2/2.3.12/freetype-2.3.12.tar.gz</h1>
+<p>解压源码,编译安装</p>
+<h1 id="tar--zxvf-freetype-2312targz">tar -zxvf freetype-2.3.12.tar.gz</h1>
+<h1 id="cd-freetype-2312">cd freetype-2.3.12</h1>
+<h1 id="configure--make--sudo--u-root-make-install">./configure &amp;&amp; make &amp;&amp; sudo -u root make install</h1>
+
+<p><strong>下载并安装ANT</strong><br />
+配置ANT环境变量</p>
+<h1 id="wget-httpmirrorshusteducnapacheantbinariesapache-ant-196-bintargz">wget http://mirrors.hust.edu.cn/apache//ant/binaries/apache-ant-1.9.6-bin.tar.gz</h1>
+<h1 id="vi-etcprofile">vi /etc/profile</h1>
+<p>加入如下内容：<br />
+export ANT_HOME=/opt/openJDKroom/apache-ant-1.9.6<br />
+export PATH=$PATH:$ANT_HOME/bin</p>
+<h1 id="source-etcprofile">source /etc/profile</h1>
+
+<p><strong>下载并安装CUPS</strong><br />
+wget http://www.cups.org/software/2.1.2/cups-2.1.2-source.tar.bz2<br />
+tar  -jxvf  cups-2.1.2-source.tar.bz2</p>
+<h1 id="configure--make--make-install">./configure &amp;&amp; make &amp;&amp; make install</h1>
+
+<h3 id="23-屏蔽已经配置的java_home">2.3 屏蔽已经配置的JAVA_HOME</h3>
+<p>下面贴出README-builds.html中原文：<br />
+    Note that some Linux systems have a habit of pre-populating your environment variables for you,   for example JAVA_HOME might get pre-defined for you to refer to the JDK installed on your Linux   system. You will need to unset JAVA_HOME. It’s a good idea to run env and verify the   environment variables you are getting from the default system settings make sense for building   the OpenJDK.</p>
+
+<p>先检查一下本地是否配置有JAVA_HOME</p>
+<h1 id="env--grep-java_home">env | grep JAVA_HOME</h1>
+<p>如果有则屏蔽掉。</p>
+
+<h3 id="24-配置引导jdk">2.4 配置引导JDK</h3>
+<p>下面贴出README-builds.html中原文：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code> Bootstrap JDK  
+ All OpenJDK builds require access to the previously released JDK 6, this is often called a   bootstrap JDK. The JDK 6 binaries can be downloaded from Sun's JDK 6 download site. For build   performance reasons is very important that this bootstrap JDK be made available on the local   disk of the machine doing the build. You should always set ALT_BOOTDIR to point to the location   of the bootstrap JDK installation, this is the directory pathname that contains a bin, lib, and   include It's also a good idea to also place its bin directory in the PATH environment variable,   although it's not required.  
+</code></pre>
+</div>
+
+<p><strong>下载安装Bootstrap</strong> <br />
+这里下载JDK 6 Linux 64位jdk-6u45-linux-x64.bin</p>
+<h1 id="chmod-x-jdk-6u45-linux-x64bin">chmod +x jdk-6u45-linux-x64.bin</h1>
+<h1 id="jdk-6u45-linux-x64bin">./jdk-6u45-linux-x64.bin</h1>
+
+<p>安装完毕后，当前目录下会生成jdk1.6.0_45目录，配置ALT_BOOTDIR环境变量为该目录路径。在/etc/profile中  增加如下配置（以实际为准）：<br />
+export ALT_BOOTDIR=/opt/openJDKroom/jdk1.6.0_45</p>
+<h1 id="source-etcprofile-1">source /etc/profile</h1>
+
+<h3 id="25-配置环境变量alt_cacerts_file">2.5 配置环境变量ALT_CACERTS_FILE</h3>
+<div class="highlighter-rouge"><pre class="highlight"><code> Certificate Authority File (cacert)  
+ See http://en.wikipedia.org/wiki/Certificate_Authority for a better understanding of the   Certificate Authority (CA). A certificates file named "cacerts" represents a system-wide   keystore with CA certificates. In JDK and JRE binary bundles, the "cacerts" file contains root   CA certificates from several public CAs (e.g., VeriSign, Thawte, and Baltimore). The source   contain a cacerts file without CA root certificates. Formal JDK builders will need to secure     permission from each public CA and include the certificates into their own custom cacerts file.   Failure to provide a populated cacerts file will result in verification errors of a certificate   chain during runtime. The variable ALT_CACERTS_FILE can be used to override the default   location of the cacerts file that will get placed in your build. By default an empty cacerts   file is provided and that should be fine for most JDK developers.  
+</code></pre>
+</div>
+
+<p>进入openjdk目录中,查找名称为cacerts的文件：</p>
+<h1 id="cd-openjdk">cd openjdk</h1>
+<h1 id="find---name-cacerts">find ./ -name cacerts</h1>
+<p>显示结果如下：<br />
+[root@localhost openjdk]# find ./ -name cacerts<br />
+./jdk/src/share/lib/security/cacerts<br />
+打开/etc/profile，将以下内容加入（具体路径根据实际情况）：<br />
+export ALT_CACERTS_FILE=/opt/openJDKroom/openjdk/jdk/src/share/lib/security/cacerts</p>
+
+<h2 id="3开始编译">3.开始编译</h2>
+<p>终于要开始编译了！&gt;_&lt;  <br />
+README-builds.html中用的是gmake，实际和make是一样的，下面是解释：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>gmake是GNU Make的缩写。  
+Linux系统环境下的make就是GNU Make，之所以有gmake，是因为在别的平台上，make一般被占用，GNU make只  好叫gmake了。
+</code></pre>
+</div>
+
+<p>进入到openjdk根目录下，进行编译 <br />
+cd /opt/openJDKroom/openjdk <br />
+gmake sanity <br />
+gmake <br />
+结果执行报错：</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">gmake</span><span class="o">[</span><span class="mi">6</span><span class="o">]:</span> <span class="n">Entering</span> <span class="n">directory</span> <span class="err">`</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">openJDKroom</span><span class="o">/</span><span class="n">openjdk</span><span class="o">/</span><span class="n">build</span><span class="o">/</span><span class="n">linux</span><span class="o">-</span><span class="n">amd64</span><span class="o">/</span><span class="n">hotspot</span><span class="o">/</span><span class="n">outputdir</span><span class="o">/</span><span class="n">linux_amd64_compiler2</span><span class="o">/</span><span class="n">product</span><span class="err">'</span>  
+<span class="n">gmake</span><span class="o">[</span><span class="mi">6</span><span class="o">]:</span> <span class="nl">stat:</span> <span class="n">libjvm</span><span class="o">.</span><span class="na">so</span><span class="o">:</span> <span class="n">Too</span> <span class="n">many</span> <span class="n">levels</span> <span class="n">of</span> <span class="n">symbolic</span> <span class="n">links</span>
+ </code></pre></figure>
+
+<p>进入到/opt/openJDKroom/openjdk/build/linux-amd64/hotspot/outputdir/linux_amd64_compiler2/product目录下有下面链接：<br />
+libjvm.so-&gt;libjvm.so<br />
+libjvm.so.1-&gt;libjvm.so<br />
+明显是由于libjvm.so-&gt;libjvm.so引起的（可以自己做一个实验,不要创建文件，直接执行ln -s file file ,然后cat file就会报这个错）<br />
+知道了问题所在，就要给它引用一个真实的so文件。通过find /opt -name libjvm.so命令查找存在该文件的地方，将libjvm.so-&gt;libjvm.so指向真实文件位置。即：</p>
+<h1 id="rm--f-libjvmso">rm -f libjvm.so</h1>
+<h1 id="ln--s--具体libjvmso文件完成路径---libjvmso">ln -s  具体libjvm.so文件完成路径   libjvm.so</h1>
+
+<p>再次执行gmake。
+结果报以下错：</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nl">Error:</span> <span class="n">time</span> <span class="n">is</span> <span class="n">more</span> <span class="n">than</span> <span class="mi">10</span> <span class="n">years</span> <span class="n">from</span> <span class="nl">present:</span> <span class="mi">1136059200000</span>  
+<span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">RuntimeException</span><span class="o">:</span> <span class="n">time</span> <span class="n">is</span> <span class="n">more</span> <span class="n">than</span> <span class="mi">10</span> <span class="n">years</span> <span class="n">from</span> <span class="nl">present:</span> <span class="mi">1136059200000</span>  
+      <span class="n">at</span>   <span class="n">build</span><span class="o">.</span><span class="na">tools</span><span class="o">.</span><span class="na">generatecurrencydata</span><span class="o">.</span><span class="na">GenerateCurrencyData</span><span class="o">.</span><span class="na">makeSpecialCaseEntry</span><span class="o">(</span><span class="n">GenerateCurrencyData</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">285</span><span class="o">)</span>  
+      <span class="n">at</span>   <span class="n">build</span><span class="o">.</span><span class="na">tools</span><span class="o">.</span><span class="na">generatecurrencydata</span><span class="o">.</span><span class="na">GenerateCurrencyData</span><span class="o">.</span><span class="na">buildMainAndSpecialCaseTables</span><span class="o">(</span><span class="n">GenerateCurrencyData</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">225</span><span class="o">)</span>  
+      <span class="n">at</span>   <span class="n">build</span><span class="o">.</span><span class="na">tools</span><span class="o">.</span><span class="na">generatecurrencydata</span><span class="o">.</span><span class="na">GenerateCurrencyData</span><span class="o">.</span><span class="na">main</span><span class="o">(</span><span class="n">GenerateCurrencyData</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">154</span><span class="o">)</span>  </code></pre></figure>
+
+<p>经过查询发现这是一个BUG…..<br />
+下面介绍了对应补丁的出处<br />
+https://bugs.gentoo.org/show_bug.cgi?id=534118#c3<br />
+下面有关于问题原因探讨描述<br />
+https://bugs.gentoo.org/show_bug.cgi?id=534118#c7</p>
+
+<p>如果不想仔细看可以直接访问补丁网址：<br />
+http://hg.openjdk.java.net/jdk7u/jdk7u/jdk/rev/74a70385c21d#l11.1<br />
+将其中的文件内容拷贝下来覆盖到对应文件中。</p>
+
+<p>继续gmake</p>
+
+<p>终于编译成功了！！！<br />
+出现下面提示就说明编译完成了<br />
+#– Build times ———-<br />
+Target all_product_build<br />
+Start 2016-01-10 11:18:43<br />
+End   2016-01-10 11:52:15<br />
+00:00:15 corba<br />
+00:00:21 hotspot<br />
+00:00:11 jaxp<br />
+00:00:20 jaxws<br />
+00:32:15 jdk<br />
+00:00:10 langtools<br />
+00:33:32 TOTAL<br />
+-————————</p>
+
+<h2 id="4跑一下自己编译的虚拟机">4.跑一下自己编译的虚拟机</h2>
+<p>进入目录<br />
+/opt/openJDKroom/openjdk/build/linux-amd64/hotspot/outputdir/linux_amd64_compiler2<br />
+下面有好几种优化级别的编译版本：<br />
+drwxr-xr-x. 2 root root  4096 Jan  9 16:53 debug<br />
+drwxr-xr-x. 2 root root  4096 Jan  9 16:53 fastdebug<br />
+drwxr-xr-x. 7 root root  4096 Jan  9 16:56 generated<br />
+drwxr-xr-x. 2 root root  4096 Jan  9 16:53 jvmg<br />
+drwxr-xr-x. 2 root root  4096 Jan  9 16:53 optimized<br />
+drwxr-xr-x. 3 root root 20480 Jan 10 11:19 product<br />
+drwxr-xr-x. 2 root root  4096 Jan  9 16:53 profiled<br />
+-rw-r–r–. 1 root root  1518 Jan  9 16:53 shared_dirs.lst</p>
+
+<p>进入到product目录中。<br />
+这里要在env.sh配置下环境变量，指向共享库</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span>.:<span class="k">${</span><span class="nv">JAVA_HOME</span><span class="k">}</span>/jre/lib/amd64/native_threads:<span class="k">${</span><span class="nv">JAVA_HOME</span><span class="k">}</span>/jre/lib/amd64:/opt/openJDKroom/openjdk/build/linux-amd64/hotspot/outputdir/linux_amd64_compiler2/product  
+<span class="nb">export </span>LD_LIBRARY_PATH</code></pre></figure>
+
+<p>下面贴出我这个文件的完整内容：</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="c"># Generated by /opt/openJDKroom/openjdk/hotspot/make/linux/makefiles/buildtree.make  
+</span>
+<span class="c">#: ${JAVA_HOME:=/opt/openJDKroom/jdk1.6.0_45}  
+</span>
+<span class="nv">JAVA_HOME</span><span class="o">=</span>/opt/openJDKroom/openjdk/build/linux-amd64/j2sdk-image  
+<span class="nv">CLASSPATH</span><span class="o">=</span>.:<span class="k">${</span><span class="nv">JAVA_HOME</span><span class="k">}</span>/jre/lib/rt.jar:<span class="k">${</span><span class="nv">JAVA_HOME</span><span class="k">}</span>/jre/lib/i18n.jar  
+<span class="nv">HOTSPOT_BUILD_USER</span><span class="o">=</span><span class="s2">"root in hotspot"</span>  
+<span class="nb">export </span>JAVA_HOME CLASSPATH HOTSPOT_BUILD_USER
+
+<span class="c"># add  
+</span>
+
+<span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span>.:<span class="k">${</span><span class="nv">JAVA_HOME</span><span class="k">}</span>/jre/lib/amd64/native_threads:<span class="k">${</span><span class="nv">JAVA_HOME</span><span class="k">}</span>/jre/lib/amd64:/opt/openJDKroom/openjdk/build/linux-amd64/hotspot/outputdir/linux_amd64_compiler2/product
+<span class="nb">export </span>LD_LIBRARY_PATH  </code></pre></figure>
+
+<p>下面执行：</p>
+
+<p># source ./env.sh</p>
+
+<p># ./gamma -version</p>
+
+<p>Using java runtime at: /opt/openJDKroom/openjdk/build/linux-amd64/j2sdk-image/jre<br />
+openjdk version “1.7.0-internal”<br />
+OpenJDK Runtime Environment (build 1.7.0-internal-root_2016_01_10_00_16-b00)<br />
+OpenJDK 64-Bit Server VM (build 24.0-b56, mixed mode)</p>
+
+<p>运行成功！！</p>
+
+<p>希望对想要编译openJDK的朋友有个参考。如果有疑问请提出，大家一起学习探讨。&gt;_&lt;</p>
+
+
+                <hr style="visibility: hidden;">
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2015/12/25/nested_not_find_data/" data-toggle="tooltip" data-placement="top" title="ElasticSearch学习问题记录——nested查询不到数据">
+                        Previous<br>
+                        <span>ElasticSearch学习问题记录——nested查询不到数据</span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2016/01/10/springmvc/" data-toggle="tooltip" data-placement="top" title="零配置文件搭建SpringMVC实践纪录">
+                        Next<br>
+                        <span>零配置文件搭建SpringMVC实践纪录</span>
+                        </a>
+                    </li>
+                    
+                </ul>
+
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+                
+            </div>  
+
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+        				
+                            
+        				
+                            
+                				<a href="/tags/#springMVC" title="springMVC" rel="2">
+                                    springMVC
+                                </a>
+                            
+        				
+                            
+        				
+                            
+                				<a href="/tags/#java" title="java" rel="2">
+                                    java
+                                </a>
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+        			</div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+                    
+                        <li><a href="http://wepiaofei.github.io/blog/">前端神盾局</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "hux";
+    var disqus_identifier = "/2016/01/06/complie_openJDK";
+    var disqus_url = "http://localhost:4000/2016/01/06/complie_openJDK/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                    
+                    <li>
+                        <a href="https://twitter.com/huxpro">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+
+                    <!-- add Weibo, Zhihu by Hux, add target = "_blank" to <a> by Hux -->
+                    
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/huxpro">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li>
+                        <a target="_blank" href="http://weibo.com/huxpro">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+
+
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/huxpro">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Bob Blog 2017
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=huxpro&repo=huxpro.github.io&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<!-- Currently, only navbar scroll-down effect at desktop still depends on this -->
+<script src="/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js "></script>
+
+<!-- Service Worker -->
+
+<script src="/js/snackbar.js "></script>
+<script src="/js/sw-registration.js "></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+     - https://github.com/jneen/rouge/wiki/list-of-supported-languages-and-lexers
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async('/js/jquery.tagcloud.js',function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-49627206-1';
+    var _gaDomain = 'huangxuan.me';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+<!-- Side Catalog -->
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
