@@ -3,20 +3,20 @@
   <channel>
     <title>Bob Blog</title>
     <description>这个是注释，想想写啥</description>
-    <link>http://localhost:4000/</link>
-    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 08 Jul 2017 09:29:04 +0800</pubDate>
-    <lastBuildDate>Sat, 08 Jul 2017 09:29:04 +0800</lastBuildDate>
+    <link>https://bob1024.com/</link>
+    <atom:link href="https://bob1024.com/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Sat, 15 Jul 2017 23:33:47 +0800</pubDate>
+    <lastBuildDate>Sat, 15 Jul 2017 23:33:47 +0800</lastBuildDate>
     <generator>Jekyll v3.5.0</generator>
     
       <item>
         <title>Red Black Tree</title>
-        <description>&lt;h2 id=&quot;红黑树&quot;&gt;红黑树&lt;/h2&gt;
+        <description>&lt;h1 id=&quot;红黑树&quot;&gt;红黑树&lt;/h1&gt;
 
 </description>
         <pubDate>Thu, 06 Jul 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2017/07/06/red-black-tree/</link>
-        <guid isPermaLink="true">http://localhost:4000/2017/07/06/red-black-tree/</guid>
+        <link>https://bob1024.com/2017/07/06/red-black-tree/</link>
+        <guid isPermaLink="true">https://bob1024.com/2017/07/06/red-black-tree/</guid>
         
         
       </item>
@@ -246,8 +246,8 @@
 &lt;p&gt;《设计模式－可复用面向对象软件的基础》&lt;/p&gt;
 </description>
         <pubDate>Thu, 23 Jun 2016 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2016/06/23/design-pattern-abstract-factory/</link>
-        <guid isPermaLink="true">http://localhost:4000/2016/06/23/design-pattern-abstract-factory/</guid>
+        <link>https://bob1024.com/2016/06/23/design-pattern-abstract-factory/</link>
+        <guid isPermaLink="true">https://bob1024.com/2016/06/23/design-pattern-abstract-factory/</guid>
         
         
       </item>
@@ -262,8 +262,8 @@
 
 </description>
         <pubDate>Fri, 17 Jun 2016 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2016/06/17/thinking-about-blog-article/</link>
-        <guid isPermaLink="true">http://localhost:4000/2016/06/17/thinking-about-blog-article/</guid>
+        <link>https://bob1024.com/2016/06/17/thinking-about-blog-article/</link>
+        <guid isPermaLink="true">https://bob1024.com/2016/06/17/thinking-about-blog-article/</guid>
         
         
       </item>
@@ -562,8 +562,8 @@ https://github.com/mingbozhang/algorithm&lt;/p&gt;
 《算法设计与分析基础（第3版）》&lt;/p&gt;
 </description>
         <pubDate>Tue, 07 Jun 2016 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2016/06/07/merge-sort/</link>
-        <guid isPermaLink="true">http://localhost:4000/2016/06/07/merge-sort/</guid>
+        <link>https://bob1024.com/2016/06/07/merge-sort/</link>
+        <guid isPermaLink="true">https://bob1024.com/2016/06/07/merge-sort/</guid>
         
         
       </item>
@@ -603,8 +603,8 @@ https://github.com/mingbozhang/algorithm&lt;/p&gt;
 
 </description>
         <pubDate>Sat, 04 Jun 2016 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2016/06/04/all-in-one-jar/</link>
-        <guid isPermaLink="true">http://localhost:4000/2016/06/04/all-in-one-jar/</guid>
+        <link>https://bob1024.com/2016/06/04/all-in-one-jar/</link>
+        <guid isPermaLink="true">https://bob1024.com/2016/06/04/all-in-one-jar/</guid>
         
         <category>maven</category>
         
@@ -886,8 +886,8 @@ http://blog.csdn.net/lxb15959168136/article/details/50225057&lt;/p&gt;
 &lt;p&gt;https://github.com/mingbozhang/leandubbo&lt;/p&gt;
 </description>
         <pubDate>Fri, 03 Jun 2016 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2016/06/03/dubbo-zookeeper-springmvc/</link>
-        <guid isPermaLink="true">http://localhost:4000/2016/06/03/dubbo-zookeeper-springmvc/</guid>
+        <link>https://bob1024.com/2016/06/03/dubbo-zookeeper-springmvc/</link>
+        <guid isPermaLink="true">https://bob1024.com/2016/06/03/dubbo-zookeeper-springmvc/</guid>
         
         <category>dubbo</category>
         
@@ -909,8 +909,8 @@ http://blog.csdn.net/lxb15959168136/article/details/50225057&lt;/p&gt;
 &lt;p&gt;还有很多要写到，就到这了，要上班了。&lt;/p&gt;
 </description>
         <pubDate>Mon, 30 May 2016 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2016/05/30/mymind/</link>
-        <guid isPermaLink="true">http://localhost:4000/2016/05/30/mymind/</guid>
+        <link>https://bob1024.com/2016/05/30/mymind/</link>
+        <guid isPermaLink="true">https://bob1024.com/2016/05/30/mymind/</guid>
         
         
       </item>
@@ -1065,8 +1065,8 @@ http://blog.csdn.net/lxb15959168136/article/details/50225057&lt;/p&gt;
 &lt;p&gt;所有需要new一个对象的地方，同时要求有足够的灵活性。&lt;/p&gt;
 </description>
         <pubDate>Mon, 28 Mar 2016 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2016/03/28/design_pattern_factory_method/</link>
-        <guid isPermaLink="true">http://localhost:4000/2016/03/28/design_pattern_factory_method/</guid>
+        <link>https://bob1024.com/2016/03/28/design_pattern_factory_method/</link>
+        <guid isPermaLink="true">https://bob1024.com/2016/03/28/design_pattern_factory_method/</guid>
         
         
       </item>
@@ -1093,8 +1093,8 @@ http://blog.csdn.net/lxb15959168136/article/details/50225057&lt;/p&gt;
 &lt;p&gt;https://github.com/mingbozhang/designpattern&lt;/p&gt;
 </description>
         <pubDate>Mon, 28 Mar 2016 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2016/03/28/design_pattern_assumpsit/</link>
-        <guid isPermaLink="true">http://localhost:4000/2016/03/28/design_pattern_assumpsit/</guid>
+        <link>https://bob1024.com/2016/03/28/design_pattern_assumpsit/</link>
+        <guid isPermaLink="true">https://bob1024.com/2016/03/28/design_pattern_assumpsit/</guid>
         
         
       </item>
@@ -1302,8 +1302,8 @@ http://blog.csdn.net/lxb15959168136/article/details/50225057&lt;/p&gt;
 &lt;p&gt;本篇仅对java堆内存泄漏进行了简单说明，下一篇将讨论其他相关的内存泄漏。有不对的地方欢迎拍砖&amp;gt;_&amp;lt;&lt;/p&gt;
 </description>
         <pubDate>Mon, 07 Mar 2016 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2016/03/07/jvm-memory-leak/</link>
-        <guid isPermaLink="true">http://localhost:4000/2016/03/07/jvm-memory-leak/</guid>
+        <link>https://bob1024.com/2016/03/07/jvm-memory-leak/</link>
+        <guid isPermaLink="true">https://bob1024.com/2016/03/07/jvm-memory-leak/</guid>
         
         <category>java</category>
         
