@@ -13,12 +13,12 @@ tags: [spring,springMVC]
  
 本篇记录使用纯java代码搭建SpringMVC工程的实践，只是一个demo。再开始之前先热身下，给出SpringMVC调用流程图，讲解的是一个http request请求到达SpringMVC框架后的过程，如下：
 <figure>
-<img src="../img/learn_spring/dispacherrequest.png">
+<img src="/img/learn_spring/dispacherrequest.png">
 </figure>
 从servlet 3.0开始，实现javax.servlet.ServletContainerInitializer接口的类将在容器启动的时候执行onStartup方法。SpringMVC的”零配置”就是基于这个特性。所以对于servlet 3.0 以下的容器还是老老实实在web.xml中进行配置。
 下面让我们一步步搭建SpringMVC，先上图：
 <figure>
-<img src="../img/learn_spring/servlet_java_init.png">
+<img src="/img/learn_spring/servlet_java_init.png">
 </figure>
 上图中展示了启动关键类的初始化过程，首先容器启动，初始化并执行实现ServletContainerInitalzer接口的Spring类，该类初始化实现WebApplicationInitializer接口的PlayWebAppInitializer类（由于这里继承了AbstractAnnotationConfigDispatcherServletInitializer抽象类）。
 

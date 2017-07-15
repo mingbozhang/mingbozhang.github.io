@@ -57,7 +57,7 @@ public class Bread {
 小强：好，一言为定。   
 也许最近流行开餐馆，小C的朋友小梅开了家饺子馆，小C用同样的方法让小梅加盟了。 而且为了专心运营，连自己的烤面包工作都外包给小红的面包店了。     
 经过酝酿，新的设计出现了：
-<img src="../img/design_pattern/factory_method/factory_mothod_1.png">
+<img src="/img/design_pattern/factory_method/factory_mothod_1.png">
 下面是代码摘要：   
 
 {% highlight java %}

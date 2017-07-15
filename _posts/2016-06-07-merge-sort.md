@@ -9,7 +9,7 @@ excerpt: "java归并排序，单线程vs多线程"
 
 ## 一、什么是归并排序
 归并排序又称合并排序，它是成功应用分治技术的一个完美例子。对于一个需要排序的数组A[0..n-1],归并排序把它一分为二：A[0..n/2-1]和A[n/2..n-1],并对每个子数组递归排序，然后把这两个排好序的子数组合并为一个有序数组。下面是归并排序的例子图解：
-<img src="../img/algorithm/mergesort/mergesort.png">
+<img src="/img/algorithm/mergesort/mergesort.png">
  
 ## 二、单线程实现归并排序  
 {% highlight java %}

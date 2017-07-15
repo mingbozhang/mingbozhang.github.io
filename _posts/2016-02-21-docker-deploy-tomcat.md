@@ -113,7 +113,7 @@ docker run  -p 18080:8080 -v /opt/webapps/:/opt/apache-tomcat-7.0.52/webapps/ -n
 
 验证tomcat运行情况   
 通过局域网中浏览器访问: http://192.168.0.106:18080/index.html显示成功！   
- <img src="../img/docker-deploy-tomcat/helloworld.png">
+ <img src="/img/docker-deploy-tomcat/helloworld.png">
  
 ## 八、移除容器
 Ctrl+C退出后，发现再次运行上面的命令显示如下：
