@@ -5,8 +5,8 @@
     <description>这个是注释，想想写啥</description>
     <link>https://bob1024.com/</link>
     <atom:link href="https://bob1024.com/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 16 Jul 2017 00:15:46 +0800</pubDate>
-    <lastBuildDate>Sun, 16 Jul 2017 00:15:46 +0800</lastBuildDate>
+    <pubDate>Sun, 16 Jul 2017 00:22:18 +0800</pubDate>
+    <lastBuildDate>Sun, 16 Jul 2017 00:22:18 +0800</lastBuildDate>
     <generator>Jekyll v3.5.0</generator>
     
       <item>
@@ -187,7 +187,7 @@
 &lt;p&gt;       让我们将时间回退到1年前的喵星。改变历史，解决1年后的困境。我门重新设计一下：&lt;/p&gt;
 
 &lt;p&gt;经过酝酿，新的设计出现了：
-&lt;img src=&quot;/img/design_pattern/abstract_factory/abstract_factory.png&quot; /&gt;
+&lt;img src=&quot;/img/in-post/design_pattern/abstract_factory/abstract_factory.png&quot; /&gt;
 抽象工厂模式常见的实现方式是使用工厂方法模式实现，也可以使用原型模式实现。本文中的实现方式为前者。关于原型模式的实现方式，下一篇写完原型模式后会补充上来。&lt;/p&gt;
 
 &lt;p&gt;下面只给出Airport部分代码，完整代码在https://github.com/mingbozhang/designpattern&lt;/p&gt;
@@ -292,7 +292,7 @@
 
 &lt;h2 id=&quot;一什么是归并排序&quot;&gt;一、什么是归并排序&lt;/h2&gt;
 &lt;p&gt;归并排序又称合并排序，它是成功应用分治技术的一个完美例子。对于一个需要排序的数组A[0..n-1],归并排序把它一分为二：A[0..n/2-1]和A[n/2..n-1],并对每个子数组递归排序，然后把这两个排好序的子数组合并为一个有序数组。下面是归并排序的例子图解：
-&lt;img src=&quot;/img/algorithm/mergesort/mergesort.png&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;/img/in-post/algorithm/mergesort/mergesort.png&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;二单线程实现归并排序&quot;&gt;二、单线程实现归并排序&lt;/h2&gt;
 
@@ -986,7 +986,7 @@ http://blog.csdn.net/lxb15959168136/article/details/50225057&lt;/p&gt;
 小强：好，一言为定。 &lt;br /&gt;
 也许最近流行开餐馆，小C的朋友小梅开了家饺子馆，小C用同样的方法让小梅加盟了。 而且为了专心运营，连自己的烤面包工作都外包给小红的面包店了。   &lt;br /&gt;
 经过酝酿，新的设计出现了：
-&lt;img src=&quot;/img/design_pattern/factory_method/factory_mothod_1.png&quot; /&gt;
+&lt;img src=&quot;/img/in-post/design_pattern/factory_method/factory_mothod_1.png&quot; /&gt;
 下面是代码摘要：&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;World&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
@@ -1140,7 +1140,7 @@ http://blog.csdn.net/lxb15959168136/article/details/50225057&lt;/p&gt;
 但是主流的java虚拟机里面没有选用引用计数器算法来管理内存，其中最主要的原因是它很难解决对象之间相互循环引用的问题。&lt;/p&gt;
 &lt;h3 id=&quot;2可达性分析算法&quot;&gt;2.可达性分析算法&lt;/h3&gt;
 &lt;p&gt;这个算法的基本思想就是通过一系列的称为“GC Roots”的对象作为起始点，从这些节点开始向下搜索，搜索所走过的路径称为引用链，当一个对象到GC Roots没有任何引用链相连接时，则证明此对象是不可用的。如下图所示，对象object5、object6、object7虽然互相有关联，但是它们到GC Roots是不可达的，所以它们将会被判定为是可回收对象。 &lt;br /&gt;
- &lt;img src=&quot;/img/jvm-memory-leak/root_pic.png&quot; /&gt;&lt;/p&gt;
+ &lt;img src=&quot;/img/in-post/jvm-memory-leak/root_pic.png&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;三导致内存泄漏的情况及代码&quot;&gt;三、导致内存泄漏的情况及代码&lt;/h2&gt;
 &lt;p&gt;java 堆内存泄漏,是由于java对象不停创建但是没有释放对象引用导致的。
@@ -1294,9 +1294,9 @@ http://blog.csdn.net/lxb15959168136/article/details/50225057&lt;/p&gt;
 
 &lt;p&gt;把栈操作的设为1号，没有栈操作的设置为2号，分别生成Heap Dump文件，我们看一下类实例的截图：&lt;/p&gt;
 &lt;h4 id=&quot;首先是1号截图&quot;&gt;首先是1号截图&lt;/h4&gt;
-&lt;p&gt;&lt;img src=&quot;/img/jvm-memory-leak/num_one_pic.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/in-post/jvm-memory-leak/num_one_pic.png&quot; /&gt;&lt;/p&gt;
 &lt;h4 id=&quot;2号截图&quot;&gt;2号截图&lt;/h4&gt;
-&lt;p&gt;&lt;img src=&quot;/img/jvm-memory-leak/num_two_pic.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/in-post/jvm-memory-leak/num_two_pic.png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;显然预期的栈操作出栈后并没有释放掉Integer对象的引用（实际上看代码也知道），所以不会被GC回收。真正的实际情况这种引用将会很隐蔽，但是根本总是由于对象仍然被引用。&lt;/p&gt;
 

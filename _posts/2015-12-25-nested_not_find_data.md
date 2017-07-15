@@ -60,9 +60,9 @@ excerpt: "A ton of text to test readability."
 } 
 {% endhighlight %} 
 数据结构存在嵌套关系，学校属性中包含嵌套属性studentList，存放学校的学生。下面是demoindex中的所有数据：  
-<img src="/img/nested_not_find_data/first.png">
+<img src="/img/in-post/nested_not_find_data/first.png">
 使用head进行如下查询，结果发现结果查不出来。这里我勾选了【显示查询语句】。
-<img src="/img/nested_not_find_data/second.png">
+<img src="/img/in-post/nested_not_find_data/second.png">
 找不到答案只好求助于《Elasticsearch服务器开发》。经过查阅得知nested类型的嵌套查询需要使用专用搜索格式。先贴出原书描述：
 {% highlight json %}  
 {
@@ -119,4 +119,4 @@ curl -XGET 'localhost:9200/shop/cloth/_search?pretty=true' -d '{
 
   
 根据书中介绍将使用head的复合查询方式进行如下查询。成功，数据出现了！
-<img src="/img/nested_not_find_data/third.jpg">
+<img src="/img/in-post/nested_not_find_data/third.jpg">
