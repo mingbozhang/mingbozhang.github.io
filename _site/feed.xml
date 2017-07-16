@@ -5,31 +5,31 @@
     <description>这个是注释，想想写啥</description>
     <link>https://bob1024.com/</link>
     <atom:link href="https://bob1024.com/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 16 Jul 2017 18:22:23 +0800</pubDate>
-    <lastBuildDate>Sun, 16 Jul 2017 18:22:23 +0800</lastBuildDate>
+    <pubDate>Sun, 16 Jul 2017 18:45:57 +0800</pubDate>
+    <lastBuildDate>Sun, 16 Jul 2017 18:45:57 +0800</lastBuildDate>
     <generator>Jekyll v3.5.0</generator>
     
       <item>
         <title>红黑树</title>
-        <description>&lt;h2 id=&quot;红黑树&quot;&gt;红黑树&lt;/h2&gt;
+        <description>&lt;h1 id=&quot;红黑树&quot;&gt;红黑树&lt;/h1&gt;
 
-&lt;p&gt;###1.红黑树的定义
-红黑树是平衡二叉查找树（Balance Search Tree）的一种，它拥有良好的最坏运行时间，可以保证查找、删除、添加节点操作在O(log n)时间内，其中n表示节点数。&lt;/p&gt;
+&lt;h4 id=&quot;1红黑树的定义&quot;&gt;1.红黑树的定义&lt;/h4&gt;
+&lt;p&gt;红黑树是平衡二叉查找树（Balance Search Tree）的一种，它拥有良好的最坏运行时间，可以保证查找、删除、添加节点操作在O(log n)时间内，其中n表示节点数。&lt;/p&gt;
 
 &lt;p&gt;红黑树每个节点都带有颜色属性，红色或者黑色，除了BST的性质以外，还有以下性质：&lt;/p&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;#####a.节点是红色或黑色。 &lt;br /&gt;
-#####b.根是黑色。 &lt;br /&gt;
-######c.所有叶子都是黑色（叶子是NIL节点）。 &lt;br /&gt;
-######d.每个红色节点必须有两个黑色的子节点。（从每个叶子到根的所有路径上不能有两个连续的红色节点。）  &lt;br /&gt;
-######e.从任一节点到其每个叶子的所有简单路径都包含相同数目的黑色节点。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;ul&gt;
+  &lt;li&gt;节点是红色或黑色。&lt;/li&gt;
+  &lt;li&gt;根是黑色。&lt;/li&gt;
+  &lt;li&gt;所有叶子都是黑色（叶子是NIL节点）。&lt;/li&gt;
+  &lt;li&gt;每个红色节点必须有两个黑色的子节点。（从每个叶子到根的所有路径上不能有两个连续的红色节点。）&lt;/li&gt;
+  &lt;li&gt;从任一节点到其每个叶子的所有简单路径都包含相同数目的黑色节点。&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;p&gt;上一张红黑树的例子：&lt;br /&gt;
-&lt;img src=&quot;../img/in-post/red_black_tree/demo.png&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;/img/in-post/red_black_tree/demo.png&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;###2.红黑树操作
-###3.红黑树具体应用&lt;/p&gt;
+&lt;h4 id=&quot;2红黑树操作&quot;&gt;2.红黑树操作&lt;/h4&gt;
+&lt;h4 id=&quot;3红黑树具体应用&quot;&gt;3.红黑树具体应用&lt;/h4&gt;
 </description>
         <pubDate>Sat, 15 Jul 2017 00:00:00 +0800</pubDate>
         <link>https://bob1024.com/2017/07/15/red-black-tree/</link>
