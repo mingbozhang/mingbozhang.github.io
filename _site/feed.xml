@@ -5,8 +5,8 @@
     <description>这个是注释，想想写啥</description>
     <link>https://bob1024.com/</link>
     <atom:link href="https://bob1024.com/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 23 Jul 2017 23:41:09 +0800</pubDate>
-    <lastBuildDate>Sun, 23 Jul 2017 23:41:09 +0800</lastBuildDate>
+    <pubDate>Sun, 23 Jul 2017 23:46:50 +0800</pubDate>
+    <lastBuildDate>Sun, 23 Jul 2017 23:46:50 +0800</lastBuildDate>
     <generator>Jekyll v3.5.0</generator>
     
       <item>
@@ -60,44 +60,44 @@
 &lt;/blockquote&gt;
 
 &lt;p&gt;下面是一棵红黑树的例子，例子中为中序遍历降序排列，后面的操作中也按照这个顺序。&lt;br /&gt;
-&lt;img src=&quot;/img/in-post/red_black_tree/demo.png&quot; alt=&quot;Alt text&quot; /&gt; &lt;br /&gt;
+&lt;img src=&quot;..../img/in-post/red_black_tree/demo.png&quot; alt=&quot;Alt text&quot; /&gt; &lt;br /&gt;
 例子中以节点48作为参考节点，类比人类社会，将47节点叫做它的父节点，46叫做它的祖父节点，45叫做它的叔父节点。&lt;/p&gt;
 
 &lt;h4 id=&quot;2红黑树操作简单例子&quot;&gt;2.红黑树操作简单例子&lt;/h4&gt;
 
 &lt;h6 id=&quot;step-1-插入节点44&quot;&gt;step 1 插入节点（44）&lt;/h6&gt;
 &lt;p&gt;因为第一个节点是根节点，根据性质2，节点为黑色。&lt;br /&gt;
-&lt;img src=&quot;/img/in-post/red_black_tree/insert_step_1.png&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;..../img/in-post/red_black_tree/insert_step_1.png&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
 
 &lt;h6 id=&quot;step-2-插入节点45&quot;&gt;step 2 插入节点（45）&lt;/h6&gt;
 &lt;p&gt;由于45大于44，所以作为节点44的右边孩子接入并设置为红色。可以看到性质5得到了保持。    &lt;br /&gt;
-&lt;img src=&quot;/img/in-post/red_black_tree/insert_step_2.png&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;..../img/in-post/red_black_tree/insert_step_2.png&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
 
 &lt;h6 id=&quot;step-3-插入节点46&quot;&gt;step 3 插入节点（46）&lt;/h6&gt;
 &lt;p&gt;46大于节点45应该作为右孩子接入设置为红色。显然违反了性质4&lt;br /&gt;
-&lt;img src=&quot;/img/in-post/red_black_tree/insert_step_3_1.png&quot; alt=&quot;Alt text&quot; /&gt; &lt;br /&gt;
+&lt;img src=&quot;..../img/in-post/red_black_tree/insert_step_3_1.png&quot; alt=&quot;Alt text&quot; /&gt; &lt;br /&gt;
 以节点45为轴做左旋转,违反了性质2、4、5。  &lt;br /&gt;
-&lt;img src=&quot;/img/in-post/red_black_tree/insert_step_3_2.png&quot; alt=&quot;Alt text&quot; /&gt;&lt;br /&gt;
+&lt;img src=&quot;..../img/in-post/red_black_tree/insert_step_3_2.png&quot; alt=&quot;Alt text&quot; /&gt;&lt;br /&gt;
  将45改为黑色（符合了性质2、4），将节点44改为红色（符合性质5）？？事实上我也可以将46节点涂成黑色？？得到全黑色节点 &lt;br /&gt;
-&lt;img src=&quot;/img/in-post/red_black_tree/insert_step_3_3.png&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;..../img/in-post/red_black_tree/insert_step_3_3.png&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
 
 &lt;h6 id=&quot;step-4-插入节点47&quot;&gt;step 4 插入节点（47）&lt;/h6&gt;
 &lt;p&gt;47大于节点46作为右孩子接入设置为红色。违反了性质4。&lt;br /&gt;
-&lt;img src=&quot;/img/in-post/red_black_tree/insert_step_4_1.png&quot; alt=&quot;Alt text&quot; /&gt; &lt;br /&gt;
+&lt;img src=&quot;..../img/in-post/red_black_tree/insert_step_4_1.png&quot; alt=&quot;Alt text&quot; /&gt; &lt;br /&gt;
 这个时候47的父节点46与叔父节点都是红色 ，则祖父节点45颜色下降。但仍然违反性质2，因为47的祖父节点45是根节点。  &lt;br /&gt;
-&lt;img src=&quot;/img/in-post/red_black_tree/insert_step_4_2.png&quot; alt=&quot;Alt text&quot; /&gt;  &lt;br /&gt;
+&lt;img src=&quot;..../img/in-post/red_black_tree/insert_step_4_2.png&quot; alt=&quot;Alt text&quot; /&gt;  &lt;br /&gt;
 将45颜色变为黑色。 &lt;br /&gt;
-&lt;img src=&quot;/img/in-post/red_black_tree/insert_step_4_3.png&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;..../img/in-post/red_black_tree/insert_step_4_3.png&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
 
 &lt;h6 id=&quot;step5-删除节点45&quot;&gt;step5 删除节点（45）&lt;/h6&gt;
 &lt;p&gt;要删除节点45，首先将其左子树中最大节点44。 &lt;br /&gt;
-&lt;img src=&quot;/img/in-post/red_black_tree/insert_step_5_1.png&quot; alt=&quot;Alt text&quot; /&gt; &lt;br /&gt;
+&lt;img src=&quot;..../img/in-post/red_black_tree/insert_step_5_1.png&quot; alt=&quot;Alt text&quot; /&gt; &lt;br /&gt;
 将44节点的值拷贝到45节点处，移除老的44节点。此时违反了性质5。 &lt;br /&gt;
-&lt;img src=&quot;/img/in-post/red_black_tree/insert_step_5_2.png&quot; alt=&quot;Alt text&quot; /&gt;  &lt;br /&gt;
+&lt;img src=&quot;..../img/in-post/red_black_tree/insert_step_5_2.png&quot; alt=&quot;Alt text&quot; /&gt;  &lt;br /&gt;
 以46节点为轴进行坐旋转。但仍然违反性质5。 &lt;br /&gt;
-&lt;img src=&quot;/img/in-post/red_black_tree/insert_step_5_3.png&quot; alt=&quot;Alt text&quot; /&gt; &lt;br /&gt;
+&lt;img src=&quot;..../img/in-post/red_black_tree/insert_step_5_3.png&quot; alt=&quot;Alt text&quot; /&gt; &lt;br /&gt;
 将47节点设置为黑色。 &lt;br /&gt;
-&lt;img src=&quot;/img/in-post/red_black_tree/insert_step_5_4.png&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;..../img/in-post/red_black_tree/insert_step_5_4.png&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
 
 &lt;h4 id=&quot;3红黑树代码实现&quot;&gt;3.红黑树代码实现&lt;/h4&gt;
 &lt;p&gt;上面简单例子中插入以及删除节点操作并没有完全涵盖所有的情况。下面来看一看红黑树java代码实现。根据具体每一类情况，形成与之对应的代码操作。红黑树插入节点都按照红色插入。（维基百科解释：如果设为黑色，就会导致根到叶子的路径上有一条路上，多一个额外的黑节点，这个是很难调整的。但是设为红色节点后，可能会导致出现两个连续红色节点的冲突，那么可以通过颜色调换和树旋转来调整。）&lt;/p&gt;
@@ -106,11 +106,25 @@
 &lt;h5&gt;&lt;font color=&quot;blue&quot;&gt;&lt;/font&gt;&lt;/h5&gt;
 &lt;p&gt;情形1:之前是棵空树，新插入的节点是树根。根据性质2，根节点必须是黑色。
 &amp;lt;/font&amp;gt; &lt;br /&gt;
-&lt;img src=&quot;/img/in-post/red_black_tree/insert_condition_1.png&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;..../img/in-post/red_black_tree/insert_condition_1.png&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;abc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-   
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;   
+    &lt;span class=&quot;cm&quot;&gt;/**
+     * 情形1:如果插入节点是根节点，则设置为黑色
+     *
+     * @param node
+     */&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;insertFixUpCase1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;parent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+       
+            &lt;span class=&quot;c1&quot;&gt;//情形1:如果插入节点是根节点，则设置为黑色&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;root&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;color&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Color&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;BLACK&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;insertFixUpCase2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h4 id=&quot;4红黑树具体应用&quot;&gt;4.红黑树具体应用&lt;/h4&gt;
 
