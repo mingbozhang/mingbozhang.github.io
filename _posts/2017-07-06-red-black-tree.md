@@ -5,6 +5,10 @@ date: 2017-07-15
 excerpt: "数据结构"
 tags: [红黑树]
 ---
+
+
+
+{% include toc.html %}
 # 红黑树 
 
 #### 1.红黑树的定义 
@@ -65,9 +69,11 @@ tags: [红黑树]
 情形1:之前是棵空树，新插入的节点是树根。根据性质2，根节点必须是黑色。
 </font>   
 ![Alt text](../img/in-post/red_black_tree/insert_condition_1.png)  
-{% highlight xml %}   
-Symstem.out.println(123)
-{% endhighlight %} 
+{% highlight java %}    
+public class abc{
+   
+}
+{% endhighlight %}   
 
 #### 4.红黑树具体应用 
 
