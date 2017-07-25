@@ -68,7 +68,7 @@ tags: [红黑树]
 ##### <font color="blue">
 情形1:之前是棵空树，新插入的节点是树根。根据性质2，根节点必须是黑色。
 </font>   
-![Alt text](/img/in-post/red_black_tree/insert_condition_1.png)  
+![Alt text](/img/in-post/red_black_tree/insert_condition_1.png) （图1）   
 {% highlight java %}   
     /**
      * 情形1:如果插入节点是根节点，则设置为黑色
@@ -87,6 +87,66 @@ tags: [红黑树]
 
     }
 {% endhighlight %}   
+   
+##### <font color="blue">情形2:插入的节点的父节点是黑色的，这种情况下直接插入红色节点。（如图：插入节点46）
+</font>
+![Alt text](/img/in-post/red_black_tree/insert_condition_2_1.png)（图2.1）   
+![Alt text](/img/in-post/red_black_tree/insert_condition_2_2.png)（图2.2）   
+{% highlight java %} 
+   private void insertFixUpCase2(Node node) {
+        if (node.parent.color == Color.BLACK) {
+            //父节点是黑色
+            //情形2：如果父节点是黑色的，所有性质都没有受到影响
+            //不需要做什么
+        } else {
+            insertFixUpCase3(node);
+        }
+
+    } 
+{% endhighlight %}    
+##### <font color="blue">情形3:插入的节点的父节点是黑色的，这种情况下直接插入红色节点。（如图：插入节点46）
+</font>
+![Alt text](/img/in-post/red_black_tree/insert_condition_3_1.png)（图3.1）   
+![Alt text](/img/in-post/red_black_tree/insert_condition_3_2.png)（图3.2）   
+![Alt text](/img/in-post/red_black_tree/insert_condition_3_3.png)（图3.3）  
+![Alt text](/img/in-post/red_black_tree/insert_condition_3_4.png)（图3.4）  
+{% highlight java %}  
+/**
+     * 情形3:父节点和叔父节点都是红色。这种情况下，我们需要将祖父节点的颜色下沉一层，即祖父节点变成红色，父节点和叔父变成黑色。
+     *
+     * @param node
+     */
+    private void insertFixUpCase3(Node node) {
+
+        //父节点是红色
+
+        Node uncleNode = getUncleNode(node);
+
+        if (uncleNode != null) {
+
+            if (uncleNode.color == Color.RED) {
+                //叔父节点是红色
+                //情形3:父节点和叔父节点都是红色。这种情况下，我们需要将祖父节点的颜色下沉一层，即祖父节点变成红色，父节点和叔父变成黑色。
+
+
+                uncleNode.color = Color.BLACK;
+                node.parent.color = Color.BLACK;
+
+                getGrandParentNode(node).color = Color.RED;
+
+                //调整
+                insertFixUpCase1(getGrandParentNode(node));
+
+            } else {
+                //叔父节点是黑色
+                //情形4：父节点是红色，叔父节点是黑色，祖父节点肯定是黑色的，要不然就违反了红黑树不能连续红色节点的性质
+                insertFixUpCase4(node);
+            }
+        }
+
+
+    } 
+{% endhighlight %}
 
 #### 4.红黑树具体应用 
 
