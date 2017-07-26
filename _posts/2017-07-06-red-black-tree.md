@@ -104,18 +104,15 @@ tags: [红黑树]
 
     } 
 {% endhighlight %}    
-##### <font color="blue">情形3:插入的节点的父节点是黑色的，这种情况下直接插入红色节点。（如图：插入节点46）
+##### <font color="blue">情形3: 
+插入的节点父节点以及叔父节点都是红色。从图3.1为插入前状态，插入节点42后成为节点43的左孩子，这时性质4遭到破坏，因为存在连续红色节点（图3.2）。要满足性质4需要将祖父节点（44）与父节点、叔父节点的颜色进行交换，如图3.3。性质2此时无法满足因为根节点44是红色。其实给出图片的例子中44是一个根节点，很多情况中44并不是根节点。此时将44按照新插入的节点从情形1开始处理，那么应该涂成黑色，如图3.4   
 </font>
 ![Alt text](/img/in-post/red_black_tree/insert_condition_3_1.png)（图3.1）   
 ![Alt text](/img/in-post/red_black_tree/insert_condition_3_2.png)（图3.2）   
 ![Alt text](/img/in-post/red_black_tree/insert_condition_3_3.png)（图3.3）  
 ![Alt text](/img/in-post/red_black_tree/insert_condition_3_4.png)（图3.4）  
 {% highlight java %}  
-/**
-     * 情形3:父节点和叔父节点都是红色。这种情况下，我们需要将祖父节点的颜色下沉一层，即祖父节点变成红色，父节点和叔父变成黑色。
-     *
-     * @param node
-     */
+
     private void insertFixUpCase3(Node node) {
 
         //父节点是红色
@@ -127,7 +124,6 @@ tags: [红黑树]
             if (uncleNode.color == Color.RED) {
                 //叔父节点是红色
                 //情形3:父节点和叔父节点都是红色。这种情况下，我们需要将祖父节点的颜色下沉一层，即祖父节点变成红色，父节点和叔父变成黑色。
-
 
                 uncleNode.color = Color.BLACK;
                 node.parent.color = Color.BLACK;
@@ -143,10 +139,38 @@ tags: [红黑树]
                 insertFixUpCase4(node);
             }
         }
-
-
-    } 
+   } 
 {% endhighlight %}
+   
+##### <font color="blue">情形4:
+节点是父节点的右孩子（如图4.3中节点47），其父节点（44）是其祖父节点（50）的左孩子，其叔父节点是黑色（节点60）。这种情况的对称情况也属于同一情况。下面来看一下这种情形是怎么出现的，图4.1是初始状态，插入节点45，红色，图4.1到4.3这个过程实际上是情形3的处理过程。从4.3到4.4才是情形4的场景，这种情况下以新插入节点（这里是47）作为旋转轴做一次左旋转，对称的情况做右旋转。此时红黑树的性质5仍然没有满足，下面交给情形5处理。
+</font>   
+![Alt text](/img/in-post/red_black_tree/insert_condition_4_1.png)（图4.1）  
+![Alt text](/img/in-post/red_black_tree/insert_condition_4_2.png)（图4.2）
+![Alt text](/img/in-post/red_black_tree/insert_condition_4_3.png)（图4.3）
+![Alt text](/img/in-post/red_black_tree/insert_condition_4_4.png)（图4.4）  
+{% highlight java %}  
+private void insertFixUpCase4(Node node) {
+
+       if (node.parent.leftChild == node && getGrandParentNode(node).rightChild == node.parent) {
+
+            rotateRight(node);
+
+        } else if (node.parent.rightChild == node && getGrandParentNode(node).leftChild == node.parent) {
+            rotateLeft(node);
+        }
+
+
+    }
+{% endhighlight %}
+
+
+##### <font color="blue">情形5:节点是父节点的左孩子，父节点是祖父节点的左孩子，叔父节点是黑色。我们直接看图5.1（实际上和图4.4是一张图，想知道来龙去脉可以看这里）。此时性质5被破坏，我们先以节点47为轴做右旋转得到图5.2，再将原先父节点（节点47）与原先祖父节点（节点50）颜色进行交换，完成，如图5.3。
+</font>   
+![Alt text](/img/in-post/red_black_tree/insert_condition_5_1.png)（图5.1）  
+![Alt text](/img/in-post/red_black_tree/insert_condition_5_2.png)（图5.2）
+![Alt text](/img/in-post/red_black_tree/insert_condition_5_3.png)（图5.3）
+
 
 #### 4.红黑树具体应用 
 
@@ -158,3 +182,5 @@ tags: [红黑树]
 https://www.cs.usfca.edu/~galles/visualization/RedBlack.html   
 https://github.com/julycoding/The-Art-Of-Programming-By-July/blob/master/ebook/zh/03.01.md
 https://zh.wikipedia.org/wiki/%E7%BA%A2%E9%BB%91%E6%A0%91
+https://zh.wikipedia.org/wiki/%E6%A0%91%E6%97%8B%E8%BD%AC
+https://en.wikipedia.org/wiki/Tree_rotation
