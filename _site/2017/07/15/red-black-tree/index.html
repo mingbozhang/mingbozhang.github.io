@@ -218,11 +218,11 @@
       </li>
       <li><a href="#3红黑树代码实现" id="markdown-toc-3红黑树代码实现">3.红黑树代码实现</a>        <ul>
           <li><a href="#31-红黑树插入操作" id="markdown-toc-31-红黑树插入操作">3.1 红黑树插入操作</a></li>
-          <li><a href="#插入修复情形1" id="markdown-toc-插入修复情形1"><font color="blue">插入修复情形1:</font></a></li>
-          <li><a href="#插入修复情形2" id="markdown-toc-插入修复情形2"><font color="blue">插入修复情形2:</font></a></li>
-          <li><a href="#插入修复情形3" id="markdown-toc-插入修复情形3"><font color="blue">插入修复情形3:</font></a></li>
+          <li><a href="#插入修复情形1之前是棵空树新插入的节点是树根根据性质2根节点必须是黑色" id="markdown-toc-插入修复情形1之前是棵空树新插入的节点是树根根据性质2根节点必须是黑色"><font color="blue">插入修复情形1:之前是棵空树，新插入的节点是树根。根据性质2，根节点必须是黑色。</font></a></li>
+          <li><a href="#插入修复情形2插入的节点的父节点是黑色的这种情况下直接插入红色节点如图插入节点46" id="markdown-toc-插入修复情形2插入的节点的父节点是黑色的这种情况下直接插入红色节点如图插入节点46"><font color="blue">插入修复情形2:插入的节点的父节点是黑色的，这种情况下直接插入红色节点。（如图：插入节点46）</font></a></li>
+          <li><a href="#插入修复情形3-插入的节点父节点以及叔父节点都是红色" id="markdown-toc-插入修复情形3-插入的节点父节点以及叔父节点都是红色"><font color="blue">插入修复情形3: 插入的节点父节点以及叔父节点都是红色。</font></a></li>
           <li><a href="#插入修复情形4节点是父节点的右孩子如图43中节点47其父节点44是其祖父节点50的左孩子其叔父节点是黑色节点60" id="markdown-toc-插入修复情形4节点是父节点的右孩子如图43中节点47其父节点44是其祖父节点50的左孩子其叔父节点是黑色节点60"><font color="blue">插入修复情形4:节点是父节点的右孩子（如图4.3中节点47），其父节点（44）是其祖父节点（50）的左孩子，其叔父节点是黑色（节点60）。</font></a></li>
-          <li><a href="#插入修复情形5节点是父节点的左孩子父节点是祖父节点的左孩子叔父节点是黑色我们直接看图51实际上和图44是一张图想知道来龙去脉可以看这里此时性质5被破坏我们先以节点47为轴做右旋转得到图52再将原先父节点节点47与原先祖父节点节点50颜色进行交换完成如图53" id="markdown-toc-插入修复情形5节点是父节点的左孩子父节点是祖父节点的左孩子叔父节点是黑色我们直接看图51实际上和图44是一张图想知道来龙去脉可以看这里此时性质5被破坏我们先以节点47为轴做右旋转得到图52再将原先父节点节点47与原先祖父节点节点50颜色进行交换完成如图53"><font color="blue">插入修复情形5:节点是父节点的左孩子，父节点是祖父节点的左孩子，叔父节点是黑色。我们直接看图5.1（实际上和图4.4是一张图，想知道来龙去脉可以看这里）。此时性质5被破坏，我们先以节点47为轴做右旋转得到图5.2，再将原先父节点（节点47）与原先祖父节点（节点50）颜色进行交换，完成，如图5.3。</font></a></li>
+          <li><a href="#插入修复情形5节点是父节点的左孩子父节点是祖父节点的左孩子叔父节点是黑色" id="markdown-toc-插入修复情形5节点是父节点的左孩子父节点是祖父节点的左孩子叔父节点是黑色"><font color="blue">插入修复情形5:节点是父节点的左孩子，父节点是祖父节点的左孩子，叔父节点是黑色。</font></a></li>
           <li><a href="#32-红黑树删除操作" id="markdown-toc-32-红黑树删除操作">3.2 红黑树删除操作</a></li>
           <li><a href="#删除修复情形1节点是新的根" id="markdown-toc-删除修复情形1节点是新的根"><font color="blue">删除修复情形1:节点是新的根。</font></a></li>
           <li><a href="#删除修复情形2如图21兄弟节点s是红色如图21" id="markdown-toc-删除修复情形2如图21兄弟节点s是红色如图21"><font color="blue">删除修复情形2:如图2.1，兄弟节点（S）是红色。如图2.1</font></a></li>
@@ -305,9 +305,8 @@
 
 <p>红黑树是BST（Binary Search Tree，二叉查找树），除了需要执行BST的插入操作以外还要根据红黑树的性质进行调整，因为直接插入节点有可能会破坏红黑树的结构。红黑树插入节点都按照红色插入。（维基百科解释：如果设为黑色，就会导致根到叶子的路径上有一条路上，多一个额外的黑节点，这个是很难调整的。但是设为红色节点后，可能会导致出现两个连续红色节点的冲突，那么可以通过颜色调换和树旋转来调整。）
 。关于插入后的恢复情形有下面5种。</p>
-<h5 id="插入修复情形1"><font color="blue">插入修复情形1:</font></h5>
-<p>之前是棵空树，新插入的节点是树根。根据性质2，根节点必须是黑色。
-&lt;/font&gt; <br />
+<h5 id="插入修复情形1之前是棵空树新插入的节点是树根根据性质2根节点必须是黑色"><font color="blue">插入修复情形1:之前是棵空树，新插入的节点是树根。根据性质2，根节点必须是黑色。</font></h5>
+<p>&lt;/font&gt; <br />
 <img src="/img/in-post/red_black_tree/insert_condition_1.png" alt="Alt text" /> （图1）</p>
 
 <figure class="highlight"><pre><code class="language-java" data-lang="java">   
@@ -322,9 +321,8 @@
 
     <span class="o">}</span></code></pre></figure>
 
-<h5 id="插入修复情形2"><font color="blue">插入修复情形2:</font></h5>
-<p>插入的节点的父节点是黑色的，这种情况下直接插入红色节点。（如图：插入节点46）
-&lt;/font&gt;
+<h5 id="插入修复情形2插入的节点的父节点是黑色的这种情况下直接插入红色节点如图插入节点46"><font color="blue">插入修复情形2:插入的节点的父节点是黑色的，这种情况下直接插入红色节点。（如图：插入节点46）</font></h5>
+<p>&lt;/font&gt;
 <img src="/img/in-post/red_black_tree/insert_condition_2_1.png" alt="Alt text" />（图2.1） <br />
 <img src="/img/in-post/red_black_tree/insert_condition_2_2.png" alt="Alt text" />（图2.2）</p>
 
@@ -340,8 +338,8 @@
 
     <span class="o">}</span> </code></pre></figure>
 
-<h5 id="插入修复情形3"><font color="blue">插入修复情形3:</font></h5>
-<p>插入的节点父节点以及叔父节点都是红色。从图3.1为插入前状态，插入节点42后成为节点43的左孩子，这时性质4遭到破坏，因为存在连续红色节点（图3.2）。要满足性质4需要将祖父节点（44）与父节点、叔父节点的颜色进行交换，如图3.3。性质2此时无法满足因为根节点44是红色。其实给出图片的例子中44是一个根节点，很多情况中44并不是根节点。此时将44按照新插入的节点从情形1开始处理，那么应该涂成黑色，如图3.4
+<h5 id="插入修复情形3-插入的节点父节点以及叔父节点都是红色"><font color="blue">插入修复情形3: 插入的节点父节点以及叔父节点都是红色。</font></h5>
+<p>从图3.1为插入前状态，插入节点42后成为节点43的左孩子，这时性质4遭到破坏，因为存在连续红色节点（图3.2）。要满足性质4需要将祖父节点（44）与父节点、叔父节点的颜色进行交换，如图3.3。性质2此时无法满足因为根节点44是红色。其实给出图片的例子中44是一个根节点，很多情况中44并不是根节点。此时将44按照新插入的节点从情形1开始处理，那么应该涂成黑色，如图3.4
 &lt;/font&gt;
 <img src="/img/in-post/red_black_tree/insert_condition_3_1.png" alt="Alt text" />（图3.1） <br />
 <img src="/img/in-post/red_black_tree/insert_condition_3_2.png" alt="Alt text" />（图3.2） <br />
@@ -401,8 +399,9 @@
         <span class="n">insertFixUpCase5</span><span class="o">(</span><span class="n">node</span><span class="o">);</span>
     <span class="o">}</span></code></pre></figure>
 
-<h5 id="插入修复情形5节点是父节点的左孩子父节点是祖父节点的左孩子叔父节点是黑色我们直接看图51实际上和图44是一张图想知道来龙去脉可以看这里此时性质5被破坏我们先以节点47为轴做右旋转得到图52再将原先父节点节点47与原先祖父节点节点50颜色进行交换完成如图53"><font color="blue">插入修复情形5:节点是父节点的左孩子，父节点是祖父节点的左孩子，叔父节点是黑色。我们直接看图5.1（实际上和图4.4是一张图，想知道来龙去脉可以看这里）。此时性质5被破坏，我们先以节点47为轴做右旋转得到图5.2，再将原先父节点（节点47）与原先祖父节点（节点50）颜色进行交换，完成，如图5.3。</font></h5>
-<p>&lt;/font&gt; <br />
+<h5 id="插入修复情形5节点是父节点的左孩子父节点是祖父节点的左孩子叔父节点是黑色"><font color="blue">插入修复情形5:节点是父节点的左孩子，父节点是祖父节点的左孩子，叔父节点是黑色。</font></h5>
+<p>我们直接看图5.1（实际上和图4.4是一张图，想知道来龙去脉可以看这里）。此时性质5被破坏，我们先以节点47为轴做右旋转得到图5.2，再将原先父节点（节点47）与原先祖父节点（节点50）颜色进行交换，完成，如图5.3。
+&lt;/font&gt; <br />
 <img src="/img/in-post/red_black_tree/insert_condition_5_1.png" alt="Alt text" />（图5.1）<br />
 <img src="/img/in-post/red_black_tree/insert_condition_5_2.png" alt="Alt text" />（图5.2）
 <img src="/img/in-post/red_black_tree/insert_condition_5_3.png" alt="Alt text" />（图5.3）</p>
@@ -564,7 +563,7 @@
 <p>https://github.com/mingbozhang/blogcode/tree/master/algorithms/src/main/java/com/bob/datastructure/rbtree</p>
 
 <h4 id="5红黑树具体应用">5.红黑树具体应用</h4>
-
+<p>Java中的TreeMap</p>
 <h4 id="6参考">6.参考</h4>
 <p>https://www.cs.usfca.edu/~galles/visualization/RedBlack.html <br />
 https://github.com/julycoding/The-Art-Of-Programming-By-July/blob/master/ebook/zh/03.01.md

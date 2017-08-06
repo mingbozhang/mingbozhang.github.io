@@ -5,8 +5,8 @@
     <description>这个是注释，想想写啥</description>
     <link>https://bob1024.com/</link>
     <atom:link href="https://bob1024.com/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 06 Aug 2017 15:30:01 +0800</pubDate>
-    <lastBuildDate>Sun, 06 Aug 2017 15:30:01 +0800</lastBuildDate>
+    <pubDate>Sun, 06 Aug 2017 15:39:44 +0800</pubDate>
+    <lastBuildDate>Sun, 06 Aug 2017 15:39:44 +0800</lastBuildDate>
     <generator>Jekyll v3.5.0</generator>
     
       <item>
@@ -29,11 +29,11 @@
       &lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#3红黑树代码实现&quot; id=&quot;markdown-toc-3红黑树代码实现&quot;&gt;3.红黑树代码实现&lt;/a&gt;        &lt;ul&gt;
           &lt;li&gt;&lt;a href=&quot;#31-红黑树插入操作&quot; id=&quot;markdown-toc-31-红黑树插入操作&quot;&gt;3.1 红黑树插入操作&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#插入修复情形1&quot; id=&quot;markdown-toc-插入修复情形1&quot;&gt;&lt;font color=&quot;blue&quot;&gt;插入修复情形1:&lt;/font&gt;&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#插入修复情形2&quot; id=&quot;markdown-toc-插入修复情形2&quot;&gt;&lt;font color=&quot;blue&quot;&gt;插入修复情形2:&lt;/font&gt;&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#插入修复情形3&quot; id=&quot;markdown-toc-插入修复情形3&quot;&gt;&lt;font color=&quot;blue&quot;&gt;插入修复情形3:&lt;/font&gt;&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#插入修复情形1之前是棵空树新插入的节点是树根根据性质2根节点必须是黑色&quot; id=&quot;markdown-toc-插入修复情形1之前是棵空树新插入的节点是树根根据性质2根节点必须是黑色&quot;&gt;&lt;font color=&quot;blue&quot;&gt;插入修复情形1:之前是棵空树，新插入的节点是树根。根据性质2，根节点必须是黑色。&lt;/font&gt;&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#插入修复情形2插入的节点的父节点是黑色的这种情况下直接插入红色节点如图插入节点46&quot; id=&quot;markdown-toc-插入修复情形2插入的节点的父节点是黑色的这种情况下直接插入红色节点如图插入节点46&quot;&gt;&lt;font color=&quot;blue&quot;&gt;插入修复情形2:插入的节点的父节点是黑色的，这种情况下直接插入红色节点。（如图：插入节点46）&lt;/font&gt;&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#插入修复情形3-插入的节点父节点以及叔父节点都是红色&quot; id=&quot;markdown-toc-插入修复情形3-插入的节点父节点以及叔父节点都是红色&quot;&gt;&lt;font color=&quot;blue&quot;&gt;插入修复情形3: 插入的节点父节点以及叔父节点都是红色。&lt;/font&gt;&lt;/a&gt;&lt;/li&gt;
           &lt;li&gt;&lt;a href=&quot;#插入修复情形4节点是父节点的右孩子如图43中节点47其父节点44是其祖父节点50的左孩子其叔父节点是黑色节点60&quot; id=&quot;markdown-toc-插入修复情形4节点是父节点的右孩子如图43中节点47其父节点44是其祖父节点50的左孩子其叔父节点是黑色节点60&quot;&gt;&lt;font color=&quot;blue&quot;&gt;插入修复情形4:节点是父节点的右孩子（如图4.3中节点47），其父节点（44）是其祖父节点（50）的左孩子，其叔父节点是黑色（节点60）。&lt;/font&gt;&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#插入修复情形5节点是父节点的左孩子父节点是祖父节点的左孩子叔父节点是黑色我们直接看图51实际上和图44是一张图想知道来龙去脉可以看这里此时性质5被破坏我们先以节点47为轴做右旋转得到图52再将原先父节点节点47与原先祖父节点节点50颜色进行交换完成如图53&quot; id=&quot;markdown-toc-插入修复情形5节点是父节点的左孩子父节点是祖父节点的左孩子叔父节点是黑色我们直接看图51实际上和图44是一张图想知道来龙去脉可以看这里此时性质5被破坏我们先以节点47为轴做右旋转得到图52再将原先父节点节点47与原先祖父节点节点50颜色进行交换完成如图53&quot;&gt;&lt;font color=&quot;blue&quot;&gt;插入修复情形5:节点是父节点的左孩子，父节点是祖父节点的左孩子，叔父节点是黑色。我们直接看图5.1（实际上和图4.4是一张图，想知道来龙去脉可以看这里）。此时性质5被破坏，我们先以节点47为轴做右旋转得到图5.2，再将原先父节点（节点47）与原先祖父节点（节点50）颜色进行交换，完成，如图5.3。&lt;/font&gt;&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#插入修复情形5节点是父节点的左孩子父节点是祖父节点的左孩子叔父节点是黑色&quot; id=&quot;markdown-toc-插入修复情形5节点是父节点的左孩子父节点是祖父节点的左孩子叔父节点是黑色&quot;&gt;&lt;font color=&quot;blue&quot;&gt;插入修复情形5:节点是父节点的左孩子，父节点是祖父节点的左孩子，叔父节点是黑色。&lt;/font&gt;&lt;/a&gt;&lt;/li&gt;
           &lt;li&gt;&lt;a href=&quot;#32-红黑树删除操作&quot; id=&quot;markdown-toc-32-红黑树删除操作&quot;&gt;3.2 红黑树删除操作&lt;/a&gt;&lt;/li&gt;
           &lt;li&gt;&lt;a href=&quot;#删除修复情形1节点是新的根&quot; id=&quot;markdown-toc-删除修复情形1节点是新的根&quot;&gt;&lt;font color=&quot;blue&quot;&gt;删除修复情形1:节点是新的根。&lt;/font&gt;&lt;/a&gt;&lt;/li&gt;
           &lt;li&gt;&lt;a href=&quot;#删除修复情形2如图21兄弟节点s是红色如图21&quot; id=&quot;markdown-toc-删除修复情形2如图21兄弟节点s是红色如图21&quot;&gt;&lt;font color=&quot;blue&quot;&gt;删除修复情形2:如图2.1，兄弟节点（S）是红色。如图2.1&lt;/font&gt;&lt;/a&gt;&lt;/li&gt;
@@ -116,9 +116,8 @@
 
 &lt;p&gt;红黑树是BST（Binary Search Tree，二叉查找树），除了需要执行BST的插入操作以外还要根据红黑树的性质进行调整，因为直接插入节点有可能会破坏红黑树的结构。红黑树插入节点都按照红色插入。（维基百科解释：如果设为黑色，就会导致根到叶子的路径上有一条路上，多一个额外的黑节点，这个是很难调整的。但是设为红色节点后，可能会导致出现两个连续红色节点的冲突，那么可以通过颜色调换和树旋转来调整。）
 。关于插入后的恢复情形有下面5种。&lt;/p&gt;
-&lt;h5 id=&quot;插入修复情形1&quot;&gt;&lt;font color=&quot;blue&quot;&gt;插入修复情形1:&lt;/font&gt;&lt;/h5&gt;
-&lt;p&gt;之前是棵空树，新插入的节点是树根。根据性质2，根节点必须是黑色。
-&amp;lt;/font&amp;gt; &lt;br /&gt;
+&lt;h5 id=&quot;插入修复情形1之前是棵空树新插入的节点是树根根据性质2根节点必须是黑色&quot;&gt;&lt;font color=&quot;blue&quot;&gt;插入修复情形1:之前是棵空树，新插入的节点是树根。根据性质2，根节点必须是黑色。&lt;/font&gt;&lt;/h5&gt;
+&lt;p&gt;&amp;lt;/font&amp;gt; &lt;br /&gt;
 &lt;img src=&quot;/img/in-post/red_black_tree/insert_condition_1.png&quot; alt=&quot;Alt text&quot; /&gt; （图1）&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;   
@@ -133,9 +132,8 @@
 
     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;h5 id=&quot;插入修复情形2&quot;&gt;&lt;font color=&quot;blue&quot;&gt;插入修复情形2:&lt;/font&gt;&lt;/h5&gt;
-&lt;p&gt;插入的节点的父节点是黑色的，这种情况下直接插入红色节点。（如图：插入节点46）
-&amp;lt;/font&amp;gt;
+&lt;h5 id=&quot;插入修复情形2插入的节点的父节点是黑色的这种情况下直接插入红色节点如图插入节点46&quot;&gt;&lt;font color=&quot;blue&quot;&gt;插入修复情形2:插入的节点的父节点是黑色的，这种情况下直接插入红色节点。（如图：插入节点46）&lt;/font&gt;&lt;/h5&gt;
+&lt;p&gt;&amp;lt;/font&amp;gt;
 &lt;img src=&quot;/img/in-post/red_black_tree/insert_condition_2_1.png&quot; alt=&quot;Alt text&quot; /&gt;（图2.1） &lt;br /&gt;
 &lt;img src=&quot;/img/in-post/red_black_tree/insert_condition_2_2.png&quot; alt=&quot;Alt text&quot; /&gt;（图2.2）&lt;/p&gt;
 
@@ -151,8 +149,8 @@
 
     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;h5 id=&quot;插入修复情形3&quot;&gt;&lt;font color=&quot;blue&quot;&gt;插入修复情形3:&lt;/font&gt;&lt;/h5&gt;
-&lt;p&gt;插入的节点父节点以及叔父节点都是红色。从图3.1为插入前状态，插入节点42后成为节点43的左孩子，这时性质4遭到破坏，因为存在连续红色节点（图3.2）。要满足性质4需要将祖父节点（44）与父节点、叔父节点的颜色进行交换，如图3.3。性质2此时无法满足因为根节点44是红色。其实给出图片的例子中44是一个根节点，很多情况中44并不是根节点。此时将44按照新插入的节点从情形1开始处理，那么应该涂成黑色，如图3.4
+&lt;h5 id=&quot;插入修复情形3-插入的节点父节点以及叔父节点都是红色&quot;&gt;&lt;font color=&quot;blue&quot;&gt;插入修复情形3: 插入的节点父节点以及叔父节点都是红色。&lt;/font&gt;&lt;/h5&gt;
+&lt;p&gt;从图3.1为插入前状态，插入节点42后成为节点43的左孩子，这时性质4遭到破坏，因为存在连续红色节点（图3.2）。要满足性质4需要将祖父节点（44）与父节点、叔父节点的颜色进行交换，如图3.3。性质2此时无法满足因为根节点44是红色。其实给出图片的例子中44是一个根节点，很多情况中44并不是根节点。此时将44按照新插入的节点从情形1开始处理，那么应该涂成黑色，如图3.4
 &amp;lt;/font&amp;gt;
 &lt;img src=&quot;/img/in-post/red_black_tree/insert_condition_3_1.png&quot; alt=&quot;Alt text&quot; /&gt;（图3.1） &lt;br /&gt;
 &lt;img src=&quot;/img/in-post/red_black_tree/insert_condition_3_2.png&quot; alt=&quot;Alt text&quot; /&gt;（图3.2） &lt;br /&gt;
@@ -212,8 +210,9 @@
         &lt;span class=&quot;n&quot;&gt;insertFixUpCase5&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;h5 id=&quot;插入修复情形5节点是父节点的左孩子父节点是祖父节点的左孩子叔父节点是黑色我们直接看图51实际上和图44是一张图想知道来龙去脉可以看这里此时性质5被破坏我们先以节点47为轴做右旋转得到图52再将原先父节点节点47与原先祖父节点节点50颜色进行交换完成如图53&quot;&gt;&lt;font color=&quot;blue&quot;&gt;插入修复情形5:节点是父节点的左孩子，父节点是祖父节点的左孩子，叔父节点是黑色。我们直接看图5.1（实际上和图4.4是一张图，想知道来龙去脉可以看这里）。此时性质5被破坏，我们先以节点47为轴做右旋转得到图5.2，再将原先父节点（节点47）与原先祖父节点（节点50）颜色进行交换，完成，如图5.3。&lt;/font&gt;&lt;/h5&gt;
-&lt;p&gt;&amp;lt;/font&amp;gt; &lt;br /&gt;
+&lt;h5 id=&quot;插入修复情形5节点是父节点的左孩子父节点是祖父节点的左孩子叔父节点是黑色&quot;&gt;&lt;font color=&quot;blue&quot;&gt;插入修复情形5:节点是父节点的左孩子，父节点是祖父节点的左孩子，叔父节点是黑色。&lt;/font&gt;&lt;/h5&gt;
+&lt;p&gt;我们直接看图5.1（实际上和图4.4是一张图，想知道来龙去脉可以看这里）。此时性质5被破坏，我们先以节点47为轴做右旋转得到图5.2，再将原先父节点（节点47）与原先祖父节点（节点50）颜色进行交换，完成，如图5.3。
+&amp;lt;/font&amp;gt; &lt;br /&gt;
 &lt;img src=&quot;/img/in-post/red_black_tree/insert_condition_5_1.png&quot; alt=&quot;Alt text&quot; /&gt;（图5.1）&lt;br /&gt;
 &lt;img src=&quot;/img/in-post/red_black_tree/insert_condition_5_2.png&quot; alt=&quot;Alt text&quot; /&gt;（图5.2）
 &lt;img src=&quot;/img/in-post/red_black_tree/insert_condition_5_3.png&quot; alt=&quot;Alt text&quot; /&gt;（图5.3）&lt;/p&gt;
@@ -375,7 +374,7 @@
 &lt;p&gt;https://github.com/mingbozhang/blogcode/tree/master/algorithms/src/main/java/com/bob/datastructure/rbtree&lt;/p&gt;
 
 &lt;h4 id=&quot;5红黑树具体应用&quot;&gt;5.红黑树具体应用&lt;/h4&gt;
-
+&lt;p&gt;Java中的TreeMap&lt;/p&gt;
 &lt;h4 id=&quot;6参考&quot;&gt;6.参考&lt;/h4&gt;
 &lt;p&gt;https://www.cs.usfca.edu/~galles/visualization/RedBlack.html &lt;br /&gt;
 https://github.com/julycoding/The-Art-Of-Programming-By-July/blob/master/ebook/zh/03.01.md

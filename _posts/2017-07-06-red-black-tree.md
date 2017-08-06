@@ -67,8 +67,7 @@ tags: [红黑树]
 
 红黑树是BST（Binary Search Tree，二叉查找树），除了需要执行BST的插入操作以外还要根据红黑树的性质进行调整，因为直接插入节点有可能会破坏红黑树的结构。红黑树插入节点都按照红色插入。（维基百科解释：如果设为黑色，就会导致根到叶子的路径上有一条路上，多一个额外的黑节点，这个是很难调整的。但是设为红色节点后，可能会导致出现两个连续红色节点的冲突，那么可以通过颜色调换和树旋转来调整。）
 。关于插入后的恢复情形有下面5种。
-##### <font color="blue">插入修复情形1:   
-之前是棵空树，新插入的节点是树根。根据性质2，根节点必须是黑色。
+##### <font color="blue">插入修复情形1:之前是棵空树，新插入的节点是树根。根据性质2，根节点必须是黑色。
 </font>   
 ![Alt text](/img/in-post/red_black_tree/insert_condition_1.png) （图1）   
 {% highlight java %}   
@@ -84,8 +83,7 @@ tags: [红黑树]
     }
 {% endhighlight %}   
    
-##### <font color="blue">插入修复情形2:
-插入的节点的父节点是黑色的，这种情况下直接插入红色节点。（如图：插入节点46）
+##### <font color="blue">插入修复情形2:插入的节点的父节点是黑色的，这种情况下直接插入红色节点。（如图：插入节点46）
 </font>
 ![Alt text](/img/in-post/red_black_tree/insert_condition_2_1.png)（图2.1）   
 ![Alt text](/img/in-post/red_black_tree/insert_condition_2_2.png)（图2.2）   
@@ -101,8 +99,8 @@ tags: [红黑树]
 
     } 
 {% endhighlight %}    
-##### <font color="blue">插入修复情形3: 
-插入的节点父节点以及叔父节点都是红色。从图3.1为插入前状态，插入节点42后成为节点43的左孩子，这时性质4遭到破坏，因为存在连续红色节点（图3.2）。要满足性质4需要将祖父节点（44）与父节点、叔父节点的颜色进行交换，如图3.3。性质2此时无法满足因为根节点44是红色。其实给出图片的例子中44是一个根节点，很多情况中44并不是根节点。此时将44按照新插入的节点从情形1开始处理，那么应该涂成黑色，如图3.4   
+##### <font color="blue">插入修复情形3: 插入的节点父节点以及叔父节点都是红色。   
+从图3.1为插入前状态，插入节点42后成为节点43的左孩子，这时性质4遭到破坏，因为存在连续红色节点（图3.2）。要满足性质4需要将祖父节点（44）与父节点、叔父节点的颜色进行交换，如图3.3。性质2此时无法满足因为根节点44是红色。其实给出图片的例子中44是一个根节点，很多情况中44并不是根节点。此时将44按照新插入的节点从情形1开始处理，那么应该涂成黑色，如图3.4   
 </font>
 ![Alt text](/img/in-post/red_black_tree/insert_condition_3_1.png)（图3.1）   
 ![Alt text](/img/in-post/red_black_tree/insert_condition_3_2.png)（图3.2）   
@@ -163,7 +161,8 @@ private void insertFixUpCase4(Node node) {
 {% endhighlight %}
 
 
-##### <font color="blue">插入修复情形5:节点是父节点的左孩子，父节点是祖父节点的左孩子，叔父节点是黑色。我们直接看图5.1（实际上和图4.4是一张图，想知道来龙去脉可以看这里）。此时性质5被破坏，我们先以节点47为轴做右旋转得到图5.2，再将原先父节点（节点47）与原先祖父节点（节点50）颜色进行交换，完成，如图5.3。
+##### <font color="blue">插入修复情形5:节点是父节点的左孩子，父节点是祖父节点的左孩子，叔父节点是黑色。   
+我们直接看图5.1（实际上和图4.4是一张图，想知道来龙去脉可以看这里）。此时性质5被破坏，我们先以节点47为轴做右旋转得到图5.2，再将原先父节点（节点47）与原先祖父节点（节点50）颜色进行交换，完成，如图5.3。
 </font>   
 ![Alt text](/img/in-post/red_black_tree/insert_condition_5_1.png)（图5.1）  
 ![Alt text](/img/in-post/red_black_tree/insert_condition_5_2.png)（图5.2）
@@ -331,7 +330,7 @@ private void deleteFixUpCase6(Node node) {
  https://github.com/mingbozhang/blogcode/tree/master/algorithms/src/main/java/com/bob/datastructure/rbtree
 
 #### 5.红黑树具体应用 
-
+Java中的TreeMap
 #### 6.参考
 https://www.cs.usfca.edu/~galles/visualization/RedBlack.html   
 https://github.com/julycoding/The-Art-Of-Programming-By-July/blob/master/ebook/zh/03.01.md
