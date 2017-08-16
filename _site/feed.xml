@@ -2,12 +2,75 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Bob Blog</title>
-    <description>这个是注释，想想写啥</description>
-    <link>https://bob1024.com/</link>
-    <atom:link href="https://bob1024.com/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 06 Aug 2017 15:39:44 +0800</pubDate>
-    <lastBuildDate>Sun, 06 Aug 2017 15:39:44 +0800</lastBuildDate>
+    <description></description>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Wed, 16 Aug 2017 23:28:59 +0800</pubDate>
+    <lastBuildDate>Wed, 16 Aug 2017 23:28:59 +0800</lastBuildDate>
     <generator>Jekyll v3.5.0</generator>
+    
+      <item>
+        <title>消息队列随笔</title>
+        <description>&lt;h4 id=&quot;1概述&quot;&gt;1.概述&lt;/h4&gt;
+&lt;p&gt;消息队列是分布式组件的一种，用于进程间通信或者统一进程中不同线程间的通信。Group communication systems provide similar kinds of functionality.(这种在下面做比较)&lt;/p&gt;
+
+&lt;p&gt;消息组件一般支持2种模式：&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;发送／接收&lt;/li&gt;
+  &lt;li&gt;发布／订阅
+    &lt;h4 id=&quot;2消息队列能带来什么&quot;&gt;2.消息队列能带来什么&lt;/h4&gt;
+    &lt;h5 id=&quot;21-好处&quot;&gt;2.1 好处&lt;/h5&gt;
+  &lt;/li&gt;
+  &lt;li&gt;松耦合（被调用方即使因为故障没有启动也不影响调用方操作）&lt;/li&gt;
+  &lt;li&gt;异步（这个估计不是优点，异步很多实现都是可以达到）&lt;/li&gt;
+  &lt;li&gt;跨系统（Http也是跨系统的&amp;gt;_&amp;lt;）&lt;/li&gt;
+  &lt;li&gt;伸缩性提高（多个消费者）&lt;/li&gt;
+  &lt;li&gt;保存请求（万一处理的过程中处理失败）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&quot;22-坏处&quot;&gt;2.2 坏处&lt;/h5&gt;
+&lt;ul&gt;
+  &lt;li&gt;运维工作量增加&lt;/li&gt;
+  &lt;li&gt;不利于程序员调试&lt;/li&gt;
+  &lt;li&gt;程序运行起来更容易出现故障&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;2什么情况下我们需要引入消息队列&quot;&gt;2.什么情况下我们需要引入消息队列&lt;/h4&gt;
+
+&lt;h4 id=&quot;3与消息组件相似技术的比较&quot;&gt;3.与消息组件相似技术的比较&lt;/h4&gt;
+&lt;h5 id=&quot;31-group-communication-system&quot;&gt;3.1 Group communication system&lt;/h5&gt;
+
+&lt;h5 id=&quot;32-异步调用如spring-async注解&quot;&gt;3.2 异步调用，如Spring @Async注解&lt;/h5&gt;
+
+&lt;h5 id=&quot;33-进程内queue&quot;&gt;3.3 进程内queue&lt;/h5&gt;
+
+&lt;h5 id=&quot;34&quot;&gt;3.4&lt;/h5&gt;
+
+&lt;h4 id=&quot;4如何确定是不是真的需要消息队列&quot;&gt;4.如何确定是不是真的需要消息队列&lt;/h4&gt;
+&lt;h5 id=&quot;41-需求是什么&quot;&gt;4.1 需求是什么？&lt;/h5&gt;
+&lt;h5 id=&quot;42-根据需求都有哪些可以选择的方案&quot;&gt;4.2 根据需求都有哪些可以选择的方案？&lt;/h5&gt;
+&lt;h5 id=&quot;43-满足需求的最简单方案是什么&quot;&gt;4.3 满足需求的最简单方案是什么？&lt;/h5&gt;
+
+&lt;h4 id=&quot;5建议&quot;&gt;5.建议&lt;/h4&gt;
+&lt;h5 id=&quot;51-不要为了引入技术而引入&quot;&gt;5.1 不要为了引入技术而引入&lt;/h5&gt;
+
+&lt;h4 id=&quot;6参考资料&quot;&gt;6.参考资料&lt;/h4&gt;
+&lt;p&gt;https://en.wikipedia.org/wiki/Message_queue
+https://en.wikipedia.org/wiki/Group_communication_system
+https://en.wikipedia.org/wiki/JGroups
+https://en.wikipedia.org/wiki/Java_Message_Service
+https://techblog.bozho.net/you-probably-dont-need-a-message-queue/
+https://www.slideshare.net/Bozho/overview-of-message-queues
+https://www.rabbitmq.com/tutorials/tutorial-three-spring-amqp.html&lt;/p&gt;
+</description>
+        <pubDate>Sun, 13 Aug 2017 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2017/08/13/mq/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/08/13/mq/</guid>
+        
+        <category>MQ</category>
+        
+        
+      </item>
     
       <item>
         <title>红黑树</title>
@@ -383,8 +446,8 @@ https://zh.wikipedia.org/wiki/%E6%A0%91%E6%97%8B%E8%BD%AC
 https://en.wikipedia.org/wiki/Tree_rotation&lt;/p&gt;
 </description>
         <pubDate>Sat, 15 Jul 2017 00:00:00 +0800</pubDate>
-        <link>https://bob1024.com/2017/07/15/red-black-tree/</link>
-        <guid isPermaLink="true">https://bob1024.com/2017/07/15/red-black-tree/</guid>
+        <link>http://localhost:4000/2017/07/15/red-black-tree/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/07/15/red-black-tree/</guid>
         
         <category>红黑树</category>
         
@@ -616,8 +679,8 @@ https://en.wikipedia.org/wiki/Tree_rotation&lt;/p&gt;
 &lt;p&gt;《设计模式－可复用面向对象软件的基础》&lt;/p&gt;
 </description>
         <pubDate>Thu, 23 Jun 2016 00:00:00 +0800</pubDate>
-        <link>https://bob1024.com/2016/06/23/design-pattern-abstract-factory/</link>
-        <guid isPermaLink="true">https://bob1024.com/2016/06/23/design-pattern-abstract-factory/</guid>
+        <link>http://localhost:4000/2016/06/23/design-pattern-abstract-factory/</link>
+        <guid isPermaLink="true">http://localhost:4000/2016/06/23/design-pattern-abstract-factory/</guid>
         
         
       </item>
@@ -916,8 +979,8 @@ https://github.com/mingbozhang/algorithm&lt;/p&gt;
 《算法设计与分析基础（第3版）》&lt;/p&gt;
 </description>
         <pubDate>Tue, 07 Jun 2016 00:00:00 +0800</pubDate>
-        <link>https://bob1024.com/2016/06/07/merge-sort/</link>
-        <guid isPermaLink="true">https://bob1024.com/2016/06/07/merge-sort/</guid>
+        <link>http://localhost:4000/2016/06/07/merge-sort/</link>
+        <guid isPermaLink="true">http://localhost:4000/2016/06/07/merge-sort/</guid>
         
         
       </item>
@@ -957,8 +1020,8 @@ https://github.com/mingbozhang/algorithm&lt;/p&gt;
 
 </description>
         <pubDate>Sat, 04 Jun 2016 00:00:00 +0800</pubDate>
-        <link>https://bob1024.com/2016/06/04/all-in-one-jar/</link>
-        <guid isPermaLink="true">https://bob1024.com/2016/06/04/all-in-one-jar/</guid>
+        <link>http://localhost:4000/2016/06/04/all-in-one-jar/</link>
+        <guid isPermaLink="true">http://localhost:4000/2016/06/04/all-in-one-jar/</guid>
         
         <category>maven</category>
         
@@ -1240,8 +1303,8 @@ http://blog.csdn.net/lxb15959168136/article/details/50225057&lt;/p&gt;
 &lt;p&gt;https://github.com/mingbozhang/leandubbo&lt;/p&gt;
 </description>
         <pubDate>Fri, 03 Jun 2016 00:00:00 +0800</pubDate>
-        <link>https://bob1024.com/2016/06/03/dubbo-zookeeper-springmvc/</link>
-        <guid isPermaLink="true">https://bob1024.com/2016/06/03/dubbo-zookeeper-springmvc/</guid>
+        <link>http://localhost:4000/2016/06/03/dubbo-zookeeper-springmvc/</link>
+        <guid isPermaLink="true">http://localhost:4000/2016/06/03/dubbo-zookeeper-springmvc/</guid>
         
         <category>dubbo</category>
         
@@ -1402,8 +1465,8 @@ http://blog.csdn.net/lxb15959168136/article/details/50225057&lt;/p&gt;
 &lt;p&gt;所有需要new一个对象的地方，同时要求有足够的灵活性。&lt;/p&gt;
 </description>
         <pubDate>Mon, 28 Mar 2016 00:00:00 +0800</pubDate>
-        <link>https://bob1024.com/2016/03/28/design_pattern_factory_method/</link>
-        <guid isPermaLink="true">https://bob1024.com/2016/03/28/design_pattern_factory_method/</guid>
+        <link>http://localhost:4000/2016/03/28/design_pattern_factory_method/</link>
+        <guid isPermaLink="true">http://localhost:4000/2016/03/28/design_pattern_factory_method/</guid>
         
         
       </item>
@@ -1611,8 +1674,8 @@ http://blog.csdn.net/lxb15959168136/article/details/50225057&lt;/p&gt;
 &lt;p&gt;本篇仅对java堆内存泄漏进行了简单说明，下一篇将讨论其他相关的内存泄漏。有不对的地方欢迎拍砖&amp;gt;_&amp;lt;&lt;/p&gt;
 </description>
         <pubDate>Mon, 07 Mar 2016 00:00:00 +0800</pubDate>
-        <link>https://bob1024.com/2016/03/07/jvm-memory-leak/</link>
-        <guid isPermaLink="true">https://bob1024.com/2016/03/07/jvm-memory-leak/</guid>
+        <link>http://localhost:4000/2016/03/07/jvm-memory-leak/</link>
+        <guid isPermaLink="true">http://localhost:4000/2016/03/07/jvm-memory-leak/</guid>
         
         <category>java</category>
         
@@ -1796,8 +1859,8 @@ http://www.docker.org.cn/book/docker.html &lt;br /&gt;
 http://m.oschina.net/blog/616526?hmsr=toutiao.io&amp;amp;utm_medium=toutiao.io&amp;amp;utm_source=toutiao.io&lt;/p&gt;
 </description>
         <pubDate>Sun, 21 Feb 2016 00:00:00 +0800</pubDate>
-        <link>https://bob1024.com/2016/02/21/docker-deploy-tomcat/</link>
-        <guid isPermaLink="true">https://bob1024.com/2016/02/21/docker-deploy-tomcat/</guid>
+        <link>http://localhost:4000/2016/02/21/docker-deploy-tomcat/</link>
+        <guid isPermaLink="true">http://localhost:4000/2016/02/21/docker-deploy-tomcat/</guid>
         
         <category>docker</category>
         
@@ -1903,155 +1966,8 @@ https://github.com/elastic/elasticsearch/issues/9191#issuecomment-77784022&lt;/p
 
 </description>
         <pubDate>Sat, 23 Jan 2016 00:00:00 +0800</pubDate>
-        <link>https://bob1024.com/2016/01/23/es-invalid-shift-value/</link>
-        <guid isPermaLink="true">https://bob1024.com/2016/01/23/es-invalid-shift-value/</guid>
-        
-        
-      </item>
-    
-      <item>
-        <title>零配置文件搭建SpringMVC实践纪录</title>
-        <description>&lt;section id=&quot;table-of-contents&quot; class=&quot;toc&quot;&gt;
-  &lt;header&gt;
-    &lt;h3&gt;&lt;i class=&quot;fa fa-book&quot;&gt;&lt;/i&gt; Contents&lt;/h3&gt;
-  &lt;/header&gt;
-&lt;div id=&quot;drawer&quot;&gt;
-&lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#a-tale-of-two-application-contexts&quot; id=&quot;markdown-toc-a-tale-of-two-application-contexts&quot;&gt;A TALE OF TWO APPLICATION CONTEXTS&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-  &lt;/div&gt;
-&lt;/section&gt;
-&lt;!-- /#table-of-contents --&gt;
-
-&lt;p&gt;本篇记录使用纯java代码搭建SpringMVC工程的实践，只是一个demo。再开始之前先热身下，给出SpringMVC调用流程图，讲解的是一个http request请求到达SpringMVC框架后的过程，如下：&lt;/p&gt;
-&lt;figure&gt;
-&lt;img src=&quot;/img/in-post/learn_spring/dispacherrequest.png&quot; /&gt;
-&lt;/figure&gt;
-&lt;p&gt;从servlet 3.0开始，实现javax.servlet.ServletContainerInitializer接口的类将在容器启动的时候执行onStartup方法。SpringMVC的”零配置”就是基于这个特性。所以对于servlet 3.0 以下的容器还是老老实实在web.xml中进行配置。
-下面让我们一步步搭建SpringMVC，先上图：&lt;/p&gt;
-&lt;figure&gt;
-&lt;img src=&quot;/img/in-post/learn_spring/servlet_java_init.png&quot; /&gt;
-&lt;/figure&gt;
-&lt;p&gt;上图中展示了启动关键类的初始化过程，首先容器启动，初始化并执行实现ServletContainerInitalzer接口的Spring类，该类初始化实现WebApplicationInitializer接口的PlayWebAppInitializer类（由于这里继承了AbstractAnnotationConfigDispatcherServletInitializer抽象类）。&lt;/p&gt;
-
-&lt;p&gt;在讲解PlayWebAppInitializer初始化了两个bean容器，一种是与DispatcherServlet相关联的MVC框架直接关系的bean,如：Controller，Service，Repository等等。再说另外一种bean容器前先回忆下，还记得ContextLoaderListener吧，做SSH框架整合时在web.xml中要配置这个类，所以说这个容器是配置更通用一些的bean。
-那么问题来了：为什么要有两个共存呢？－－－－答：我猜想是方便分离，如果不想使用SpringMVC而实用其他MVC框架的可以把DispatcherServlet相关的那个bean容器拿掉。（纯属意淫，欢迎拍砖）。&lt;/p&gt;
-
-&lt;p&gt;这里WebConfig用来负责DispacherServlet相关bean的配置，RootConfig用来负责ContextLoaderListener相关bean的配置。&lt;/p&gt;
-
-&lt;p&gt;下面截取一段《Spring in Action 4th》中关于两个ApplicationContext的原话，在135页：&lt;/p&gt;
-
-&lt;h2 id=&quot;a-tale-of-two-application-contexts&quot;&gt;A TALE OF TWO APPLICATION CONTEXTS&lt;/h2&gt;
-&lt;p&gt;When DispatcherServlet starts up, it creates a Spring application context and starts loading it with beans declared in the configuration files or classes that it’s given. With the getServletConfigClasses() method in listing 5.1, you’ve asked that Dispatcher- Servlet load its application context with beans defined in the WebConfig configura- tion class (using Java configuration).
-But in Spring web applications, there’s often another application context. This other application context is created by ContextLoaderListener.
-Whereas DispatcherServlet is expected to load beans containing web components such as controllers, view resolvers, and handler mappings, ContextLoaderListener is expected to load the other beans in your application. These beans are typically the middle-tier and data-tier components that drive the back end of the application.
-136
-CHAPTER 5 Building Spring web applications
-Under the covers, AbstractAnnotationConfigDispatcherServletInitializer cre- ates both a DispatcherServlet and a ContextLoaderListener. The @Configuration classes returned from getServletConfigClasses() will define beans for Dispatcher- Servlet’s application context. Meanwhile, the @Configuration class’s returned get- RootConfigClasses() will be used to configure the application context created by ContextLoaderListener.
-In this case, your root configuration is defined in RootConfig, whereas Dispatcher- Servlet’s configuration is declared in WebConfig. You’ll see what those two configura- tion classes look like in a moment.&lt;/p&gt;
-
-&lt;p&gt;上实践的代码：
-com.bob.playspring.PlayWebAppInitializer&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;kn&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;bob&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;playspring&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;cm&quot;&gt;/**
- * 初始化DispatherServlet，代替在web.xml中到DispatherServlet配置,
- * @author bob
- *
- */&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PlayWebAppInitializer&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;AbstractAnnotationConfigDispatcherServletInitializer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-
-	&lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-	&lt;span class=&quot;kd&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;?&amp;gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;getRootConfigClasses&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;RootConfig&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;};&lt;/span&gt;
-	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-	&lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-	&lt;span class=&quot;kd&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;?&amp;gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;getServletConfigClasses&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;WebConfig&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;};&lt;/span&gt;
-	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-	&lt;span class=&quot;cm&quot;&gt;/**
-	 * identifies one or more paths that DispatcherServlet will be mapped to.&amp;lt;br&amp;gt;
-	 *  In this case, it’s mapped to /, indicating that it will be the application’s default servlet.&amp;lt;br&amp;gt;
-	 *   It will handle all requests coming into the application.
-	 */&lt;/span&gt;
-	&lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-	&lt;span class=&quot;kd&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getServletMappings&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;/&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;};&lt;/span&gt;
-	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;com.bob.playspring.WebConfig&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;kn&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;bob&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;playspring&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.springframework.context.annotation.Bean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.springframework.context.annotation.ComponentScan&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.springframework.context.annotation.Configuration&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.springframework.web.servlet.ViewResolver&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.springframework.web.servlet.config.annotation.EnableWebMvc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.springframework.web.servlet.view.InternalResourceViewResolver&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;cm&quot;&gt;/**
- * 系统配置
- * @author bob
- *
- */&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@EnableWebMvc&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@Configuration&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@ComponentScan&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;com.bob&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;WebConfig&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;WebMvcConfigurerAdapter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-
-	&lt;span class=&quot;nd&quot;&gt;@Bean&lt;/span&gt;
-	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ViewResolver&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;viewResolver&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-		&lt;span class=&quot;n&quot;&gt;InternalResourceViewResolver&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;resolver&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;InternalResourceViewResolver&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-		&lt;span class=&quot;n&quot;&gt;resolver&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setPrefix&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/WEB-INF/views/&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-		&lt;span class=&quot;n&quot;&gt;resolver&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setSuffix&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;.jsp&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-		&lt;span class=&quot;n&quot;&gt;resolver&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setExposeContextBeansAsAttributes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;resolver&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-	&lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;configureDefaultServletHandling&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DefaultServletHandlerConfigurer&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;configurer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-		&lt;span class=&quot;n&quot;&gt;configurer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;enable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;com.bob.playspring.RootConfig&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;kn&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;bob&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;playspring&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.springframework.context.annotation.ComponentScan&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.springframework.context.annotation.ComponentScan.Filter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.springframework.context.annotation.Configuration&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.springframework.context.annotation.FilterType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.springframework.web.servlet.config.annotation.EnableWebMvc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;nd&quot;&gt;@Configuration&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@ComponentScan&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;basePackages&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;com.bob&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;excludeFilters&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-		&lt;span class=&quot;nd&quot;&gt;@Filter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FilterType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;ANNOTATION&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;EnableWebMvc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;})&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;RootConfig&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;关于Controller，Service，Repository的代码我就不贴了。&lt;/p&gt;
-</description>
-        <pubDate>Sun, 10 Jan 2016 00:00:00 +0800</pubDate>
-        <link>https://bob1024.com/2016/01/10/springmvc/</link>
-        <guid isPermaLink="true">https://bob1024.com/2016/01/10/springmvc/</guid>
-        
-        <category>spring</category>
-        
-        <category>springMVC</category>
+        <link>http://localhost:4000/2016/01/23/es-invalid-shift-value/</link>
+        <guid isPermaLink="true">http://localhost:4000/2016/01/23/es-invalid-shift-value/</guid>
         
         
       </item>
