@@ -5,8 +5,8 @@
     <description></description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 27 Aug 2017 23:10:27 +0800</pubDate>
-    <lastBuildDate>Sun, 27 Aug 2017 23:10:27 +0800</lastBuildDate>
+    <pubDate>Sun, 27 Aug 2017 23:12:31 +0800</pubDate>
+    <lastBuildDate>Sun, 27 Aug 2017 23:12:31 +0800</lastBuildDate>
     <generator>Jekyll v3.5.0</generator>
     
       <item>
@@ -109,7 +109,7 @@
 &lt;h6 id=&quot;场景二&quot;&gt;场景二&lt;/h6&gt;
 &lt;font color=&quot;blue&quot;&gt;&lt;b&gt;关键词：异步、可靠性&lt;/b&gt;&lt;/font&gt;
 &lt;p&gt;想象下你有一个组织依赖于一组手机销售人员。这些销售人员将产品展示给目标顾客。在这个业务场景中，让销售人员能看到最新的可以售卖的产品信息非常重要。。到目前为止，我们应该能看到涉及到消息队列的至少有两个应用。（如下图） &lt;br /&gt;
-&lt;img src=&quot;../img/in-post/mq/mq_1.png&quot; alt=&quot;Alt text&quot; /&gt; &lt;br /&gt;
+&lt;img src=&quot;/img/in-post/mq/mq_1.png&quot; alt=&quot;Alt text&quot; /&gt; &lt;br /&gt;
 对于第一个应用，总部可以对中心销售登记系统（Central Sales Catalog）做些更新。这些更新随后通过消息队列发送给个人销售人员。消息队列系统将一直保留这些消息，直到销售人员将电脑接入到网络。接入网络后个人销售员电脑上的本地登记应用（Local Catalog App）将接收来自消息队列中的消息，这些消息中包含了更新本地登记的内容。&lt;br /&gt;
 这个例子比较老，是通过拨号这种联网这种方式。&lt;/p&gt;
 
