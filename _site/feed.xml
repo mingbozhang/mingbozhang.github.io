@@ -5,63 +5,149 @@
     <description></description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 16 Aug 2017 23:28:59 +0800</pubDate>
-    <lastBuildDate>Wed, 16 Aug 2017 23:28:59 +0800</lastBuildDate>
+    <pubDate>Sun, 27 Aug 2017 23:10:27 +0800</pubDate>
+    <lastBuildDate>Sun, 27 Aug 2017 23:10:27 +0800</lastBuildDate>
     <generator>Jekyll v3.5.0</generator>
     
       <item>
         <title>消息队列随笔</title>
-        <description>&lt;h4 id=&quot;1概述&quot;&gt;1.概述&lt;/h4&gt;
-&lt;p&gt;消息队列是分布式组件的一种，用于进程间通信或者统一进程中不同线程间的通信。Group communication systems provide similar kinds of functionality.(这种在下面做比较)&lt;/p&gt;
+        <description>&lt;section id=&quot;table-of-contents&quot; class=&quot;toc&quot;&gt;
+  &lt;header&gt;
+    &lt;h3&gt;&lt;i class=&quot;fa fa-book&quot;&gt;&lt;/i&gt; Contents&lt;/h3&gt;
+  &lt;/header&gt;
+&lt;div id=&quot;drawer&quot;&gt;
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#1概述&quot; id=&quot;markdown-toc-1概述&quot;&gt;1.概述&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#2消息队列能带来什么&quot; id=&quot;markdown-toc-2消息队列能带来什么&quot;&gt;2.消息队列能带来什么&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#21-好处&quot; id=&quot;markdown-toc-21-好处&quot;&gt;2.1 好处&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#松耦合&quot; id=&quot;markdown-toc-松耦合&quot;&gt;松耦合&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#冗余&quot; id=&quot;markdown-toc-冗余&quot;&gt;冗余&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#可扩展性&quot; id=&quot;markdown-toc-可扩展性&quot;&gt;可扩展性&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#弹性--可应对峰值负载&quot; id=&quot;markdown-toc-弹性--可应对峰值负载&quot;&gt;弹性 &amp;amp; 可应对峰值负载&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#可恢复性&quot; id=&quot;markdown-toc-可恢复性&quot;&gt;可恢复性&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#异步通信&quot; id=&quot;markdown-toc-异步通信&quot;&gt;异步通信&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#22-坏处&quot; id=&quot;markdown-toc-22-坏处&quot;&gt;2.2 坏处&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#代码复杂度增加&quot; id=&quot;markdown-toc-代码复杂度增加&quot;&gt;代码复杂度增加&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#运维工作量增加&quot; id=&quot;markdown-toc-运维工作量增加&quot;&gt;运维工作量增加&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#3消息队列的几个场景&quot; id=&quot;markdown-toc-3消息队列的几个场景&quot;&gt;3.消息队列的几个场景&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#场景一&quot; id=&quot;markdown-toc-场景一&quot;&gt;场景一&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#场景二&quot; id=&quot;markdown-toc-场景二&quot;&gt;场景二&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#场景三&quot; id=&quot;markdown-toc-场景三&quot;&gt;场景三&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#4是不是真的需要消息队列&quot; id=&quot;markdown-toc-4是不是真的需要消息队列&quot;&gt;4.是不是真的需要消息队列?&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#step-1-列出所有必要的需求&quot; id=&quot;markdown-toc-step-1-列出所有必要的需求&quot;&gt;Step 1 列出所有必要的需求&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#step-2-尝试简化处理方案&quot; id=&quot;markdown-toc-step-2-尝试简化处理方案&quot;&gt;Step 2 尝试简化处理方案&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#4与消息组件相似技术&quot; id=&quot;markdown-toc-4与消息组件相似技术&quot;&gt;4.与消息组件相似技术&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#group-communication-system&quot; id=&quot;markdown-toc-group-communication-system&quot;&gt;Group Communication System&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#5参考&quot; id=&quot;markdown-toc-5参考&quot;&gt;5.参考&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+  &lt;/div&gt;
+&lt;/section&gt;
+&lt;!-- /#table-of-contents --&gt;
+
+&lt;h4 id=&quot;1概述&quot;&gt;1.概述&lt;/h4&gt;
+&lt;p&gt;消息队列是分布式组件的一种，用于进程间通信或者统一进程中不同线程间的通信。&lt;/p&gt;
 
 &lt;p&gt;消息组件一般支持2种模式：&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;发送／接收&lt;/li&gt;
   &lt;li&gt;发布／订阅
     &lt;h4 id=&quot;2消息队列能带来什么&quot;&gt;2.消息队列能带来什么&lt;/h4&gt;
-    &lt;h5 id=&quot;21-好处&quot;&gt;2.1 好处&lt;/h5&gt;
   &lt;/li&gt;
-  &lt;li&gt;松耦合（被调用方即使因为故障没有启动也不影响调用方操作）&lt;/li&gt;
-  &lt;li&gt;异步（这个估计不是优点，异步很多实现都是可以达到）&lt;/li&gt;
-  &lt;li&gt;跨系统（Http也是跨系统的&amp;gt;_&amp;lt;）&lt;/li&gt;
-  &lt;li&gt;伸缩性提高（多个消费者）&lt;/li&gt;
-  &lt;li&gt;保存请求（万一处理的过程中处理失败）&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;h5 id=&quot;21-好处&quot;&gt;2.1 好处&lt;/h5&gt;
+&lt;h6 id=&quot;松耦合&quot;&gt;松耦合&lt;/h6&gt;
+&lt;p&gt;在项目一开始很难预测未来会有哪些需求。通过在多个进程之间引入一个基于数据的接口层，使得单独的进程可以独立变化而不影响其它进程（只要坚持满足相同的接口需求）&lt;/p&gt;
+
+&lt;h6 id=&quot;冗余&quot;&gt;冗余&lt;/h6&gt;
+&lt;p&gt;处理数据的过程有时候会失败。除非这些数据是持久化的，否则将会永久丢失。为了缓解这种状况，队列持久化这些数据，直到完全处理完毕才移除它们。”发送消息-&amp;gt;获取消息-&amp;gt;删除消息”这个范例被很多消息队列使用。范例中“删除消息”步骤执行前需要一个进程明白得指出他已经处理完这个消息。这么做确保了你的数据可以被安全保存直到被处理完毕。&lt;/p&gt;
+
+&lt;h6 id=&quot;可扩展性&quot;&gt;可扩展性&lt;/h6&gt;
+&lt;p&gt;因为消息队列使你的处理之间松耦合，所以仅仅通过增加更多的进程就可以提高消息队列中消息的增加与处理速率，不需要改变代码，不需要调整配置。&lt;/p&gt;
+
+&lt;h6 id=&quot;弹性--可应对峰值负载&quot;&gt;弹性 &amp;amp; 可应对峰值负载&lt;/h6&gt;
+&lt;p&gt;当你的应用被黑客攻击，你将看到不同寻常的流量水平。你的应用需要能够在这样不断增加的负载下保证本身的功能。但是这个流量属于不常见的，正常情况下并不是这样的。随时准备好处理峰值流量的资源是一种浪费。消息队列将允许应用应对这种峰值流量。&lt;/p&gt;
+
+&lt;h6 id=&quot;可恢复性&quot;&gt;可恢复性&lt;/h6&gt;
+&lt;p&gt;当整个架构中部分失败的时候，不需要整个系统因为这个问题而重启。消息队列使进程之间解耦，所以如果一个处理消息的进程失败并不影响向消息队列中增加消息的进程。当这个问题进程恢复后可以继续处理消息队列中的消息。&lt;/p&gt;
+
+&lt;h6 id=&quot;异步通信&quot;&gt;异步通信&lt;/h6&gt;
+&lt;p&gt;大部门情况下，你不想或者不需要马上处理一个消息。消息队列可以实现异步处理，允许将消息放入队列中而不立刻处理它。等到空闲的时候再来处理。比如日志信息等。&lt;/p&gt;
 
 &lt;h5 id=&quot;22-坏处&quot;&gt;2.2 坏处&lt;/h5&gt;
+&lt;h6 id=&quot;代码复杂度增加&quot;&gt;代码复杂度增加&lt;/h6&gt;
+&lt;p&gt;代码编写程序代码，执行过程调试难度增加。&lt;/p&gt;
+&lt;h6 id=&quot;运维工作量增加&quot;&gt;运维工作量增加&lt;/h6&gt;
+&lt;p&gt;使用消息队列引入更多的中间件，整个系统更容易出现故障需要排除。同时要保障消息队列的高可用。&lt;/p&gt;
+
+&lt;h4 id=&quot;3消息队列的几个场景&quot;&gt;3.消息队列的几个场景&lt;/h4&gt;
+
+&lt;h6 id=&quot;场景一&quot;&gt;场景一&lt;/h6&gt;
+&lt;font color=&quot;blue&quot;&gt;&lt;b&gt;关键词：松耦合、可恢复性、可扩展性、高可用&lt;/b&gt;&lt;/font&gt;
+&lt;p&gt;想象下你有一个服务，每秒钟要接收大量的请求，每个请求处理时间都比较长。要保证这些请求不能丢失，最终可以被处理掉。 &lt;br /&gt;
+你的服务要实现高可用，并时刻做好接收新请求的准备，不能因为前面请求在处理中而被阻塞。&lt;/p&gt;
+
+&lt;p&gt;在这个场景中，最好的办法就是在接受请求与处理请求之间放一个队列。这两个处理之间需要解耦，两方的任何一方不需要等待另一方。这样的话，即使段短时间内有大量的请求到来，最终负责处理请求的系统最终也能将他们处理掉。这个队列要能够在请求数过多的情况下可以持久化它们。&lt;/p&gt;
+
+&lt;p&gt;你可以想象你们的业务以及工作量在不断增加，你需要扩展你的系统。现在只需要增加更多的worker进程来处理完所有的请求就行。&lt;/p&gt;
+
+&lt;p&gt;除了在web服务和其它处理服务之间增加一个缓冲区以外，消息队列可以被用于更多的高级方案中。&lt;/p&gt;
+
+&lt;h6 id=&quot;场景二&quot;&gt;场景二&lt;/h6&gt;
+&lt;font color=&quot;blue&quot;&gt;&lt;b&gt;关键词：异步、可靠性&lt;/b&gt;&lt;/font&gt;
+&lt;p&gt;想象下你有一个组织依赖于一组手机销售人员。这些销售人员将产品展示给目标顾客。在这个业务场景中，让销售人员能看到最新的可以售卖的产品信息非常重要。。到目前为止，我们应该能看到涉及到消息队列的至少有两个应用。（如下图） &lt;br /&gt;
+&lt;img src=&quot;../img/in-post/mq/mq_1.png&quot; alt=&quot;Alt text&quot; /&gt; &lt;br /&gt;
+对于第一个应用，总部可以对中心销售登记系统（Central Sales Catalog）做些更新。这些更新随后通过消息队列发送给个人销售人员。消息队列系统将一直保留这些消息，直到销售人员将电脑接入到网络。接入网络后个人销售员电脑上的本地登记应用（Local Catalog App）将接收来自消息队列中的消息，这些消息中包含了更新本地登记的内容。&lt;br /&gt;
+这个例子比较老，是通过拨号这种联网这种方式。&lt;/p&gt;
+
+&lt;h6 id=&quot;场景三&quot;&gt;场景三&lt;/h6&gt;
+&lt;font color=&quot;blue&quot;&gt;&lt;b&gt;关键词：异步、可靠性、发布/订阅模式、松耦合&lt;/b&gt;&lt;/font&gt;
+&lt;p&gt;一个Web应用处理一个指定顾客的订单。作为处理订单过程的一部分，你可能希望执行一系列附加任务（假设订单信息已经存入数据库）：&lt;/p&gt;
 &lt;ul&gt;
-  &lt;li&gt;运维工作量增加&lt;/li&gt;
-  &lt;li&gt;不利于程序员调试&lt;/li&gt;
-  &lt;li&gt;程序运行起来更容易出现故障&lt;/li&gt;
+  &lt;li&gt;保存订单到第三方后台系统（比如SAP）&lt;/li&gt;
+  &lt;li&gt;发送一封email给顾客告知他们的订单已经被处理 &lt;br /&gt;
+为了满足以上，你的应用代码需要发布一个包含订单ID的消息到消息队列。系统中的另外一个应用监听着消息队列，从消息中获取到订单ID，从数据库中获取订单信息然后将它存入第三方系统。另外一个系统中的应用也将响应发布消息事件，发送一封确认邮件给顾客。 &lt;br /&gt;
+这种情况下，你若想增加更多附加任务不会对已经存在的代码造成影响。&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&quot;2什么情况下我们需要引入消息队列&quot;&gt;2.什么情况下我们需要引入消息队列&lt;/h4&gt;
+&lt;h4 id=&quot;4是不是真的需要消息队列&quot;&gt;4.是不是真的需要消息队列?&lt;/h4&gt;
+&lt;h5 id=&quot;step-1-列出所有必要的需求&quot;&gt;Step 1 列出所有必要的需求&lt;/h5&gt;
+&lt;p&gt;要集成不同组件？分布负载？还是仅仅因为别人在用？&lt;/p&gt;
 
-&lt;h4 id=&quot;3与消息组件相似技术的比较&quot;&gt;3.与消息组件相似技术的比较&lt;/h4&gt;
-&lt;h5 id=&quot;31-group-communication-system&quot;&gt;3.1 Group communication system&lt;/h5&gt;
+&lt;h5 id=&quot;step-2-尝试简化处理方案&quot;&gt;Step 2 尝试简化处理方案&lt;/h5&gt;
+&lt;p&gt;如果仅仅需要异步处理，可以使用进程内队列进行处理。如果没有耗时的后台操作甚至可以直接用同步而不用异步。&lt;/p&gt;
 
-&lt;h5 id=&quot;32-异步调用如spring-async注解&quot;&gt;3.2 异步调用，如Spring @Async注解&lt;/h5&gt;
+&lt;h4 id=&quot;4与消息组件相似技术&quot;&gt;4.与消息组件相似技术&lt;/h4&gt;
+&lt;h5 id=&quot;group-communication-system&quot;&gt;Group Communication System&lt;/h5&gt;
+&lt;p&gt;如JGroup&lt;/p&gt;
 
-&lt;h5 id=&quot;33-进程内queue&quot;&gt;3.3 进程内queue&lt;/h5&gt;
-
-&lt;h5 id=&quot;34&quot;&gt;3.4&lt;/h5&gt;
-
-&lt;h4 id=&quot;4如何确定是不是真的需要消息队列&quot;&gt;4.如何确定是不是真的需要消息队列&lt;/h4&gt;
-&lt;h5 id=&quot;41-需求是什么&quot;&gt;4.1 需求是什么？&lt;/h5&gt;
-&lt;h5 id=&quot;42-根据需求都有哪些可以选择的方案&quot;&gt;4.2 根据需求都有哪些可以选择的方案？&lt;/h5&gt;
-&lt;h5 id=&quot;43-满足需求的最简单方案是什么&quot;&gt;4.3 满足需求的最简单方案是什么？&lt;/h5&gt;
-
-&lt;h4 id=&quot;5建议&quot;&gt;5.建议&lt;/h4&gt;
-&lt;h5 id=&quot;51-不要为了引入技术而引入&quot;&gt;5.1 不要为了引入技术而引入&lt;/h5&gt;
-
-&lt;h4 id=&quot;6参考资料&quot;&gt;6.参考资料&lt;/h4&gt;
-&lt;p&gt;https://en.wikipedia.org/wiki/Message_queue
-https://en.wikipedia.org/wiki/Group_communication_system
-https://en.wikipedia.org/wiki/JGroups
-https://en.wikipedia.org/wiki/Java_Message_Service
-https://techblog.bozho.net/you-probably-dont-need-a-message-queue/
-https://www.slideshare.net/Bozho/overview-of-message-queues
-https://www.rabbitmq.com/tutorials/tutorial-three-spring-amqp.html&lt;/p&gt;
+&lt;h4 id=&quot;5参考&quot;&gt;5.参考&lt;/h4&gt;
+&lt;p&gt;https://www.iron.io/top-10-uses-for-message-queue/ &lt;br /&gt;
+https://en.wikipedia.org/wiki/Message_queue &lt;br /&gt;
+https://en.wikipedia.org/wiki/Group_communication_system &lt;br /&gt;
+https://en.wikipedia.org/wiki/JGroups &lt;br /&gt;
+https://en.wikipedia.org/wiki/Java_Message_Service &lt;br /&gt;
+https://techblog.bozho.net/you-probably-dont-need-a-message-queue/ &lt;br /&gt;
+https://www.slideshare.net/Bozho/overview-of-message-queues &lt;br /&gt;
+https://www.rabbitmq.com/tutorials/tutorial-three-spring-amqp.html &lt;br /&gt;
+https://www.cloudamqp.com/docs/usecases.html &lt;br /&gt;
+https://msdn.microsoft.com/en-us/library/aa480412.aspx    &lt;br /&gt;
+https://stackoverflow.com/questions/1035949/real-world-use-of-jms-message-queues &lt;br /&gt;
+http://techie3251.blogspot.com/2012/01/jms-activemq-jgroups.html &lt;br /&gt;
+http://www.ics.uci.edu/~cs237/lectures/messaging-gc.ppt&lt;/p&gt;
 </description>
         <pubDate>Sun, 13 Aug 2017 00:00:00 +0800</pubDate>
         <link>http://localhost:4000/2017/08/13/mq/</link>
