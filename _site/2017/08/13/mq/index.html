@@ -19,7 +19,7 @@
     <link rel="shortcut icon" href="/img/favicon.ico">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="http://localhost:4000/2017/08/13/mq/">
+    <link rel="canonical" href="https://bob1024.com/2017/08/13/mq/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -206,85 +206,72 @@
   </header>
 <div id="drawer">
 <ul id="markdown-toc">
-  <li><a href="#1概述" id="markdown-toc-1概述">1.概述</a></li>
-  <li><a href="#2消息队列能带来什么" id="markdown-toc-2消息队列能带来什么">2.消息队列能带来什么</a>    <ul>
-      <li><a href="#21-好处" id="markdown-toc-21-好处">2.1 好处</a>        <ul>
-          <li><a href="#松耦合" id="markdown-toc-松耦合">松耦合</a></li>
-          <li><a href="#冗余" id="markdown-toc-冗余">冗余</a></li>
-          <li><a href="#可扩展性" id="markdown-toc-可扩展性">可扩展性</a></li>
-          <li><a href="#弹性--可应对峰值负载" id="markdown-toc-弹性--可应对峰值负载">弹性 &amp; 可应对峰值负载</a></li>
-          <li><a href="#可恢复性" id="markdown-toc-可恢复性">可恢复性</a></li>
-          <li><a href="#异步通信" id="markdown-toc-异步通信">异步通信</a></li>
+  <li><a href="#section" id="markdown-toc-section">1.概述</a>    <ul>
+      <li><a href="#section-1" id="markdown-toc-section-1">2.1 好处</a>        <ul>
+          <li><a href="#section-2" id="markdown-toc-section-2">冗余</a></li>
+          <li><a href="#section-3" id="markdown-toc-section-3">可扩展性</a></li>
+          <li><a href="#section-4" id="markdown-toc-section-4">弹性 &amp; 可应对峰值负载</a></li>
+          <li><a href="#section-5" id="markdown-toc-section-5">可恢复性</a></li>
+          <li><a href="#section-6" id="markdown-toc-section-6">异步通信</a></li>
         </ul>
       </li>
-      <li><a href="#22-坏处" id="markdown-toc-22-坏处">2.2 坏处</a>        <ul>
-          <li><a href="#代码复杂度增加" id="markdown-toc-代码复杂度增加">代码复杂度增加</a></li>
-          <li><a href="#运维工作量增加" id="markdown-toc-运维工作量增加">运维工作量增加</a></li>
-        </ul>
-      </li>
+      <li><a href="#section-7" id="markdown-toc-section-7">2.2 坏处</a></li>
     </ul>
   </li>
-  <li><a href="#3消息队列的几个场景" id="markdown-toc-3消息队列的几个场景">3.消息队列的几个场景</a>    <ul>
-      <li><a href="#场景一" id="markdown-toc-场景一">场景一</a></li>
-      <li><a href="#场景二" id="markdown-toc-场景二">场景二</a></li>
-      <li><a href="#场景三" id="markdown-toc-场景三">场景三</a></li>
+  <li><a href="#section-8" id="markdown-toc-section-8">3.消息队列的几个场景</a>    <ul>
+      <li><a href="#section-9" id="markdown-toc-section-9">场景一</a></li>
+      <li><a href="#section-10" id="markdown-toc-section-10">场景二</a></li>
+      <li><a href="#section-11" id="markdown-toc-section-11">场景三</a></li>
     </ul>
   </li>
-  <li><a href="#4是不是真的需要消息队列" id="markdown-toc-4是不是真的需要消息队列">4.是不是真的需要消息队列?</a>    <ul>
-      <li><a href="#step-1-列出所有必要的需求" id="markdown-toc-step-1-列出所有必要的需求">Step 1 列出所有必要的需求</a></li>
-      <li><a href="#step-2-尝试简化处理方案" id="markdown-toc-step-2-尝试简化处理方案">Step 2 尝试简化处理方案</a></li>
+  <li><a href="#section-12" id="markdown-toc-section-12">4.是不是真的需要消息队列?</a>    <ul>
+      <li><a href="#step-2-" id="markdown-toc-step-2-">Step 2 尝试简化处理方案</a></li>
     </ul>
   </li>
-  <li><a href="#4与消息组件相似技术" id="markdown-toc-4与消息组件相似技术">4.与消息组件相似技术</a>    <ul>
-      <li><a href="#group-communication-system" id="markdown-toc-group-communication-system">Group Communication System</a></li>
-    </ul>
-  </li>
-  <li><a href="#5参考" id="markdown-toc-5参考">5.参考</a></li>
+  <li><a href="#section-13" id="markdown-toc-section-13">4.与消息组件相似技术</a></li>
+  <li><a href="#section-14" id="markdown-toc-section-14">5.参考</a></li>
 </ul>
 
   </div>
 </section>
 <!-- /#table-of-contents -->
 
-<h4 id="1概述">1.概述</h4>
+<h4 id="section">1.概述</h4>
 <p>消息队列是分布式组件的一种，用于进程间通信或者统一进程中不同线程间的通信。</p>
 
-<p>消息组件一般支持2种模式：</p>
-<ul>
-  <li>发送／接收</li>
-  <li>发布／订阅
-    <h4 id="2消息队列能带来什么">2.消息队列能带来什么</h4>
-  </li>
-</ul>
+<p>消息组件一般支持2种模式：<br />
+* 发送／接收<br />
+* 发布／订阅
+#### 2.消息队列能带来什么</p>
 
-<h5 id="21-好处">2.1 好处</h5>
-<h6 id="松耦合">松耦合</h6>
-<p>在项目一开始很难预测未来会有哪些需求。通过在多个进程之间引入一个基于数据的接口层，使得单独的进程可以独立变化而不影响其它进程（只要坚持满足相同的接口需求）</p>
+<h5 id="section-1">2.1 好处</h5>
+<p>######  松耦合
+在项目一开始很难预测未来会有哪些需求。通过在多个进程之间引入一个基于数据的接口层，使得单独的进程可以独立变化而不影响其它进程（只要坚持满足相同的接口需求）</p>
 
-<h6 id="冗余">冗余</h6>
+<h6 id="section-2">冗余</h6>
 <p>处理数据的过程有时候会失败。除非这些数据是持久化的，否则将会永久丢失。为了缓解这种状况，队列持久化这些数据，直到完全处理完毕才移除它们。”发送消息-&gt;获取消息-&gt;删除消息”这个范例被很多消息队列使用。范例中“删除消息”步骤执行前需要一个进程明白得指出他已经处理完这个消息。这么做确保了你的数据可以被安全保存直到被处理完毕。</p>
 
-<h6 id="可扩展性">可扩展性</h6>
+<h6 id="section-3">可扩展性</h6>
 <p>因为消息队列使你的处理之间松耦合，所以仅仅通过增加更多的进程就可以提高消息队列中消息的增加与处理速率，不需要改变代码，不需要调整配置。</p>
 
-<h6 id="弹性--可应对峰值负载">弹性 &amp; 可应对峰值负载</h6>
+<h6 id="section-4">弹性 &amp; 可应对峰值负载</h6>
 <p>当你的应用被黑客攻击，你将看到不同寻常的流量水平。你的应用需要能够在这样不断增加的负载下保证本身的功能。但是这个流量属于不常见的，正常情况下并不是这样的。随时准备好处理峰值流量的资源是一种浪费。消息队列将允许应用应对这种峰值流量。</p>
 
-<h6 id="可恢复性">可恢复性</h6>
+<h6 id="section-5">可恢复性</h6>
 <p>当整个架构中部分失败的时候，不需要整个系统因为这个问题而重启。消息队列使进程之间解耦，所以如果一个处理消息的进程失败并不影响向消息队列中增加消息的进程。当这个问题进程恢复后可以继续处理消息队列中的消息。</p>
 
-<h6 id="异步通信">异步通信</h6>
+<h6 id="section-6">异步通信</h6>
 <p>大部门情况下，你不想或者不需要马上处理一个消息。消息队列可以实现异步处理，允许将消息放入队列中而不立刻处理它。等到空闲的时候再来处理。比如日志信息等。</p>
 
-<h5 id="22-坏处">2.2 坏处</h5>
-<h6 id="代码复杂度增加">代码复杂度增加</h6>
-<p>代码编写程序代码，执行过程调试难度增加。</p>
-<h6 id="运维工作量增加">运维工作量增加</h6>
-<p>使用消息队列引入更多的中间件，整个系统更容易出现故障需要排除。同时要保障消息队列的高可用。</p>
+<h5 id="section-7">2.2 坏处</h5>
+<p>###### 代码复杂度增加 <br />
+代码编写程序代码，执行过程调试难度增加。
+###### 运维工作量增加 <br />
+使用消息队列引入更多的中间件，整个系统更容易出现故障需要排除。同时要保障消息队列的高可用。</p>
 
-<h4 id="3消息队列的几个场景">3.消息队列的几个场景</h4>
+<h4 id="section-8">3.消息队列的几个场景</h4>
 
-<h6 id="场景一">场景一</h6>
+<h6 id="section-9">场景一</h6>
 <font color="blue"><b>关键词：松耦合、可恢复性、可扩展性、高可用</b></font>
 <p>想象下你有一个服务，每秒钟要接收大量的请求，每个请求处理时间都比较长。要保证这些请求不能丢失，最终可以被处理掉。 <br />
 你的服务要实现高可用，并时刻做好接收新请求的准备，不能因为前面请求在处理中而被阻塞。</p>
@@ -295,35 +282,33 @@
 
 <p>除了在web服务和其它处理服务之间增加一个缓冲区以外，消息队列可以被用于更多的高级方案中。</p>
 
-<h6 id="场景二">场景二</h6>
+<h6 id="section-10">场景二</h6>
 <font color="blue"><b>关键词：异步、可靠性</b></font>
 <p>想象下你有一个组织依赖于一组手机销售人员。这些销售人员将产品展示给目标顾客。在这个业务场景中，让销售人员能看到最新的可以售卖的产品信息非常重要。。到目前为止，我们应该能看到涉及到消息队列的至少有两个应用。（如下图） <br />
 <img src="/img/in-post/mq/mq_1.png" alt="Alt text" /> <br />
 对于第一个应用，总部可以对中心销售登记系统（Central Sales Catalog）做些更新。这些更新随后通过消息队列发送给个人销售人员。消息队列系统将一直保留这些消息，直到销售人员将电脑接入到网络。接入网络后个人销售员电脑上的本地登记应用（Local Catalog App）将接收来自消息队列中的消息，这些消息中包含了更新本地登记的内容。<br />
 这个例子比较老，是通过拨号这种联网这种方式。</p>
 
-<h6 id="场景三">场景三</h6>
+<h6 id="section-11">场景三</h6>
 <font color="blue"><b>关键词：异步、可靠性、发布/订阅模式、松耦合</b></font>
-<p>一个Web应用处理一个指定顾客的订单。作为处理订单过程的一部分，你可能希望执行一系列附加任务（假设订单信息已经存入数据库）：</p>
-<ul>
-  <li>保存订单到第三方后台系统（比如SAP）</li>
-  <li>发送一封email给顾客告知他们的订单已经被处理 <br />
+<p>一个Web应用处理一个指定顾客的订单。作为处理订单过程的一部分，你可能希望执行一系列附加任务（假设订单信息已经存入数据库）： <br />
+* 保存订单到第三方后台系统（比如SAP）
+* 发送一封email给顾客告知他们的订单已经被处理 <br />
 为了满足以上，你的应用代码需要发布一个包含订单ID的消息到消息队列。系统中的另外一个应用监听着消息队列，从消息中获取到订单ID，从数据库中获取订单信息然后将它存入第三方系统。另外一个系统中的应用也将响应发布消息事件，发送一封确认邮件给顾客。 <br />
-这种情况下，你若想增加更多附加任务不会对已经存在的代码造成影响。</li>
-</ul>
+这种情况下，你若想增加更多附加任务不会对已经存在的代码造成影响。</p>
 
-<h4 id="4是不是真的需要消息队列">4.是不是真的需要消息队列?</h4>
-<h5 id="step-1-列出所有必要的需求">Step 1 列出所有必要的需求</h5>
-<p>要集成不同组件？分布负载？还是仅仅因为别人在用？</p>
+<h4 id="section-12">4.是不是真的需要消息队列?</h4>
+<p>##### Step 1 列出所有必要的需求 <br />
+要集成不同组件？分布负载？还是仅仅因为别人在用？</p>
 
-<h5 id="step-2-尝试简化处理方案">Step 2 尝试简化处理方案</h5>
+<h5 id="step-2-">Step 2 尝试简化处理方案</h5>
 <p>如果仅仅需要异步处理，可以使用进程内队列进行处理。如果没有耗时的后台操作甚至可以直接用同步而不用异步。</p>
 
-<h4 id="4与消息组件相似技术">4.与消息组件相似技术</h4>
-<h5 id="group-communication-system">Group Communication System</h5>
-<p>如JGroup</p>
+<h4 id="section-13">4.与消息组件相似技术</h4>
+<p>#####  Group Communication System <br />
+如JGroup</p>
 
-<h4 id="5参考">5.参考</h4>
+<h4 id="section-14">5.参考</h4>
 <p>https://www.iron.io/top-10-uses-for-message-queue/ <br />
 https://en.wikipedia.org/wiki/Message_queue <br />
 https://en.wikipedia.org/wiki/Group_communication_system <br />
@@ -352,9 +337,9 @@ http://www.ics.uci.edu/~cs237/lectures/messaging-gc.ppt</p>
                     
                     
                     <li class="next">
-                        <a href="/2017/08/13/tomcat85_1/" data-toggle="tooltip" data-placement="top" title="Tomcat8.5源码学习（一）http请求处理 ">
+                        <a href="/2017/08/13/tomcat85_1/" data-toggle="tooltip" data-placement="top" title="Tomcat8.5源码学习（一）NioEndPoint解析 ">
                         Next<br>
-                        <span>Tomcat8.5源码学习（一）http请求处理 </span>
+                        <span>Tomcat8.5源码学习（一）NioEndPoint解析 </span>
                         </a>
                     </li>
                     
@@ -453,7 +438,7 @@ http://www.ics.uci.edu/~cs237/lectures/messaging-gc.ppt</p>
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "bob1024";
     var disqus_identifier = "/2017/08/13/mq";
-    var disqus_url = "http://localhost:4000/2017/08/13/mq/";
+    var disqus_url = "https://bob1024.com/2017/08/13/mq/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

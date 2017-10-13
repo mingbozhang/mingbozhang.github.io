@@ -19,7 +19,7 @@
     <link rel="shortcut icon" href="/img/favicon.ico">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="http://localhost:4000/2016/06/07/merge-sort/">
+    <link rel="canonical" href="https://bob1024.com/2016/06/07/merge-sort/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -204,23 +204,22 @@
   </header>
 <div id="drawer">
 <ul id="markdown-toc">
-  <li><a href="#一什么是归并排序" id="markdown-toc-一什么是归并排序">一、什么是归并排序</a></li>
-  <li><a href="#二单线程实现归并排序" id="markdown-toc-二单线程实现归并排序">二、单线程实现归并排序</a></li>
-  <li><a href="#三使用forkjoin框架实现归并排序" id="markdown-toc-三使用forkjoin框架实现归并排序">三、使用Fork/Join框架实现归并排序</a></li>
-  <li><a href="#四单线程-pk-多线程" id="markdown-toc-四单线程-pk-多线程">四、单线程 pk 多线程</a></li>
-  <li><a href="#五本文代码地址" id="markdown-toc-五本文代码地址">五、本文代码地址</a></li>
-  <li><a href="#六参考" id="markdown-toc-六参考">六、参考</a></li>
+  <li><a href="#section" id="markdown-toc-section">一、什么是归并排序</a></li>
+  <li><a href="#section-1" id="markdown-toc-section-1">二、单线程实现归并排序</a></li>
+  <li><a href="#forkjoin" id="markdown-toc-forkjoin">三、使用Fork/Join框架实现归并排序</a></li>
+  <li><a href="#pk-" id="markdown-toc-pk-">四、单线程 pk 多线程</a></li>
+  <li><a href="#section-2" id="markdown-toc-section-2">五、本文代码地址</a></li>
 </ul>
 
   </div>
 </section>
 <!-- /#table-of-contents -->
 
-<h2 id="一什么是归并排序">一、什么是归并排序</h2>
+<h2 id="section">一、什么是归并排序</h2>
 <p>归并排序又称合并排序，它是成功应用分治技术的一个完美例子。对于一个需要排序的数组A[0..n-1],归并排序把它一分为二：A[0..n/2-1]和A[n/2..n-1],并对每个子数组递归排序，然后把这两个排好序的子数组合并为一个有序数组。下面是归并排序的例子图解：
 <img src="/img/in-post/algorithm/mergesort/mergesort.png" /></p>
 
-<h2 id="二单线程实现归并排序">二、单线程实现归并排序</h2>
+<h2 id="section-1">二、单线程实现归并排序</h2>
 
 <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">bob</span><span class="o">.</span><span class="na">algorithms</span><span class="o">.</span><span class="na">sort</span><span class="o">;</span>
 
@@ -236,7 +235,7 @@
  */</span>
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">SingleThreadMergeSort</span> <span class="kd">implements</span> <span class="n">SortStrategy</span> <span class="o">{</span>
 
-	<span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">sort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">rawArray</span><span class="o">)</span> <span class="o">{</span>
+	<span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">sort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">rawArray</span><span class="o">)</span> <span class="o">{</span>
 		<span class="n">mergeSort</span><span class="o">(</span><span class="n">rawArray</span><span class="o">);</span>
 		<span class="k">return</span> <span class="n">rawArray</span><span class="o">;</span>
 	<span class="o">}</span>
@@ -246,7 +245,7 @@
 	 * 
 	 * @param intArr
 	 */</span>
-	<span class="kd">private</span> <span class="kt">void</span> <span class="nf">mergeSort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">intArr</span><span class="o">)</span> <span class="o">{</span>
+	<span class="kd">private</span> <span class="kt">void</span> <span class="n">mergeSort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">intArr</span><span class="o">)</span> <span class="o">{</span>
 		<span class="k">if</span> <span class="o">(</span><span class="n">intArr</span><span class="o">.</span><span class="na">length</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
 			<span class="c1">// 如果数组长度大于1就分解称两份</span>
 			<span class="kt">int</span><span class="o">[]</span> <span class="n">leftArray</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">copyOfRange</span><span class="o">(</span><span class="n">intArr</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">intArr</span><span class="o">.</span><span class="na">length</span> <span class="o">/</span> <span class="mi">2</span><span class="o">);</span>
@@ -266,7 +265,7 @@
 	 * @param rightArray
 	 * @param intArr
 	 */</span>
-	<span class="kd">private</span> <span class="kt">void</span> <span class="nf">merge</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">leftArray</span><span class="o">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">rightArray</span><span class="o">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">intArr</span><span class="o">)</span> <span class="o">{</span>
+	<span class="kd">private</span> <span class="kt">void</span> <span class="n">merge</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">leftArray</span><span class="o">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">rightArray</span><span class="o">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">intArr</span><span class="o">)</span> <span class="o">{</span>
 
 		<span class="c1">// i：leftArray数组索引，j：rightArray数组索引，k：intArr数组索引</span>
 		<span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
@@ -295,7 +294,7 @@
 	<span class="o">}</span>
 <span class="o">}</span></code></pre></figure>
 
-<h2 id="三使用forkjoin框架实现归并排序">三、使用Fork/Join框架实现归并排序</h2>
+<h2 id="forkjoin">三、使用Fork/Join框架实现归并排序</h2>
 <p>Fork/Join是从JDK 1.7 加入的并发计算框架。</p>
 
 <figure class="highlight"><pre><code class="language-java" data-lang="java">   
@@ -309,7 +308,7 @@
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">ForkJoinMergeSort</span> <span class="kd">implements</span> <span class="n">SortStrategy</span> <span class="o">{</span>
 
-	<span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">sort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">rawArray</span><span class="o">)</span> <span class="o">{</span>
+	<span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">sort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">rawArray</span><span class="o">)</span> <span class="o">{</span>
 		<span class="n">ForkJoinPool</span> <span class="n">pool</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ForkJoinPool</span><span class="o">();</span>
 		<span class="n">pool</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="k">new</span> <span class="n">MergeSort</span><span class="o">(</span><span class="n">rawArray</span><span class="o">));</span>
 		<span class="k">return</span> <span class="n">rawArray</span><span class="o">;</span>
@@ -326,12 +325,12 @@
 		<span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">long</span> <span class="n">serialVersionUID</span> <span class="o">=</span> <span class="mi">425572392953885545L</span><span class="o">;</span>
 		<span class="kd">private</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">intArr</span><span class="o">;</span>
 
-		<span class="kd">public</span> <span class="nf">MergeSort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">intArr</span><span class="o">)</span> <span class="o">{</span>
+		<span class="kd">public</span> <span class="n">MergeSort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">intArr</span><span class="o">)</span> <span class="o">{</span>
 			<span class="k">this</span><span class="o">.</span><span class="na">intArr</span> <span class="o">=</span> <span class="n">intArr</span><span class="o">;</span>
 		<span class="o">}</span>
 
 		<span class="nd">@Override</span>
-		<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">compute</span><span class="o">()</span> <span class="o">{</span>
+		<span class="kd">protected</span> <span class="kt">void</span> <span class="n">compute</span><span class="o">()</span> <span class="o">{</span>
 			<span class="k">if</span> <span class="o">(</span><span class="n">intArr</span><span class="o">.</span><span class="na">length</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
 				<span class="c1">// 如果数组长度大于1就分解称两份</span>
 				<span class="kt">int</span><span class="o">[]</span> <span class="n">leftArray</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">copyOfRange</span><span class="o">(</span><span class="n">intArr</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">intArr</span><span class="o">.</span><span class="na">length</span> <span class="o">/</span> <span class="mi">2</span><span class="o">);</span>
@@ -352,7 +351,7 @@
 		 * @param rightArray
 		 * @param intArr
 		 */</span>
-		<span class="kd">private</span> <span class="kt">void</span> <span class="nf">merge</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">leftArray</span><span class="o">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">rightArray</span><span class="o">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">intArr</span><span class="o">)</span> <span class="o">{</span>
+		<span class="kd">private</span> <span class="kt">void</span> <span class="n">merge</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">leftArray</span><span class="o">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">rightArray</span><span class="o">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">intArr</span><span class="o">)</span> <span class="o">{</span>
 
 			<span class="c1">// i：leftArray数组索引，j：rightArray数组索引，k：intArr数组索引</span>
 			<span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
@@ -383,7 +382,7 @@
 	<span class="o">}</span>
 <span class="o">}</span></code></pre></figure>
 
-<h2 id="四单线程-pk-多线程">四、单线程 pk 多线程</h2>
+<h2 id="pk-">四、单线程 pk 多线程</h2>
 <p>编写了舞台类，通过调整generateIntArray(10000000)的输入参数来设置待排序数组长度，试验中没有对堆容量进行设置。</p>
 
 <figure class="highlight"><pre><code class="language-java" data-lang="java"> 
@@ -404,7 +403,7 @@
  */</span>
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Stage</span> <span class="o">{</span>
 
-	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="n">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
 
 		<span class="c1">// 变量定义</span>
 		<span class="kt">long</span> <span class="n">begintime</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
@@ -415,14 +414,14 @@
 		<span class="kt">int</span><span class="o">[]</span> <span class="n">rawArr2</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">copyOf</span><span class="o">(</span><span class="n">rawArr</span><span class="o">,</span> <span class="n">rawArr</span><span class="o">.</span><span class="na">length</span><span class="o">);</span>
 
 		<span class="n">begintime</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Date</span><span class="o">().</span><span class="na">getTime</span><span class="o">();</span>
-		<span class="k">new</span> <span class="nf">SingleThreadMergeSort</span><span class="o">().</span><span class="na">sort</span><span class="o">(</span><span class="n">rawArr</span><span class="o">);</span>
+		<span class="k">new</span> <span class="n">SingleThreadMergeSort</span><span class="o">().</span><span class="na">sort</span><span class="o">(</span><span class="n">rawArr</span><span class="o">);</span>
 		<span class="c1">//System.out.println(Arrays.toString(new SingleThreadMergeSort().sort(rawArr)));</span>
 		<span class="n">endtime</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Date</span><span class="o">().</span><span class="na">getTime</span><span class="o">();</span>
 		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"单线程归并排序花费时间："</span> <span class="o">+</span> <span class="o">(</span><span class="n">endtime</span> <span class="o">-</span> <span class="n">begintime</span><span class="o">));</span>
 		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"是否升序："</span><span class="o">+</span><span class="n">CommonUtil</span><span class="o">.</span><span class="na">isSorted</span><span class="o">(</span><span class="n">rawArr</span><span class="o">,</span> <span class="kc">true</span><span class="o">));</span>
 
 		<span class="n">begintime</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Date</span><span class="o">().</span><span class="na">getTime</span><span class="o">();</span>
-		<span class="k">new</span> <span class="nf">ForkJoinMergeSort</span><span class="o">().</span><span class="na">sort</span><span class="o">(</span><span class="n">rawArr2</span><span class="o">);</span>
+		<span class="k">new</span> <span class="n">ForkJoinMergeSort</span><span class="o">().</span><span class="na">sort</span><span class="o">(</span><span class="n">rawArr2</span><span class="o">);</span>
 		<span class="c1">//System.out.println(Arrays.toString(new ForkJoinMergeSort().sort(rawArr2)));</span>
 		<span class="n">endtime</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Date</span><span class="o">().</span><span class="na">getTime</span><span class="o">();</span>
 		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Fork/Join归并排序花费时间："</span> <span class="o">+</span> <span class="o">(</span><span class="n">endtime</span> <span class="o">-</span> <span class="n">begintime</span><span class="o">));</span>
@@ -434,7 +433,7 @@
 	 * 
 	 * @return
 	 */</span>
-	<span class="kd">private</span> <span class="kd">static</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">generateIntArray</span><span class="o">(</span><span class="kt">int</span> <span class="n">length</span><span class="o">)</span> <span class="o">{</span>
+	<span class="kd">private</span> <span class="kd">static</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">generateIntArray</span><span class="o">(</span><span class="kt">int</span> <span class="n">length</span><span class="o">)</span> <span class="o">{</span>
 		<span class="kt">int</span><span class="o">[]</span> <span class="n">intArr</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">length</span><span class="o">];</span>
 		<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
 			<span class="n">intArr</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Double</span><span class="o">(</span><span class="n">Math</span><span class="o">.</span><span class="na">random</span><span class="o">()</span> <span class="o">*</span> <span class="n">length</span><span class="o">).</span><span class="na">intValue</span><span class="o">();</span>
@@ -482,11 +481,11 @@
 <p>通过统计可以发现，当待排序序列长度较小时，使用单线程效率要高于多线程，但是随着数量不断增加，多线程执行时间越来越接近单线程的执行时间，最终在1000万这个量级开始速率远超单线程。工作中不能滥用多线程，在该使用的时候使用可以加快效率，充分利用多核。但是在不该用的时候使用徒增工作量，有可能效率还不如单线程。
 感兴趣的朋友可以通过下面代码地址找到运行的全部源码自己跑跑试试看。</p>
 
-<h2 id="五本文代码地址">五、本文代码地址</h2>
+<h2 id="section-2">五、本文代码地址</h2>
 <p>包括本篇在内以后所有代码统一存放地址为： <br />
-https://github.com/mingbozhang/algorithm</p>
-<h2 id="六参考">六、参考</h2>
-<p>https://docs.oracle.com/javase/tutorial/essential/concurrency/forkjoin.html <br />
+https://github.com/mingbozhang/algorithm
+## 六、参考 <br />
+https://docs.oracle.com/javase/tutorial/essential/concurrency/forkjoin.html <br />
 《算法设计与分析基础（第3版）》</p>
 
 
@@ -604,7 +603,7 @@ https://github.com/mingbozhang/algorithm</p>
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "bob1024";
     var disqus_identifier = "/2016/06/07/merge-sort";
-    var disqus_url = "http://localhost:4000/2016/06/07/merge-sort/";
+    var disqus_url = "https://bob1024.com/2016/06/07/merge-sort/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

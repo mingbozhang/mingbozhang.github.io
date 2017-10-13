@@ -19,7 +19,7 @@
     <link rel="shortcut icon" href="/img/favicon.ico">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="http://localhost:4000/2016/03/28/design_pattern_factory_method/">
+    <link rel="canonical" href="https://bob1024.com/2016/03/28/design_pattern_factory_method/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -204,18 +204,18 @@
   </header>
 <div id="drawer">
 <ul id="markdown-toc">
-  <li><a href="#1小c的故事" id="markdown-toc-1小c的故事">1.小C的故事</a></li>
-  <li><a href="#2存在的问题" id="markdown-toc-2存在的问题">2.存在的问题</a></li>
-  <li><a href="#3工厂方法模式登场" id="markdown-toc-3工厂方法模式登场">3.工厂方法模式登场</a></li>
-  <li><a href="#4解决了什么失去了什么" id="markdown-toc-4解决了什么失去了什么">4.解决了什么，失去了什么</a></li>
-  <li><a href="#5具体应用场景" id="markdown-toc-5具体应用场景">5.具体应用场景</a></li>
+  <li><a href="#c" id="markdown-toc-c">1.小C的故事</a></li>
+  <li><a href="#section" id="markdown-toc-section">2.存在的问题</a></li>
+  <li><a href="#section-1" id="markdown-toc-section-1">3.工厂方法模式登场</a></li>
+  <li><a href="#section-2" id="markdown-toc-section-2">4.解决了什么，失去了什么</a></li>
+  <li><a href="#section-3" id="markdown-toc-section-3">5.具体应用场景</a></li>
 </ul>
 
   </div>
 </section>
 <!-- /#table-of-contents -->
 
-<h3 id="1小c的故事">1.小C的故事</h3>
+<h3 id="c">1.小C的故事</h3>
 
 <p>       大家好，我叫张小C，我是一个厨师，专职烤面包。下面是我的工作。</p>
 
@@ -223,14 +223,14 @@
  
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">World</span> <span class="o">{</span>
 
-	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="n">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
 		<span class="n">LittleC</span> <span class="n">littleC</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LittleC</span><span class="o">();</span>
 		<span class="n">littleC</span><span class="o">.</span><span class="na">work</span><span class="o">();</span>
 	<span class="o">}</span>
 <span class="o">}</span>
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">LittleC</span> <span class="o">{</span>
-	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">work</span><span class="o">()</span> <span class="o">{</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="n">work</span><span class="o">()</span> <span class="o">{</span>
 		   <span class="n">Bread</span> <span class="n">bread</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Bread</span><span class="o">();</span>
 		   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">bread</span><span class="o">.</span><span class="na">getName</span><span class="o">()+</span><span class="s">"做好了！"</span><span class="o">);</span>
 		   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">bread</span><span class="o">.</span><span class="na">getTaste</span><span class="o">());</span>
@@ -241,11 +241,11 @@
 
 	<span class="kd">private</span> <span class="n">String</span> <span class="n">name</span> <span class="o">=</span> <span class="s">"面包"</span><span class="o">;</span>
 
-	<span class="kd">public</span> <span class="n">String</span> <span class="nf">getName</span><span class="o">()</span> <span class="o">{</span>
+	<span class="kd">public</span> <span class="n">String</span> <span class="n">getName</span><span class="o">()</span> <span class="o">{</span>
 		<span class="k">return</span> <span class="n">name</span><span class="o">;</span>
 	<span class="o">}</span>
 
-	<span class="kd">public</span> <span class="n">String</span> <span class="nf">getTaste</span><span class="o">(){</span>
+	<span class="kd">public</span> <span class="n">String</span> <span class="n">getTaste</span><span class="o">(){</span>
 		<span class="k">return</span> <span class="s">"软软的，没什么味道"</span><span class="o">;</span>
 	<span class="o">}</span>
 <span class="o">}</span></code></pre></figure>
@@ -256,10 +256,10 @@
 
 <p>小C心想，我只会烤面包啊，该咋办，难不成再加个workForPizza，那要是这个也吃腻了总不能加到屎吧…况且我脑子笨，学得慢…好吧，爱吃不吃，你不吃自有人吃！（纯属意淫）</p>
 
-<h3 id="2存在的问题">2.存在的问题</h3>
+<h3 id="section">2.存在的问题</h3>
 <p>现在让我们来看一看小C现在面临的问题是什么，先看看work方法中直接new了一个Bread，把自己禁锢在了一种食物中。那有没有什么办法可以解决小c的当前困境呢？</p>
 
-<h3 id="3工厂方法模式登场">3.工厂方法模式登场</h3>
+<h3 id="section-1">3.工厂方法模式登场</h3>
 <p>小强:小C，我最近开了一个Pizza店，什么时候过来吃Pizza啊？ <br />
 小C:太好了，我正愁呢。这样咱们合作，顾客在我这里点Pizza的时候，你们店就给我做一个Pizza送过来。互利共赢嘛。 <br />
 小强：好，一言为定。 <br />
@@ -270,7 +270,7 @@
 
 <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">World</span> <span class="o">{</span>
 
-	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="n">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
 		<span class="n">LittleC</span> <span class="n">littleC</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LittleC</span><span class="o">();</span>
 		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"小明：我要吃面包！"</span><span class="o">);</span>
 		<span class="n">littleC</span><span class="o">.</span><span class="na">setFoodShop</span><span class="o">(</span><span class="k">new</span> <span class="n">BreadShop</span><span class="o">());</span>
@@ -295,11 +295,11 @@
 
 	<span class="kd">private</span> <span class="n">FoodShop</span> <span class="n">foodShop</span><span class="o">;</span>
 	
-	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setFoodShop</span><span class="o">(</span><span class="n">FoodShop</span> <span class="n">foodShop</span><span class="o">){</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="n">setFoodShop</span><span class="o">(</span><span class="n">FoodShop</span> <span class="n">foodShop</span><span class="o">){</span>
 		<span class="k">this</span><span class="o">.</span><span class="na">foodShop</span> <span class="o">=</span> <span class="n">foodShop</span><span class="o">;</span>
 	<span class="o">}</span>
 
-	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">work</span><span class="o">()</span> <span class="o">{</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="n">work</span><span class="o">()</span> <span class="o">{</span>
 		<span class="n">Food</span> <span class="n">food</span> <span class="o">=</span> <span class="n">foodShop</span><span class="o">.</span><span class="na">createFood</span><span class="o">();</span>
 		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">food</span><span class="o">.</span><span class="na">getName</span><span class="o">()</span> <span class="o">+</span> <span class="s">"做好了！"</span><span class="o">);</span>
 		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">food</span><span class="o">.</span><span class="na">getTaste</span><span class="o">());</span>
@@ -308,23 +308,23 @@
 
 <span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">Food</span> <span class="o">{</span>
 
-	<span class="kd">public</span> <span class="kd">abstract</span> <span class="n">String</span> <span class="nf">getName</span><span class="o">();</span>
+	<span class="kd">public</span> <span class="kd">abstract</span> <span class="n">String</span> <span class="n">getName</span><span class="o">();</span>
 
-	<span class="kd">public</span> <span class="kd">abstract</span> <span class="n">String</span> <span class="nf">getTaste</span><span class="o">();</span>
+	<span class="kd">public</span> <span class="kd">abstract</span> <span class="n">String</span> <span class="n">getTaste</span><span class="o">();</span>
 <span class="o">}</span>
 
 <span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">FoodShop</span> <span class="o">{</span>
 
-	<span class="kd">public</span> <span class="kd">abstract</span> <span class="n">Food</span> <span class="nf">createFood</span><span class="o">();</span>
+	<span class="kd">public</span> <span class="kd">abstract</span> <span class="n">Food</span> <span class="n">createFood</span><span class="o">();</span>
 <span class="o">}</span>
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Bread</span> <span class="kd">extends</span> <span class="n">Food</span> <span class="o">{</span>
 
-	<span class="kd">public</span> <span class="n">String</span> <span class="nf">getName</span><span class="o">()</span> <span class="o">{</span>
+	<span class="kd">public</span> <span class="n">String</span> <span class="n">getName</span><span class="o">()</span> <span class="o">{</span>
 		<span class="k">return</span> <span class="s">"面包"</span><span class="o">;</span>
 	<span class="o">}</span>
 
-	<span class="kd">public</span> <span class="n">String</span> <span class="nf">getTaste</span><span class="o">()</span> <span class="o">{</span>
+	<span class="kd">public</span> <span class="n">String</span> <span class="n">getTaste</span><span class="o">()</span> <span class="o">{</span>
 		<span class="k">return</span> <span class="s">"软软的，很清淡"</span><span class="o">;</span>
 	<span class="o">}</span>
 <span class="o">}</span>
@@ -332,17 +332,17 @@
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">BreadShop</span> <span class="kd">extends</span> <span class="n">FoodShop</span> <span class="o">{</span>
 
 	<span class="nd">@Override</span>
-	<span class="kd">public</span> <span class="n">Food</span> <span class="nf">createFood</span><span class="o">()</span> <span class="o">{</span>
-		<span class="k">return</span> <span class="k">new</span> <span class="nf">Bread</span><span class="o">();</span>
+	<span class="kd">public</span> <span class="n">Food</span> <span class="n">createFood</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="k">new</span> <span class="n">Bread</span><span class="o">();</span>
 	<span class="o">}</span>
 
 <span class="o">}</span> </code></pre></figure>
 
-<h3 id="4解决了什么失去了什么">4.解决了什么，失去了什么</h3>
+<h3 id="section-2">4.解决了什么，失去了什么</h3>
 <p>通过引入工厂方法模式我们解决了，Bread硬编码到LittleC中导致的扩展受限问题。小C以后可以接入各种各样的菜色而不需要改动既有代码（world除外）。 <br />
 缺点也是很明显，我为了一个菜色还要加一个餐馆进来。这里可以通过带有参数到工厂方法来优化这种情况。创造一个什么菜都可以生产的餐馆，比如根据类型完整名称就可以得到具体的食物，那么只需要一个餐馆就可以了。</p>
 
-<h3 id="5具体应用场景">5.具体应用场景</h3>
+<h3 id="section-3">5.具体应用场景</h3>
 <p>所有需要new一个对象的地方，同时要求有足够的灵活性。</p>
 
 
@@ -460,7 +460,7 @@
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "bob1024";
     var disqus_identifier = "/2016/03/28/design_pattern_factory_method";
-    var disqus_url = "http://localhost:4000/2016/03/28/design_pattern_factory_method/";
+    var disqus_url = "https://bob1024.com/2016/03/28/design_pattern_factory_method/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

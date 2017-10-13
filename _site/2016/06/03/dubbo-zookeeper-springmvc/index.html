@@ -19,7 +19,7 @@
     <link rel="shortcut icon" href="/img/favicon.ico">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="http://localhost:4000/2016/06/03/dubbo-zookeeper-springmvc/">
+    <link rel="canonical" href="https://bob1024.com/2016/06/03/dubbo-zookeeper-springmvc/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -210,24 +210,24 @@
   </header>
 <div id="drawer">
 <ul id="markdown-toc">
-  <li><a href="#一安装准备" id="markdown-toc-一安装准备">一.安装准备</a>    <ul>
-      <li><a href="#1环境简介" id="markdown-toc-1环境简介">1.环境简介</a></li>
-      <li><a href="#2小插曲" id="markdown-toc-2小插曲">2.小插曲</a></li>
-      <li><a href="#3编译dubbo示例" id="markdown-toc-3编译dubbo示例">3.编译dubbo示例</a></li>
+  <li><a href="#section" id="markdown-toc-section">一.安装准备</a>    <ul>
+      <li><a href="#section-1" id="markdown-toc-section-1">1.环境简介</a></li>
+      <li><a href="#section-2" id="markdown-toc-section-2">2.小插曲</a></li>
+      <li><a href="#dubbo" id="markdown-toc-dubbo">3.编译dubbo示例</a></li>
     </ul>
   </li>
-  <li><a href="#二zookeeper注册中心安装" id="markdown-toc-二zookeeper注册中心安装">二.Zookeeper注册中心安装</a></li>
-  <li><a href="#三安装dubbo示例" id="markdown-toc-三安装dubbo示例">三.安装dubbo示例</a>    <ul>
-      <li><a href="#1示例提供者安装" id="markdown-toc-1示例提供者安装">1.示例提供者安装</a></li>
-      <li><a href="#2示例消费者安装" id="markdown-toc-2示例消费者安装">2.示例消费者安装</a></li>
-      <li><a href="#3监控中心安装" id="markdown-toc-3监控中心安装">3.监控中心安装</a></li>
-      <li><a href="#4管理控制台安装" id="markdown-toc-4管理控制台安装">4.管理控制台安装</a></li>
+  <li><a href="#zookeeper" id="markdown-toc-zookeeper">二.Zookeeper注册中心安装</a></li>
+  <li><a href="#dubbo-1" id="markdown-toc-dubbo-1">三.安装dubbo示例</a>    <ul>
+      <li><a href="#section-3" id="markdown-toc-section-3">1.示例提供者安装</a></li>
+      <li><a href="#section-4" id="markdown-toc-section-4">2.示例消费者安装</a></li>
+      <li><a href="#section-5" id="markdown-toc-section-5">3.监控中心安装</a></li>
+      <li><a href="#section-6" id="markdown-toc-section-6">4.管理控制台安装</a></li>
     </ul>
   </li>
-  <li><a href="#四通过springmvc加入服务提供者和消费者" id="markdown-toc-四通过springmvc加入服务提供者和消费者">四.通过SpringMVC加入服务提供者和消费者</a>    <ul>
-      <li><a href="#问题一-dubboxsd文件找不到" id="markdown-toc-问题一-dubboxsd文件找不到">问题一: dubbo.xsd文件找不到</a></li>
-      <li><a href="#问题二-在dubbo启动的过程中报错误javalangclassnotfoundexception-javassistclasspath" id="markdown-toc-问题二-在dubbo启动的过程中报错误javalangclassnotfoundexception-javassistclasspath">问题二: 在dubbo启动的过程中报错误：java.lang.ClassNotFoundException: javassist.ClassPath</a></li>
-      <li><a href="#最后是编写的服务提供者和消费者的代码" id="markdown-toc-最后是编写的服务提供者和消费者的代码">最后是编写的服务提供者和消费者的代码</a></li>
+  <li><a href="#springmvc" id="markdown-toc-springmvc">四.通过SpringMVC加入服务提供者和消费者</a>    <ul>
+      <li><a href="#dubboxsd" id="markdown-toc-dubboxsd">问题一: dubbo.xsd文件找不到</a></li>
+      <li><a href="#dubbojavalangclassnotfoundexception-javassistclasspath" id="markdown-toc-dubbojavalangclassnotfoundexception-javassistclasspath">问题二: 在dubbo启动的过程中报错误：java.lang.ClassNotFoundException: javassist.ClassPath</a></li>
+      <li><a href="#section-7" id="markdown-toc-section-7">最后是编写的服务提供者和消费者的代码</a></li>
     </ul>
   </li>
 </ul>
@@ -236,9 +236,9 @@
 </section>
 <!-- /#table-of-contents -->
 
-<h2 id="一安装准备">一.安装准备</h2>
+<h2 id="section">一.安装准备</h2>
 
-<h3 id="1环境简介">1.环境简介</h3>
+<h3 id="section-1">1.环境简介</h3>
 
 <table>
   <thead>
@@ -275,14 +275,14 @@
   </tbody>
 </table>
 
-<h3 id="2小插曲">2.小插曲</h3>
+<h3 id="section-2">2.小插曲</h3>
 <p>想用wget进行下载，发现mac默认是没有安装的。用惯了别的Linux环境，相使用个自动安装工具来安装wget。让后就找到了Homebrew。下面首先安装Homebrew，这个类似CentOS的yum和Ubuntu的apt-get，安装方法很简单，执行下面就可以了：  <br />
 ruby -e “$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)”      <br />
 执行上面并安装成功后，下面让我们测试下安装wget：  <br />
 brew install wget
 完美，安装完毕。</p>
 
-<h3 id="3编译dubbo示例">3.编译dubbo示例</h3>
+<h3 id="dubbo">3.编译dubbo示例</h3>
 <p>根据网站官方教程: <br />
 http://dubbo.io/Administrator+Guide-zh.htm#AdministratorGuide-zh-%E7%A4%BA%E4%BE%8B%E6%8F%90%E4%BE%9B%E8%80%85%E5%AE%89%E8%A3%85</p>
 
@@ -302,7 +302,7 @@ dubbo-monitor-simple-2.5.4-SNAPSHOT-assembly.tar.gz</p>
 <p>目录dubbo/dubbo-admin/target下面： <br />
 dubbo-admin-2.5.4-SNAPSHOT.war</p>
 
-<h2 id="二zookeeper注册中心安装">二.Zookeeper注册中心安装</h2>
+<h2 id="zookeeper">二.Zookeeper注册中心安装</h2>
 <p>注册中心有多种选择，我选择zookeeper作为注册中心。  <br />
 wget http://apache.fayea.com/zookeeper/zookeeper-3.4.8/zookeeper-3.4.8.tar.gz <br />
 tar -zxvf zookeeper-3.4.8.tar.gz <br />
@@ -312,9 +312,9 @@ cp conf/zoo_sample.cfg conf/zoo.cfg</p>
 <p>不配置集群，直接启动  <br />
 ./bin/zkServer.sh start</p>
 
-<h2 id="三安装dubbo示例">三.安装dubbo示例</h2>
+<h2 id="dubbo-1">三.安装dubbo示例</h2>
 
-<h3 id="1示例提供者安装">1.示例提供者安装</h3>
+<h3 id="section-3">1.示例提供者安装</h3>
 <p>tar -zxvf dubbo-demo-provider-2.5.4-SNAPSHOT-assembly.tar.gz <br />
 cd dubbo-demo-provider-2.5.4-SNAPSHOT</p>
 
@@ -330,7 +330,7 @@ dubbo.registry.address=zookeeper://127.0.0.1:2181<br />
 telnet 127.0.0.1 20880  <br />
 输入help，查看提供的操作</p>
 
-<h3 id="2示例消费者安装">2.示例消费者安装</h3>
+<h3 id="section-4">2.示例消费者安装</h3>
 <p>tar -zxvf dubbo-demo-consumer-2.5.4-SNAPSHOT-assembly.tar.gz <br />
 cd dubbo-demo-consumer-2.5.4-SNAPSHOT</p>
 
@@ -342,7 +342,7 @@ dubbo.registry.address=zookeeper://127.0.0.1:2181<br />
 
 <p>./bin/start.sh</p>
 
-<h3 id="3监控中心安装">3.监控中心安装</h3>
+<h3 id="section-5">3.监控中心安装</h3>
 <p>tar -zxvf dubbo-monitor-simple-2.5.4-SNAPSHOT-assembly.tar.gz <br />
 cd dubbo-monitor-simple-2.5.4-SNAPSHOT
 配置 <br />
@@ -357,7 +357,7 @@ dubbo.registry.address=zookeeper://127.0.0.1:2181<br />
 
 <p><img src="/img/in-post/dubbo-zookeeper-springmvc/monitor.png" /></p>
 
-<h3 id="4管理控制台安装">4.管理控制台安装</h3>
+<h3 id="section-6">4.管理控制台安装</h3>
 <p>将编译好的dubbo-admin-2.5.4-SNAPSHOT.war拷贝到tomcat下面。配置server.xml，避免和前面监控中心的端口产生冲突。启动tomcat。 <br />
 发现报错：<br />
 Bean property ‘URIType’ is not writable or has an invalid setter method.</p>
@@ -420,7 +420,7 @@ http://127.0.0.1:8888</p>
 
 <p><img src="/img/in-post/dubbo-zookeeper-springmvc/adminsys.png" /></p>
 
-<h2 id="四通过springmvc加入服务提供者和消费者">四.通过SpringMVC加入服务提供者和消费者</h2>
+<h2 id="springmvc">四.通过SpringMVC加入服务提供者和消费者</h2>
 
 <p>dubbo与SpringMVC的集成，我参考了这段： <br />
 http://dubbo.io/User+Guide-zh.htm#UserGuide-zh-%E6%B3%A8%E8%A7%A3%E9%85%8D%E7%BD%AE</p>
@@ -451,7 +451,7 @@ http://dubbo.io/User+Guide-zh.htm#UserGuide-zh-%E6%B3%A8%E8%A7%A3%E9%85%8D%E7%BD
 
 <p>在搭建的过程中遇到了两个问题：</p>
 
-<h4 id="问题一-dubboxsd文件找不到">问题一: dubbo.xsd文件找不到</h4>
+<h4 id="dubboxsd">问题一: dubbo.xsd文件找不到</h4>
 <p>将dubbo.xsd下载到本地后，通过以下步骤操作加入，我用的是eclipse：<br />
 windows-&gt;preferrence-&gt;xml-&gt;xmlcatalog   <br />
 add-&gt;catalog entry  -&gt;file system 选择刚刚下载的文件路 径  <br />
@@ -460,7 +460,7 @@ add-&gt;catalog entry  -&gt;file system 选择刚刚下载的文件路 径  <br 
 <p>问题的解决方案出处在这里，感谢作者～ <br />
 http://blog.csdn.net/lxb15959168136/article/details/50225057</p>
 
-<h4 id="问题二-在dubbo启动的过程中报错误javalangclassnotfoundexception-javassistclasspath">问题二: 在dubbo启动的过程中报错误：java.lang.ClassNotFoundException: javassist.ClassPath</h4>
+<h4 id="dubbojavalangclassnotfoundexception-javassistclasspath">问题二: 在dubbo启动的过程中报错误：java.lang.ClassNotFoundException: javassist.ClassPath</h4>
 <p>我的做法：  <br />
 由于我是用的maven构建，所以在工程pom.xml中直接加入以下:</p>
 
@@ -471,7 +471,7 @@ http://blog.csdn.net/lxb15959168136/article/details/50225057</p>
 	<span class="o">&lt;</span><span class="n">scope</span><span class="o">&gt;</span><span class="n">runtime</span><span class="o">&lt;/</span><span class="n">scope</span><span class="o">&gt;</span>
  <span class="o">&lt;/</span><span class="n">dependency</span><span class="o">&gt;</span></code></pre></figure>
 
-<h3 id="最后是编写的服务提供者和消费者的代码">最后是编写的服务提供者和消费者的代码</h3>
+<h3 id="section-7">最后是编写的服务提供者和消费者的代码</h3>
 <p>https://github.com/mingbozhang/leandubbo</p>
 
 
@@ -589,7 +589,7 @@ http://blog.csdn.net/lxb15959168136/article/details/50225057</p>
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "bob1024";
     var disqus_identifier = "/2016/06/03/dubbo-zookeeper-springmvc";
-    var disqus_url = "http://localhost:4000/2016/06/03/dubbo-zookeeper-springmvc/";
+    var disqus_url = "https://bob1024.com/2016/06/03/dubbo-zookeeper-springmvc/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

@@ -19,7 +19,7 @@
     <link rel="shortcut icon" href="/img/favicon.ico">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="http://localhost:4000/2016/02/21/docker-deploy-tomcat/">
+    <link rel="canonical" href="https://bob1024.com/2016/02/21/docker-deploy-tomcat/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -206,21 +206,21 @@
   </header>
 <div id="drawer">
 <ul id="markdown-toc">
-  <li><a href="#一环境简介" id="markdown-toc-一环境简介">一.环境简介</a></li>
-  <li><a href="#二ubuntu-1404版本系统中已经自带了docker查看下docker版本" id="markdown-toc-二ubuntu-1404版本系统中已经自带了docker查看下docker版本">二.Ubuntu 14.04版本系统中已经自带了Docker，查看下docker版本</a></li>
-  <li><a href="#三可选ssh登录服务器端准备" id="markdown-toc-三可选ssh登录服务器端准备">三、（可选）ssh登录服务器端准备</a></li>
-  <li><a href="#四下载容器镜像" id="markdown-toc-四下载容器镜像">四、下载容器镜像</a></li>
-  <li><a href="#五宿主机及目标容器挂载目录准备" id="markdown-toc-五宿主机及目标容器挂载目录准备">五、宿主机及目标容器挂载目录准备</a></li>
-  <li><a href="#六容器tomcat运行环境准备" id="markdown-toc-六容器tomcat运行环境准备">六、容器tomcat运行环境准备</a></li>
-  <li><a href="#七运行tomcat" id="markdown-toc-七运行tomcat">七、运行tomcat</a></li>
-  <li><a href="#八移除容器" id="markdown-toc-八移除容器">八、移除容器</a></li>
+  <li><a href="#section" id="markdown-toc-section">一.环境简介</a></li>
+  <li><a href="#ubuntu-1404dockerdocker" id="markdown-toc-ubuntu-1404dockerdocker">二.Ubuntu 14.04版本系统中已经自带了Docker，查看下docker版本</a></li>
+  <li><a href="#ssh" id="markdown-toc-ssh">三、（可选）ssh登录服务器端准备</a></li>
+  <li><a href="#section-1" id="markdown-toc-section-1">四、下载容器镜像</a></li>
+  <li><a href="#section-2" id="markdown-toc-section-2">五、宿主机及目标容器挂载目录准备</a></li>
+  <li><a href="#tomcat" id="markdown-toc-tomcat">六、容器tomcat运行环境准备</a></li>
+  <li><a href="#tomcat-1" id="markdown-toc-tomcat-1">七、运行tomcat</a></li>
+  <li><a href="#section-3" id="markdown-toc-section-3">八、移除容器</a></li>
 </ul>
 
   </div>
 </section>
 <!-- /#table-of-contents -->
 
-<h2 id="一环境简介">一.环境简介</h2>
+<h2 id="section">一.环境简介</h2>
 
 <table>
   <thead>
@@ -245,10 +245,10 @@
   </tbody>
 </table>
 
-<h2 id="二ubuntu-1404版本系统中已经自带了docker查看下docker版本">二.Ubuntu 14.04版本系统中已经自带了Docker，查看下docker版本</h2>
+<h2 id="ubuntu-1404dockerdocker">二.Ubuntu 14.04版本系统中已经自带了Docker，查看下docker版本</h2>
 <p>docker version</p>
 
-<h2 id="三可选ssh登录服务器端准备">三、（可选）ssh登录服务器端准备</h2>
+<h2 id="ssh">三、（可选）ssh登录服务器端准备</h2>
 <p>使用ssh客户端工具登录 ，具体参考http://jingyan.baidu.com/article/9c69d48fb9fd7b13c8024e6b.html  <br />
 安装openssh</p>
 
@@ -256,7 +256,7 @@
 sudo apt-get update   
 sudo apt-get install openssh-server   </code></pre></figure>
 
-<h2 id="四下载容器镜像">四、下载容器镜像</h2>
+<h2 id="section-1">四、下载容器镜像</h2>
 <p>获取镜像到本地</p>
 
 <figure class="highlight"><pre><code class="language-shell" data-lang="shell">    
@@ -271,7 +271,7 @@ sudo docker pull bobsha/ping   </code></pre></figure>
 <figure class="highlight"><pre><code class="language-shell" data-lang="shell">    
 sudo docker images  </code></pre></figure>
 
-<h2 id="五宿主机及目标容器挂载目录准备">五、宿主机及目标容器挂载目录准备</h2>
+<h2 id="section-2">五、宿主机及目标容器挂载目录准备</h2>
 <p>本步骤是将docker容器需要用到的安装软件和tomcat运行的项目在宿主机上准备好，容器中进行挂载。</p>
 
 <p>首先将软件准备好放在宿主机/opt/software下面，在容器中/mnt下面增加software目录。</p>
@@ -283,7 +283,7 @@ sudo docker images  </code></pre></figure>
 <span class="nt">&lt;body&gt;</span>Hello world!<span class="nt">&lt;/body&gt;</span>
 <span class="nt">&lt;/html&gt;</span>   </code></pre></figure>
 
-<h2 id="六容器tomcat运行环境准备">六、容器tomcat运行环境准备</h2>
+<h2 id="tomcat">六、容器tomcat运行环境准备</h2>
 
 <figure class="highlight"><pre><code class="language-shell" data-lang="shell">    
 docker run -i -t -v /opt/software/:/mnt/software/ 8ab8 /bin/bash </code></pre></figure>
@@ -332,7 +332,7 @@ docker commit 23d5 bobsha/tomcat   </code></pre></figure>
 
 <p>这里容器ID只需要写前几位可以区分就行一般，三到四位即可。</p>
 
-<h2 id="七运行tomcat">七、运行tomcat</h2>
+<h2 id="tomcat-1">七、运行tomcat</h2>
 
 <p>运行tomcat，这次只运行启动tomcat命令</p>
 
@@ -348,7 +348,7 @@ docker run  -p 18080:8080 -v /opt/webapps/:/opt/apache-tomcat-7.0.52/webapps/ -n
 通过局域网中浏览器访问: http://192.168.0.106:18080/index.html显示成功！ <br />
  <img src="/img/in-post/docker-deploy-tomcat/helloworld.png" /></p>
 
-<h2 id="八移除容器">八、移除容器</h2>
+<h2 id="section-3">八、移除容器</h2>
 <p>Ctrl+C退出后，发现再次运行上面的命令显示如下：</p>
 
 <figure class="highlight"><pre><code class="language-shell" data-lang="shell"> 
@@ -487,7 +487,7 @@ http://m.oschina.net/blog/616526?hmsr=toutiao.io&amp;utm_medium=toutiao.io&amp;u
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "bob1024";
     var disqus_identifier = "/2016/02/21/docker-deploy-tomcat";
-    var disqus_url = "http://localhost:4000/2016/02/21/docker-deploy-tomcat/";
+    var disqus_url = "https://bob1024.com/2016/02/21/docker-deploy-tomcat/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

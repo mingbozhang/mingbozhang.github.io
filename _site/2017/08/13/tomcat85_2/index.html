@@ -10,7 +10,7 @@
     <meta name="keywords"  content="这个莫非是TAG,试试看">
     <meta name="theme-color" content="#000000">
     
-    <title>Tomcat8.5源码学习（一）NioEndPoint解析  - Bob的博客 | Bob Blog</title>
+    <title>Tomcat8.5源码学习（二）Nio2EndPoint解析  - Bob的博客 | Bob Blog</title>
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/pwa/manifest.json">
@@ -19,7 +19,7 @@
     <link rel="shortcut icon" href="/img/favicon.ico">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://bob1024.com/2017/08/13/tomcat85_1/">
+    <link rel="canonical" href="https://bob1024.com/2017/08/13/tomcat85_2/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -177,7 +177,7 @@
                         <a class="tag" href="/tags/#tomcat" title="tomcat">tomcat</a>
                         
                     </div>
-                    <h1>Tomcat8.5源码学习（一）NioEndPoint解析 </h1>
+                    <h1>Tomcat8.5源码学习（二）Nio2EndPoint解析 </h1>
                     
                     
                     <h2 class="subheading"></h2>
@@ -206,80 +206,23 @@
   </header>
 <div id="drawer">
 <ul id="markdown-toc">
-  <li><a href="#nioendpoint" id="markdown-toc-nioendpoint">1.NioEndPoint简介</a></li>
-  <li><a href="#nioendpoint-1" id="markdown-toc-nioendpoint-1">2.NioEndPoint内部组成</a>    <ul>
-      <li><a href="#acceptor" id="markdown-toc-acceptor">2.1 Acceptor</a></li>
-      <li><a href="#poller" id="markdown-toc-poller">2.2 Poller</a></li>
-      <li><a href="#pollerevent" id="markdown-toc-pollerevent">2.3 PollerEvent</a></li>
-      <li><a href="#niosocketwrapper" id="markdown-toc-niosocketwrapper">2.4 NioSocketWrapper</a></li>
-      <li><a href="#socketprocessor" id="markdown-toc-socketprocessor">2.5 SocketProcessor</a></li>
-      <li><a href="#sendfiledata" id="markdown-toc-sendfiledata">2.6 SendfileData</a></li>
-    </ul>
-  </li>
-  <li><a href="#nioendpoint-2" id="markdown-toc-nioendpoint-2">3.NioEndPoint内部处理</a></li>
-  <li><a href="#section" id="markdown-toc-section">4.参考</a></li>
+  <li><a href="#nio2endpoint" id="markdown-toc-nio2endpoint">1.Nio2EndPoint简介</a></li>
+  <li><a href="#section" id="markdown-toc-section">参考</a></li>
 </ul>
 
   </div>
 </section>
 <!-- /#table-of-contents -->
 
-<h2 id="nioendpoint">1.NioEndPoint简介</h2>
+<h2 id="nio2endpoint">1.Nio2EndPoint简介</h2>
 
-<p>TCP/IP请求到达后，EndPoint负责处理TCP/IP请求，并且交给对应的处理器处理，本篇中讨论将范围限制在Http11NioProtocal中，所以处理的就是http请求。 根据命名可以知道它采用了非阻塞I/O的模式。值得一提，tomcat从8.5开始Connector取消了BIO模式的支持。
-–PS:这个地方似乎有待确认。</p>
+<p>－－PS:
+对比NioEndPoint和Nio2EndPoint两个类，但从存在的内部类来说，前者多了Poller和PollerEvent。
+先来看看它们的作用是什么。<br />
+<img src="../img/in-post/tomcat85/poller.png" alt="Alt text" />  <br />
+Poller和PollerEvent</p>
 
-<p>NioEndPoint在Tomcat的Connector中所处的位置： <br />
-<img src="../img/in-post/tomcat85/connector_struct.png" alt="Alt text" /></p>
-
-<p>NioEndPoint是一款NIO定制的线程池，提供以下服务： <br />
-* Socket acceptor 线程<br />
-* Socket poller 线程  <br />
-* Worker 线程池</p>
-
-<h2 id="nioendpoint-1">2.NioEndPoint内部组成</h2>
-<p>NioEndPoint的继承关系如下图所示： <br />
-<img src="../img/in-post/tomcat85/blueprint.png" alt="Alt text" /></p>
-
-<h3 id="acceptor">2.1 Acceptor</h3>
-<p>运行于后台的一个线程，监听到来的TCP/IP连接，并且将它们交给合适的处理者。</p>
-
-<h3 id="poller">2.2 Poller</h3>
-<p>内部维护了一个PollerEvent的同步循环队列，nextExpiration是下一次到期时间？</p>
-
-<p>摸索中的定义：Pollor最核心作用是驱动selector执行选择操作，哪个socket好了，可以处理了就进行process。</p>
-
-<h3 id="pollerevent">2.3 PollerEvent</h3>
-<p>PollerEvent, cacheable object for poller events to avoid GC
-如果事件是注册(OP_REGISTER),那么将一个selector和一个socket绑定到一起。如果是其他操作，会将selector和socket的interestOps的值都设置成ops。</p>
-
-<h3 id="niosocketwrapper">2.4 NioSocketWrapper</h3>
-
-<h3 id="socketprocessor">2.5 SocketProcessor</h3>
-<p>–PS:NioEndPoint类在Tomcat中的功能 <br />
-   socket可以接收UDP和TCP都可以接收吗？</p>
-
-<h3 id="sendfiledata">2.6 SendfileData</h3>
-
-<h2 id="nioendpoint-2">3.NioEndPoint内部处理</h2>
-<p>1.接受请求：  <br />
-<img src="../img/in-post/tomcat85/process_register.png" alt="Alt text" /></p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code> Acceptor负责接收TCP/IP请求，对于新的连接则执行serverSocket.accept()。
- Poller轮询调用selector.select()得到“准备好的连接”，实际上这里类似
- while(true)的方式来调用selector.select()
- ### select()可以确保如果连接没有准备好接收数据，就绝对不会在这些连接上浪费时间 ###。
- PollerEvent事实上就是对SelectionKey中event的一次封装。
- SocketProcessor是将制定Socket交给具体handler处理的一次抽象与封装。
-</code></pre>
-</div>
-
-<p>2.处理Poller事件 <br />
-<img src="../img/in-post/tomcat85/process_events.png" alt="Alt text" /></p>
-
-<p>3.PollerEvent的run</p>
-
-<h2 id="section">4.参考</h2>
+<h2 id="section">参考</h2>
 <p>http://tomcat.apache.org/tomcat-8.5-doc/index.html</p>
 
 
@@ -288,9 +231,9 @@
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2017/08/13/mq/" data-toggle="tooltip" data-placement="top" title="消息队列随笔">
+                        <a href="/2017/08/13/tomcat85_1/" data-toggle="tooltip" data-placement="top" title="Tomcat8.5源码学习（一）NioEndPoint解析 ">
                         Previous<br>
-                        <span>消息队列随笔</span>
+                        <span>Tomcat8.5源码学习（一）NioEndPoint解析 </span>
                         </a>
                     </li>
                     
@@ -361,6 +304,10 @@
                             
         				
                             
+                				<a href="/tags/#tomcat" title="tomcat" rel="2">
+                                    tomcat
+                                </a>
+                            
         				
                             
         				
@@ -396,8 +343,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "bob1024";
-    var disqus_identifier = "/2017/08/13/tomcat85_1";
-    var disqus_url = "https://bob1024.com/2017/08/13/tomcat85_1/";
+    var disqus_identifier = "/2017/08/13/tomcat85_2";
+    var disqus_url = "https://bob1024.com/2017/08/13/tomcat85_2/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

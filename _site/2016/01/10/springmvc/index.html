@@ -19,7 +19,7 @@
     <link rel="shortcut icon" href="/img/favicon.ico">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="http://localhost:4000/2016/01/10/springmvc/">
+    <link rel="canonical" href="https://bob1024.com/2016/01/10/springmvc/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -272,7 +272,7 @@ com.bob.playspring.PlayWebAppInitializer</p>
 	 *   It will handle all requests coming into the application.
 	 */</span>
 	<span class="nd">@Override</span>
-	<span class="kd">protected</span> <span class="n">String</span><span class="o">[]</span> <span class="nf">getServletMappings</span><span class="o">()</span> <span class="o">{</span>
+	<span class="kd">protected</span> <span class="n">String</span><span class="o">[]</span> <span class="n">getServletMappings</span><span class="o">()</span> <span class="o">{</span>
 		<span class="k">return</span> <span class="k">new</span> <span class="n">String</span><span class="o">[]</span> <span class="o">{</span> <span class="s">"/"</span> <span class="o">};</span>
 	<span class="o">}</span>
 
@@ -302,7 +302,7 @@ com.bob.playspring.PlayWebAppInitializer</p>
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">WebConfig</span> <span class="kd">extends</span> <span class="n">WebMvcConfigurerAdapter</span> <span class="o">{</span>
 
 	<span class="nd">@Bean</span>
-	<span class="kd">public</span> <span class="n">ViewResolver</span> <span class="nf">viewResolver</span><span class="o">()</span> <span class="o">{</span>
+	<span class="kd">public</span> <span class="n">ViewResolver</span> <span class="n">viewResolver</span><span class="o">()</span> <span class="o">{</span>
 		<span class="n">InternalResourceViewResolver</span> <span class="n">resolver</span> <span class="o">=</span> <span class="k">new</span> <span class="n">InternalResourceViewResolver</span><span class="o">();</span>
 		<span class="n">resolver</span><span class="o">.</span><span class="na">setPrefix</span><span class="o">(</span><span class="s">"/WEB-INF/views/"</span><span class="o">);</span>
 		<span class="n">resolver</span><span class="o">.</span><span class="na">setSuffix</span><span class="o">(</span><span class="s">".jsp"</span><span class="o">);</span>
@@ -311,7 +311,7 @@ com.bob.playspring.PlayWebAppInitializer</p>
 	<span class="o">}</span>
 
 	<span class="nd">@Override</span>
-	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">configureDefaultServletHandling</span><span class="o">(</span><span class="n">DefaultServletHandlerConfigurer</span> <span class="n">configurer</span><span class="o">)</span> <span class="o">{</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="n">configureDefaultServletHandling</span><span class="o">(</span><span class="n">DefaultServletHandlerConfigurer</span> <span class="n">configurer</span><span class="o">)</span> <span class="o">{</span>
 		<span class="n">configurer</span><span class="o">.</span><span class="na">enable</span><span class="o">();</span>
 	<span class="o">}</span>
 
@@ -451,7 +451,7 @@ com.bob.playspring.PlayWebAppInitializer</p>
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "bob1024";
     var disqus_identifier = "/2016/01/10/springmvc";
-    var disqus_url = "http://localhost:4000/2016/01/10/springmvc/";
+    var disqus_url = "https://bob1024.com/2016/01/10/springmvc/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

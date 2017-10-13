@@ -3,11 +3,11 @@
   <channel>
     <title>Bob Blog</title>
     <description></description>
-    <link>http://localhost:4000/</link>
-    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 10 Sep 2017 01:22:41 +0800</pubDate>
-    <lastBuildDate>Sun, 10 Sep 2017 01:22:41 +0800</lastBuildDate>
-    <generator>Jekyll v3.5.0</generator>
+    <link>https://bob1024.com/</link>
+    <atom:link href="https://bob1024.com/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Fri, 13 Oct 2017 23:35:21 +0800</pubDate>
+    <lastBuildDate>Fri, 13 Oct 2017 23:35:21 +0800</lastBuildDate>
+    <generator>Jekyll v3.1.6</generator>
     
       <item>
         <title>Wireshark故事小记</title>
@@ -17,11 +17,11 @@
   &lt;/header&gt;
 &lt;div id=&quot;drawer&quot;&gt;
 &lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#一事件回顾&quot; id=&quot;markdown-toc-一事件回顾&quot;&gt;一、事件回顾&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#二采取措施&quot; id=&quot;markdown-toc-二采取措施&quot;&gt;二、采取措施&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#1分析请求报文&quot; id=&quot;markdown-toc-1分析请求报文&quot;&gt;1.分析请求报文&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#2配置proxytable&quot; id=&quot;markdown-toc-2配置proxytable&quot;&gt;2.配置proxyTable&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#3验证&quot; id=&quot;markdown-toc-3验证&quot;&gt;3.验证&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section&quot; id=&quot;markdown-toc-section&quot;&gt;一、事件回顾&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-1&quot; id=&quot;markdown-toc-section-1&quot;&gt;二、采取措施&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-2&quot; id=&quot;markdown-toc-section-2&quot;&gt;1.分析请求报文&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#proxytable&quot; id=&quot;markdown-toc-proxytable&quot;&gt;2.配置proxyTable&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-3&quot; id=&quot;markdown-toc-section-3&quot;&gt;3.验证&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
@@ -30,7 +30,7 @@
 &lt;/section&gt;
 &lt;!-- /#table-of-contents --&gt;
 
-&lt;h4 id=&quot;一事件回顾&quot;&gt;一、事件回顾&lt;/h4&gt;
+&lt;h4 id=&quot;section&quot;&gt;一、事件回顾&lt;/h4&gt;
 
 &lt;p&gt;       某日前端同事想在家里访问局域网的一台后端服务器提供的接口。为了便于访问实际上是在nginx上面配置了策略的，根据http请求报文host内容实现局域网内部机器转发。比如：xxx200xxx8080xxx.hello.com经过解析实际上访问的是192.168.1.200端口为8080所对应的服务。&lt;/p&gt;
 
@@ -39,11 +39,11 @@
 
 &lt;p&gt;&lt;img src=&quot;/img/in-post/wireshark_story_1/domain_name_access.png&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
 
-&lt;h4 id=&quot;二采取措施&quot;&gt;二、采取措施&lt;/h4&gt;
+&lt;h4 id=&quot;section-1&quot;&gt;二、采取措施&lt;/h4&gt;
 &lt;p&gt;       首先我通过Postman尝试了下是不是可以通过域名来访问成功。结果没有任何问题。所以请求的报文肯定有什么地方不一样所以导致Postman是成功的，但是通过proxyTable是失败的。 &lt;br /&gt;
        为了实战下Wireshark，考虑通过抓取两种情况的请求报文进行比对，看有没有什么猫腻。&lt;/p&gt;
 
-&lt;h5 id=&quot;1分析请求报文&quot;&gt;1.分析请求报文&lt;/h5&gt;
+&lt;h5 id=&quot;section-2&quot;&gt;1.分析请求报文&lt;/h5&gt;
 &lt;p&gt;首先是Postman的，配置信息如图: &lt;br /&gt;
 &lt;img src=&quot;/img/in-post/wireshark_story_1/postman_1.png&quot; alt=&quot;Alt text&quot; /&gt; &lt;br /&gt;
 通过域名访问，POST请求。请求到了目标服务。&lt;/p&gt;
@@ -61,21 +61,21 @@ Wireshark看到的报文如下： &lt;br /&gt;
 
 &lt;p&gt;       通过对以上两个报文进行比较，TCP层、IP层内容是相同的。HTTP请求报文中发现host部分和uri部分是不同的。postman这种host是xx200p8080.xxx.com。proxyTable这种是localhost:8080。怪不得无法被解析，前面也提到，服务器中nginx是配置转发是根据Host内容来解析的，因为proxyTable这种传过去的是localhost:8080，自然无法解析到正确的主机上去。&lt;/p&gt;
 
-&lt;h5 id=&quot;2配置proxytable&quot;&gt;2.配置proxyTable&lt;/h5&gt;
+&lt;h5 id=&quot;proxytable&quot;&gt;2.配置proxyTable&lt;/h5&gt;
 &lt;p&gt;经过查找发现有个参数可以解决这个问题： &lt;br /&gt;
 changeOrigin: true &lt;br /&gt;
 解释：changes the origin of the host header to the target URL   &lt;br /&gt;
 参考地址：https://github.com/chimurai/http-proxy-middleware&lt;/p&gt;
 
-&lt;h5 id=&quot;3验证&quot;&gt;3.验证&lt;/h5&gt;
+&lt;h5 id=&quot;section-3&quot;&gt;3.验证&lt;/h5&gt;
 &lt;p&gt;增加了参数后，再一次抓包，这下host对了，接口调到了，如下： &lt;br /&gt;
 &lt;img src=&quot;/img/in-post/wireshark_story_1/correct_proxy_table_1.png&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;–PS:通过proxyTable进行转发，为什么只看到了一个请求包，就是localhost:8080那个？没有xxx200xxx8080xxx.hello.com那个？难道根本没有两个请求包，http包只会有一个，代理处理的只有TCP和IP报文。&lt;/p&gt;
 </description>
         <pubDate>Fri, 08 Sep 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2017/09/08/wireshark_story_1/</link>
-        <guid isPermaLink="true">http://localhost:4000/2017/09/08/wireshark_story_1/</guid>
+        <link>https://bob1024.com/2017/09/08/wireshark_story_1/</link>
+        <guid isPermaLink="true">https://bob1024.com/2017/09/08/wireshark_story_1/</guid>
         
         <category>wireshark</category>
         
@@ -89,21 +89,92 @@ changeOrigin: true &lt;br /&gt;
       </item>
     
       <item>
-        <title>Tomcat8.5源码学习（一）http请求处理 </title>
+        <title>Tomcat8.5源码学习（一）NioEndPoint解析 </title>
         <description>&lt;section id=&quot;table-of-contents&quot; class=&quot;toc&quot;&gt;
   &lt;header&gt;
     &lt;h3&gt;&lt;i class=&quot;fa fa-book&quot;&gt;&lt;/i&gt; Contents&lt;/h3&gt;
   &lt;/header&gt;
 &lt;div id=&quot;drawer&quot;&gt;
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#nioendpoint&quot; id=&quot;markdown-toc-nioendpoint&quot;&gt;1.NioEndPoint简介&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#nioendpoint-1&quot; id=&quot;markdown-toc-nioendpoint-1&quot;&gt;2.NioEndPoint内部组成&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#acceptor&quot; id=&quot;markdown-toc-acceptor&quot;&gt;2.1 Acceptor&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#poller&quot; id=&quot;markdown-toc-poller&quot;&gt;2.2 Poller&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#pollerevent&quot; id=&quot;markdown-toc-pollerevent&quot;&gt;2.3 PollerEvent&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#niosocketwrapper&quot; id=&quot;markdown-toc-niosocketwrapper&quot;&gt;2.4 NioSocketWrapper&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#socketprocessor&quot; id=&quot;markdown-toc-socketprocessor&quot;&gt;2.5 SocketProcessor&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#sendfiledata&quot; id=&quot;markdown-toc-sendfiledata&quot;&gt;2.6 SendfileData&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#nioendpoint-2&quot; id=&quot;markdown-toc-nioendpoint-2&quot;&gt;3.NioEndPoint内部处理&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section&quot; id=&quot;markdown-toc-section&quot;&gt;4.参考&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
   &lt;/div&gt;
 &lt;/section&gt;
 &lt;!-- /#table-of-contents --&gt;
 
+&lt;h2 id=&quot;nioendpoint&quot;&gt;1.NioEndPoint简介&lt;/h2&gt;
+
+&lt;p&gt;TCP/IP请求到达后，EndPoint负责处理TCP/IP请求，并且交给对应的处理器处理，本篇中讨论将范围限制在Http11NioProtocal中，所以处理的就是http请求。 根据命名可以知道它采用了非阻塞I/O的模式。值得一提，tomcat从8.5开始Connector取消了BIO模式的支持。
+–PS:这个地方似乎有待确认。&lt;/p&gt;
+
+&lt;p&gt;NioEndPoint在Tomcat的Connector中所处的位置： &lt;br /&gt;
+&lt;img src=&quot;../img/in-post/tomcat85/connector_struct.png&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;NioEndPoint是一款NIO定制的线程池，提供以下服务： &lt;br /&gt;
+* Socket acceptor 线程&lt;br /&gt;
+* Socket poller 线程  &lt;br /&gt;
+* Worker 线程池&lt;/p&gt;
+
+&lt;h2 id=&quot;nioendpoint-1&quot;&gt;2.NioEndPoint内部组成&lt;/h2&gt;
+&lt;p&gt;NioEndPoint的继承关系如下图所示： &lt;br /&gt;
+&lt;img src=&quot;../img/in-post/tomcat85/blueprint.png&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;acceptor&quot;&gt;2.1 Acceptor&lt;/h3&gt;
+&lt;p&gt;运行于后台的一个线程，监听到来的TCP/IP连接，并且将它们交给合适的处理者。&lt;/p&gt;
+
+&lt;h3 id=&quot;poller&quot;&gt;2.2 Poller&lt;/h3&gt;
+&lt;p&gt;内部维护了一个PollerEvent的同步循环队列，nextExpiration是下一次到期时间？&lt;/p&gt;
+
+&lt;p&gt;摸索中的定义：Pollor最核心作用是驱动selector执行选择操作，哪个socket好了，可以处理了就进行process。&lt;/p&gt;
+
+&lt;h3 id=&quot;pollerevent&quot;&gt;2.3 PollerEvent&lt;/h3&gt;
+&lt;p&gt;PollerEvent, cacheable object for poller events to avoid GC
+如果事件是注册(OP_REGISTER),那么将一个selector和一个socket绑定到一起。如果是其他操作，会将selector和socket的interestOps的值都设置成ops。&lt;/p&gt;
+
+&lt;h3 id=&quot;niosocketwrapper&quot;&gt;2.4 NioSocketWrapper&lt;/h3&gt;
+
+&lt;h3 id=&quot;socketprocessor&quot;&gt;2.5 SocketProcessor&lt;/h3&gt;
+&lt;p&gt;–PS:NioEndPoint类在Tomcat中的功能 &lt;br /&gt;
+   socket可以接收UDP和TCP都可以接收吗？&lt;/p&gt;
+
+&lt;h3 id=&quot;sendfiledata&quot;&gt;2.6 SendfileData&lt;/h3&gt;
+
+&lt;h2 id=&quot;nioendpoint-2&quot;&gt;3.NioEndPoint内部处理&lt;/h2&gt;
+&lt;p&gt;1.接受请求：  &lt;br /&gt;
+&lt;img src=&quot;../img/in-post/tomcat85/process_register.png&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; Acceptor负责接收TCP/IP请求，对于新的连接则执行serverSocket.accept()。
+ Poller轮询调用selector.select()得到“准备好的连接”，实际上这里类似
+ while(true)的方式来调用selector.select()
+ ### select()可以确保如果连接没有准备好接收数据，就绝对不会在这些连接上浪费时间 ###。
+ PollerEvent事实上就是对SelectionKey中event的一次封装。
+ SocketProcessor是将制定Socket交给具体handler处理的一次抽象与封装。
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;2.处理Poller事件 &lt;br /&gt;
+&lt;img src=&quot;../img/in-post/tomcat85/process_events.png&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;3.PollerEvent的run&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;4.参考&lt;/h2&gt;
+&lt;p&gt;http://tomcat.apache.org/tomcat-8.5-doc/index.html&lt;/p&gt;
 </description>
         <pubDate>Sun, 13 Aug 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2017/08/13/tomcat85_1/</link>
-        <guid isPermaLink="true">http://localhost:4000/2017/08/13/tomcat85_1/</guid>
+        <link>https://bob1024.com/2017/08/13/tomcat85_1/</link>
+        <guid isPermaLink="true">https://bob1024.com/2017/08/13/tomcat85_1/</guid>
         
         <category>tomcat</category>
         
@@ -118,85 +189,72 @@ changeOrigin: true &lt;br /&gt;
   &lt;/header&gt;
 &lt;div id=&quot;drawer&quot;&gt;
 &lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#1概述&quot; id=&quot;markdown-toc-1概述&quot;&gt;1.概述&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#2消息队列能带来什么&quot; id=&quot;markdown-toc-2消息队列能带来什么&quot;&gt;2.消息队列能带来什么&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#21-好处&quot; id=&quot;markdown-toc-21-好处&quot;&gt;2.1 好处&lt;/a&gt;        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#松耦合&quot; id=&quot;markdown-toc-松耦合&quot;&gt;松耦合&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#冗余&quot; id=&quot;markdown-toc-冗余&quot;&gt;冗余&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#可扩展性&quot; id=&quot;markdown-toc-可扩展性&quot;&gt;可扩展性&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#弹性--可应对峰值负载&quot; id=&quot;markdown-toc-弹性--可应对峰值负载&quot;&gt;弹性 &amp;amp; 可应对峰值负载&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#可恢复性&quot; id=&quot;markdown-toc-可恢复性&quot;&gt;可恢复性&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#异步通信&quot; id=&quot;markdown-toc-异步通信&quot;&gt;异步通信&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section&quot; id=&quot;markdown-toc-section&quot;&gt;1.概述&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-1&quot; id=&quot;markdown-toc-section-1&quot;&gt;2.1 好处&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#section-2&quot; id=&quot;markdown-toc-section-2&quot;&gt;冗余&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#section-3&quot; id=&quot;markdown-toc-section-3&quot;&gt;可扩展性&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#section-4&quot; id=&quot;markdown-toc-section-4&quot;&gt;弹性 &amp;amp; 可应对峰值负载&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#section-5&quot; id=&quot;markdown-toc-section-5&quot;&gt;可恢复性&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#section-6&quot; id=&quot;markdown-toc-section-6&quot;&gt;异步通信&lt;/a&gt;&lt;/li&gt;
         &lt;/ul&gt;
       &lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#22-坏处&quot; id=&quot;markdown-toc-22-坏处&quot;&gt;2.2 坏处&lt;/a&gt;        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#代码复杂度增加&quot; id=&quot;markdown-toc-代码复杂度增加&quot;&gt;代码复杂度增加&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#运维工作量增加&quot; id=&quot;markdown-toc-运维工作量增加&quot;&gt;运维工作量增加&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-7&quot; id=&quot;markdown-toc-section-7&quot;&gt;2.2 坏处&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#3消息队列的几个场景&quot; id=&quot;markdown-toc-3消息队列的几个场景&quot;&gt;3.消息队列的几个场景&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#场景一&quot; id=&quot;markdown-toc-场景一&quot;&gt;场景一&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#场景二&quot; id=&quot;markdown-toc-场景二&quot;&gt;场景二&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#场景三&quot; id=&quot;markdown-toc-场景三&quot;&gt;场景三&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-8&quot; id=&quot;markdown-toc-section-8&quot;&gt;3.消息队列的几个场景&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-9&quot; id=&quot;markdown-toc-section-9&quot;&gt;场景一&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-10&quot; id=&quot;markdown-toc-section-10&quot;&gt;场景二&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-11&quot; id=&quot;markdown-toc-section-11&quot;&gt;场景三&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#4是不是真的需要消息队列&quot; id=&quot;markdown-toc-4是不是真的需要消息队列&quot;&gt;4.是不是真的需要消息队列?&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#step-1-列出所有必要的需求&quot; id=&quot;markdown-toc-step-1-列出所有必要的需求&quot;&gt;Step 1 列出所有必要的需求&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#step-2-尝试简化处理方案&quot; id=&quot;markdown-toc-step-2-尝试简化处理方案&quot;&gt;Step 2 尝试简化处理方案&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-12&quot; id=&quot;markdown-toc-section-12&quot;&gt;4.是不是真的需要消息队列?&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#step-2-&quot; id=&quot;markdown-toc-step-2-&quot;&gt;Step 2 尝试简化处理方案&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#4与消息组件相似技术&quot; id=&quot;markdown-toc-4与消息组件相似技术&quot;&gt;4.与消息组件相似技术&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#group-communication-system&quot; id=&quot;markdown-toc-group-communication-system&quot;&gt;Group Communication System&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#5参考&quot; id=&quot;markdown-toc-5参考&quot;&gt;5.参考&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-13&quot; id=&quot;markdown-toc-section-13&quot;&gt;4.与消息组件相似技术&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-14&quot; id=&quot;markdown-toc-section-14&quot;&gt;5.参考&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
   &lt;/div&gt;
 &lt;/section&gt;
 &lt;!-- /#table-of-contents --&gt;
 
-&lt;h4 id=&quot;1概述&quot;&gt;1.概述&lt;/h4&gt;
+&lt;h4 id=&quot;section&quot;&gt;1.概述&lt;/h4&gt;
 &lt;p&gt;消息队列是分布式组件的一种，用于进程间通信或者统一进程中不同线程间的通信。&lt;/p&gt;
 
-&lt;p&gt;消息组件一般支持2种模式：&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;发送／接收&lt;/li&gt;
-  &lt;li&gt;发布／订阅
-    &lt;h4 id=&quot;2消息队列能带来什么&quot;&gt;2.消息队列能带来什么&lt;/h4&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;消息组件一般支持2种模式：&lt;br /&gt;
+* 发送／接收&lt;br /&gt;
+* 发布／订阅
+#### 2.消息队列能带来什么&lt;/p&gt;
 
-&lt;h5 id=&quot;21-好处&quot;&gt;2.1 好处&lt;/h5&gt;
-&lt;h6 id=&quot;松耦合&quot;&gt;松耦合&lt;/h6&gt;
-&lt;p&gt;在项目一开始很难预测未来会有哪些需求。通过在多个进程之间引入一个基于数据的接口层，使得单独的进程可以独立变化而不影响其它进程（只要坚持满足相同的接口需求）&lt;/p&gt;
+&lt;h5 id=&quot;section-1&quot;&gt;2.1 好处&lt;/h5&gt;
+&lt;p&gt;######  松耦合
+在项目一开始很难预测未来会有哪些需求。通过在多个进程之间引入一个基于数据的接口层，使得单独的进程可以独立变化而不影响其它进程（只要坚持满足相同的接口需求）&lt;/p&gt;
 
-&lt;h6 id=&quot;冗余&quot;&gt;冗余&lt;/h6&gt;
+&lt;h6 id=&quot;section-2&quot;&gt;冗余&lt;/h6&gt;
 &lt;p&gt;处理数据的过程有时候会失败。除非这些数据是持久化的，否则将会永久丢失。为了缓解这种状况，队列持久化这些数据，直到完全处理完毕才移除它们。”发送消息-&amp;gt;获取消息-&amp;gt;删除消息”这个范例被很多消息队列使用。范例中“删除消息”步骤执行前需要一个进程明白得指出他已经处理完这个消息。这么做确保了你的数据可以被安全保存直到被处理完毕。&lt;/p&gt;
 
-&lt;h6 id=&quot;可扩展性&quot;&gt;可扩展性&lt;/h6&gt;
+&lt;h6 id=&quot;section-3&quot;&gt;可扩展性&lt;/h6&gt;
 &lt;p&gt;因为消息队列使你的处理之间松耦合，所以仅仅通过增加更多的进程就可以提高消息队列中消息的增加与处理速率，不需要改变代码，不需要调整配置。&lt;/p&gt;
 
-&lt;h6 id=&quot;弹性--可应对峰值负载&quot;&gt;弹性 &amp;amp; 可应对峰值负载&lt;/h6&gt;
+&lt;h6 id=&quot;section-4&quot;&gt;弹性 &amp;amp; 可应对峰值负载&lt;/h6&gt;
 &lt;p&gt;当你的应用被黑客攻击，你将看到不同寻常的流量水平。你的应用需要能够在这样不断增加的负载下保证本身的功能。但是这个流量属于不常见的，正常情况下并不是这样的。随时准备好处理峰值流量的资源是一种浪费。消息队列将允许应用应对这种峰值流量。&lt;/p&gt;
 
-&lt;h6 id=&quot;可恢复性&quot;&gt;可恢复性&lt;/h6&gt;
+&lt;h6 id=&quot;section-5&quot;&gt;可恢复性&lt;/h6&gt;
 &lt;p&gt;当整个架构中部分失败的时候，不需要整个系统因为这个问题而重启。消息队列使进程之间解耦，所以如果一个处理消息的进程失败并不影响向消息队列中增加消息的进程。当这个问题进程恢复后可以继续处理消息队列中的消息。&lt;/p&gt;
 
-&lt;h6 id=&quot;异步通信&quot;&gt;异步通信&lt;/h6&gt;
+&lt;h6 id=&quot;section-6&quot;&gt;异步通信&lt;/h6&gt;
 &lt;p&gt;大部门情况下，你不想或者不需要马上处理一个消息。消息队列可以实现异步处理，允许将消息放入队列中而不立刻处理它。等到空闲的时候再来处理。比如日志信息等。&lt;/p&gt;
 
-&lt;h5 id=&quot;22-坏处&quot;&gt;2.2 坏处&lt;/h5&gt;
-&lt;h6 id=&quot;代码复杂度增加&quot;&gt;代码复杂度增加&lt;/h6&gt;
-&lt;p&gt;代码编写程序代码，执行过程调试难度增加。&lt;/p&gt;
-&lt;h6 id=&quot;运维工作量增加&quot;&gt;运维工作量增加&lt;/h6&gt;
-&lt;p&gt;使用消息队列引入更多的中间件，整个系统更容易出现故障需要排除。同时要保障消息队列的高可用。&lt;/p&gt;
+&lt;h5 id=&quot;section-7&quot;&gt;2.2 坏处&lt;/h5&gt;
+&lt;p&gt;###### 代码复杂度增加 &lt;br /&gt;
+代码编写程序代码，执行过程调试难度增加。
+###### 运维工作量增加 &lt;br /&gt;
+使用消息队列引入更多的中间件，整个系统更容易出现故障需要排除。同时要保障消息队列的高可用。&lt;/p&gt;
 
-&lt;h4 id=&quot;3消息队列的几个场景&quot;&gt;3.消息队列的几个场景&lt;/h4&gt;
+&lt;h4 id=&quot;section-8&quot;&gt;3.消息队列的几个场景&lt;/h4&gt;
 
-&lt;h6 id=&quot;场景一&quot;&gt;场景一&lt;/h6&gt;
+&lt;h6 id=&quot;section-9&quot;&gt;场景一&lt;/h6&gt;
 &lt;font color=&quot;blue&quot;&gt;&lt;b&gt;关键词：松耦合、可恢复性、可扩展性、高可用&lt;/b&gt;&lt;/font&gt;
 &lt;p&gt;想象下你有一个服务，每秒钟要接收大量的请求，每个请求处理时间都比较长。要保证这些请求不能丢失，最终可以被处理掉。 &lt;br /&gt;
 你的服务要实现高可用，并时刻做好接收新请求的准备，不能因为前面请求在处理中而被阻塞。&lt;/p&gt;
@@ -207,35 +265,33 @@ changeOrigin: true &lt;br /&gt;
 
 &lt;p&gt;除了在web服务和其它处理服务之间增加一个缓冲区以外，消息队列可以被用于更多的高级方案中。&lt;/p&gt;
 
-&lt;h6 id=&quot;场景二&quot;&gt;场景二&lt;/h6&gt;
+&lt;h6 id=&quot;section-10&quot;&gt;场景二&lt;/h6&gt;
 &lt;font color=&quot;blue&quot;&gt;&lt;b&gt;关键词：异步、可靠性&lt;/b&gt;&lt;/font&gt;
 &lt;p&gt;想象下你有一个组织依赖于一组手机销售人员。这些销售人员将产品展示给目标顾客。在这个业务场景中，让销售人员能看到最新的可以售卖的产品信息非常重要。。到目前为止，我们应该能看到涉及到消息队列的至少有两个应用。（如下图） &lt;br /&gt;
 &lt;img src=&quot;/img/in-post/mq/mq_1.png&quot; alt=&quot;Alt text&quot; /&gt; &lt;br /&gt;
 对于第一个应用，总部可以对中心销售登记系统（Central Sales Catalog）做些更新。这些更新随后通过消息队列发送给个人销售人员。消息队列系统将一直保留这些消息，直到销售人员将电脑接入到网络。接入网络后个人销售员电脑上的本地登记应用（Local Catalog App）将接收来自消息队列中的消息，这些消息中包含了更新本地登记的内容。&lt;br /&gt;
 这个例子比较老，是通过拨号这种联网这种方式。&lt;/p&gt;
 
-&lt;h6 id=&quot;场景三&quot;&gt;场景三&lt;/h6&gt;
+&lt;h6 id=&quot;section-11&quot;&gt;场景三&lt;/h6&gt;
 &lt;font color=&quot;blue&quot;&gt;&lt;b&gt;关键词：异步、可靠性、发布/订阅模式、松耦合&lt;/b&gt;&lt;/font&gt;
-&lt;p&gt;一个Web应用处理一个指定顾客的订单。作为处理订单过程的一部分，你可能希望执行一系列附加任务（假设订单信息已经存入数据库）：&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;保存订单到第三方后台系统（比如SAP）&lt;/li&gt;
-  &lt;li&gt;发送一封email给顾客告知他们的订单已经被处理 &lt;br /&gt;
+&lt;p&gt;一个Web应用处理一个指定顾客的订单。作为处理订单过程的一部分，你可能希望执行一系列附加任务（假设订单信息已经存入数据库）： &lt;br /&gt;
+* 保存订单到第三方后台系统（比如SAP）
+* 发送一封email给顾客告知他们的订单已经被处理 &lt;br /&gt;
 为了满足以上，你的应用代码需要发布一个包含订单ID的消息到消息队列。系统中的另外一个应用监听着消息队列，从消息中获取到订单ID，从数据库中获取订单信息然后将它存入第三方系统。另外一个系统中的应用也将响应发布消息事件，发送一封确认邮件给顾客。 &lt;br /&gt;
-这种情况下，你若想增加更多附加任务不会对已经存在的代码造成影响。&lt;/li&gt;
-&lt;/ul&gt;
+这种情况下，你若想增加更多附加任务不会对已经存在的代码造成影响。&lt;/p&gt;
 
-&lt;h4 id=&quot;4是不是真的需要消息队列&quot;&gt;4.是不是真的需要消息队列?&lt;/h4&gt;
-&lt;h5 id=&quot;step-1-列出所有必要的需求&quot;&gt;Step 1 列出所有必要的需求&lt;/h5&gt;
-&lt;p&gt;要集成不同组件？分布负载？还是仅仅因为别人在用？&lt;/p&gt;
+&lt;h4 id=&quot;section-12&quot;&gt;4.是不是真的需要消息队列?&lt;/h4&gt;
+&lt;p&gt;##### Step 1 列出所有必要的需求 &lt;br /&gt;
+要集成不同组件？分布负载？还是仅仅因为别人在用？&lt;/p&gt;
 
-&lt;h5 id=&quot;step-2-尝试简化处理方案&quot;&gt;Step 2 尝试简化处理方案&lt;/h5&gt;
+&lt;h5 id=&quot;step-2-&quot;&gt;Step 2 尝试简化处理方案&lt;/h5&gt;
 &lt;p&gt;如果仅仅需要异步处理，可以使用进程内队列进行处理。如果没有耗时的后台操作甚至可以直接用同步而不用异步。&lt;/p&gt;
 
-&lt;h4 id=&quot;4与消息组件相似技术&quot;&gt;4.与消息组件相似技术&lt;/h4&gt;
-&lt;h5 id=&quot;group-communication-system&quot;&gt;Group Communication System&lt;/h5&gt;
-&lt;p&gt;如JGroup&lt;/p&gt;
+&lt;h4 id=&quot;section-13&quot;&gt;4.与消息组件相似技术&lt;/h4&gt;
+&lt;p&gt;#####  Group Communication System &lt;br /&gt;
+如JGroup&lt;/p&gt;
 
-&lt;h4 id=&quot;5参考&quot;&gt;5.参考&lt;/h4&gt;
+&lt;h4 id=&quot;section-14&quot;&gt;5.参考&lt;/h4&gt;
 &lt;p&gt;https://www.iron.io/top-10-uses-for-message-queue/ &lt;br /&gt;
 https://en.wikipedia.org/wiki/Message_queue &lt;br /&gt;
 https://en.wikipedia.org/wiki/Group_communication_system &lt;br /&gt;
@@ -251,8 +307,8 @@ http://techie3251.blogspot.com/2012/01/jms-activemq-jgroups.html &lt;br /&gt;
 http://www.ics.uci.edu/~cs237/lectures/messaging-gc.ppt&lt;/p&gt;
 </description>
         <pubDate>Sun, 13 Aug 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2017/08/13/mq/</link>
-        <guid isPermaLink="true">http://localhost:4000/2017/08/13/mq/</guid>
+        <link>https://bob1024.com/2017/08/13/mq/</link>
+        <guid isPermaLink="true">https://bob1024.com/2017/08/13/mq/</guid>
         
         <category>MQ</category>
         
@@ -267,35 +323,31 @@ http://www.ics.uci.edu/~cs237/lectures/messaging-gc.ppt&lt;/p&gt;
   &lt;/header&gt;
 &lt;div id=&quot;drawer&quot;&gt;
 &lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#红黑树&quot; id=&quot;markdown-toc-红黑树&quot;&gt;红黑树&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#1红黑树的定义&quot; id=&quot;markdown-toc-1红黑树的定义&quot;&gt;1.红黑树的定义&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#2红黑树操作简单例子&quot; id=&quot;markdown-toc-2红黑树操作简单例子&quot;&gt;2.红黑树操作简单例子&lt;/a&gt;        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#step-1-插入节点44&quot; id=&quot;markdown-toc-step-1-插入节点44&quot;&gt;step 1 插入节点（44）&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#step-2-插入节点45&quot; id=&quot;markdown-toc-step-2-插入节点45&quot;&gt;step 2 插入节点（45）&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#step-3-插入节点46&quot; id=&quot;markdown-toc-step-3-插入节点46&quot;&gt;step 3 插入节点（46）&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#step-4-插入节点47&quot; id=&quot;markdown-toc-step-4-插入节点47&quot;&gt;step 4 插入节点（47）&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#step5-删除节点45&quot; id=&quot;markdown-toc-step5-删除节点45&quot;&gt;step5 删除节点（45）&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section&quot; id=&quot;markdown-toc-section&quot;&gt;红黑树&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-1&quot; id=&quot;markdown-toc-section-1&quot;&gt;1.红黑树的定义&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-2&quot; id=&quot;markdown-toc-section-2&quot;&gt;2.红黑树操作简单例子&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#step-1-44&quot; id=&quot;markdown-toc-step-1-44&quot;&gt;step 1 插入节点（44）&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#step-2-45&quot; id=&quot;markdown-toc-step-2-45&quot;&gt;step 2 插入节点（45）&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#step-3-46&quot; id=&quot;markdown-toc-step-3-46&quot;&gt;step 3 插入节点（46）&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#step-4-47&quot; id=&quot;markdown-toc-step-4-47&quot;&gt;step 4 插入节点（47）&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#step5-45&quot; id=&quot;markdown-toc-step5-45&quot;&gt;step5 删除节点（45）&lt;/a&gt;&lt;/li&gt;
         &lt;/ul&gt;
       &lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#3红黑树代码实现&quot; id=&quot;markdown-toc-3红黑树代码实现&quot;&gt;3.红黑树代码实现&lt;/a&gt;        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#31-红黑树插入操作&quot; id=&quot;markdown-toc-31-红黑树插入操作&quot;&gt;3.1 红黑树插入操作&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#插入修复情形1之前是棵空树新插入的节点是树根根据性质2根节点必须是黑色&quot; id=&quot;markdown-toc-插入修复情形1之前是棵空树新插入的节点是树根根据性质2根节点必须是黑色&quot;&gt;&lt;font color=&quot;blue&quot;&gt;插入修复情形1:之前是棵空树，新插入的节点是树根。根据性质2，根节点必须是黑色。&lt;/font&gt;&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#插入修复情形2插入的节点的父节点是黑色的这种情况下直接插入红色节点如图插入节点46&quot; id=&quot;markdown-toc-插入修复情形2插入的节点的父节点是黑色的这种情况下直接插入红色节点如图插入节点46&quot;&gt;&lt;font color=&quot;blue&quot;&gt;插入修复情形2:插入的节点的父节点是黑色的，这种情况下直接插入红色节点。（如图：插入节点46）&lt;/font&gt;&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#插入修复情形3-插入的节点父节点以及叔父节点都是红色&quot; id=&quot;markdown-toc-插入修复情形3-插入的节点父节点以及叔父节点都是红色&quot;&gt;&lt;font color=&quot;blue&quot;&gt;插入修复情形3: 插入的节点父节点以及叔父节点都是红色。&lt;/font&gt;&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#插入修复情形4节点是父节点的右孩子如图43中节点47其父节点44是其祖父节点50的左孩子其叔父节点是黑色节点60&quot; id=&quot;markdown-toc-插入修复情形4节点是父节点的右孩子如图43中节点47其父节点44是其祖父节点50的左孩子其叔父节点是黑色节点60&quot;&gt;&lt;font color=&quot;blue&quot;&gt;插入修复情形4:节点是父节点的右孩子（如图4.3中节点47），其父节点（44）是其祖父节点（50）的左孩子，其叔父节点是黑色（节点60）。&lt;/font&gt;&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#插入修复情形5节点是父节点的左孩子父节点是祖父节点的左孩子叔父节点是黑色&quot; id=&quot;markdown-toc-插入修复情形5节点是父节点的左孩子父节点是祖父节点的左孩子叔父节点是黑色&quot;&gt;&lt;font color=&quot;blue&quot;&gt;插入修复情形5:节点是父节点的左孩子，父节点是祖父节点的左孩子，叔父节点是黑色。&lt;/font&gt;&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#32-红黑树删除操作&quot; id=&quot;markdown-toc-32-红黑树删除操作&quot;&gt;3.2 红黑树删除操作&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#删除修复情形1节点是新的根&quot; id=&quot;markdown-toc-删除修复情形1节点是新的根&quot;&gt;&lt;font color=&quot;blue&quot;&gt;删除修复情形1:节点是新的根。&lt;/font&gt;&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#删除修复情形2如图21兄弟节点s是红色如图21&quot; id=&quot;markdown-toc-删除修复情形2如图21兄弟节点s是红色如图21&quot;&gt;&lt;font color=&quot;blue&quot;&gt;删除修复情形2:如图2.1，兄弟节点（S）是红色。如图2.1&lt;/font&gt;&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#删除修复情形3如图31节点n父节点p兄弟节点s都是黑色&quot; id=&quot;markdown-toc-删除修复情形3如图31节点n父节点p兄弟节点s都是黑色&quot;&gt;&lt;font color=&quot;blue&quot;&gt;删除修复情形3:如图3.1，节点（N）、父节点（P）、兄弟节点（S）都是黑色。&lt;/font&gt;&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#删除修复情形4节点和兄弟节点都是黑色父节点是红色&quot; id=&quot;markdown-toc-删除修复情形4节点和兄弟节点都是黑色父节点是红色&quot;&gt;&lt;font color=&quot;blue&quot;&gt;删除修复情形4:节点和兄弟节点都是黑色，父节点是红色。&lt;/font&gt;&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#--删除修复情形5节点的兄弟节点是黑色兄弟节点的左孩子是红色右孩子是黑色&quot; id=&quot;markdown-toc---删除修复情形5节点的兄弟节点是黑色兄弟节点的左孩子是红色右孩子是黑色&quot;&gt;&lt;font color=&quot;blue&quot;&gt;  删除修复情形5:节点的兄弟节点是黑色，兄弟节点的左孩子是红色，右孩子是黑色。&lt;/font&gt;&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#--删除修复情形6节点是父节点的左孩子其兄弟节点图61中s节点是黑色并且兄弟节点的右孩子是红色节点&quot; id=&quot;markdown-toc---删除修复情形6节点是父节点的左孩子其兄弟节点图61中s节点是黑色并且兄弟节点的右孩子是红色节点&quot;&gt;&lt;font color=&quot;blue&quot;&gt;  删除修复情形6:节点是父节点的左孩子，其兄弟节点（图6.1中S节点）是黑色，并且兄弟节点的右孩子是红色节点。&lt;/font&gt;&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-3&quot; id=&quot;markdown-toc-section-3&quot;&gt;3.红黑树代码实现&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#font-colorblue246&quot; id=&quot;markdown-toc-font-colorblue246&quot;&gt;&lt;font color=&quot;blue&quot;&gt;插入修复情形2:插入的节点的父节点是黑色的，这种情况下直接插入红色节点。（如图：插入节点46）&lt;/font&gt;&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#font-colorblue3-&quot; id=&quot;markdown-toc-font-colorblue3-&quot;&gt;&lt;font color=&quot;blue&quot;&gt;插入修复情形3: 插入的节点父节点以及叔父节点都是红色。&lt;/font&gt;&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#font-colorblue44347445060&quot; id=&quot;markdown-toc-font-colorblue44347445060&quot;&gt;&lt;font color=&quot;blue&quot;&gt;插入修复情形4:节点是父节点的右孩子（如图4.3中节点47），其父节点（44）是其祖父节点（50）的左孩子，其叔父节点是黑色（节点60）。&lt;/font&gt;&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#font-colorblue5&quot; id=&quot;markdown-toc-font-colorblue5&quot;&gt;&lt;font color=&quot;blue&quot;&gt;插入修复情形5:节点是父节点的左孩子，父节点是祖父节点的左孩子，叔父节点是黑色。&lt;/font&gt;&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#section-4&quot; id=&quot;markdown-toc-section-4&quot;&gt;3.2 红黑树删除操作&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#font-colorblue221s21&quot; id=&quot;markdown-toc-font-colorblue221s21&quot;&gt;&lt;font color=&quot;blue&quot;&gt;删除修复情形2:如图2.1，兄弟节点（S）是红色。如图2.1&lt;/font&gt;&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#font-colorblue331nps&quot; id=&quot;markdown-toc-font-colorblue331nps&quot;&gt;&lt;font color=&quot;blue&quot;&gt;删除修复情形3:如图3.1，节点（N）、父节点（P）、兄弟节点（S）都是黑色。&lt;/font&gt;&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#font-colorblue4&quot; id=&quot;markdown-toc-font-colorblue4&quot;&gt;&lt;font color=&quot;blue&quot;&gt;删除修复情形4:节点和兄弟节点都是黑色，父节点是红色。&lt;/font&gt;&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#font-colorblue--5&quot; id=&quot;markdown-toc-font-colorblue--5&quot;&gt;&lt;font color=&quot;blue&quot;&gt;  删除修复情形5:节点的兄弟节点是黑色，兄弟节点的左孩子是红色，右孩子是黑色。&lt;/font&gt;&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#font-colorblue--661s&quot; id=&quot;markdown-toc-font-colorblue--661s&quot;&gt;&lt;font color=&quot;blue&quot;&gt;  删除修复情形6:节点是父节点的左孩子，其兄弟节点（图6.1中S节点）是黑色，并且兄弟节点的右孩子是红色节点。&lt;/font&gt;&lt;/a&gt;&lt;/li&gt;
         &lt;/ul&gt;
       &lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#4红黑树java实现完整代码&quot; id=&quot;markdown-toc-4红黑树java实现完整代码&quot;&gt;4.红黑树Java实现完整代码&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#5红黑树具体应用&quot; id=&quot;markdown-toc-5红黑树具体应用&quot;&gt;5.红黑树具体应用&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#6参考&quot; id=&quot;markdown-toc-6参考&quot;&gt;6.参考&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#java&quot; id=&quot;markdown-toc-java&quot;&gt;4.红黑树Java实现完整代码&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-5&quot; id=&quot;markdown-toc-section-5&quot;&gt;5.红黑树具体应用&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
@@ -304,37 +356,35 @@ http://www.ics.uci.edu/~cs237/lectures/messaging-gc.ppt&lt;/p&gt;
 &lt;/section&gt;
 &lt;!-- /#table-of-contents --&gt;
 
-&lt;h1 id=&quot;红黑树&quot;&gt;红黑树&lt;/h1&gt;
+&lt;h1 id=&quot;section&quot;&gt;红黑树&lt;/h1&gt;
 
-&lt;h4 id=&quot;1红黑树的定义&quot;&gt;1.红黑树的定义&lt;/h4&gt;
+&lt;h4 id=&quot;section-1&quot;&gt;1.红黑树的定义&lt;/h4&gt;
 &lt;p&gt;红黑树是平衡二叉查找树（Balance Search Tree）的一种，它拥有良好的最坏运行时间，可以保证查找、删除、添加节点操作在O(log n)时间内，其中n表示节点数。&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;红黑树每个节点都带有颜色属性，红色或者黑色，除了BST的性质以外，还有以下性质：&lt;/p&gt;
-  &lt;ol&gt;
-    &lt;li&gt;节点是红色或黑色。&lt;/li&gt;
-    &lt;li&gt;根是黑色。&lt;/li&gt;
-    &lt;li&gt;所有叶子都是黑色（叶子是NIL节点）。&lt;/li&gt;
-    &lt;li&gt;每个红色节点必须有两个黑色的子节点。（从每个叶子到根的所有路径上不能有两个连续的红色节点。）&lt;/li&gt;
-    &lt;li&gt;从任一节点到其每个叶子的所有简单路径都包含相同数目的黑色节点。&lt;/li&gt;
-  &lt;/ol&gt;
+  &lt;p&gt;红黑树每个节点都带有颜色属性，红色或者黑色，除了BST的性质以外，还有以下性质：&lt;br /&gt;
+1. 节点是红色或黑色。 &lt;br /&gt;
+2. 根是黑色。 &lt;br /&gt;
+3. 所有叶子都是黑色（叶子是NIL节点）。 &lt;br /&gt;
+4. 每个红色节点必须有两个黑色的子节点。（从每个叶子到根的所有路径上不能有两个连续的红色节点。）  &lt;br /&gt;
+5. 从任一节点到其每个叶子的所有简单路径都包含相同数目的黑色节点。&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;下面是一棵红黑树的例子，例子中为中序遍历降序排列，后面的操作中也按照这个顺序。&lt;br /&gt;
 &lt;img src=&quot;/img/in-post/red_black_tree/demo.png&quot; alt=&quot;Alt text&quot; /&gt; &lt;br /&gt;
 例子中以节点48作为参考节点，类比人类社会，将47节点叫做它的父节点，46叫做它的祖父节点，45叫做它的叔父节点。&lt;/p&gt;
 
-&lt;h4 id=&quot;2红黑树操作简单例子&quot;&gt;2.红黑树操作简单例子&lt;/h4&gt;
+&lt;h4 id=&quot;section-2&quot;&gt;2.红黑树操作简单例子&lt;/h4&gt;
 
-&lt;h6 id=&quot;step-1-插入节点44&quot;&gt;step 1 插入节点（44）&lt;/h6&gt;
+&lt;h6 id=&quot;step-1-44&quot;&gt;step 1 插入节点（44）&lt;/h6&gt;
 &lt;p&gt;因为第一个节点是根节点，根据性质2，节点为黑色。&lt;br /&gt;
 &lt;img src=&quot;/img/in-post/red_black_tree/insert_step_1.png&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
 
-&lt;h6 id=&quot;step-2-插入节点45&quot;&gt;step 2 插入节点（45）&lt;/h6&gt;
+&lt;h6 id=&quot;step-2-45&quot;&gt;step 2 插入节点（45）&lt;/h6&gt;
 &lt;p&gt;由于45大于44，所以作为节点44的右边孩子接入并设置为红色。可以看到性质5得到了保持。    &lt;br /&gt;
 &lt;img src=&quot;/img/in-post/red_black_tree/insert_step_2.png&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
 
-&lt;h6 id=&quot;step-3-插入节点46&quot;&gt;step 3 插入节点（46）&lt;/h6&gt;
+&lt;h6 id=&quot;step-3-46&quot;&gt;step 3 插入节点（46）&lt;/h6&gt;
 &lt;p&gt;46大于节点45应该作为右孩子接入设置为红色。显然违反了性质4&lt;br /&gt;
 &lt;img src=&quot;/img/in-post/red_black_tree/insert_step_3_1.png&quot; alt=&quot;Alt text&quot; /&gt; &lt;br /&gt;
 以节点45为轴做左旋转,违反了性质2、4、5。  &lt;br /&gt;
@@ -342,7 +392,7 @@ http://www.ics.uci.edu/~cs237/lectures/messaging-gc.ppt&lt;/p&gt;
  将45改为黑色（符合了性质2、4），将节点44改为红色（符合性质5）？？事实上我也可以将46节点涂成黑色？？得到全黑色节点 &lt;br /&gt;
 &lt;img src=&quot;/img/in-post/red_black_tree/insert_step_3_3.png&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
 
-&lt;h6 id=&quot;step-4-插入节点47&quot;&gt;step 4 插入节点（47）&lt;/h6&gt;
+&lt;h6 id=&quot;step-4-47&quot;&gt;step 4 插入节点（47）&lt;/h6&gt;
 &lt;p&gt;47大于节点46作为右孩子接入设置为红色。违反了性质4。&lt;br /&gt;
 &lt;img src=&quot;/img/in-post/red_black_tree/insert_step_4_1.png&quot; alt=&quot;Alt text&quot; /&gt; &lt;br /&gt;
 这个时候47的父节点46与叔父节点都是红色 ，则祖父节点45颜色下降。但仍然违反性质2，因为47的祖父节点45是根节点。  &lt;br /&gt;
@@ -350,7 +400,7 @@ http://www.ics.uci.edu/~cs237/lectures/messaging-gc.ppt&lt;/p&gt;
 将45颜色变为黑色。 &lt;br /&gt;
 &lt;img src=&quot;/img/in-post/red_black_tree/insert_step_4_3.png&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
 
-&lt;h6 id=&quot;step5-删除节点45&quot;&gt;step5 删除节点（45）&lt;/h6&gt;
+&lt;h6 id=&quot;step5-45&quot;&gt;step5 删除节点（45）&lt;/h6&gt;
 &lt;p&gt;要删除节点45，首先将其左子树中最大节点44。 &lt;br /&gt;
 &lt;img src=&quot;/img/in-post/red_black_tree/insert_step_5_1.png&quot; alt=&quot;Alt text&quot; /&gt; &lt;br /&gt;
 将44节点的值拷贝到45节点处，移除老的44节点。此时违反了性质5。 &lt;br /&gt;
@@ -360,18 +410,18 @@ http://www.ics.uci.edu/~cs237/lectures/messaging-gc.ppt&lt;/p&gt;
 将47节点设置为黑色。 &lt;br /&gt;
 &lt;img src=&quot;/img/in-post/red_black_tree/insert_step_5_4.png&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
 
-&lt;h4 id=&quot;3红黑树代码实现&quot;&gt;3.红黑树代码实现&lt;/h4&gt;
-&lt;p&gt;上面简单例子中插入以及删除节点操作并没有完全涵盖所有的情况。下面来看一看红黑树java代码实现。根据具体每一类情况，形成与之对应的代码操作。下面情况对应的配图都在对应情况的下方，比如有两个图3.1，分别对应前面小标题。&lt;/p&gt;
-&lt;h5 id=&quot;31-红黑树插入操作&quot;&gt;3.1 红黑树插入操作&lt;/h5&gt;
+&lt;h4 id=&quot;section-3&quot;&gt;3.红黑树代码实现&lt;/h4&gt;
+&lt;p&gt;上面简单例子中插入以及删除节点操作并没有完全涵盖所有的情况。下面来看一看红黑树java代码实现。根据具体每一类情况，形成与之对应的代码操作。下面情况对应的配图都在对应情况的下方，比如有两个图3.1，分别对应前面小标题。
+##### 3.1 红黑树插入操作&lt;/p&gt;
 
 &lt;p&gt;红黑树是BST（Binary Search Tree，二叉查找树），除了需要执行BST的插入操作以外还要根据红黑树的性质进行调整，因为直接插入节点有可能会破坏红黑树的结构。红黑树插入节点都按照红色插入。（维基百科解释：如果设为黑色，就会导致根到叶子的路径上有一条路上，多一个额外的黑节点，这个是很难调整的。但是设为红色节点后，可能会导致出现两个连续红色节点的冲突，那么可以通过颜色调换和树旋转来调整。）
-。关于插入后的恢复情形有下面5种。&lt;/p&gt;
-&lt;h5 id=&quot;插入修复情形1之前是棵空树新插入的节点是树根根据性质2根节点必须是黑色&quot;&gt;&lt;font color=&quot;blue&quot;&gt;插入修复情形1:之前是棵空树，新插入的节点是树根。根据性质2，根节点必须是黑色。&lt;/font&gt;&lt;/h5&gt;
-&lt;p&gt;&amp;lt;/font&amp;gt; &lt;br /&gt;
+。关于插入后的恢复情形有下面5种。
+##### &lt;font color=&quot;blue&quot;&gt;插入修复情形1:之前是棵空树，新插入的节点是树根。根据性质2，根节点必须是黑色。
+&lt;/font&gt; &lt;br /&gt;
 &lt;img src=&quot;/img/in-post/red_black_tree/insert_condition_1.png&quot; alt=&quot;Alt text&quot; /&gt; （图1）&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;   
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;insertFixUpCase1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;insertFixUpCase1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
         &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;parent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
             &lt;span class=&quot;c1&quot;&gt;//情形1:如果插入节点是根节点，则设置为黑色&lt;/span&gt;
             &lt;span class=&quot;n&quot;&gt;root&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
@@ -382,13 +432,13 @@ http://www.ics.uci.edu/~cs237/lectures/messaging-gc.ppt&lt;/p&gt;
 
     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;h5 id=&quot;插入修复情形2插入的节点的父节点是黑色的这种情况下直接插入红色节点如图插入节点46&quot;&gt;&lt;font color=&quot;blue&quot;&gt;插入修复情形2:插入的节点的父节点是黑色的，这种情况下直接插入红色节点。（如图：插入节点46）&lt;/font&gt;&lt;/h5&gt;
+&lt;h5 id=&quot;font-colorblue246&quot;&gt;&lt;font color=&quot;blue&quot;&gt;插入修复情形2:插入的节点的父节点是黑色的，这种情况下直接插入红色节点。（如图：插入节点46）&lt;/font&gt;&lt;/h5&gt;
 &lt;p&gt;&amp;lt;/font&amp;gt;
 &lt;img src=&quot;/img/in-post/red_black_tree/insert_condition_2_1.png&quot; alt=&quot;Alt text&quot; /&gt;（图2.1） &lt;br /&gt;
 &lt;img src=&quot;/img/in-post/red_black_tree/insert_condition_2_2.png&quot; alt=&quot;Alt text&quot; /&gt;（图2.2）&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt; 
-   &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;insertFixUpCase2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+   &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;insertFixUpCase2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
         &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;parent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;color&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Color&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;BLACK&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
             &lt;span class=&quot;c1&quot;&gt;//父节点是黑色&lt;/span&gt;
             &lt;span class=&quot;c1&quot;&gt;//情形2：如果父节点是黑色的，所有性质都没有受到影响&lt;/span&gt;
@@ -399,7 +449,7 @@ http://www.ics.uci.edu/~cs237/lectures/messaging-gc.ppt&lt;/p&gt;
 
     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;h5 id=&quot;插入修复情形3-插入的节点父节点以及叔父节点都是红色&quot;&gt;&lt;font color=&quot;blue&quot;&gt;插入修复情形3: 插入的节点父节点以及叔父节点都是红色。&lt;/font&gt;&lt;/h5&gt;
+&lt;h5 id=&quot;font-colorblue3-&quot;&gt;&lt;font color=&quot;blue&quot;&gt;插入修复情形3: 插入的节点父节点以及叔父节点都是红色。&lt;/font&gt;&lt;/h5&gt;
 &lt;p&gt;从图3.1为插入前状态，插入节点42后成为节点43的左孩子，这时性质4遭到破坏，因为存在连续红色节点（图3.2）。要满足性质4需要将祖父节点（44）与父节点、叔父节点的颜色进行交换，如图3.3。性质2此时无法满足因为根节点44是红色。其实给出图片的例子中44是一个根节点，很多情况中44并不是根节点。此时将44按照新插入的节点从情形1开始处理，那么应该涂成黑色，如图3.4
 &amp;lt;/font&amp;gt;
 &lt;img src=&quot;/img/in-post/red_black_tree/insert_condition_3_1.png&quot; alt=&quot;Alt text&quot; /&gt;（图3.1） &lt;br /&gt;
@@ -409,7 +459,7 @@ http://www.ics.uci.edu/~cs237/lectures/messaging-gc.ppt&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;  
 
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;insertFixUpCase3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;insertFixUpCase3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 
         &lt;span class=&quot;c1&quot;&gt;//父节点是红色&lt;/span&gt;
 
@@ -438,7 +488,7 @@ http://www.ics.uci.edu/~cs237/lectures/messaging-gc.ppt&lt;/p&gt;
 
     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;h5 id=&quot;插入修复情形4节点是父节点的右孩子如图43中节点47其父节点44是其祖父节点50的左孩子其叔父节点是黑色节点60&quot;&gt;&lt;font color=&quot;blue&quot;&gt;插入修复情形4:节点是父节点的右孩子（如图4.3中节点47），其父节点（44）是其祖父节点（50）的左孩子，其叔父节点是黑色（节点60）。&lt;/font&gt;&lt;/h5&gt;
+&lt;h5 id=&quot;font-colorblue44347445060&quot;&gt;&lt;font color=&quot;blue&quot;&gt;插入修复情形4:节点是父节点的右孩子（如图4.3中节点47），其父节点（44）是其祖父节点（50）的左孩子，其叔父节点是黑色（节点60）。&lt;/font&gt;&lt;/h5&gt;
 &lt;p&gt;这种情况的对称情况也属于同一情况。下面来看一下这种情形是怎么出现的，图4.1是初始状态，插入节点45，红色，图4.1到4.3这个过程实际上是情形3的处理过程。从4.3到4.4才是情形4的场景，这种情况下以新插入节点（这里是47）作为旋转轴做一次左旋转，对称的情况做右旋转。此时红黑树的性质5仍然没有满足，下面交给情形5处理。
 &amp;lt;/font&amp;gt; &lt;br /&gt;
 &lt;img src=&quot;/img/in-post/red_black_tree/insert_condition_4_1.png&quot; alt=&quot;Alt text&quot; /&gt;（图4.1）&lt;br /&gt;
@@ -447,7 +497,7 @@ http://www.ics.uci.edu/~cs237/lectures/messaging-gc.ppt&lt;/p&gt;
 &lt;img src=&quot;/img/in-post/red_black_tree/insert_condition_4_4.png&quot; alt=&quot;Alt text&quot; /&gt;（图4.4）&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;  
-&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;insertFixUpCase4&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;insertFixUpCase4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 
        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;parent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;leftChild&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;getGrandparentNode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;rightChild&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;parent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 
@@ -460,7 +510,7 @@ http://www.ics.uci.edu/~cs237/lectures/messaging-gc.ppt&lt;/p&gt;
         &lt;span class=&quot;n&quot;&gt;insertFixUpCase5&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;h5 id=&quot;插入修复情形5节点是父节点的左孩子父节点是祖父节点的左孩子叔父节点是黑色&quot;&gt;&lt;font color=&quot;blue&quot;&gt;插入修复情形5:节点是父节点的左孩子，父节点是祖父节点的左孩子，叔父节点是黑色。&lt;/font&gt;&lt;/h5&gt;
+&lt;h5 id=&quot;font-colorblue5&quot;&gt;&lt;font color=&quot;blue&quot;&gt;插入修复情形5:节点是父节点的左孩子，父节点是祖父节点的左孩子，叔父节点是黑色。&lt;/font&gt;&lt;/h5&gt;
 &lt;p&gt;我们直接看图5.1（实际上和图4.4是一张图，想知道来龙去脉可以看这里）。此时性质5被破坏，我们先以节点47为轴做右旋转得到图5.2，再将原先父节点（节点47）与原先祖父节点（节点50）颜色进行交换，完成，如图5.3。
 &amp;lt;/font&amp;gt; &lt;br /&gt;
 &lt;img src=&quot;/img/in-post/red_black_tree/insert_condition_5_1.png&quot; alt=&quot;Alt text&quot; /&gt;（图5.1）&lt;br /&gt;
@@ -468,7 +518,7 @@ http://www.ics.uci.edu/~cs237/lectures/messaging-gc.ppt&lt;/p&gt;
 &lt;img src=&quot;/img/in-post/red_black_tree/insert_condition_5_3.png&quot; alt=&quot;Alt text&quot; /&gt;（图5.3）&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;  
-&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;insertFixUpCase5&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;insertFixUpCase5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
         &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;parent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;color&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Color&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;BLACK&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
         &lt;span class=&quot;n&quot;&gt;getGrandparentNode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;color&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Color&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;RED&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 
@@ -479,18 +529,18 @@ http://www.ics.uci.edu/~cs237/lectures/messaging-gc.ppt&lt;/p&gt;
         &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;h5 id=&quot;32-红黑树删除操作&quot;&gt;3.2 红黑树删除操作&lt;/h5&gt;
+&lt;h5 id=&quot;section-4&quot;&gt;3.2 红黑树删除操作&lt;/h5&gt;
 
-&lt;p&gt;同样删除操作除了需要执行BST的删除操作以外还要根据红黑树的性质进行调整。关于删除后的恢复情形有下面6种。&lt;/p&gt;
-&lt;h5 id=&quot;删除修复情形1节点是新的根&quot;&gt;&lt;font color=&quot;blue&quot;&gt;删除修复情形1:节点是新的根。&lt;/font&gt;&lt;/h5&gt;
-&lt;p&gt;图1.1是删除前的初始状态，要删除节点44，找到节点44对它进行删除，从节点44左孩子中寻找最大那个节点（这里左孩子是叶子节点）将内容替换到原节点44。因为删除的节点是黑色节点所以性质5被破坏。在情形1之前，这里先遇到了情形3（图1.2-1.3），节点46变换成红色节点，紧接着还是情形3，节点53也要改成红色节点（图1.3-1.4）。情形1出现了。。。节点48是根节点，且是黑色，什么都不需要做。
-&amp;lt;/font&amp;gt;&lt;br /&gt;
+&lt;p&gt;同样删除操作除了需要执行BST的删除操作以外还要根据红黑树的性质进行调整。关于删除后的恢复情形有下面6种。&lt;br /&gt;
+##### &lt;font color=&quot;blue&quot;&gt;删除修复情形1:节点是新的根。   
+图1.1是删除前的初始状态，要删除节点44，找到节点44对它进行删除，从节点44左孩子中寻找最大那个节点（这里左孩子是叶子节点）将内容替换到原节点44。因为删除的节点是黑色节点所以性质5被破坏。在情形1之前，这里先遇到了情形3（图1.2-1.3），节点46变换成红色节点，紧接着还是情形3，节点53也要改成红色节点（图1.3-1.4）。情形1出现了。。。节点48是根节点，且是黑色，什么都不需要做。
+&lt;/font&gt;&lt;br /&gt;
 &lt;img src=&quot;/img/in-post/red_black_tree/delete_condition_1_1.png&quot; alt=&quot;Alt text&quot; /&gt;（图1.1）&lt;br /&gt;
 &lt;img src=&quot;/img/in-post/red_black_tree/delete_condition_1_2.png&quot; alt=&quot;Alt text&quot; /&gt;（图1.2）  &lt;br /&gt;
 &lt;img src=&quot;/img/in-post/red_black_tree/delete_condition_1_3.png&quot; alt=&quot;Alt text&quot; /&gt;（图1.3） &lt;br /&gt;
 &lt;img src=&quot;/img/in-post/red_black_tree/delete_condition_1_4.png&quot; alt=&quot;Alt text&quot; /&gt;（图1.4）&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt; &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;deleteFixUpCase1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt; &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;deleteFixUpCase1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
         &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;parent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
             &lt;span class=&quot;c1&quot;&gt;//情形1：node是新的根&lt;/span&gt;
 
@@ -500,13 +550,13 @@ http://www.ics.uci.edu/~cs237/lectures/messaging-gc.ppt&lt;/p&gt;
 
     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;h5 id=&quot;删除修复情形2如图21兄弟节点s是红色如图21&quot;&gt;&lt;font color=&quot;blue&quot;&gt;删除修复情形2:如图2.1，兄弟节点（S）是红色。如图2.1&lt;/font&gt;&lt;/h5&gt;
+&lt;h5 id=&quot;font-colorblue221s21&quot;&gt;&lt;font color=&quot;blue&quot;&gt;删除修复情形2:如图2.1，兄弟节点（S）是红色。如图2.1&lt;/font&gt;&lt;/h5&gt;
 &lt;p&gt;这种情况下以兄弟节点S为转轴做一次左旋转，并将原父节点（P）与原兄弟节点（S）颜色做一下交换。在真实中的例子情参看情形4的例子。&lt;/p&gt;
 
 &lt;p&gt;&amp;lt;/font&amp;gt;&lt;br /&gt;
 &lt;img src=&quot;/img/in-post/red_black_tree/delete_condition_2_1.png&quot; alt=&quot;Alt text&quot; /&gt;（图2.1）&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt; &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;deleteFixUpCase2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt; &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;deleteFixUpCase2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 
         &lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sib&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sibling&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
         &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sib&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;color&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Color&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;RED&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
@@ -525,12 +575,12 @@ http://www.ics.uci.edu/~cs237/lectures/messaging-gc.ppt&lt;/p&gt;
 
     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;h5 id=&quot;删除修复情形3如图31节点n父节点p兄弟节点s都是黑色&quot;&gt;&lt;font color=&quot;blue&quot;&gt;删除修复情形3:如图3.1，节点（N）、父节点（P）、兄弟节点（S）都是黑色。&lt;/font&gt;&lt;/h5&gt;
+&lt;h5 id=&quot;font-colorblue331nps&quot;&gt;&lt;font color=&quot;blue&quot;&gt;删除修复情形3:如图3.1，节点（N）、父节点（P）、兄弟节点（S）都是黑色。&lt;/font&gt;&lt;/h5&gt;
 &lt;p&gt;这时我们将兄弟节点颜色设置为红色。
 &amp;lt;/font&amp;gt;&lt;br /&gt;
 &lt;img src=&quot;/img/in-post/red_black_tree/delete_condition_3_1.png&quot; alt=&quot;Alt text&quot; /&gt;（图3.1）&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;deleteFixUpCase3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;deleteFixUpCase3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
         &lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sib&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sibling&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
 
         &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sib&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;
@@ -549,7 +599,7 @@ http://www.ics.uci.edu/~cs237/lectures/messaging-gc.ppt&lt;/p&gt;
         &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;h5 id=&quot;删除修复情形4节点和兄弟节点都是黑色父节点是红色&quot;&gt;&lt;font color=&quot;blue&quot;&gt;删除修复情形4:节点和兄弟节点都是黑色，父节点是红色。&lt;/font&gt;&lt;/h5&gt;
+&lt;h5 id=&quot;font-colorblue4&quot;&gt;&lt;font color=&quot;blue&quot;&gt;删除修复情形4:节点和兄弟节点都是黑色，父节点是红色。&lt;/font&gt;&lt;/h5&gt;
 &lt;p&gt;这种情况下，我们将父节点和兄弟节点的颜色进行交换。
 下面演示一个例子。例子开始状态如图4.1，要删除节点49，从左侧树中选出最大的节点48的值替换到49节点，这时候如图4.4。以48节点的左子树为基准，符合情形2，以51为转轴做一次左旋转，并交换父节点（48）与兄弟节点（51）的颜色结果如图4.6。这时符合情形4，将父节点48与兄弟节点50交换颜色，转换结束如图4.7。
 &amp;lt;/font&amp;gt;&lt;br /&gt;
@@ -561,12 +611,12 @@ http://www.ics.uci.edu/~cs237/lectures/messaging-gc.ppt&lt;/p&gt;
 &lt;img src=&quot;/img/in-post/red_black_tree/delete_condition_4_6.png&quot; alt=&quot;Alt text&quot; /&gt;（图4.6） 
 &lt;img src=&quot;/img/in-post/red_black_tree/delete_condition_4_7.png&quot; alt=&quot;Alt text&quot; /&gt;（图4.7）&lt;/p&gt;
 
-&lt;h5 id=&quot;--删除修复情形5节点的兄弟节点是黑色兄弟节点的左孩子是红色右孩子是黑色&quot;&gt;&lt;font color=&quot;blue&quot;&gt;  删除修复情形5:节点的兄弟节点是黑色，兄弟节点的左孩子是红色，右孩子是黑色。&lt;/font&gt;&lt;/h5&gt;
+&lt;h5 id=&quot;font-colorblue--5&quot;&gt;&lt;font color=&quot;blue&quot;&gt;  删除修复情形5:节点的兄弟节点是黑色，兄弟节点的左孩子是红色，右孩子是黑色。&lt;/font&gt;&lt;/h5&gt;
 &lt;p&gt;如图5.1，图中只是兄弟节点部分。S即为兄弟节点。这时以兄弟节点的左孩子进行右旋转。节点对称的情况，旋转操作也是对称的。关于树旋转，我参考的是维基百科Tree Ratation中的旋转方式。情况5在真实操作中的情况可以参考情况6给出的图解。
 &amp;lt;/font&amp;gt;&lt;br /&gt;
 &lt;img src=&quot;/img/in-post/red_black_tree/delete_condition_5_1.png&quot; alt=&quot;Alt text&quot; /&gt;（图5.1）&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;deleteFixUpCase5&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;deleteFixUpCase5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 
         &lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sib&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sibling&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
         &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sib&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;color&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Color&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;BLACK&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
@@ -593,7 +643,7 @@ http://www.ics.uci.edu/~cs237/lectures/messaging-gc.ppt&lt;/p&gt;
 
     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;h5 id=&quot;--删除修复情形6节点是父节点的左孩子其兄弟节点图61中s节点是黑色并且兄弟节点的右孩子是红色节点&quot;&gt;&lt;font color=&quot;blue&quot;&gt;  删除修复情形6:节点是父节点的左孩子，其兄弟节点（图6.1中S节点）是黑色，并且兄弟节点的右孩子是红色节点。&lt;/font&gt;&lt;/h5&gt;
+&lt;h5 id=&quot;font-colorblue--661s&quot;&gt;&lt;font color=&quot;blue&quot;&gt;  删除修复情形6:节点是父节点的左孩子，其兄弟节点（图6.1中S节点）是黑色，并且兄弟节点的右孩子是红色节点。&lt;/font&gt;&lt;/h5&gt;
 &lt;p&gt;这种情况下我们首先交换父节点和兄弟节点的颜色，并且将兄弟节点的右孩子颜色设置为黑色。然后以兄弟节点为旋转轴做左旋转。&lt;br /&gt;
 从图6.2开始做一个包含情况6的真实情况的例子。删除节点48如图6.3，原48处被叶子节点取代。这时满足情形5，处理后得到图6.5。情形6出现了，以节点46为转轴做一次右旋转，并且将节点46的左孩子设置为黑色。转换结束。
 &amp;lt;/font&amp;gt;&lt;br /&gt;
@@ -605,7 +655,7 @@ http://www.ics.uci.edu/~cs237/lectures/messaging-gc.ppt&lt;/p&gt;
 &lt;img src=&quot;/img/in-post/red_black_tree/delete_condition_6_6.png&quot; alt=&quot;Alt text&quot; /&gt;（图6.6） 
 &lt;img src=&quot;/img/in-post/red_black_tree/delete_condition_6_7.png&quot; alt=&quot;Alt text&quot; /&gt;（图6.7）&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;deleteFixUpCase6&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;deleteFixUpCase6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
         &lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sib&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sibling&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
 
         &lt;span class=&quot;n&quot;&gt;sib&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;color&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;parent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
@@ -620,21 +670,21 @@ http://www.ics.uci.edu/~cs237/lectures/messaging-gc.ppt&lt;/p&gt;
         &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;h4 id=&quot;4红黑树java实现完整代码&quot;&gt;4.红黑树Java实现完整代码&lt;/h4&gt;
+&lt;h4 id=&quot;java&quot;&gt;4.红黑树Java实现完整代码&lt;/h4&gt;
 &lt;p&gt;https://github.com/mingbozhang/blogcode/tree/master/algorithms/src/main/java/com/bob/datastructure/rbtree&lt;/p&gt;
 
-&lt;h4 id=&quot;5红黑树具体应用&quot;&gt;5.红黑树具体应用&lt;/h4&gt;
-&lt;p&gt;Java中的TreeMap&lt;/p&gt;
-&lt;h4 id=&quot;6参考&quot;&gt;6.参考&lt;/h4&gt;
-&lt;p&gt;https://www.cs.usfca.edu/~galles/visualization/RedBlack.html &lt;br /&gt;
+&lt;h4 id=&quot;section-5&quot;&gt;5.红黑树具体应用&lt;/h4&gt;
+&lt;p&gt;Java中的TreeMap
+#### 6.参考
+https://www.cs.usfca.edu/~galles/visualization/RedBlack.html &lt;br /&gt;
 https://github.com/julycoding/The-Art-Of-Programming-By-July/blob/master/ebook/zh/03.01.md
 https://zh.wikipedia.org/wiki/%E7%BA%A2%E9%BB%91%E6%A0%91
 https://zh.wikipedia.org/wiki/%E6%A0%91%E6%97%8B%E8%BD%AC
 https://en.wikipedia.org/wiki/Tree_rotation&lt;/p&gt;
 </description>
         <pubDate>Sat, 15 Jul 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2017/07/15/red-black-tree/</link>
-        <guid isPermaLink="true">http://localhost:4000/2017/07/15/red-black-tree/</guid>
+        <link>https://bob1024.com/2017/07/15/red-black-tree/</link>
+        <guid isPermaLink="true">https://bob1024.com/2017/07/15/red-black-tree/</guid>
         
         <category>红黑树</category>
         
@@ -649,19 +699,19 @@ https://en.wikipedia.org/wiki/Tree_rotation&lt;/p&gt;
   &lt;/header&gt;
 &lt;div id=&quot;drawer&quot;&gt;
 &lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#1小c的故事&quot; id=&quot;markdown-toc-1小c的故事&quot;&gt;1.小C的故事&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#2存在的问题&quot; id=&quot;markdown-toc-2存在的问题&quot;&gt;2.存在的问题&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#3抽象工厂模式登场&quot; id=&quot;markdown-toc-3抽象工厂模式登场&quot;&gt;3.抽象工厂模式登场&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#4解决了什么失去了什么&quot; id=&quot;markdown-toc-4解决了什么失去了什么&quot;&gt;4.解决了什么，失去了什么&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#5具体应用场景&quot; id=&quot;markdown-toc-5具体应用场景&quot;&gt;5.具体应用场景&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#6参考&quot; id=&quot;markdown-toc-6参考&quot;&gt;6.参考&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#c&quot; id=&quot;markdown-toc-c&quot;&gt;1.小C的故事&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section&quot; id=&quot;markdown-toc-section&quot;&gt;2.存在的问题&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-1&quot; id=&quot;markdown-toc-section-1&quot;&gt;3.抽象工厂模式登场&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-2&quot; id=&quot;markdown-toc-section-2&quot;&gt;4.解决了什么，失去了什么&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-3&quot; id=&quot;markdown-toc-section-3&quot;&gt;5.具体应用场景&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-4&quot; id=&quot;markdown-toc-section-4&quot;&gt;6.参考&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
   &lt;/div&gt;
 &lt;/section&gt;
 &lt;!-- /#table-of-contents --&gt;
 
-&lt;h3 id=&quot;1小c的故事&quot;&gt;1.小C的故事&lt;/h3&gt;
+&lt;h3 id=&quot;c&quot;&gt;1.小C的故事&lt;/h3&gt;
 
 &lt;p&gt;       下面讲述的是关于x星系喵星和汪星两个宿敌星球之间的故事。首先把镜头聚焦到喵星，它是主角登场的地方。（本故事纯属虚构，如有雷同，纯属巧合） &lt;br /&gt;
        喵星纪元9035年，汪星精锐舰队聚集在近喵星轨道，企图一举拿下喵星。大部分喵星人已经被转移到防空工事中。喵星国王下令出动最强战力迎击来敌。喵小c是战斗机编队到王牌飞行员，参加了上百场战斗，获得了很多荣誉，他是本次先头部队的一员。 &lt;br /&gt;
@@ -692,27 +742,27 @@ https://en.wikipedia.org/wiki/Tree_rotation&lt;/p&gt;
 	 */&lt;/span&gt;
 	&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PrimaryWeapon&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;primaryWeapon&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 
-	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PrimaryEscapeCompartment&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getPrimaryEscapeCompartment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PrimaryEscapeCompartment&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;getPrimaryEscapeCompartment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;primaryEscapeCompartment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
-	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setPrimaryEscapeCompartment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;PrimaryEscapeCompartment&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;primaryEscapeCompartment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;setPrimaryEscapeCompartment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;PrimaryEscapeCompartment&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;primaryEscapeCompartment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 		&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;primaryEscapeCompartment&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;primaryEscapeCompartment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
-	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PrimaryShield&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getPrimaryShield&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PrimaryShield&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;getPrimaryShield&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;primaryShield&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
-	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setPrimaryShield&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;PrimaryShield&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;primaryShield&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;setPrimaryShield&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;PrimaryShield&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;primaryShield&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 		&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;primaryShield&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;primaryShield&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
-	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PrimaryWeapon&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getPrimaryWeapon&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PrimaryWeapon&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;getPrimaryWeapon&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;primaryWeapon&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
-	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setPrimaryWeapon&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;PrimaryWeapon&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;primaryWeapon&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;setPrimaryWeapon&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;PrimaryWeapon&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;primaryWeapon&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 		&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;primaryWeapon&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;primaryWeapon&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 	
@@ -729,7 +779,7 @@ https://en.wikipedia.org/wiki/Tree_rotation&lt;/p&gt;
  */&lt;/span&gt;
 &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PrimaryEscapeCompartment&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 
-	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;description&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;description&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;逃生能力一般&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
@@ -742,7 +792,7 @@ https://en.wikipedia.org/wiki/Tree_rotation&lt;/p&gt;
  */&lt;/span&gt;
 &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PrimaryShield&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 
-	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;protect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;protect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
 		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;防御了一次攻击，但是防御罩受损&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
@@ -754,7 +804,7 @@ https://en.wikipedia.org/wiki/Tree_rotation&lt;/p&gt;
  */&lt;/span&gt;
 &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PrimaryWeapon&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 	
-	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;shoot&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;shoot&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
 		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;突突突&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 	
@@ -772,7 +822,7 @@ https://en.wikipedia.org/wiki/Tree_rotation&lt;/p&gt;
  */&lt;/span&gt;
 &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Airport&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 	
-	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 		&lt;span class=&quot;c1&quot;&gt;//起飞前的准备&lt;/span&gt;
 		&lt;span class=&quot;n&quot;&gt;Battleplane&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;battleplane&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Battleplane&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
 		&lt;span class=&quot;n&quot;&gt;prepareToFly&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;battleplane&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
@@ -784,7 +834,7 @@ https://en.wikipedia.org/wiki/Tree_rotation&lt;/p&gt;
 	 * 战斗机起飞前的准备工作
 	 * @param battleplane
 	 */&lt;/span&gt;
-	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;prepareToFly&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Battleplane&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;battleplane&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;prepareToFly&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Battleplane&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;battleplane&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
 		&lt;span class=&quot;n&quot;&gt;battleplane&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setPrimaryEscapeCompartment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PrimaryEscapeCompartment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
 		&lt;span class=&quot;n&quot;&gt;battleplane&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setPrimaryShield&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PrimaryShield&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
 		&lt;span class=&quot;n&quot;&gt;battleplane&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setPrimaryWeapon&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PrimaryWeapon&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
@@ -796,10 +846,10 @@ https://en.wikipedia.org/wiki/Tree_rotation&lt;/p&gt;
 &lt;p&gt;       像大部分的剧情一样，喵星的首轮自卫反击战以失败落幕，喵小c顶着主角光环成功飞回。&lt;br /&gt;
        “中级战斗装备研制完成，马上装备到战斗机上了”，战斗后勤部得到了上级通知，同时愁上心头….WHY?&lt;/p&gt;
 
-&lt;h3 id=&quot;2存在的问题&quot;&gt;2.存在的问题&lt;/h3&gt;
+&lt;h3 id=&quot;section&quot;&gt;2.存在的问题&lt;/h3&gt;
 &lt;p&gt;       请看Airport类中prepareToFly中负责产生战斗装备（直接new了），紧密得耦合在一起。另外请看Battleplane类中也与初级的装备耦合严重。除了耦合问题以外战斗装备分为多个部分，替换的时候容易漏替，要知道初级战斗装备和中级战斗装备之间不能混搭，一旦搭错将会出现不兼容的情况，给战斗机带来额外风险。所以要解决两个问题：1.保证灵活得升级现有装备  2.要按照级别统一升级，不能有部分升级的情况。&lt;/p&gt;
 
-&lt;h3 id=&quot;3抽象工厂模式登场&quot;&gt;3.抽象工厂模式登场&lt;/h3&gt;
+&lt;h3 id=&quot;section-1&quot;&gt;3.抽象工厂模式登场&lt;/h3&gt;
 &lt;p&gt;       抽象工厂模式的意图：提供一个创建一系列相关或者相互依赖的对象的接口，而无需指定他们具体的类。 听起来略微有些抽象，我们继续讲故事。&lt;/p&gt;
 
 &lt;p&gt;       让我们将时间回退到1年前的喵星。改变历史，解决1年后的困境。我门重新设计一下：&lt;/p&gt;
@@ -825,11 +875,11 @@ https://en.wikipedia.org/wiki/Tree_rotation&lt;/p&gt;
 	 */&lt;/span&gt;
 	&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FightPrepareSys&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fightPrepareSys&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 
-	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setFightPrepareSys&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FightPrepareSys&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fightPrepareSys&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;setFightPrepareSys&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FightPrepareSys&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fightPrepareSys&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 		&lt;span class=&quot;n&quot;&gt;Airport&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;fightPrepareSys&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fightPrepareSys&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
-	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 		&lt;span class=&quot;c1&quot;&gt;// 设置初级战斗准备系统&lt;/span&gt;
 		&lt;span class=&quot;c1&quot;&gt;// Airport.setFightPrepareSys(new PrimaryFightPrepareSys());&lt;/span&gt;
 		&lt;span class=&quot;c1&quot;&gt;// 设置中级战斗准备系统&lt;/span&gt;
@@ -847,7 +897,7 @@ https://en.wikipedia.org/wiki/Tree_rotation&lt;/p&gt;
 	 * 
 	 * @param battleplane
 	 */&lt;/span&gt;
-	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;prepareToFly&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Battleplane&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;battleplane&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;prepareToFly&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Battleplane&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;battleplane&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 		&lt;span class=&quot;n&quot;&gt;battleplane&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setEscapeCompartment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fightPrepareSys&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getEscapeCompartment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
 		&lt;span class=&quot;n&quot;&gt;battleplane&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setShield&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fightPrepareSys&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getShield&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
 		&lt;span class=&quot;n&quot;&gt;battleplane&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setWeapon&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fightPrepareSys&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getWeapon&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
@@ -855,19 +905,19 @@ https://en.wikipedia.org/wiki/Tree_rotation&lt;/p&gt;
 
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;h3 id=&quot;4解决了什么失去了什么&quot;&gt;4.解决了什么，失去了什么&lt;/h3&gt;
+&lt;h3 id=&quot;section-2&quot;&gt;4.解决了什么，失去了什么&lt;/h3&gt;
 &lt;p&gt;       引入抽象工厂后，对于多个系列的产品（对应故事中战斗装备各系列）更容易管理，限制取得产品与同系列产品版本风格保持一致。使创建产品与使用者解藕，根据抽象类进行交互。 &lt;br /&gt;
        如果想要新增加一个产品的创建，且同时保证使用者的简洁实用，则比较困难。&lt;/p&gt;
 
-&lt;h3 id=&quot;5具体应用场景&quot;&gt;5.具体应用场景&lt;/h3&gt;
+&lt;h3 id=&quot;section-3&quot;&gt;5.具体应用场景&lt;/h3&gt;
 &lt;p&gt;       如果一个系统需要对应多个系列的产品则可以使用抽象工厂模式。举个《设计模式》书中的例子：当制作一款编辑器界面包含多种风格，界面元素包括各个控件，如：按钮、滚动条等。可以创建一个抽象的WidgetFactory包含创建各种控件的抽象方法。具体风格再实现Style1WidgetFactory、Style2WidgetFactory，生产各自风格系列的具体控件。这样就达到风格可以灵活扩展，且切换风格的时候非常简单，整个系统中只有在初始化具体工厂的时候需要改动。&lt;/p&gt;
 
-&lt;h3 id=&quot;6参考&quot;&gt;6.参考&lt;/h3&gt;
+&lt;h3 id=&quot;section-4&quot;&gt;6.参考&lt;/h3&gt;
 &lt;p&gt;《设计模式－可复用面向对象软件的基础》&lt;/p&gt;
 </description>
         <pubDate>Thu, 23 Jun 2016 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2016/06/23/design-pattern-abstract-factory/</link>
-        <guid isPermaLink="true">http://localhost:4000/2016/06/23/design-pattern-abstract-factory/</guid>
+        <link>https://bob1024.com/2016/06/23/design-pattern-abstract-factory/</link>
+        <guid isPermaLink="true">https://bob1024.com/2016/06/23/design-pattern-abstract-factory/</guid>
         
         
       </item>
@@ -880,23 +930,22 @@ https://en.wikipedia.org/wiki/Tree_rotation&lt;/p&gt;
   &lt;/header&gt;
 &lt;div id=&quot;drawer&quot;&gt;
 &lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#一什么是归并排序&quot; id=&quot;markdown-toc-一什么是归并排序&quot;&gt;一、什么是归并排序&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#二单线程实现归并排序&quot; id=&quot;markdown-toc-二单线程实现归并排序&quot;&gt;二、单线程实现归并排序&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#三使用forkjoin框架实现归并排序&quot; id=&quot;markdown-toc-三使用forkjoin框架实现归并排序&quot;&gt;三、使用Fork/Join框架实现归并排序&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#四单线程-pk-多线程&quot; id=&quot;markdown-toc-四单线程-pk-多线程&quot;&gt;四、单线程 pk 多线程&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#五本文代码地址&quot; id=&quot;markdown-toc-五本文代码地址&quot;&gt;五、本文代码地址&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#六参考&quot; id=&quot;markdown-toc-六参考&quot;&gt;六、参考&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section&quot; id=&quot;markdown-toc-section&quot;&gt;一、什么是归并排序&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-1&quot; id=&quot;markdown-toc-section-1&quot;&gt;二、单线程实现归并排序&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#forkjoin&quot; id=&quot;markdown-toc-forkjoin&quot;&gt;三、使用Fork/Join框架实现归并排序&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#pk-&quot; id=&quot;markdown-toc-pk-&quot;&gt;四、单线程 pk 多线程&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-2&quot; id=&quot;markdown-toc-section-2&quot;&gt;五、本文代码地址&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
   &lt;/div&gt;
 &lt;/section&gt;
 &lt;!-- /#table-of-contents --&gt;
 
-&lt;h2 id=&quot;一什么是归并排序&quot;&gt;一、什么是归并排序&lt;/h2&gt;
+&lt;h2 id=&quot;section&quot;&gt;一、什么是归并排序&lt;/h2&gt;
 &lt;p&gt;归并排序又称合并排序，它是成功应用分治技术的一个完美例子。对于一个需要排序的数组A[0..n-1],归并排序把它一分为二：A[0..n/2-1]和A[n/2..n-1],并对每个子数组递归排序，然后把这两个排好序的子数组合并为一个有序数组。下面是归并排序的例子图解：
 &lt;img src=&quot;/img/in-post/algorithm/mergesort/mergesort.png&quot; /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;二单线程实现归并排序&quot;&gt;二、单线程实现归并排序&lt;/h2&gt;
+&lt;h2 id=&quot;section-1&quot;&gt;二、单线程实现归并排序&lt;/h2&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;kn&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;bob&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;algorithms&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sort&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 
@@ -912,7 +961,7 @@ https://en.wikipedia.org/wiki/Tree_rotation&lt;/p&gt;
  */&lt;/span&gt;
 &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SingleThreadMergeSort&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SortStrategy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 
-	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;sort&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rawArray&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sort&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rawArray&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 		&lt;span class=&quot;n&quot;&gt;mergeSort&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rawArray&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
 		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rawArray&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
@@ -922,7 +971,7 @@ https://en.wikipedia.org/wiki/Tree_rotation&lt;/p&gt;
 	 * 
 	 * @param intArr
 	 */&lt;/span&gt;
-	&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;mergeSort&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;intArr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mergeSort&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;intArr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 		&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;intArr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;length&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 			&lt;span class=&quot;c1&quot;&gt;// 如果数组长度大于1就分解称两份&lt;/span&gt;
 			&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;leftArray&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Arrays&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;copyOfRange&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;intArr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;intArr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;length&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
@@ -942,7 +991,7 @@ https://en.wikipedia.org/wiki/Tree_rotation&lt;/p&gt;
 	 * @param rightArray
 	 * @param intArr
 	 */&lt;/span&gt;
-	&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;merge&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;leftArray&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rightArray&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;intArr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;merge&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;leftArray&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rightArray&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;intArr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 
 		&lt;span class=&quot;c1&quot;&gt;// i：leftArray数组索引，j：rightArray数组索引，k：intArr数组索引&lt;/span&gt;
 		&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
@@ -971,7 +1020,7 @@ https://en.wikipedia.org/wiki/Tree_rotation&lt;/p&gt;
 	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;h2 id=&quot;三使用forkjoin框架实现归并排序&quot;&gt;三、使用Fork/Join框架实现归并排序&lt;/h2&gt;
+&lt;h2 id=&quot;forkjoin&quot;&gt;三、使用Fork/Join框架实现归并排序&lt;/h2&gt;
 &lt;p&gt;Fork/Join是从JDK 1.7 加入的并发计算框架。&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;   
@@ -985,7 +1034,7 @@ https://en.wikipedia.org/wiki/Tree_rotation&lt;/p&gt;
 
 &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ForkJoinMergeSort&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SortStrategy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 
-	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;sort&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rawArray&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sort&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rawArray&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 		&lt;span class=&quot;n&quot;&gt;ForkJoinPool&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pool&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ForkJoinPool&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
 		&lt;span class=&quot;n&quot;&gt;pool&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;invoke&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MergeSort&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rawArray&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
 		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rawArray&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
@@ -1002,12 +1051,12 @@ https://en.wikipedia.org/wiki/Tree_rotation&lt;/p&gt;
 		&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;serialVersionUID&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;425572392953885545L&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 		&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;intArr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 
-		&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;MergeSort&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;intArr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MergeSort&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;intArr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 			&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;intArr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;intArr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 		&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
 		&lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-		&lt;span class=&quot;kd&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;compute&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;kd&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;compute&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 			&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;intArr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;length&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 				&lt;span class=&quot;c1&quot;&gt;// 如果数组长度大于1就分解称两份&lt;/span&gt;
 				&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;leftArray&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Arrays&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;copyOfRange&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;intArr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;intArr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;length&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
@@ -1028,7 +1077,7 @@ https://en.wikipedia.org/wiki/Tree_rotation&lt;/p&gt;
 		 * @param rightArray
 		 * @param intArr
 		 */&lt;/span&gt;
-		&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;merge&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;leftArray&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rightArray&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;intArr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;merge&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;leftArray&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rightArray&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;intArr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 
 			&lt;span class=&quot;c1&quot;&gt;// i：leftArray数组索引，j：rightArray数组索引，k：intArr数组索引&lt;/span&gt;
 			&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
@@ -1059,7 +1108,7 @@ https://en.wikipedia.org/wiki/Tree_rotation&lt;/p&gt;
 	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;h2 id=&quot;四单线程-pk-多线程&quot;&gt;四、单线程 pk 多线程&lt;/h2&gt;
+&lt;h2 id=&quot;pk-&quot;&gt;四、单线程 pk 多线程&lt;/h2&gt;
 &lt;p&gt;编写了舞台类，通过调整generateIntArray(10000000)的输入参数来设置待排序数组长度，试验中没有对堆容量进行设置。&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt; 
@@ -1080,7 +1129,7 @@ https://en.wikipedia.org/wiki/Tree_rotation&lt;/p&gt;
  */&lt;/span&gt;
 &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Stage&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 
-	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 
 		&lt;span class=&quot;c1&quot;&gt;// 变量定义&lt;/span&gt;
 		&lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;begintime&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
@@ -1091,14 +1140,14 @@ https://en.wikipedia.org/wiki/Tree_rotation&lt;/p&gt;
 		&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rawArr2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Arrays&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;copyOf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rawArr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rawArr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
 
 		&lt;span class=&quot;n&quot;&gt;begintime&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Date&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getTime&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-		&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;SingleThreadMergeSort&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sort&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rawArr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SingleThreadMergeSort&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sort&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rawArr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
 		&lt;span class=&quot;c1&quot;&gt;//System.out.println(Arrays.toString(new SingleThreadMergeSort().sort(rawArr)));&lt;/span&gt;
 		&lt;span class=&quot;n&quot;&gt;endtime&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Date&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getTime&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
 		&lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;单线程归并排序花费时间：&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;endtime&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;begintime&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
 		&lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;是否升序：&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CommonUtil&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;isSorted&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rawArr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
 
 		&lt;span class=&quot;n&quot;&gt;begintime&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Date&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getTime&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-		&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;ForkJoinMergeSort&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sort&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rawArr2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ForkJoinMergeSort&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sort&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rawArr2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
 		&lt;span class=&quot;c1&quot;&gt;//System.out.println(Arrays.toString(new ForkJoinMergeSort().sort(rawArr2)));&lt;/span&gt;
 		&lt;span class=&quot;n&quot;&gt;endtime&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Date&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getTime&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
 		&lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Fork/Join归并排序花费时间：&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;endtime&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;begintime&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
@@ -1110,7 +1159,7 @@ https://en.wikipedia.org/wiki/Tree_rotation&lt;/p&gt;
 	 * 
 	 * @return
 	 */&lt;/span&gt;
-	&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;generateIntArray&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;generateIntArray&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 		&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;intArr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;];&lt;/span&gt;
 		&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 			&lt;span class=&quot;n&quot;&gt;intArr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Double&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Math&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;intValue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
@@ -1158,16 +1207,16 @@ https://en.wikipedia.org/wiki/Tree_rotation&lt;/p&gt;
 &lt;p&gt;通过统计可以发现，当待排序序列长度较小时，使用单线程效率要高于多线程，但是随着数量不断增加，多线程执行时间越来越接近单线程的执行时间，最终在1000万这个量级开始速率远超单线程。工作中不能滥用多线程，在该使用的时候使用可以加快效率，充分利用多核。但是在不该用的时候使用徒增工作量，有可能效率还不如单线程。
 感兴趣的朋友可以通过下面代码地址找到运行的全部源码自己跑跑试试看。&lt;/p&gt;
 
-&lt;h2 id=&quot;五本文代码地址&quot;&gt;五、本文代码地址&lt;/h2&gt;
+&lt;h2 id=&quot;section-2&quot;&gt;五、本文代码地址&lt;/h2&gt;
 &lt;p&gt;包括本篇在内以后所有代码统一存放地址为： &lt;br /&gt;
-https://github.com/mingbozhang/algorithm&lt;/p&gt;
-&lt;h2 id=&quot;六参考&quot;&gt;六、参考&lt;/h2&gt;
-&lt;p&gt;https://docs.oracle.com/javase/tutorial/essential/concurrency/forkjoin.html &lt;br /&gt;
+https://github.com/mingbozhang/algorithm
+## 六、参考 &lt;br /&gt;
+https://docs.oracle.com/javase/tutorial/essential/concurrency/forkjoin.html &lt;br /&gt;
 《算法设计与分析基础（第3版）》&lt;/p&gt;
 </description>
         <pubDate>Tue, 07 Jun 2016 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2016/06/07/merge-sort/</link>
-        <guid isPermaLink="true">http://localhost:4000/2016/06/07/merge-sort/</guid>
+        <link>https://bob1024.com/2016/06/07/merge-sort/</link>
+        <guid isPermaLink="true">https://bob1024.com/2016/06/07/merge-sort/</guid>
         
         
       </item>
@@ -1207,8 +1256,8 @@ https://github.com/mingbozhang/algorithm&lt;/p&gt;
 
 </description>
         <pubDate>Sat, 04 Jun 2016 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2016/06/04/all-in-one-jar/</link>
-        <guid isPermaLink="true">http://localhost:4000/2016/06/04/all-in-one-jar/</guid>
+        <link>https://bob1024.com/2016/06/04/all-in-one-jar/</link>
+        <guid isPermaLink="true">https://bob1024.com/2016/06/04/all-in-one-jar/</guid>
         
         <category>maven</category>
         
@@ -1225,24 +1274,24 @@ https://github.com/mingbozhang/algorithm&lt;/p&gt;
   &lt;/header&gt;
 &lt;div id=&quot;drawer&quot;&gt;
 &lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#一安装准备&quot; id=&quot;markdown-toc-一安装准备&quot;&gt;一.安装准备&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#1环境简介&quot; id=&quot;markdown-toc-1环境简介&quot;&gt;1.环境简介&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#2小插曲&quot; id=&quot;markdown-toc-2小插曲&quot;&gt;2.小插曲&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#3编译dubbo示例&quot; id=&quot;markdown-toc-3编译dubbo示例&quot;&gt;3.编译dubbo示例&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section&quot; id=&quot;markdown-toc-section&quot;&gt;一.安装准备&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-1&quot; id=&quot;markdown-toc-section-1&quot;&gt;1.环境简介&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-2&quot; id=&quot;markdown-toc-section-2&quot;&gt;2.小插曲&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#dubbo&quot; id=&quot;markdown-toc-dubbo&quot;&gt;3.编译dubbo示例&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#二zookeeper注册中心安装&quot; id=&quot;markdown-toc-二zookeeper注册中心安装&quot;&gt;二.Zookeeper注册中心安装&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#三安装dubbo示例&quot; id=&quot;markdown-toc-三安装dubbo示例&quot;&gt;三.安装dubbo示例&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#1示例提供者安装&quot; id=&quot;markdown-toc-1示例提供者安装&quot;&gt;1.示例提供者安装&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#2示例消费者安装&quot; id=&quot;markdown-toc-2示例消费者安装&quot;&gt;2.示例消费者安装&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#3监控中心安装&quot; id=&quot;markdown-toc-3监控中心安装&quot;&gt;3.监控中心安装&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#4管理控制台安装&quot; id=&quot;markdown-toc-4管理控制台安装&quot;&gt;4.管理控制台安装&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#zookeeper&quot; id=&quot;markdown-toc-zookeeper&quot;&gt;二.Zookeeper注册中心安装&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#dubbo-1&quot; id=&quot;markdown-toc-dubbo-1&quot;&gt;三.安装dubbo示例&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-3&quot; id=&quot;markdown-toc-section-3&quot;&gt;1.示例提供者安装&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-4&quot; id=&quot;markdown-toc-section-4&quot;&gt;2.示例消费者安装&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-5&quot; id=&quot;markdown-toc-section-5&quot;&gt;3.监控中心安装&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-6&quot; id=&quot;markdown-toc-section-6&quot;&gt;4.管理控制台安装&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#四通过springmvc加入服务提供者和消费者&quot; id=&quot;markdown-toc-四通过springmvc加入服务提供者和消费者&quot;&gt;四.通过SpringMVC加入服务提供者和消费者&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#问题一-dubboxsd文件找不到&quot; id=&quot;markdown-toc-问题一-dubboxsd文件找不到&quot;&gt;问题一: dubbo.xsd文件找不到&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#问题二-在dubbo启动的过程中报错误javalangclassnotfoundexception-javassistclasspath&quot; id=&quot;markdown-toc-问题二-在dubbo启动的过程中报错误javalangclassnotfoundexception-javassistclasspath&quot;&gt;问题二: 在dubbo启动的过程中报错误：java.lang.ClassNotFoundException: javassist.ClassPath&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#最后是编写的服务提供者和消费者的代码&quot; id=&quot;markdown-toc-最后是编写的服务提供者和消费者的代码&quot;&gt;最后是编写的服务提供者和消费者的代码&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#springmvc&quot; id=&quot;markdown-toc-springmvc&quot;&gt;四.通过SpringMVC加入服务提供者和消费者&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#dubboxsd&quot; id=&quot;markdown-toc-dubboxsd&quot;&gt;问题一: dubbo.xsd文件找不到&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#dubbojavalangclassnotfoundexception-javassistclasspath&quot; id=&quot;markdown-toc-dubbojavalangclassnotfoundexception-javassistclasspath&quot;&gt;问题二: 在dubbo启动的过程中报错误：java.lang.ClassNotFoundException: javassist.ClassPath&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-7&quot; id=&quot;markdown-toc-section-7&quot;&gt;最后是编写的服务提供者和消费者的代码&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
@@ -1251,9 +1300,9 @@ https://github.com/mingbozhang/algorithm&lt;/p&gt;
 &lt;/section&gt;
 &lt;!-- /#table-of-contents --&gt;
 
-&lt;h2 id=&quot;一安装准备&quot;&gt;一.安装准备&lt;/h2&gt;
+&lt;h2 id=&quot;section&quot;&gt;一.安装准备&lt;/h2&gt;
 
-&lt;h3 id=&quot;1环境简介&quot;&gt;1.环境简介&lt;/h3&gt;
+&lt;h3 id=&quot;section-1&quot;&gt;1.环境简介&lt;/h3&gt;
 
 &lt;table&gt;
   &lt;thead&gt;
@@ -1290,14 +1339,14 @@ https://github.com/mingbozhang/algorithm&lt;/p&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
 
-&lt;h3 id=&quot;2小插曲&quot;&gt;2.小插曲&lt;/h3&gt;
+&lt;h3 id=&quot;section-2&quot;&gt;2.小插曲&lt;/h3&gt;
 &lt;p&gt;想用wget进行下载，发现mac默认是没有安装的。用惯了别的Linux环境，相使用个自动安装工具来安装wget。让后就找到了Homebrew。下面首先安装Homebrew，这个类似CentOS的yum和Ubuntu的apt-get，安装方法很简单，执行下面就可以了：  &lt;br /&gt;
 ruby -e “$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)”      &lt;br /&gt;
 执行上面并安装成功后，下面让我们测试下安装wget：  &lt;br /&gt;
 brew install wget
 完美，安装完毕。&lt;/p&gt;
 
-&lt;h3 id=&quot;3编译dubbo示例&quot;&gt;3.编译dubbo示例&lt;/h3&gt;
+&lt;h3 id=&quot;dubbo&quot;&gt;3.编译dubbo示例&lt;/h3&gt;
 &lt;p&gt;根据网站官方教程: &lt;br /&gt;
 http://dubbo.io/Administrator+Guide-zh.htm#AdministratorGuide-zh-%E7%A4%BA%E4%BE%8B%E6%8F%90%E4%BE%9B%E8%80%85%E5%AE%89%E8%A3%85&lt;/p&gt;
 
@@ -1317,7 +1366,7 @@ dubbo-monitor-simple-2.5.4-SNAPSHOT-assembly.tar.gz&lt;/p&gt;
 &lt;p&gt;目录dubbo/dubbo-admin/target下面： &lt;br /&gt;
 dubbo-admin-2.5.4-SNAPSHOT.war&lt;/p&gt;
 
-&lt;h2 id=&quot;二zookeeper注册中心安装&quot;&gt;二.Zookeeper注册中心安装&lt;/h2&gt;
+&lt;h2 id=&quot;zookeeper&quot;&gt;二.Zookeeper注册中心安装&lt;/h2&gt;
 &lt;p&gt;注册中心有多种选择，我选择zookeeper作为注册中心。  &lt;br /&gt;
 wget http://apache.fayea.com/zookeeper/zookeeper-3.4.8/zookeeper-3.4.8.tar.gz &lt;br /&gt;
 tar -zxvf zookeeper-3.4.8.tar.gz &lt;br /&gt;
@@ -1327,9 +1376,9 @@ cp conf/zoo_sample.cfg conf/zoo.cfg&lt;/p&gt;
 &lt;p&gt;不配置集群，直接启动  &lt;br /&gt;
 ./bin/zkServer.sh start&lt;/p&gt;
 
-&lt;h2 id=&quot;三安装dubbo示例&quot;&gt;三.安装dubbo示例&lt;/h2&gt;
+&lt;h2 id=&quot;dubbo-1&quot;&gt;三.安装dubbo示例&lt;/h2&gt;
 
-&lt;h3 id=&quot;1示例提供者安装&quot;&gt;1.示例提供者安装&lt;/h3&gt;
+&lt;h3 id=&quot;section-3&quot;&gt;1.示例提供者安装&lt;/h3&gt;
 &lt;p&gt;tar -zxvf dubbo-demo-provider-2.5.4-SNAPSHOT-assembly.tar.gz &lt;br /&gt;
 cd dubbo-demo-provider-2.5.4-SNAPSHOT&lt;/p&gt;
 
@@ -1345,7 +1394,7 @@ dubbo.registry.address=zookeeper://127.0.0.1:2181&lt;br /&gt;
 telnet 127.0.0.1 20880  &lt;br /&gt;
 输入help，查看提供的操作&lt;/p&gt;
 
-&lt;h3 id=&quot;2示例消费者安装&quot;&gt;2.示例消费者安装&lt;/h3&gt;
+&lt;h3 id=&quot;section-4&quot;&gt;2.示例消费者安装&lt;/h3&gt;
 &lt;p&gt;tar -zxvf dubbo-demo-consumer-2.5.4-SNAPSHOT-assembly.tar.gz &lt;br /&gt;
 cd dubbo-demo-consumer-2.5.4-SNAPSHOT&lt;/p&gt;
 
@@ -1357,7 +1406,7 @@ dubbo.registry.address=zookeeper://127.0.0.1:2181&lt;br /&gt;
 
 &lt;p&gt;./bin/start.sh&lt;/p&gt;
 
-&lt;h3 id=&quot;3监控中心安装&quot;&gt;3.监控中心安装&lt;/h3&gt;
+&lt;h3 id=&quot;section-5&quot;&gt;3.监控中心安装&lt;/h3&gt;
 &lt;p&gt;tar -zxvf dubbo-monitor-simple-2.5.4-SNAPSHOT-assembly.tar.gz &lt;br /&gt;
 cd dubbo-monitor-simple-2.5.4-SNAPSHOT
 配置 &lt;br /&gt;
@@ -1372,7 +1421,7 @@ dubbo.registry.address=zookeeper://127.0.0.1:2181&lt;br /&gt;
 
 &lt;p&gt;&lt;img src=&quot;/img/in-post/dubbo-zookeeper-springmvc/monitor.png&quot; /&gt;&lt;/p&gt;
 
-&lt;h3 id=&quot;4管理控制台安装&quot;&gt;4.管理控制台安装&lt;/h3&gt;
+&lt;h3 id=&quot;section-6&quot;&gt;4.管理控制台安装&lt;/h3&gt;
 &lt;p&gt;将编译好的dubbo-admin-2.5.4-SNAPSHOT.war拷贝到tomcat下面。配置server.xml，避免和前面监控中心的端口产生冲突。启动tomcat。 &lt;br /&gt;
 发现报错：&lt;br /&gt;
 Bean property ‘URIType’ is not writable or has an invalid setter method.&lt;/p&gt;
@@ -1435,7 +1484,7 @@ http://127.0.0.1:8888&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/img/in-post/dubbo-zookeeper-springmvc/adminsys.png&quot; /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;四通过springmvc加入服务提供者和消费者&quot;&gt;四.通过SpringMVC加入服务提供者和消费者&lt;/h2&gt;
+&lt;h2 id=&quot;springmvc&quot;&gt;四.通过SpringMVC加入服务提供者和消费者&lt;/h2&gt;
 
 &lt;p&gt;dubbo与SpringMVC的集成，我参考了这段： &lt;br /&gt;
 http://dubbo.io/User+Guide-zh.htm#UserGuide-zh-%E6%B3%A8%E8%A7%A3%E9%85%8D%E7%BD%AE&lt;/p&gt;
@@ -1466,7 +1515,7 @@ http://dubbo.io/User+Guide-zh.htm#UserGuide-zh-%E6%B3%A8%E8%A7%A3%E9%85%8D%E7%BD
 
 &lt;p&gt;在搭建的过程中遇到了两个问题：&lt;/p&gt;
 
-&lt;h4 id=&quot;问题一-dubboxsd文件找不到&quot;&gt;问题一: dubbo.xsd文件找不到&lt;/h4&gt;
+&lt;h4 id=&quot;dubboxsd&quot;&gt;问题一: dubbo.xsd文件找不到&lt;/h4&gt;
 &lt;p&gt;将dubbo.xsd下载到本地后，通过以下步骤操作加入，我用的是eclipse：&lt;br /&gt;
 windows-&amp;gt;preferrence-&amp;gt;xml-&amp;gt;xmlcatalog   &lt;br /&gt;
 add-&amp;gt;catalog entry  -&amp;gt;file system 选择刚刚下载的文件路 径  &lt;br /&gt;
@@ -1475,7 +1524,7 @@ add-&amp;gt;catalog entry  -&amp;gt;file system 选择刚刚下载的文件路 �
 &lt;p&gt;问题的解决方案出处在这里，感谢作者～ &lt;br /&gt;
 http://blog.csdn.net/lxb15959168136/article/details/50225057&lt;/p&gt;
 
-&lt;h4 id=&quot;问题二-在dubbo启动的过程中报错误javalangclassnotfoundexception-javassistclasspath&quot;&gt;问题二: 在dubbo启动的过程中报错误：java.lang.ClassNotFoundException: javassist.ClassPath&lt;/h4&gt;
+&lt;h4 id=&quot;dubbojavalangclassnotfoundexception-javassistclasspath&quot;&gt;问题二: 在dubbo启动的过程中报错误：java.lang.ClassNotFoundException: javassist.ClassPath&lt;/h4&gt;
 &lt;p&gt;我的做法：  &lt;br /&gt;
 由于我是用的maven构建，所以在工程pom.xml中直接加入以下:&lt;/p&gt;
 
@@ -1486,12 +1535,12 @@ http://blog.csdn.net/lxb15959168136/article/details/50225057&lt;/p&gt;
 	&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;scope&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;runtime&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;scope&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
  &lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dependency&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;h3 id=&quot;最后是编写的服务提供者和消费者的代码&quot;&gt;最后是编写的服务提供者和消费者的代码&lt;/h3&gt;
+&lt;h3 id=&quot;section-7&quot;&gt;最后是编写的服务提供者和消费者的代码&lt;/h3&gt;
 &lt;p&gt;https://github.com/mingbozhang/leandubbo&lt;/p&gt;
 </description>
         <pubDate>Fri, 03 Jun 2016 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2016/06/03/dubbo-zookeeper-springmvc/</link>
-        <guid isPermaLink="true">http://localhost:4000/2016/06/03/dubbo-zookeeper-springmvc/</guid>
+        <link>https://bob1024.com/2016/06/03/dubbo-zookeeper-springmvc/</link>
+        <guid isPermaLink="true">https://bob1024.com/2016/06/03/dubbo-zookeeper-springmvc/</guid>
         
         <category>dubbo</category>
         
@@ -1510,18 +1559,18 @@ http://blog.csdn.net/lxb15959168136/article/details/50225057&lt;/p&gt;
   &lt;/header&gt;
 &lt;div id=&quot;drawer&quot;&gt;
 &lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#1小c的故事&quot; id=&quot;markdown-toc-1小c的故事&quot;&gt;1.小C的故事&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#2存在的问题&quot; id=&quot;markdown-toc-2存在的问题&quot;&gt;2.存在的问题&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#3工厂方法模式登场&quot; id=&quot;markdown-toc-3工厂方法模式登场&quot;&gt;3.工厂方法模式登场&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#4解决了什么失去了什么&quot; id=&quot;markdown-toc-4解决了什么失去了什么&quot;&gt;4.解决了什么，失去了什么&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#5具体应用场景&quot; id=&quot;markdown-toc-5具体应用场景&quot;&gt;5.具体应用场景&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#c&quot; id=&quot;markdown-toc-c&quot;&gt;1.小C的故事&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section&quot; id=&quot;markdown-toc-section&quot;&gt;2.存在的问题&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-1&quot; id=&quot;markdown-toc-section-1&quot;&gt;3.工厂方法模式登场&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-2&quot; id=&quot;markdown-toc-section-2&quot;&gt;4.解决了什么，失去了什么&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-3&quot; id=&quot;markdown-toc-section-3&quot;&gt;5.具体应用场景&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
   &lt;/div&gt;
 &lt;/section&gt;
 &lt;!-- /#table-of-contents --&gt;
 
-&lt;h3 id=&quot;1小c的故事&quot;&gt;1.小C的故事&lt;/h3&gt;
+&lt;h3 id=&quot;c&quot;&gt;1.小C的故事&lt;/h3&gt;
 
 &lt;p&gt;       大家好，我叫张小C，我是一个厨师，专职烤面包。下面是我的工作。&lt;/p&gt;
 
@@ -1529,14 +1578,14 @@ http://blog.csdn.net/lxb15959168136/article/details/50225057&lt;/p&gt;
  
 &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;World&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 
-	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 		&lt;span class=&quot;n&quot;&gt;LittleC&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;littleC&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LittleC&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
 		&lt;span class=&quot;n&quot;&gt;littleC&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;work&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
 	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
 &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;LittleC&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;work&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;work&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 		   &lt;span class=&quot;n&quot;&gt;Bread&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bread&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Bread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
 		   &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()+&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;做好了！&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
 		   &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getTaste&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
@@ -1547,11 +1596,11 @@ http://blog.csdn.net/lxb15959168136/article/details/50225057&lt;/p&gt;
 
 	&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;面包&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 
-	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;getName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
-	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getTaste&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;getTaste&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
 		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;软软的，没什么味道&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
@@ -1562,10 +1611,10 @@ http://blog.csdn.net/lxb15959168136/article/details/50225057&lt;/p&gt;
 
 &lt;p&gt;小C心想，我只会烤面包啊，该咋办，难不成再加个workForPizza，那要是这个也吃腻了总不能加到屎吧…况且我脑子笨，学得慢…好吧，爱吃不吃，你不吃自有人吃！（纯属意淫）&lt;/p&gt;
 
-&lt;h3 id=&quot;2存在的问题&quot;&gt;2.存在的问题&lt;/h3&gt;
+&lt;h3 id=&quot;section&quot;&gt;2.存在的问题&lt;/h3&gt;
 &lt;p&gt;现在让我们来看一看小C现在面临的问题是什么，先看看work方法中直接new了一个Bread，把自己禁锢在了一种食物中。那有没有什么办法可以解决小c的当前困境呢？&lt;/p&gt;
 
-&lt;h3 id=&quot;3工厂方法模式登场&quot;&gt;3.工厂方法模式登场&lt;/h3&gt;
+&lt;h3 id=&quot;section-1&quot;&gt;3.工厂方法模式登场&lt;/h3&gt;
 &lt;p&gt;小强:小C，我最近开了一个Pizza店，什么时候过来吃Pizza啊？ &lt;br /&gt;
 小C:太好了，我正愁呢。这样咱们合作，顾客在我这里点Pizza的时候，你们店就给我做一个Pizza送过来。互利共赢嘛。 &lt;br /&gt;
 小强：好，一言为定。 &lt;br /&gt;
@@ -1576,7 +1625,7 @@ http://blog.csdn.net/lxb15959168136/article/details/50225057&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;World&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 
-	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 		&lt;span class=&quot;n&quot;&gt;LittleC&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;littleC&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LittleC&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
 		&lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;小明：我要吃面包！&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
 		&lt;span class=&quot;n&quot;&gt;littleC&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setFoodShop&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;BreadShop&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
@@ -1601,11 +1650,11 @@ http://blog.csdn.net/lxb15959168136/article/details/50225057&lt;/p&gt;
 
 	&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FoodShop&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;foodShop&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 	
-	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setFoodShop&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FoodShop&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;foodShop&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;setFoodShop&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FoodShop&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;foodShop&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
 		&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;foodShop&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;foodShop&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
-	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;work&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;work&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 		&lt;span class=&quot;n&quot;&gt;Food&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;food&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;foodShop&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createFood&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
 		&lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;food&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;做好了！&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
 		&lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;food&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getTaste&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
@@ -1614,23 +1663,23 @@ http://blog.csdn.net/lxb15959168136/article/details/50225057&lt;/p&gt;
 
 &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;abstract&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Food&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 
-	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;abstract&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;abstract&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;getName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
 
-	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;abstract&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getTaste&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;abstract&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;getTaste&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
 &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;abstract&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;FoodShop&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 
-	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;abstract&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Food&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;createFood&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;abstract&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Food&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;createFood&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
 &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Bread&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Food&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 
-	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;getName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;面包&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
-	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getTaste&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;getTaste&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;软软的，很清淡&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
@@ -1638,22 +1687,22 @@ http://blog.csdn.net/lxb15959168136/article/details/50225057&lt;/p&gt;
 &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;BreadShop&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FoodShop&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 
 	&lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Food&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;createFood&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Bread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Food&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;createFood&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Bread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
 	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;h3 id=&quot;4解决了什么失去了什么&quot;&gt;4.解决了什么，失去了什么&lt;/h3&gt;
+&lt;h3 id=&quot;section-2&quot;&gt;4.解决了什么，失去了什么&lt;/h3&gt;
 &lt;p&gt;通过引入工厂方法模式我们解决了，Bread硬编码到LittleC中导致的扩展受限问题。小C以后可以接入各种各样的菜色而不需要改动既有代码（world除外）。 &lt;br /&gt;
 缺点也是很明显，我为了一个菜色还要加一个餐馆进来。这里可以通过带有参数到工厂方法来优化这种情况。创造一个什么菜都可以生产的餐馆，比如根据类型完整名称就可以得到具体的食物，那么只需要一个餐馆就可以了。&lt;/p&gt;
 
-&lt;h3 id=&quot;5具体应用场景&quot;&gt;5.具体应用场景&lt;/h3&gt;
+&lt;h3 id=&quot;section-3&quot;&gt;5.具体应用场景&lt;/h3&gt;
 &lt;p&gt;所有需要new一个对象的地方，同时要求有足够的灵活性。&lt;/p&gt;
 </description>
         <pubDate>Mon, 28 Mar 2016 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2016/03/28/design_pattern_factory_method/</link>
-        <guid isPermaLink="true">http://localhost:4000/2016/03/28/design_pattern_factory_method/</guid>
+        <link>https://bob1024.com/2016/03/28/design_pattern_factory_method/</link>
+        <guid isPermaLink="true">https://bob1024.com/2016/03/28/design_pattern_factory_method/</guid>
         
         
       </item>
@@ -1666,40 +1715,30 @@ http://blog.csdn.net/lxb15959168136/article/details/50225057&lt;/p&gt;
   &lt;/header&gt;
 &lt;div id=&quot;drawer&quot;&gt;
 &lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#一本文参考&quot; id=&quot;markdown-toc-一本文参考&quot;&gt;一、本文参考：&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#二对象已死的判定方法&quot; id=&quot;markdown-toc-二对象已死的判定方法&quot;&gt;二、对象已死的判定方法&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#1引用计数法&quot; id=&quot;markdown-toc-1引用计数法&quot;&gt;1.引用计数法&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#2可达性分析算法&quot; id=&quot;markdown-toc-2可达性分析算法&quot;&gt;2.可达性分析算法&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#三导致内存泄漏的情况及代码&quot; id=&quot;markdown-toc-三导致内存泄漏的情况及代码&quot;&gt;三、导致内存泄漏的情况及代码&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#首先是1号截图&quot; id=&quot;markdown-toc-首先是1号截图&quot;&gt;首先是1号截图&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#2号截图&quot; id=&quot;markdown-toc-2号截图&quot;&gt;2号截图&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#四结语&quot; id=&quot;markdown-toc-四结语&quot;&gt;四、结语&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section&quot; id=&quot;markdown-toc-section&quot;&gt;一、本文参考：&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-1&quot; id=&quot;markdown-toc-section-1&quot;&gt;二、对象已死的判定方法&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-2&quot; id=&quot;markdown-toc-section-2&quot;&gt;三、导致内存泄漏的情况及代码&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-3&quot; id=&quot;markdown-toc-section-3&quot;&gt;四、结语&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
   &lt;/div&gt;
 &lt;/section&gt;
 &lt;!-- /#table-of-contents --&gt;
 
-&lt;h2 id=&quot;一本文参考&quot;&gt;一、本文参考：&lt;/h2&gt;
-&lt;p&gt;1.《深入理解java虚拟机 JVM高级特性与最佳实践》&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;http://coderevisited.com/memory-leaks-in-java/&lt;/li&gt;
-&lt;/ol&gt;
+&lt;h2 id=&quot;section&quot;&gt;一、本文参考：&lt;/h2&gt;
+&lt;p&gt;1.《深入理解java虚拟机 JVM高级特性与最佳实践》  &lt;br /&gt;
+2. http://coderevisited.com/memory-leaks-in-java/&lt;/p&gt;
 
-&lt;h2 id=&quot;二对象已死的判定方法&quot;&gt;二、对象已死的判定方法&lt;/h2&gt;
-&lt;p&gt;要进行JVM中对象回收首先要判断对象是否已经死亡，判断的方法有如下几个：&lt;/p&gt;
-&lt;h3 id=&quot;1引用计数法&quot;&gt;1.引用计数法&lt;/h3&gt;
-&lt;p&gt;给对象中添加一个引用计数器，每当有一个地方引用它时，计数器值就加1；当引用失效时，计数器值就减1；任何时刻 计数器为0的对象就是不可能再被使用的。 &lt;br /&gt;
-但是主流的java虚拟机里面没有选用引用计数器算法来管理内存，其中最主要的原因是它很难解决对象之间相互循环引用的问题。&lt;/p&gt;
-&lt;h3 id=&quot;2可达性分析算法&quot;&gt;2.可达性分析算法&lt;/h3&gt;
-&lt;p&gt;这个算法的基本思想就是通过一系列的称为“GC Roots”的对象作为起始点，从这些节点开始向下搜索，搜索所走过的路径称为引用链，当一个对象到GC Roots没有任何引用链相连接时，则证明此对象是不可用的。如下图所示，对象object5、object6、object7虽然互相有关联，但是它们到GC Roots是不可达的，所以它们将会被判定为是可回收对象。 &lt;br /&gt;
+&lt;h2 id=&quot;section-1&quot;&gt;二、对象已死的判定方法&lt;/h2&gt;
+&lt;p&gt;要进行JVM中对象回收首先要判断对象是否已经死亡，判断的方法有如下几个：
+### 1.引用计数法
+给对象中添加一个引用计数器，每当有一个地方引用它时，计数器值就加1；当引用失效时，计数器值就减1；任何时刻 计数器为0的对象就是不可能再被使用的。 &lt;br /&gt;
+但是主流的java虚拟机里面没有选用引用计数器算法来管理内存，其中最主要的原因是它很难解决对象之间相互循环引用的问题。
+### 2.可达性分析算法
+ 这个算法的基本思想就是通过一系列的称为“GC Roots”的对象作为起始点，从这些节点开始向下搜索，搜索所走过的路径称为引用链，当一个对象到GC Roots没有任何引用链相连接时，则证明此对象是不可用的。如下图所示，对象object5、object6、object7虽然互相有关联，但是它们到GC Roots是不可达的，所以它们将会被判定为是可回收对象。 &lt;br /&gt;
  &lt;img src=&quot;/img/in-post/jvm-memory-leak/root_pic.png&quot; /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;三导致内存泄漏的情况及代码&quot;&gt;三、导致内存泄漏的情况及代码&lt;/h2&gt;
+&lt;h2 id=&quot;section-2&quot;&gt;三、导致内存泄漏的情况及代码&lt;/h2&gt;
 &lt;p&gt;java 堆内存泄漏,是由于java对象不停创建但是没有释放对象引用导致的。
 以下是关于java代码，此代码是引自http://coderevisited.com/memory-leaks-in-java/&lt;/p&gt;
 
@@ -1720,13 +1759,13 @@ http://blog.csdn.net/lxb15959168136/article/details/50225057&lt;/p&gt;
     &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;E&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 
     &lt;span class=&quot;nd&quot;&gt;@SuppressWarnings&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;unchecked&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;capacity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;capacity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
         &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;E&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[])&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Object&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;capacity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;];&lt;/span&gt;
     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
     &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Iterator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;E&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;iterator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;StackIterator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Iterator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;E&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;iterator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;StackIterator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
     &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;StackIterator&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Iterator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;E&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
@@ -1734,55 +1773,55 @@ http://blog.csdn.net/lxb15959168136/article/details/50225057&lt;/p&gt;
         &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;N&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 
         &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;hasNext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;hasNext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
             &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
         &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
         &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;E&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;E&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
             &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hasNext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-                &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;NoSuchElementException&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;NoSuchElementException&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
             &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
             &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--];&lt;/span&gt;
         &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
         &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;remove&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;UnsupportedOperationException&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;remove&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;UnsupportedOperationException&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
 
         &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;E&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;E&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
         &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;isFull&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;RuntimeException&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Stack overflow&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;RuntimeException&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Stack overflow&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
         &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
         &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;N&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;E&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;pop&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;E&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pop&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
         &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;isEmpty&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;RuntimeException&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Stack underflow&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;RuntimeException&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Stack underflow&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
         &lt;span class=&quot;n&quot;&gt;E&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;item&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;N&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;];&lt;/span&gt;
         &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;isEmpty&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;isEmpty&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
         &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;N&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
         &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;N&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;isFull&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;isFull&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
         &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;N&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;E&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;peek&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;E&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;peek&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
         &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;isEmpty&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;RuntimeException&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Stack underflow&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;RuntimeException&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Stack underflow&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
         &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;N&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;];&lt;/span&gt;
     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
@@ -1802,7 +1841,7 @@ http://blog.csdn.net/lxb15959168136/article/details/50225057&lt;/p&gt;
         &lt;span class=&quot;cm&quot;&gt;/**
         * @param args
         */&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
               &lt;span class=&quot;n&quot;&gt;Stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Integer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Integer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10000&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
                &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10000&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
                      &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
@@ -1832,7 +1871,7 @@ http://blog.csdn.net/lxb15959168136/article/details/50225057&lt;/p&gt;
         &lt;span class=&quot;cm&quot;&gt;/**
         * @param args
         */&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;//            Stack&amp;lt;Integer&amp;gt; s = new Stack&amp;lt;Integer&amp;gt;(10000);&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;//            for ( int i = 0; i &amp;lt; 10000; i++) {&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;//                   s.push(i);&lt;/span&gt;
@@ -1849,20 +1888,20 @@ http://blog.csdn.net/lxb15959168136/article/details/50225057&lt;/p&gt;
 
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;把栈操作的设为1号，没有栈操作的设置为2号，分别生成Heap Dump文件，我们看一下类实例的截图：&lt;/p&gt;
-&lt;h4 id=&quot;首先是1号截图&quot;&gt;首先是1号截图&lt;/h4&gt;
-&lt;p&gt;&lt;img src=&quot;/img/in-post/jvm-memory-leak/num_one_pic.png&quot; /&gt;&lt;/p&gt;
-&lt;h4 id=&quot;2号截图&quot;&gt;2号截图&lt;/h4&gt;
-&lt;p&gt;&lt;img src=&quot;/img/in-post/jvm-memory-leak/num_two_pic.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;把栈操作的设为1号，没有栈操作的设置为2号，分别生成Heap Dump文件，我们看一下类实例的截图：&lt;br /&gt;
+#### 首先是1号截图
+ &lt;img src=&quot;/img/in-post/jvm-memory-leak/num_one_pic.png&quot; /&gt;
+#### 2号截图
+ &lt;img src=&quot;/img/in-post/jvm-memory-leak/num_two_pic.png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;显然预期的栈操作出栈后并没有释放掉Integer对象的引用（实际上看代码也知道），所以不会被GC回收。真正的实际情况这种引用将会很隐蔽，但是根本总是由于对象仍然被引用。&lt;/p&gt;
 
-&lt;h2 id=&quot;四结语&quot;&gt;四、结语&lt;/h2&gt;
+&lt;h2 id=&quot;section-3&quot;&gt;四、结语&lt;/h2&gt;
 &lt;p&gt;本篇仅对java堆内存泄漏进行了简单说明，下一篇将讨论其他相关的内存泄漏。有不对的地方欢迎拍砖&amp;gt;_&amp;lt;&lt;/p&gt;
 </description>
         <pubDate>Mon, 07 Mar 2016 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2016/03/07/jvm-memory-leak/</link>
-        <guid isPermaLink="true">http://localhost:4000/2016/03/07/jvm-memory-leak/</guid>
+        <link>https://bob1024.com/2016/03/07/jvm-memory-leak/</link>
+        <guid isPermaLink="true">https://bob1024.com/2016/03/07/jvm-memory-leak/</guid>
         
         <category>java</category>
         
