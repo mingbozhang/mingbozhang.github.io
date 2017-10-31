@@ -10,7 +10,7 @@
     <meta name="keywords"  content="这个莫非是TAG,试试看">
     <meta name="theme-color" content="#000000">
     
-    <title>零配置文件搭建SpringMVC实践纪录 - Bob的博客 | Bob Blog</title>
+    <title>Wireshark故事小记——本地连接docker中的HBase - Bob的博客 | Bob Blog</title>
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/pwa/manifest.json">
@@ -19,7 +19,7 @@
     <link rel="shortcut icon" href="/img/favicon.ico">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://bob1024.com/2016/01/10/springmvc/">
+    <link rel="canonical" href="https://bob1024.com/2017/10/31/wireshark_story_2/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -174,17 +174,19 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                        <a class="tag" href="/tags/#spring" title="spring">spring</a>
+                        <a class="tag" href="/tags/#wireshark" title="wireshark">wireshark</a>
                         
-                        <a class="tag" href="/tags/#springMVC" title="springMVC">springMVC</a>
+                        <a class="tag" href="/tags/#dns" title="dns">dns</a>
+                        
+                        <a class="tag" href="/tags/#hbase" title="hbase">hbase</a>
                         
                     </div>
-                    <h1>零配置文件搭建SpringMVC实践纪录</h1>
+                    <h1>Wireshark故事小记——本地连接docker中的HBase</h1>
                     
                     
                     <h2 class="subheading"></h2>
                     
-                    <span class="meta">Posted by Bob Blog on January 10, 2016</span>
+                    <span class="meta">Posted by Bob Blog on October 31, 2017</span>
                 </div>
             </div>
         </div>
@@ -208,133 +210,115 @@
   </header>
 <div id="drawer">
 <ul id="markdown-toc">
-  <li><a href="#a-tale-of-two-application-contexts" id="markdown-toc-a-tale-of-two-application-contexts">A TALE OF TWO APPLICATION CONTEXTS</a></li>
+  <li><a href="#section" id="markdown-toc-section">1. 事件回顾</a></li>
+  <li><a href="#section-1" id="markdown-toc-section-1">2. 信息介绍</a>    <ul>
+      <li><a href="#docker-composexml" id="markdown-toc-docker-composexml">2.1 使用的docker-compose.xml文件</a></li>
+      <li><a href="#hbase-sitexml" id="markdown-toc-hbase-sitexml">2.2 宿主机使用的hbase-site.xml配置</a></li>
+    </ul>
+  </li>
+  <li><a href="#section-2" id="markdown-toc-section-2">3. 蛛丝马迹</a></li>
+  <li><a href="#section-3" id="markdown-toc-section-3">4.验证</a></li>
 </ul>
 
   </div>
 </section>
 <!-- /#table-of-contents -->
 
-<p>本篇记录使用纯java代码搭建SpringMVC工程的实践，只是一个demo。再开始之前先热身下，给出SpringMVC调用流程图，讲解的是一个http request请求到达SpringMVC框架后的过程，如下：</p>
-<figure>
-<img src="/img/in-post/learn_spring/dispacherrequest.png" />
-</figure>
-<p>从servlet 3.0开始，实现javax.servlet.ServletContainerInitializer接口的类将在容器启动的时候执行onStartup方法。SpringMVC的”零配置”就是基于这个特性。所以对于servlet 3.0 以下的容器还是老老实实在web.xml中进行配置。
-下面让我们一步步搭建SpringMVC，先上图：</p>
-<figure>
-<img src="/img/in-post/learn_spring/servlet_java_init.png" />
-</figure>
-<p>上图中展示了启动关键类的初始化过程，首先容器启动，初始化并执行实现ServletContainerInitalzer接口的Spring类，该类初始化实现WebApplicationInitializer接口的PlayWebAppInitializer类（由于这里继承了AbstractAnnotationConfigDispatcherServletInitializer抽象类）。</p>
+<h2 id="section">1. 事件回顾</h2>
 
-<p>在讲解PlayWebAppInitializer初始化了两个bean容器，一种是与DispatcherServlet相关联的MVC框架直接关系的bean,如：Controller，Service，Repository等等。再说另外一种bean容器前先回忆下，还记得ContextLoaderListener吧，做SSH框架整合时在web.xml中要配置这个类，所以说这个容器是配置更通用一些的bean。
-那么问题来了：为什么要有两个共存呢？－－－－答：我猜想是方便分离，如果不想使用SpringMVC而实用其他MVC框架的可以把DispatcherServlet相关的那个bean容器拿掉。（纯属意淫，欢迎拍砖）。</p>
+<p>       最近用到HBase，为了图方便使用docker容器来运行。结果登入容器内部操作Hbase没有问题，但是在宿主机通过hbase shell连接却查不到数据。如下图所示，执行list命令，会报错误信息。于是乎掏出Wireshark瞧一瞧有什么发现。</p>
 
-<p>这里WebConfig用来负责DispacherServlet相关bean的配置，RootConfig用来负责ContextLoaderListener相关bean的配置。</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>hbase(main):001:0&gt; list
+TABLE
 
-<p>下面截取一段《Spring in Action 4th》中关于两个ApplicationContext的原话，在135页：</p>
+ERROR: 6c42865b4ee8
 
-<h2 id="a-tale-of-two-application-contexts">A TALE OF TWO APPLICATION CONTEXTS</h2>
-<p>When DispatcherServlet starts up, it creates a Spring application context and starts loading it with beans declared in the configuration files or classes that it’s given. With the getServletConfigClasses() method in listing 5.1, you’ve asked that Dispatcher- Servlet load its application context with beans defined in the WebConfig configura- tion class (using Java configuration).
-But in Spring web applications, there’s often another application context. This other application context is created by ContextLoaderListener.
-Whereas DispatcherServlet is expected to load beans containing web components such as controllers, view resolvers, and handler mappings, ContextLoaderListener is expected to load the other beans in your application. These beans are typically the middle-tier and data-tier components that drive the back end of the application.
-136
-CHAPTER 5 Building Spring web applications
-Under the covers, AbstractAnnotationConfigDispatcherServletInitializer cre- ates both a DispatcherServlet and a ContextLoaderListener. The @Configuration classes returned from getServletConfigClasses() will define beans for Dispatcher- Servlet’s application context. Meanwhile, the @Configuration class’s returned get- RootConfigClasses() will be used to configure the application context created by ContextLoaderListener.
-In this case, your root configuration is defined in RootConfig, whereas Dispatcher- Servlet’s configuration is declared in WebConfig. You’ll see what those two configura- tion classes look like in a moment.</p>
+Here is some help for this command:
+List all tables in hbase. Optional regular expression parameter could
+be used to filter the output. Examples:
 
-<p>上实践的代码：
-com.bob.playspring.PlayWebAppInitializer</p>
+  hbase&gt; list
+  hbase&gt; list 'abc.*'
+  hbase&gt; list 'ns:abc.*'
+  hbase&gt; list 'ns:.*'
+</code></pre>
+</div>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">bob</span><span class="o">.</span><span class="na">playspring</span><span class="o">;</span>
+<h2 id="section-1">2. 信息介绍</h2>
 
-<span class="kn">import</span> <span class="nn">org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer</span><span class="o">;</span>
+<h3 id="docker-composexml">2.1 使用的docker-compose.xml文件</h3>
 
-<span class="cm">/**
- * 初始化DispatherServlet，代替在web.xml中到DispatherServlet配置,
- * @author bob
- *
- */</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">PlayWebAppInitializer</span> <span class="kd">extends</span> <span class="n">AbstractAnnotationConfigDispatcherServletInitializer</span> <span class="o">{</span>
+<div class="highlighter-rouge"><pre class="highlight"><code>version: "2"
 
-	<span class="nd">@Override</span>
-	<span class="kd">protected</span> <span class="n">Class</span><span class="o">&lt;?&gt;[]</span> <span class="n">getRootConfigClasses</span><span class="o">()</span> <span class="o">{</span>
-		<span class="k">return</span> <span class="k">new</span> <span class="n">Class</span><span class="o">[]</span> <span class="o">{</span> <span class="n">RootConfig</span><span class="o">.</span><span class="na">class</span> <span class="o">};</span>
-	<span class="o">}</span>
+services:
+### hbase
+    hbase:
+        image: nerdammer/hbase
+        ports:
+            - "60000:60000"
+            - "60010:60010"
+            - "60020:60020"
+            - "60030:60030"
+            - "2181:2181"
+        volumes:
+            - ./hbase-root/hbase:/tmp/hbase-root/hbase
 
-	<span class="nd">@Override</span>
-	<span class="kd">protected</span> <span class="n">Class</span><span class="o">&lt;?&gt;[]</span> <span class="n">getServletConfigClasses</span><span class="o">()</span> <span class="o">{</span>
-		<span class="k">return</span> <span class="k">new</span> <span class="n">Class</span><span class="o">[]</span> <span class="o">{</span> <span class="n">WebConfig</span><span class="o">.</span><span class="na">class</span> <span class="o">};</span>
-	<span class="o">}</span>
+</code></pre>
+</div>
+<p>用到的镜像是nerdammer/hbase。</p>
 
-	<span class="cm">/**
-	 * identifies one or more paths that DispatcherServlet will be mapped to.&lt;br&gt;
-	 *  In this case, it’s mapped to /, indicating that it will be the application’s default servlet.&lt;br&gt;
-	 *   It will handle all requests coming into the application.
-	 */</span>
-	<span class="nd">@Override</span>
-	<span class="kd">protected</span> <span class="n">String</span><span class="o">[]</span> <span class="n">getServletMappings</span><span class="o">()</span> <span class="o">{</span>
-		<span class="k">return</span> <span class="k">new</span> <span class="n">String</span><span class="o">[]</span> <span class="o">{</span> <span class="s">"/"</span> <span class="o">};</span>
-	<span class="o">}</span>
+<h3 id="hbase-sitexml">2.2 宿主机使用的hbase-site.xml配置</h3>
+<p>默认配置,hbase版本是1.1.12。</p>
 
-<span class="o">}</span></code></pre></figure>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0"?&gt;</span>   
+<span class="cp">&lt;?xml-stylesheet type="text/xsl" href="configuration.xsl"?&gt;</span>   
+<span class="nt">&lt;configuration&gt;</span>   
+<span class="nt">&lt;/configuration&gt;</span>
+</code></pre>
+</div>
 
-<p>com.bob.playspring.WebConfig</p>
+<h2 id="section-2">3. 蛛丝马迹</h2>
+<p>       启动Wireshark后监听。启动宿主机hbase shell。执行list命令。可疑的数据包出现了。为了遍于观察，根据协议进行了过滤。看下图。
+<img src="/img/in-post/wireshark_story_2/destination_packets.png" alt="Alt text" />
+我解释下上图4个包的含义：</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">bob</span><span class="o">.</span><span class="na">playspring</span><span class="o">;</span>
+<div class="highlighter-rouge"><pre class="highlight"><code>36号包：从本机192.168.1.9向DNS服务器114.114.114.114询问知不知道主机名6c42865b4ee8对应的IPv4是多少。      
+37号包：从本机192.168.1.9向DNS服务器114.114.114.114询问知不知道主机名6c42865b4ee8对应的IPv6是多少。      
+38号包：DNS服务器114.114.114.114向本机回复，表示不知道查询的主机名对应IPv4是多少。   
+39号包：DNS服务器114.114.114.114向本机回复，表示不知道查询的主机名对应IPv6是多少。
+</code></pre>
+</div>
 
-<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Bean</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.ComponentScan</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Configuration</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.springframework.web.servlet.ViewResolver</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.springframework.web.servlet.config.annotation.EnableWebMvc</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.springframework.web.servlet.view.InternalResourceViewResolver</span><span class="o">;</span>
+<p>核对了一下容器的ID是6c42865b4ee8：</p>
 
-<span class="cm">/**
- * 系统配置
- * @author bob
- *
- */</span>
-<span class="nd">@EnableWebMvc</span>
-<span class="nd">@Configuration</span>
-<span class="nd">@ComponentScan</span><span class="o">(</span><span class="s">"com.bob"</span><span class="o">)</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">WebConfig</span> <span class="kd">extends</span> <span class="n">WebMvcConfigurerAdapter</span> <span class="o">{</span>
+<div class="highlighter-rouge"><pre class="highlight"><code>CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                                                                                                                            NAMES
+6c42865b4ee8        nerdammer/hbase     "/bin/sh -c /opt/h..."   4 days ago          Up 2 hours          0.0.0.0:2181-&gt;2181/tcp, 0.0.0.0:60000-&gt;60000/tcp, 0.0.0.0:60010-&gt;60010/tcp, 0.0.0.0:60020-&gt;60020/tcp, 0.0.0.0:60030-&gt;60030/tcp   hb_hbase_1
+</code></pre>
+</div>
+<p>登入容器内部，才发现原来容器ID和主机名称是一样的：</p>
 
-	<span class="nd">@Bean</span>
-	<span class="kd">public</span> <span class="n">ViewResolver</span> <span class="n">viewResolver</span><span class="o">()</span> <span class="o">{</span>
-		<span class="n">InternalResourceViewResolver</span> <span class="n">resolver</span> <span class="o">=</span> <span class="k">new</span> <span class="n">InternalResourceViewResolver</span><span class="o">();</span>
-		<span class="n">resolver</span><span class="o">.</span><span class="na">setPrefix</span><span class="o">(</span><span class="s">"/WEB-INF/views/"</span><span class="o">);</span>
-		<span class="n">resolver</span><span class="o">.</span><span class="na">setSuffix</span><span class="o">(</span><span class="s">".jsp"</span><span class="o">);</span>
-		<span class="n">resolver</span><span class="o">.</span><span class="na">setExposeContextBeansAsAttributes</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
-		<span class="k">return</span> <span class="n">resolver</span><span class="o">;</span>
-	<span class="o">}</span>
+<div class="highlighter-rouge"><pre class="highlight"><code>xxxxxx-MacBook-Pro:wireshark_story_2 xxxxxx$ docker exec -i -t hb_hbase_1 /bin/bash
+[root@6c42865b4ee8 bin]#
+</code></pre>
+</div>
 
-	<span class="nd">@Override</span>
-	<span class="kd">public</span> <span class="kt">void</span> <span class="n">configureDefaultServletHandling</span><span class="o">(</span><span class="n">DefaultServletHandlerConfigurer</span> <span class="n">configurer</span><span class="o">)</span> <span class="o">{</span>
-		<span class="n">configurer</span><span class="o">.</span><span class="na">enable</span><span class="o">();</span>
-	<span class="o">}</span>
+<h2 id="section-3">4.验证</h2>
+<p>       在/etc/hosts中配置：</p>
 
-<span class="o">}</span></code></pre></figure>
+<div class="highlighter-rouge"><pre class="highlight"><code>127.0.0.1  6c42865b4ee8
+</code></pre>
+</div>
+<p>再一次执行list命令，这下执行成功了：</p>
 
-<p>com.bob.playspring.RootConfig</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>hbase(main):001:0&gt; list
+TABLE
+marker_custom_column
+test_bob
+2 row(s) in 0.2290 seconds
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">bob</span><span class="o">.</span><span class="na">playspring</span><span class="o">;</span>
-
-<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.ComponentScan</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.ComponentScan.Filter</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Configuration</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.FilterType</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.springframework.web.servlet.config.annotation.EnableWebMvc</span><span class="o">;</span>
-
-<span class="nd">@Configuration</span>
-<span class="nd">@ComponentScan</span><span class="o">(</span><span class="n">basePackages</span> <span class="o">=</span> <span class="o">{</span> <span class="s">"com.bob"</span> <span class="o">},</span> <span class="n">excludeFilters</span> <span class="o">=</span> <span class="o">{</span>
-		<span class="nd">@Filter</span><span class="o">(</span><span class="n">type</span> <span class="o">=</span> <span class="n">FilterType</span><span class="o">.</span><span class="na">ANNOTATION</span><span class="o">,</span> <span class="n">value</span> <span class="o">=</span> <span class="n">EnableWebMvc</span><span class="o">.</span><span class="na">class</span><span class="o">)</span> <span class="o">})</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">RootConfig</span> <span class="o">{</span>
-
-<span class="o">}</span></code></pre></figure>
-
-<p>关于Controller，Service，Repository的代码我就不贴了。</p>
+=&gt; ["test_table_1", "test_bob"]
+</code></pre>
+</div>
 
 
                 <hr style="visibility: hidden;">
@@ -342,19 +326,12 @@ com.bob.playspring.PlayWebAppInitializer</p>
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2016/01/06/complie_openJDK/" data-toggle="tooltip" data-placement="top" title="JVM学习——编译OpenJDK">
+                        <a href="/2017/09/15/tomcat85_1/" data-toggle="tooltip" data-placement="top" title="Tomcat8.5源码学习（一）NioEndPoint ">
                         Previous<br>
-                        <span>JVM学习——编译OpenJDK</span>
+                        <span>Tomcat8.5源码学习（一）NioEndPoint </span>
                         </a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/2016/01/23/es-invalid-shift-value/" data-toggle="tooltip" data-placement="top" title="ElasticSearch学习问题记录——Invalid shift value in prefixCoded bytes (is encoded value really an INT?)">
-                        Next<br>
-                        <span>ElasticSearch学习问题记录——Invalid shift value in prefixCoded bytes (is encoded value really an INT?)</span>
-                        </a>
-                    </li>
                     
                 </ul>
 
@@ -458,8 +435,8 @@ com.bob.playspring.PlayWebAppInitializer</p>
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "bob1024";
-    var disqus_identifier = "/2016/01/10/springmvc";
-    var disqus_url = "https://bob1024.com/2016/01/10/springmvc/";
+    var disqus_identifier = "/2017/10/31/wireshark_story_2";
+    var disqus_url = "https://bob1024.com/2017/10/31/wireshark_story_2/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
